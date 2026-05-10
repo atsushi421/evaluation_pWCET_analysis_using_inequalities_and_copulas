@@ -1,0 +1,6 @@
+numpy
+scikit-learn
+PyYAML
+tqdm
+pandas
+vinecopulas
