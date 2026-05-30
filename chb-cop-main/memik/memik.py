@@ -46,7 +46,6 @@ def calc_quantile_pred(samples_boot: np.ndarray, p: float, k: int) -> float:
     '''
     log_moment = estimate_log_kth_moment(samples_boot, k)
     return np.exp((log_moment - np.log(p)) / k)
-    # return (estimate_kth_moment(samples_boot, k)/p) ** (1/k)
 
 def predict_max_k_linear(max_k_test: dict[float, int], p_all: list[float]) -> dict[float, int]:
     '''
@@ -79,15 +78,11 @@ def validate_corr(max_k: dict[float, int], corr_th: float):
 
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
-# ヘルパー関数: 1回のシミュレーションを実行して current_k を返す
 def simulation_for_one_p(p, samples, n_boot, k_start, k_end, q_est):
-    # ブートストラップサンプルを生成
     samples_boot = np.random.choice(samples, size=n_boot, replace=True)
     tightness_best = math.inf
     current_k = None
-    # k_start から k_end までループ
     for k in range(k_start, k_end + 1):
-        # calc_quantile_pred は別途定義された関数とする
         vpred = calc_quantile_pred(samples_boot, p, k)
         tightness = vpred / q_est
         if tightness < 1:
@@ -95,36 +90,33 @@ def simulation_for_one_p(p, samples, n_boot, k_start, k_end, q_est):
         if tightness < tightness_best:
             tightness_best = tightness
             current_k = k
-    # シミュレーション内で current_k が更新されなかった場合は inf を返す
     return current_k if current_k is not None else float('inf')
 
 def restk(samples: np.ndarray, k_start: int, k_end: int, n_sims: int,
                    p_test: list[float], p_all: list[float], corr_th: float, n_boot: int = None) -> dict[float, int]:
     """
-    並列化したシミュレーションによって、各 p に対する k の制限値を求める。
+    Find the upper bound of k for each target probability via parallel simulation.
 
     Args:
-        samples (np.ndarray): 入力サンプル。
-        k_start (int): k の開始値。
-        k_end (int): k の終了値。
-        n_sims (int): シミュレーションの回数。
-        p_test (list[float]): テスト確率のリスト。
-        p_all (list[float]): 全確率のリスト。
-        corr_th (float): 相関閾値。
-        n_boot (int, optional): ブートストラップサンプル数。None の場合は samples の長さを使用。
+        samples (np.ndarray): Input samples.
+        k_start (int): Start value for k.
+        k_end (int): End value for k.
+        n_sims (int): Number of simulations.
+        p_test (list[float]): Test probabilities.
+        p_all (list[float]): All target probabilities.
+        corr_th (float): Correlation threshold.
+        n_boot (int, optional): Number of bootstrap samples. Defaults to len(samples).
     Returns:
-        dict[float, int]: 各確率に対応する k 値の辞書。
+        dict[float, int]: Dictionary mapping probabilities to k values.
     """
     if n_boot is None:
         n_boot = len(samples)
-    
+
     max_k_test: dict[float, int] = {}
-    
-    # 各 p に対して処理を行う（ここは p ごとに独立なので、必要に応じてさらに並列化も可能）
+
     for p in p_test:
         q_est: float = np.quantile(samples, 1 - p)
         simulation_results = []
-        # ProcessPoolExecutor を利用してシミュレーションを並列実行
         with ProcessPoolExecutor(max_workers=os.cpu_count()) as executor:
             futures = [
                 executor.submit(simulation_for_one_p, p, samples, n_boot, k_start, k_end, q_est)
@@ -133,10 +125,8 @@ def restk(samples: np.ndarray, k_start: int, k_end: int, n_sims: int,
             for future in as_completed(futures):
                 result = future.result()
                 simulation_results.append(result)
-        # シミュレーションの中で得られた current_k の最小値を保存
         max_k_test[p] = min(simulation_results) if simulation_results else None
 
-    # predict_max_k_linear と validate_corr は元のコードで定義されている関数とする
     max_k_all: dict[float, int] = predict_max_k_linear(max_k_test, p_all)
     validate_corr(max_k_all, corr_th)
     return max_k_all

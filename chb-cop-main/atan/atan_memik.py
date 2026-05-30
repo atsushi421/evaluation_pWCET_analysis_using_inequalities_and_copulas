@@ -57,7 +57,6 @@ def calc_quantile_pred(samples_boot: np.ndarray, p: float, k: int, d: int) -> fl
         return np.inf
     else:
         return np.tan(target_theta) * d
-    # return np.tan((estimate_kth_moment(samples_boot, k, d)/p) ** (1/k)) * d
 
 
 def predict_max_k_linear(max_k_test: dict[float, int], p_all: list[float]) -> dict[float, int]:
@@ -96,26 +95,25 @@ def validate_corr(max_k: dict[float, int], corr_th: float):
 
 def simulation_for_one_p(p, samples, n_boot, k_start, k_end, q_est, d):
     """
-    1回のシミュレーションを実行して、与えられた d に対する current_k を返す。
-    ここでは f(x) = (arctan(x/d))^k を使った moment に基づく分位数予測 calc_quantile_pred を利用する。
+    Run one bootstrap simulation for the given d and return current_k.
+    Uses the quantile prediction based on the moment of f(x) = (arctan(x/d))^k.
 
     Args:
-        p (float): 対象の確率
-        samples (np.ndarray): 入力サンプル
-        n_boot (int): ブートストラップサンプル数
-        k_start (int): k の開始値
-        k_end (int): k の終了値
-        q_est (float): サンプルからの経験的分位数（np.quantile(samples, 1 - p) など）
-        d (int or float): arctan の引数に使う定数
+        p (float): Target probability.
+        samples (np.ndarray): Input samples.
+        n_boot (int): Number of bootstrap samples.
+        k_start (int): Start value for k.
+        k_end (int): End value for k.
+        q_est (float): Empirical quantile of samples (e.g. np.quantile(samples, 1 - p)).
+        d (int or float): Constant used in the arctan argument.
 
     Returns:
-        int or float: シミュレーション内で得られた current_k。更新がなければ inf を返す。
+        int or float: current_k obtained in the simulation; returns k_end if never updated.
     """
     samples_boot = np.random.choice(samples, size=n_boot, replace=True)
     tightness_best = np.inf
     current_k = None
     for k in range(k_start, k_end + 1):
-        # calc_quantile_pred は d をパラメータとして利用するようになっている
         vpred = calc_quantile_pred(samples_boot, p, k, d)
         tightness = vpred / q_est
         if tightness < 1:
@@ -130,26 +128,26 @@ def restk(samples: np.ndarray, k_start: int, k_end: int, n_sims: int,
           p_test: list[float], p_all: list[float], d_list: list[int],
           corr_th: float, n_boot: int = None) -> dict[float, dict[float, int]]:
     """
-    d_list に含まれる各 d について、シミュレーションにより各 p に対する最大 k を求める。
+    For each d in d_list, find the maximum k for each p via simulation.
 
     Args:
-        samples (np.ndarray): 入力サンプル
-        k_start (int): k の開始値
-        k_end (int): k の終了値
-        n_sims (int): シミュレーションの反復回数
-        p_test (list[float]): テストに用いる確率のリスト
-        p_all (list[float]): 最終的に予測するすべての確率のリスト
-        d_list (list[int]): d の値のリスト。各 d についてシミュレーションを行う。
-        corr_th (float): 相関の閾値
-        n_boot (int, optional): ブートストラップサンプル数。None の場合は samples の長さを使用。
+        samples (np.ndarray): Input samples.
+        k_start (int): Start value for k.
+        k_end (int): End value for k.
+        n_sims (int): Number of simulation iterations.
+        p_test (list[float]): Test probabilities.
+        p_all (list[float]): All target probabilities to predict.
+        d_list (list[int]): List of d values; simulation is run for each d.
+        corr_th (float): Correlation threshold.
+        n_boot (int, optional): Number of bootstrap samples. Defaults to len(samples).
 
     Returns:
-        dict[float, dict[float, int]]: キーが d、値が各 p に対する max_k の辞書
+        dict[float, dict[float, int]]: Mapping from d to {p: max_k}.
     """
     if n_boot is None:
         n_boot = len(samples)
 
-    result = {}  # 結果は {d: {p: max_k, ...}, ...} の形式で返す
+    result = {}
     for d in d_list:
         max_k_test: dict[float, int] = {}
         for p in p_test:
@@ -166,7 +164,6 @@ def restk(samples: np.ndarray, k_start: int, k_end: int, n_sims: int,
             max_k_test[p] = min(
                 simulation_results) if simulation_results else None
 
-        # p_test で得られた max_k_test に対して、線形回帰で p_all も予測する（predict_max_k_linear, validate_corr は既存関数）
         max_k_all: dict[float, int] = predict_max_k_linear(max_k_test, p_all)
         validate_corr(max_k_all, corr_th)
         result[d] = max_k_all
