@@ -14,6 +14,8 @@ chb-cop-main/
 ├── memik/                # Inequality-based estimation with f(x) = x^k
 ├── atan/                 # Inequality-based estimation with f(x) = arctan(x/d)^k
 ├── tanh/                 # Inequality-based estimation with f(x) = tanh(x/d)^k
+├── benchmarks/
+│   └── malardalen/       # Unmodified Mälardalen WCET kernels evaluated in the paper
 ├── chb_main.ipynb        # End-to-end example of inequality-based estimation
 ├── copulas.ipynb         # End-to-end example of copula-based composition
 └── requirements.txt
@@ -69,3 +71,7 @@ Open and run [`chb-cop-main/copulas.ipynb`](chb-cop-main/copulas.ipynb).
 3. Draw $10^7$ joint $(u_1, u_2)$ samples from the fitted copula.
 4. Map each marginal back to the execution-time scale via an inverse-CDF built from the per-unit pWCET dictionary.
 5. Sum the two marginals and re-quantise at the requested exceedance probabilities to obtain the joint pWCET.
+
+## Benchmark programs
+
+[`chb-cop-main/benchmarks/malardalen/`](chb-cop-main/benchmarks/malardalen/) contains byte-identical copies of the five Mälardalen WCET kernels used in the paper's benchmark evaluation (`bsort100`, `fdct`, `fir`, `matmult`, `sqrt`), the upstream SWEET annotation file for `bsort100`, and a README recording their provenance (URLs, upstream revision, SHA-256), the paper-to-upstream name mapping, the compile flags (`gcc -O2 -fno-builtin`), each kernel's fixed input configuration, and mirror locations. The execution-time traces are not included.

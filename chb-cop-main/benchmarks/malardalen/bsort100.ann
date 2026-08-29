@@ -1,0 +1,13 @@
+/*
+/*
+Note: the alf code has been unmangled, by running
+
+sed 's/::[0-9]* / /g' bsort100.alf > bsort100_unmangled.alf
+mv bsort100_unmangled.alf bsort100.alf
+
+The best case for bubble sort occurs when the list is already sorted or nearly sorted. In the case where the list is already sorted, bubble sort will terminate after the first iteration, since no swaps were made.
+
+The absolute worst case for bubble sort is when the smallest element of the list is at the large end. Because in each iteration only the largest unsorted element gets put in its proper location, when the smallest element is at the end, it will have to be swapped each time through the list, and it wont get to the front of the list until all n iterations have occurred. 
+*/
+
+STMT_ENTRY main alf_label_1 0 ASSIGN Array 32 32 100 TOP_INT;
