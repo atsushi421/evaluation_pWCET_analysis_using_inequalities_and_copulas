@@ -14,6 +14,7 @@ Research code accompanying our work on probabilistic Worst-Case Execution Time (
 ├── tanh/                 # Inequality-based estimation with f(x) = tanh(x/d)^k
 ├── benchmarks/
 │   └── malardalen/       # Unmodified Mälardalen WCET kernels evaluated in the paper
+├── ipoint/               # IPoint instrumentation toolkit and measurement harness (see ipoint/README.md)
 ├── chb_main.ipynb        # End-to-end example of inequality-based estimation
 ├── copulas.ipynb         # End-to-end example of copula-based composition
 └── requirements.txt
@@ -72,3 +73,7 @@ Open and run [`copulas.ipynb`](copulas.ipynb).
 ## Benchmark programs
 
 [`benchmarks/malardalen/`](benchmarks/malardalen/) contains byte-identical copies of the five Mälardalen WCET kernels used in the paper's benchmark evaluation (`bsort100`, `fdct`, `fir`, `matmult`, `sqrt`), the upstream SWEET annotation file for `bsort100`, and a README recording their provenance (URLs, upstream revision, SHA-256), the paper-to-upstream name mapping, the compile flags (`gcc -O2 -fno-builtin`), each kernel's fixed input configuration, and mirror locations. The execution-time traces are not included.
+
+## Collecting execution-time traces
+
+[`ipoint/`](ipoint/) contains the instrumentation toolkit used to collect the per-unit traces: a libclang-based tool that decomposes a C source into basic units and inserts IPoints, a header-only probe (`rdtscp; lfence`), the harness for the Mälardalen kernels, and the scripts that turn the raw traces into the sample files expected by the estimators above. `ipoint/README.md` documents the workflow (`tools/run_campaign.py`), the trace formats and the measured probe cost.
