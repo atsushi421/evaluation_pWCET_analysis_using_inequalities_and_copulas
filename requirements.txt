@@ -1,6 +1,10 @@
-numpy
+numpy>=2,<3
+scipy>=1.13
 scikit-learn
 PyYAML
 tqdm
 pandas
-vinecopulas
+matplotlib
+pyvinecopulib==0.7.6
+vinecopulas==2.0.3
+pytest

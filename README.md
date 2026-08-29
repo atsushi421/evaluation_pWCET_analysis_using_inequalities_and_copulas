@@ -3,7 +3,7 @@
 Research code accompanying our work on probabilistic Worst-Case Execution Time (pWCET) estimation. This repository provides two complementary tools:
 
 1. **Inequality-based pWCET estimation** of a single execution-time time series, using Markov's inequality with power-of-k under three different envelope functions ($f(x) = x^k$, $\arctan(x/d)^k$, $\tanh(x/d)^k$).
-2. **Copula-based composition** of two units' pWCET distributions into a joint / summed pWCET distribution.
+2. **Copula-based composition** of the units' pWCET distributions into a joint / summed pWCET distribution (`copula/`, generalizing the two-unit example in `copulas.ipynb`).
 
 ## Repository layout
 
@@ -12,21 +12,24 @@ Research code accompanying our work on probabilistic Worst-Case Execution Time (
 ├── memik/                # Inequality-based estimation with f(x) = x^k
 ├── atan/                 # Inequality-based estimation with f(x) = arctan(x/d)^k
 ├── tanh/                 # Inequality-based estimation with f(x) = tanh(x/d)^k
+├── copula/               # Copula family pools, selection criteria, R-vines, MC composition (see copula/README.md)
 ├── benchmarks/
 │   └── malardalen/       # Unmodified Mälardalen WCET kernels evaluated in the paper
 ├── ipoint/               # IPoint instrumentation toolkit and measurement harness (see ipoint/README.md)
 ├── chb_main.ipynb        # End-to-end example of inequality-based estimation
-├── copulas.ipynb         # End-to-end example of copula-based composition
+├── copulas.ipynb         # Two-unit example of copula-based composition (vinecopulas; superseded by copula/)
 └── requirements.txt
 ```
 
 ## Setup
 
 ```bash
-pip install -r requirements.txt
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 .venv/bin/python -m pytest copula/tests -q
 ```
 
-Dependencies: `numpy`, `scikit-learn`, `PyYAML`, `tqdm`, `pandas`, `vinecopulas`.
+Dependencies (pinned in `requirements.txt`): `numpy` 2, `scipy`, `scikit-learn`, `PyYAML`, `tqdm`, `pandas`, `matplotlib`, `pyvinecopulib` 0.7.6 (copula backend), `vinecopulas` 2.0.3 (only for `copulas.ipynb`). A virtual environment is recommended because a numpy 2 user installation breaks a distribution-provided scipy 1.8; `PYTEST_DISABLE_PLUGIN_AUTOLOAD` avoids the ROS 2 pytest plugins when a ROS environment is sourced.
 
 ## Usage
 
@@ -55,7 +58,19 @@ Bootstrap simulations are parallelised with `ProcessPoolExecutor`.
 
 ### 2. Copula-based composition
 
-Open and run [`copulas.ipynb`](copulas.ipynb).
+The `copula/` subpackage (see [`copula/README.md`](copula/README.md)) fits the pair copula or R-vine that couples the units and composes their distributions by Monte-Carlo:
+
+```python
+from copula import select, vine, compose
+u = select.pseudo_obs(x)                                            # x: samples aligned per run, one column per unit
+sel = select.select(u, pool="par", criterion="bic", indep_alpha=0.05)  # two units
+fit = vine.fit_vine(u, pool="par", criterion="bic", indep_alpha=0.05)  # three or more units
+res = compose.compose(sel.bicop, [icdf_a, icdf_b], exceed_probs=[1e-4, 1e-5, 1e-6], n_samples=int(1e8))
+```
+
+Candidate pools (`vc15`, `par`, `all`), the selection criteria (`loglik`, `aic`, `bic`, `mbic`, `cv`, `tcf`, `hybrid`) and the study that compares them (`copula/study_selection.py`, results in `copula/results/`) are documented there.
+
+The original two-unit example is [`copulas.ipynb`](copulas.ipynb) (uses `vinecopulas`):
 
 **Inputs** (not included in this repository):
 
