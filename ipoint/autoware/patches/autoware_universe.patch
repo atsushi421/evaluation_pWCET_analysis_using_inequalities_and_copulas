@@ -1,0 +1,2669 @@
+diff --git a/control/autoware_lane_departure_checker/CMakeLists.txt b/control/autoware_lane_departure_checker/CMakeLists.txt
+index ec4d9ab85..ccb46a3b6 100644
+--- a/control/autoware_lane_departure_checker/CMakeLists.txt
++++ b/control/autoware_lane_departure_checker/CMakeLists.txt
+@@ -14,6 +14,11 @@ rclcpp_components_register_node(${PROJECT_NAME}
+   EXECUTABLE lane_departure_checker_node
+ )
+ 
++# --- ipoint instrumentation (CHB-COP evaluation) ---
++find_package(ipoint_runtime REQUIRED)
++target_link_libraries(${PROJECT_NAME} ipoint_runtime::ipoint_runtime)
++# --- end ipoint ---
++
+ ament_auto_package(
+   INSTALL_TO_SHARE
+     launch
+diff --git a/control/autoware_lane_departure_checker/package.xml b/control/autoware_lane_departure_checker/package.xml
+index ff2e5cab9..dac321888 100644
+--- a/control/autoware_lane_departure_checker/package.xml
++++ b/control/autoware_lane_departure_checker/package.xml
+@@ -40,6 +40,7 @@
+   <test_depend>ament_lint_auto</test_depend>
+   <test_depend>autoware_lint_common</test_depend>
+   <test_depend>autoware_test_utils</test_depend>
++  <depend>ipoint_runtime</depend>
+ 
+   <export>
+     <build_type>ament_cmake</build_type>
+diff --git a/control/autoware_lane_departure_checker/src/lane_departure_checker_node/lane_departure_checker_node.cpp b/control/autoware_lane_departure_checker/src/lane_departure_checker_node/lane_departure_checker_node.cpp
+index 4ab1c265a..a2d538a68 100644
+--- a/control/autoware_lane_departure_checker/src/lane_departure_checker_node/lane_departure_checker_node.cpp
++++ b/control/autoware_lane_departure_checker/src/lane_departure_checker_node/lane_departure_checker_node.cpp
+@@ -1,3 +1,4 @@
++#include "ipoint.h"
+ // Copyright 2020 Tier IV, Inc.
+ //
+ // Licensed under the Apache License, Version 2.0 (the "License");
+@@ -169,59 +170,59 @@ LaneDepartureCheckerNode::LaneDepartureCheckerNode(const rclcpp::NodeOptions & o
+ }
+ 
+ bool LaneDepartureCheckerNode::isDataReady()
+-{
+-  if (!current_odom_) {
++{ IPOINT(3401);
++  if (!current_odom_) { IPOINT(3403);
+     RCLCPP_INFO_THROTTLE(get_logger(), *get_clock(), 5000, "waiting for current_twist msg...");
+-    return false;
+-  }
++    IPOINT(3404); IPOINT(3402); return false;
++  } else { IPOINT(3405); }
+ 
+-  if (!lanelet_map_) {
++  if (!lanelet_map_) { IPOINT(3406);
+     RCLCPP_INFO_THROTTLE(get_logger(), *get_clock(), 5000, "waiting for lanelet_map msg...");
+-    return false;
+-  }
++    IPOINT(3407); IPOINT(3402); return false;
++  } else { IPOINT(3408); }
+ 
+-  if (!route_) {
++  if (!route_) { IPOINT(3409);
+     RCLCPP_INFO_THROTTLE(get_logger(), *get_clock(), 5000, "waiting for route msg...");
+-    return false;
+-  }
++    IPOINT(3410); IPOINT(3402); return false;
++  } else { IPOINT(3411); }
+ 
+-  if (!reference_trajectory_) {
++  if (!reference_trajectory_) { IPOINT(3412);
+     RCLCPP_INFO_THROTTLE(
+       get_logger(), *get_clock(), 5000, "waiting for reference_trajectory msg...");
+-    return false;
+-  }
++    IPOINT(3413); IPOINT(3402); return false;
++  } else { IPOINT(3414); }
+ 
+-  if (!predicted_trajectory_) {
++  if (!predicted_trajectory_) { IPOINT(3415);
+     RCLCPP_INFO_THROTTLE(
+       get_logger(), *get_clock(), 5000, "waiting for predicted_trajectory msg...");
+-    return false;
+-  }
++    IPOINT(3416); IPOINT(3402); return false;
++  } else { IPOINT(3417); }
+ 
+-  if (!operation_mode_) {
++  if (!operation_mode_) { IPOINT(3418);
+     RCLCPP_INFO_THROTTLE(get_logger(), *get_clock(), 5000, "waiting for operation_mode msg...");
+-    return false;
+-  }
++    IPOINT(3419); IPOINT(3402); return false;
++  } else { IPOINT(3420); }
+ 
+-  if (!control_mode_) {
++  if (!control_mode_) { IPOINT(3421);
+     RCLCPP_INFO_THROTTLE(get_logger(), *get_clock(), 5000, "waiting for control_mode msg...");
+-    return false;
+-  }
++    IPOINT(3422); IPOINT(3402); return false;
++  } else { IPOINT(3423); }
+ 
+-  return true;
++  IPOINT(3402); return true;
+ }
+ 
+ bool LaneDepartureCheckerNode::isDataTimeout()
+-{
++{ IPOINT(3424);
+   const auto now = this->now();
+ 
+   constexpr double th_pose_timeout = 1.0;
+   const auto pose_time_diff = rclcpp::Time(current_odom_->header.stamp) - now;
+-  if (pose_time_diff.seconds() > th_pose_timeout) {
++  if (pose_time_diff.seconds() > th_pose_timeout) { IPOINT(3426);
+     RCLCPP_WARN_THROTTLE(get_logger(), *get_clock(), 5000, "pose is timeout...");
+-    return true;
+-  }
++    IPOINT(3427); IPOINT(3425); return true;
++  } else { IPOINT(3428); }
+ 
+-  return false;
++  IPOINT(3425); return false;
+ }
+ 
+ bool LaneDepartureCheckerNode::isDataValid()
+@@ -241,7 +242,7 @@ bool LaneDepartureCheckerNode::isDataValid()
+ }
+ 
+ void LaneDepartureCheckerNode::onTimer()
+-{
++{ IPOINT_JOB_BEGIN(3437);
+   std::map<std::string, double> processing_time_map;
+   autoware_utils::StopWatch<std::chrono::milliseconds> stop_watch;
+   stop_watch.tic("Total");
+@@ -254,7 +255,7 @@ void LaneDepartureCheckerNode::onTimer()
+   control_mode_ = sub_control_mode_.take_data();
+ 
+   const auto lanelet_map_bin_msg = sub_lanelet_map_bin_.take_data();
+-  if (lanelet_map_bin_msg) {
++  if (lanelet_map_bin_msg) { IPOINT(3439);
+     lanelet_map_ = autoware::experimental::lanelet2_utils::remove_const(
+       autoware::experimental::lanelet2_utils::from_autoware_map_msgs(*lanelet_map_bin_msg));
+ 
+@@ -268,24 +269,24 @@ void LaneDepartureCheckerNode::onTimer()
+     // get all shoulder lanes
+     lanelet::ConstLanelets all_lanelets = lanelet::utils::query::laneletLayer(lanelet_map_);
+     shoulder_lanelets_ = lanelet::utils::query::shoulderLanelets(all_lanelets);
+-  }
++  IPOINT(3440); } else { IPOINT(3441); }
+ 
+   if (!isDataReady()) {
+-    return;
+-  }
++    IPOINT_JOB_END(3438); return;
++  } else { IPOINT(3444); }
+ 
+-  if (isDataTimeout()) {
+-    return;
+-  }
++  if (isDataTimeout()) { IPOINT(3445);
++    IPOINT(3446); IPOINT_JOB_END(3438); return;
++  } else { IPOINT(3447); }
+ 
+-  if (!isDataValid()) {
+-    return;
+-  }
++  if (!isDataValid()) { IPOINT(3448);
++    IPOINT(3449); IPOINT_JOB_END(3438); return;
++  } else { IPOINT(3450); }
+ 
+   processing_time_map["Node: checkData"] = stop_watch.toc(true);
+ 
+   // In order to wait for both of map and route will be ready, write this not in callback but here
+-  if (last_route_ != route_ && !route_->segments.empty()) {
++  if (last_route_ != route_ && !route_->segments.empty()) { IPOINT(3451);
+     std::map<lanelet::Id, lanelet::ConstLanelet>::iterator itr;
+ 
+     auto map_route_lanelets_ = getRouteLanelets(
+@@ -293,22 +294,22 @@ void LaneDepartureCheckerNode::onTimer()
+ 
+     lanelet::ConstLanelets shared_lanelets_tmp;
+ 
+-    for (itr = map_route_lanelets_.begin(); itr != map_route_lanelets_.end(); ++itr) {
++    IPOINT(3453); for (itr = map_route_lanelets_.begin(); itr != map_route_lanelets_.end(); ++itr) { IPOINT(3455);
+       const auto shared_lanelet = getAllSharedLineStringLanelets(
+         itr->second, node_param_.include_right_lanes, node_param_.include_left_lanes,
+         node_param_.include_opposite_lanes, node_param_.include_conflicting_lanes, true);
+       shared_lanelets_tmp.insert(
+         shared_lanelets_tmp.end(), shared_lanelet.begin(), shared_lanelet.end());
+-    }
+-    for (const auto & lanelet : shared_lanelets_tmp) {
++    IPOINT(3456); } IPOINT(3454);
++    IPOINT(3457); for (const auto & lanelet : shared_lanelets_tmp) {
+       map_route_lanelets_[lanelet.id()] = lanelet;
+-    }
++    } IPOINT(3458);
+     route_lanelets_.clear();
+-    for (itr = map_route_lanelets_.begin(); itr != map_route_lanelets_.end(); ++itr) {
++    IPOINT(3461); for (itr = map_route_lanelets_.begin(); itr != map_route_lanelets_.end(); ++itr) {
+       route_lanelets_.push_back(itr->second);
+-    }
++    } IPOINT(3462);
+     last_route_ = route_;
+-  }
++  IPOINT(3452); } else { IPOINT(3465); }
+   processing_time_map["Node: getRouteLanelets"] = stop_watch.toc(true);
+ 
+   input_.current_odom = current_odom_;
+@@ -332,9 +333,9 @@ void LaneDepartureCheckerNode::onTimer()
+   processing_time_map["Node: publishDebugMarker"] = stop_watch.toc(true);
+ 
+   // Merge processing_time_map
+-  for (const auto & m : output_.processing_time_map) {
++  IPOINT(3466); for (const auto & m : output_.processing_time_map) { IPOINT(3468);
+     processing_time_map["Core: " + m.first] = m.second;
+-  }
++  IPOINT(3469); } IPOINT(3467);
+ 
+   processing_time_map["Total"] = stop_watch.toc("Total");
+   processing_diag_publisher_.publish(processing_time_map);
+@@ -342,7 +343,7 @@ void LaneDepartureCheckerNode::onTimer()
+   processing_time_msg.stamp = get_clock()->now();
+   processing_time_msg.data = processing_time_map["Total"];
+   processing_time_publisher_->publish(processing_time_msg);
+-}
++IPOINT_JOB_END(3438); }
+ 
+ rcl_interfaces::msg::SetParametersResult LaneDepartureCheckerNode::onParameter(
+   const std::vector<rclcpp::Parameter> & parameters)
+@@ -387,31 +388,31 @@ rcl_interfaces::msg::SetParametersResult LaneDepartureCheckerNode::onParameter(
+ 
+ void LaneDepartureCheckerNode::checkLaneDeparture(
+   diagnostic_updater::DiagnosticStatusWrapper & stat)
+-{
++{ IPOINT(3470);
+   using DiagStatus = diagnostic_msgs::msg::DiagnosticStatus;
+   int8_t level = DiagStatus::OK;
+   std::string msg = "OK";
+ 
+-  if (output_.will_leave_lane && node_param_.will_out_of_lane_checker) {
++  if (output_.will_leave_lane && node_param_.will_out_of_lane_checker) { IPOINT(3472);
+     level = DiagStatus::WARN;
+     msg = "vehicle will leave lane";
+-  }
++  IPOINT(3473); } else { IPOINT(3474); }
+ 
+-  if (output_.is_out_of_lane && node_param_.out_of_lane_checker) {
++  if (output_.is_out_of_lane && node_param_.out_of_lane_checker) { IPOINT(3475);
+     level = DiagStatus::ERROR;
+     msg = "vehicle is out of lane";
+-  }
++  IPOINT(3476); } else { IPOINT(3477); }
+ 
+-  if (output_.will_cross_boundary && node_param_.boundary_departure_checker) {
++  if (output_.will_cross_boundary && node_param_.boundary_departure_checker) { IPOINT(3478);
+     level = DiagStatus::ERROR;
+     msg = "vehicle will cross boundary";
+-  }
++  IPOINT(3479); } else { IPOINT(3480); }
+ 
+   stat.summary(level, msg);
+-}
++IPOINT(3471); }
+ 
+ visualization_msgs::msg::MarkerArray LaneDepartureCheckerNode::createMarkerArray() const
+-{
++{ IPOINT(3481);
+   using autoware_utils::create_default_marker;
+   using autoware_utils::create_marker_color;
+   using autoware_utils::create_marker_scale;
+@@ -420,24 +421,24 @@ visualization_msgs::msg::MarkerArray LaneDepartureCheckerNode::createMarkerArray
+ 
+   const auto base_link_z = current_odom_->pose.pose.position.z;
+ 
+-  if (node_param_.visualize_lanelet) {
++  if (node_param_.visualize_lanelet) { IPOINT(3483);
+     // Route Lanelets
+     {
+       auto marker = create_default_marker(
+         "map", this->now(), "route_lanelets", 0, visualization_msgs::msg::Marker::TRIANGLE_LIST,
+         create_marker_scale(1.0, 1.0, 1.0), create_marker_color(0.0, 0.5, 0.5, 0.5));
+ 
+-      for (const auto & lanelet : input_.route_lanelets) {
++      IPOINT(3485); for (const auto & lanelet : input_.route_lanelets) { IPOINT(3487);
+         std::vector<geometry_msgs::msg::Polygon> triangles;
+         lanelet::visualization::lanelet2Triangle(lanelet, &triangles);
+ 
+-        for (const auto & triangle : triangles) {
+-          for (const auto & point : triangle2points(triangle)) {
++        IPOINT(3489); for (const auto & triangle : triangles) { IPOINT(3491);
++          IPOINT(3493); for (const auto & point : triangle2points(triangle)) { IPOINT(3495);
+             marker.points.push_back(point);
+             marker.colors.push_back(marker.color);
+-          }
+-        }
+-      }
++          IPOINT(3496); } IPOINT(3494);
++        IPOINT(3492); } IPOINT(3490);
++      IPOINT(3488); } IPOINT(3486);
+ 
+       marker_array.markers.push_back(marker);
+     }
+@@ -448,23 +449,23 @@ visualization_msgs::msg::MarkerArray LaneDepartureCheckerNode::createMarkerArray
+         "map", this->now(), "candidate_lanelets", 0, visualization_msgs::msg::Marker::TRIANGLE_LIST,
+         create_marker_scale(1.0, 1.0, 1.0), create_marker_color(1.0, 1.0, 0.0, 0.5));
+ 
+-      for (const auto & lanelet : output_.candidate_lanelets) {
++      IPOINT(3497); for (const auto & lanelet : output_.candidate_lanelets) { IPOINT(3499);
+         std::vector<geometry_msgs::msg::Polygon> triangles;
+         lanelet::visualization::lanelet2Triangle(lanelet, &triangles);
+ 
+-        for (const auto & triangle : triangles) {
+-          for (const auto & point : triangle2points(triangle)) {
++        IPOINT(3501); for (const auto & triangle : triangles) { IPOINT(3503);
++          IPOINT(3505); for (const auto & point : triangle2points(triangle)) { IPOINT(3507);
+             marker.points.push_back(point);
+             marker.colors.push_back(marker.color);
+-          }
+-        }
+-      }
++          IPOINT(3508); } IPOINT(3506);
++        IPOINT(3504); } IPOINT(3502);
++      IPOINT(3500); } IPOINT(3498);
+ 
+       marker_array.markers.push_back(marker);
+     }
+-  }
++  IPOINT(3484); } else { IPOINT(3509); }
+ 
+-  if (output_.resampled_trajectory.size() >= 2) {
++  if (output_.resampled_trajectory.size() >= 2) { IPOINT(3510);
+     // Line of resampled_trajectory
+     {
+       auto marker = create_default_marker(
+@@ -472,10 +473,10 @@ visualization_msgs::msg::MarkerArray LaneDepartureCheckerNode::createMarkerArray
+         visualization_msgs::msg::Marker::LINE_STRIP, create_marker_scale(0.05, 0, 0),
+         create_marker_color(1.0, 1.0, 1.0, 0.999));
+ 
+-      for (const auto & p : output_.resampled_trajectory) {
++      IPOINT(3512); for (const auto & p : output_.resampled_trajectory) {
+         marker.points.push_back(p.pose.position);
+         marker.colors.push_back(marker.color);
+-      }
++      } IPOINT(3513);
+ 
+       marker_array.markers.push_back(marker);
+     }
+@@ -487,14 +488,14 @@ visualization_msgs::msg::MarkerArray LaneDepartureCheckerNode::createMarkerArray
+         visualization_msgs::msg::Marker::SPHERE_LIST, create_marker_scale(0.1, 0.1, 0.1),
+         create_marker_color(0.0, 1.0, 0.0, 0.999));
+ 
+-      for (const auto & p : output_.resampled_trajectory) {
++      IPOINT(3516); for (const auto & p : output_.resampled_trajectory) {
+         marker.points.push_back(p.pose.position);
+         marker.colors.push_back(marker.color);
+-      }
++      } IPOINT(3517);
+ 
+       marker_array.markers.push_back(marker);
+     }
+-  }
++  IPOINT(3511); } else { IPOINT(3520); }
+ 
+   // Vehicle Footprints
+   {
+@@ -505,16 +506,16 @@ visualization_msgs::msg::MarkerArray LaneDepartureCheckerNode::createMarkerArray
+     auto color = color_ok;
+     if (output_.will_leave_lane) {
+       color = color_will_leave_lane;
+-    }
++    } else { IPOINT(3523); }
+     if (output_.is_out_of_lane) {
+       color = color_is_out_of_lane;
+-    }
++    } else { IPOINT(3526); }
+ 
+     auto marker = create_default_marker(
+       "map", this->now(), "vehicle_footprints", 0, visualization_msgs::msg::Marker::LINE_LIST,
+       create_marker_scale(0.05, 0, 0), color);
+ 
+-    for (const auto & vehicle_footprint : output_.vehicle_footprints) {
++    IPOINT(3527); for (const auto & vehicle_footprint : output_.vehicle_footprints) {
+       for (size_t i = 0; i < vehicle_footprint.size() - 1; ++i) {
+         const auto p1 = vehicle_footprint.at(i);
+         const auto p2 = vehicle_footprint.at(i + 1);
+@@ -522,171 +523,171 @@ visualization_msgs::msg::MarkerArray LaneDepartureCheckerNode::createMarkerArray
+         marker.points.push_back(autoware_utils::to_msg(p1.to_3d(base_link_z)));
+         marker.points.push_back(autoware_utils::to_msg(p2.to_3d(base_link_z)));
+       }
+-    }
++    } IPOINT(3528);
+ 
+     marker_array.markers.push_back(marker);
+   }
+ 
+-  return marker_array;
++  { auto __ipoint_rv = ( marker_array); IPOINT(3482); return __ipoint_rv; }
+ }
+ 
+ lanelet::ConstLanelets LaneDepartureCheckerNode::getAllSharedLineStringLanelets(
+   const lanelet::ConstLanelet & current_lane, const bool is_right, const bool is_left,
+   const bool is_opposite, const bool is_conflicting, const bool & invert_opposite)
+-{
++{ IPOINT(3535);
+   lanelet::ConstLanelets shared{current_lane};
+ 
+-  if (is_right) {
++  if (is_right) { IPOINT(3537);
+     const lanelet::ConstLanelets all_right_lanelets =
+       getAllRightSharedLinestringLanelets(current_lane, is_opposite, invert_opposite);
+     shared.insert(shared.end(), all_right_lanelets.begin(), all_right_lanelets.end());
+-  }
++  IPOINT(3538); } else { IPOINT(3539); }
+ 
+-  if (is_left) {
++  if (is_left) { IPOINT(3540);
+     const lanelet::ConstLanelets all_left_lanelets =
+       getAllLeftSharedLinestringLanelets(current_lane, is_opposite, invert_opposite);
+     shared.insert(shared.end(), all_left_lanelets.begin(), all_left_lanelets.end());
+-  }
++  IPOINT(3541); } else { IPOINT(3542); }
+ 
+-  if (is_conflicting) {
++  if (is_conflicting) { IPOINT(3543);
+     const auto conflicting_lanelets =
+       autoware::experimental::lanelet2_utils::get_conflicting_lanelets(
+         current_lane, routing_graph_);
+     shared.insert(shared.end(), conflicting_lanelets.begin(), conflicting_lanelets.end());
+-  }
+-  return shared;
++  IPOINT(3544); } else { IPOINT(3545); }
++  { auto __ipoint_rv = ( shared); IPOINT(3536); return __ipoint_rv; }
+ }
+ 
+ lanelet::ConstLanelets LaneDepartureCheckerNode::getAllRightSharedLinestringLanelets(
+   const lanelet::ConstLanelet & lane, const bool & include_opposite, const bool & invert_opposite)
+-{
++{ IPOINT(3546);
+   lanelet::ConstLanelets linestring_shared;
+   auto lanelet_at_right = getRightLanelet(lane);
+   auto lanelet_at_right_opposite = getRightOppositeLanelets(lane);
+-  while (lanelet_at_right) {
++  IPOINT(3548); while (lanelet_at_right) { IPOINT(3550);
+     linestring_shared.push_back(lanelet_at_right.get());
+     lanelet_at_right = getRightLanelet(lanelet_at_right.get());
+-    if (!lanelet_at_right) {
+-      break;
+-    }
++    if (!lanelet_at_right) { IPOINT(3552);
++      IPOINT(3553); IPOINT(3551); break;
++    } else { IPOINT(3554); }
+     lanelet_at_right_opposite = getRightOppositeLanelets(lanelet_at_right.get());
+-  }
++  IPOINT(3551); } IPOINT(3549);
+ 
+-  if (!lanelet_at_right_opposite.empty() && include_opposite) {
+-    if (invert_opposite) {
++  if (!lanelet_at_right_opposite.empty() && include_opposite) { IPOINT(3555);
++    if (invert_opposite) { IPOINT(3557);
+       linestring_shared.push_back(lanelet_at_right_opposite.front().invert());
+-    } else {
++    IPOINT(3558); } else { IPOINT(3559);
+       linestring_shared.push_back(lanelet_at_right_opposite.front());
+-    }
++    IPOINT(3560); }
+     auto lanelet_at_left = getLeftLanelet(lanelet_at_right_opposite.front());
+-    while (lanelet_at_left) {
+-      if (invert_opposite) {
++    IPOINT(3561); while (lanelet_at_left) { IPOINT(3563);
++      if (invert_opposite) { IPOINT(3565);
+         linestring_shared.push_back(lanelet_at_left.get().invert());
+-      } else {
++      IPOINT(3566); } else { IPOINT(3567);
+         linestring_shared.push_back(lanelet_at_left.get());
+-      }
++      IPOINT(3568); }
+       lanelet_at_left = getLeftLanelet(lanelet_at_left.get());
+-    }
+-  }
+-  return linestring_shared;
++    IPOINT(3564); } IPOINT(3562);
++  IPOINT(3556); } else { IPOINT(3569); }
++  { auto __ipoint_rv = ( linestring_shared); IPOINT(3547); return __ipoint_rv; }
+ }
+ 
+ lanelet::ConstLanelets LaneDepartureCheckerNode::getAllLeftSharedLinestringLanelets(
+   const lanelet::ConstLanelet & lane, const bool & include_opposite, const bool & invert_opposite)
+-{
++{ IPOINT(3570);
+   lanelet::ConstLanelets linestring_shared;
+   auto lanelet_at_left = getLeftLanelet(lane);
+   auto lanelet_at_left_opposite = getLeftOppositeLanelets(lane);
+-  while (lanelet_at_left) {
++  IPOINT(3572); while (lanelet_at_left) { IPOINT(3574);
+     linestring_shared.push_back(lanelet_at_left.get());
+     lanelet_at_left = getLeftLanelet(lanelet_at_left.get());
+-    if (!lanelet_at_left) {
+-      break;
+-    }
++    if (!lanelet_at_left) { IPOINT(3576);
++      IPOINT(3577); IPOINT(3575); break;
++    } else { IPOINT(3578); }
+     lanelet_at_left_opposite = getLeftOppositeLanelets(lanelet_at_left.get());
+-  }
++  IPOINT(3575); } IPOINT(3573);
+ 
+-  if (!lanelet_at_left_opposite.empty() && include_opposite) {
+-    if (invert_opposite) {
++  if (!lanelet_at_left_opposite.empty() && include_opposite) { IPOINT(3579);
++    if (invert_opposite) { IPOINT(3581);
+       linestring_shared.push_back(lanelet_at_left_opposite.front().invert());
+-    } else {
++    IPOINT(3582); } else { IPOINT(3583);
+       linestring_shared.push_back(lanelet_at_left_opposite.front());
+-    }
++    IPOINT(3584); }
+     auto lanelet_at_right = getRightLanelet(lanelet_at_left_opposite.front());
+-    while (lanelet_at_right) {
+-      if (invert_opposite) {
++    IPOINT(3585); while (lanelet_at_right) { IPOINT(3587);
++      if (invert_opposite) { IPOINT(3589);
+         linestring_shared.push_back(lanelet_at_right.get().invert());
+-      } else {
++      IPOINT(3590); } else { IPOINT(3591);
+         linestring_shared.push_back(lanelet_at_right.get());
+-      }
++      IPOINT(3592); }
+       lanelet_at_right = getRightLanelet(lanelet_at_right.get());
+-    }
+-  }
+-  return linestring_shared;
++    IPOINT(3588); } IPOINT(3586);
++  IPOINT(3580); } else { IPOINT(3593); }
++  { auto __ipoint_rv = ( linestring_shared); IPOINT(3571); return __ipoint_rv; }
+ }
+ 
+ boost::optional<lanelet::ConstLanelet> LaneDepartureCheckerNode::getLeftLanelet(
+   const lanelet::ConstLanelet & lanelet)
+-{
++{ IPOINT(3594);
+   // routable lane
+   const auto & left_lane = routing_graph_->left(lanelet);
+-  if (left_lane) {
+-    return left_lane;
+-  }
++  if (left_lane) { IPOINT(3596);
++    { auto __ipoint_rv = ( left_lane); IPOINT(3597); IPOINT(3595); return __ipoint_rv; }
++  } else { IPOINT(3598); }
+ 
+   // non-routable lane (e.g. lane change infeasible)
+   const auto & adjacent_left_lane = routing_graph_->adjacentLeft(lanelet);
+-  return adjacent_left_lane;
++  { auto __ipoint_rv = ( adjacent_left_lane); IPOINT(3595); return __ipoint_rv; }
+ }
+ 
+ lanelet::Lanelets LaneDepartureCheckerNode::getLeftOppositeLanelets(
+   const lanelet::ConstLanelet & lanelet)
+-{
++{ IPOINT(3599);
+   const auto opposite_candidate_lanelets =
+     lanelet_map_->laneletLayer.findUsages(lanelet.leftBound().invert());
+ 
+   lanelet::Lanelets opposite_lanelets;
+-  for (const auto & candidate_lanelet : opposite_candidate_lanelets) {
+-    if (candidate_lanelet.rightBound().id() == lanelet.leftBound().id()) {
+-      continue;
+-    }
++  IPOINT(3601); for (const auto & candidate_lanelet : opposite_candidate_lanelets) { IPOINT(3603);
++    if (candidate_lanelet.rightBound().id() == lanelet.leftBound().id()) { IPOINT(3605);
++      IPOINT(3606); IPOINT(3604); continue;
++    } else { IPOINT(3607); }
+ 
+     opposite_lanelets.push_back(candidate_lanelet);
+-  }
++  IPOINT(3604); } IPOINT(3602);
+ 
+-  return opposite_lanelets;
++  { auto __ipoint_rv = ( opposite_lanelets); IPOINT(3600); return __ipoint_rv; }
+ }
+ 
+ boost::optional<lanelet::ConstLanelet> LaneDepartureCheckerNode::getRightLanelet(
+   const lanelet::ConstLanelet & lanelet) const
+-{
++{ IPOINT(3608);
+   // routable lane
+   const auto & right_lane = routing_graph_->right(lanelet);
+-  if (right_lane) {
+-    return right_lane;
+-  }
++  if (right_lane) { IPOINT(3610);
++    { auto __ipoint_rv = ( right_lane); IPOINT(3611); IPOINT(3609); return __ipoint_rv; }
++  } else { IPOINT(3612); }
+ 
+   // non-routable lane (e.g. lane change infeasible)
+   const auto & adjacent_right_lane = routing_graph_->adjacentRight(lanelet);
+-  return adjacent_right_lane;
++  { auto __ipoint_rv = ( adjacent_right_lane); IPOINT(3609); return __ipoint_rv; }
+ }
+ 
+ lanelet::Lanelets LaneDepartureCheckerNode::getRightOppositeLanelets(
+   const lanelet::ConstLanelet & lanelet)
+-{
++{ IPOINT(3613);
+   const auto opposite_candidate_lanelets =
+     lanelet_map_->laneletLayer.findUsages(lanelet.rightBound().invert());
+ 
+   lanelet::Lanelets opposite_lanelets;
+-  for (const auto & candidate_lanelet : opposite_candidate_lanelets) {
+-    if (candidate_lanelet.leftBound().id() == lanelet.rightBound().id()) {
+-      continue;
+-    }
++  IPOINT(3615); for (const auto & candidate_lanelet : opposite_candidate_lanelets) { IPOINT(3617);
++    if (candidate_lanelet.leftBound().id() == lanelet.rightBound().id()) { IPOINT(3619);
++      IPOINT(3620); IPOINT(3618); continue;
++    } else { IPOINT(3621); }
+ 
+     opposite_lanelets.push_back(candidate_lanelet);
+-  }
++  IPOINT(3618); } IPOINT(3616);
+ 
+-  return opposite_lanelets;
++  { auto __ipoint_rv = ( opposite_lanelets); IPOINT(3614); return __ipoint_rv; }
+ }
+ 
+ }  // namespace autoware::lane_departure_checker
+diff --git a/control/autoware_mpc_lateral_controller/CMakeLists.txt b/control/autoware_mpc_lateral_controller/CMakeLists.txt
+index 3af5a18d5..f4504b137 100644
+--- a/control/autoware_mpc_lateral_controller/CMakeLists.txt
++++ b/control/autoware_mpc_lateral_controller/CMakeLists.txt
+@@ -33,6 +33,11 @@ if(BUILD_TESTING)
+   target_link_libraries(${TEST_LATERAL_CONTROLLER_EXE} ${MPC_LAT_CON_LIB})
+ endif()
+ 
++# --- ipoint instrumentation (CHB-COP evaluation) ---
++find_package(ipoint_runtime REQUIRED)
++target_link_libraries(${MPC_LAT_CON_LIB} ipoint_runtime::ipoint_runtime)
++# --- end ipoint ---
++
+ ament_auto_package(INSTALL_TO_SHARE
+   param
+ )
+diff --git a/control/autoware_mpc_lateral_controller/package.xml b/control/autoware_mpc_lateral_controller/package.xml
+index f7354c12a..15db80de6 100644
+--- a/control/autoware_mpc_lateral_controller/package.xml
++++ b/control/autoware_mpc_lateral_controller/package.xml
+@@ -42,6 +42,7 @@
+   <test_depend>ament_lint_auto</test_depend>
+   <test_depend>autoware_lint_common</test_depend>
+   <test_depend>eigen</test_depend>
++  <depend>ipoint_runtime</depend>
+ 
+   <export>
+     <build_type>ament_cmake</build_type>
+diff --git a/control/autoware_mpc_lateral_controller/src/mpc.cpp b/control/autoware_mpc_lateral_controller/src/mpc.cpp
+index 7a141e0e5..989224f70 100644
+--- a/control/autoware_mpc_lateral_controller/src/mpc.cpp
++++ b/control/autoware_mpc_lateral_controller/src/mpc.cpp
+@@ -1,3 +1,4 @@
++#include "ipoint.h"
+ // Copyright 2018-2021 The Autoware Foundation
+ //
+ // Licensed under the Apache License, Version 2.0 (the "License");
+@@ -47,7 +48,7 @@ ResultWithReason MPC::calculateMPC(
+   const SteeringReport & current_steer, const Odometry & current_kinematics, Lateral & ctrl_cmd,
+   Trajectory & predicted_trajectory, Float32MultiArrayStamped & diagnostic,
+   LateralHorizon & ctrl_cmd_horizon)
+-{
++{ IPOINT(2601);
+   // since the reference trajectory does not take into account the current velocity of the ego
+   // vehicle, it needs to calculate the trajectory velocity considering the longitudinal dynamics.
+   const auto reference_trajectory =
+@@ -56,9 +57,9 @@ ResultWithReason MPC::calculateMPC(
+   // get the necessary data
+   const auto [get_data_result, mpc_data] =
+     getData(reference_trajectory, current_steer, current_kinematics);
+-  if (!get_data_result.result) {
+-    return ResultWithReason{false, fmt::format("getting MPC Data ({}).", get_data_result.reason)};
+-  }
++  if (!get_data_result.result) { IPOINT(2603);
++    { auto __ipoint_rv = ( ResultWithReason{false, fmt::format("getting MPC Data ({}).", get_data_result.reason)}); IPOINT(2604); IPOINT(2602); return __ipoint_rv; }
++  } else { IPOINT(2605); }
+ 
+   // calculate initial state of the error dynamics
+   const auto x0 = getInitialState(mpc_data);
+@@ -66,9 +67,9 @@ ResultWithReason MPC::calculateMPC(
+   // apply time delay compensation to the initial state
+   const auto [success_delay, x0_delayed] =
+     updateStateForDelayCompensation(reference_trajectory, mpc_data.nearest_time, x0);
+-  if (!success_delay) {
+-    return ResultWithReason{false, "delay compensation."};
+-  }
++  if (!success_delay) { IPOINT(2606);
++    { auto __ipoint_rv = ( ResultWithReason{false, "delay compensation."}); IPOINT(2607); IPOINT(2602); return __ipoint_rv; }
++  } else { IPOINT(2608); }
+ 
+   // resample reference trajectory with mpc sampling time
+   const double mpc_start_time = mpc_data.nearest_time + m_param.input_delay;
+@@ -77,10 +78,10 @@ ResultWithReason MPC::calculateMPC(
+ 
+   const auto [resample_result, mpc_resampled_ref_trajectory] =
+     resampleMPCTrajectoryByTime(mpc_start_time, prediction_dt, reference_trajectory);
+-  if (!resample_result.result) {
+-    return ResultWithReason{
+-      false, fmt::format("trajectory resampling ({}).", resample_result.reason)};
+-  }
++  if (!resample_result.result) { IPOINT(2609);
++    { auto __ipoint_rv = ( ResultWithReason{
++      false, fmt::format("trajectory resampling ({}).", resample_result.reason)}); IPOINT(2610); IPOINT(2602); return __ipoint_rv; }
++  } else { IPOINT(2611); }
+ 
+   // generate mpc matrix : predict equation Xec = Aex * x0 + Bex * Uex + Wex
+   const auto mpc_matrix = generateMPCMatrix(mpc_resampled_ref_trajectory, prediction_dt);
+@@ -89,9 +90,9 @@ ResultWithReason MPC::calculateMPC(
+   const auto [opt_result, Uex] = executeOptimization(
+     mpc_matrix, x0_delayed, prediction_dt, mpc_resampled_ref_trajectory,
+     current_kinematics.twist.twist.linear.x);
+-  if (!opt_result.result) {
+-    return ResultWithReason{false, fmt::format("optimization failure ({}).", opt_result.reason)};
+-  }
++  if (!opt_result.result) { IPOINT(2612);
++    { auto __ipoint_rv = ( ResultWithReason{false, fmt::format("optimization failure ({}).", opt_result.reason)}); IPOINT(2613); IPOINT(2602); return __ipoint_rv; }
++  } else { IPOINT(2614); }
+ 
+   // apply filters for the input limitation and low pass filter
+   const double u_saturated = std::clamp(Uex(0), -m_steer_lim, m_steer_lim);
+@@ -119,14 +120,14 @@ ResultWithReason MPC::calculateMPC(
+     mpc_matrix, initial_state, Uex, mpc_resampled_ref_trajectory, prediction_dt, "world");
+ 
+   // Publish predicted trajectories in different coordinates for debugging purposes
+-  if (m_publish_debug_trajectories) {
++  if (m_publish_debug_trajectories) { IPOINT(2615);
+     // Calculate and publish predicted trajectory in Frenet coordinate
+     auto predicted_trajectory_frenet = calculatePredictedTrajectory(
+       mpc_matrix, initial_state, Uex, mpc_resampled_ref_trajectory, prediction_dt, "frenet");
+     predicted_trajectory_frenet.header.stamp = m_clock->now();
+     predicted_trajectory_frenet.header.frame_id = "map";
+     m_debug_frenet_predicted_trajectory_pub->publish(predicted_trajectory_frenet);
+-  }
++  IPOINT(2616); } else { IPOINT(2617); }
+ 
+   // prepare diagnostic message
+   diagnostic =
+@@ -136,23 +137,23 @@ ResultWithReason MPC::calculateMPC(
+   ctrl_cmd_horizon.time_step_ms = prediction_dt * 1000.0;
+   ctrl_cmd_horizon.controls.clear();
+   ctrl_cmd_horizon.controls.push_back(ctrl_cmd);
+-  for (auto it = std::next(Uex.begin()); it != Uex.end(); ++it) {
++  IPOINT(2618); for (auto it = std::next(Uex.begin()); it != Uex.end(); ++it) {
+     Lateral lateral{};
+     lateral.steering_tire_angle = static_cast<float>(std::clamp(*it, -m_steer_lim, m_steer_lim));
+     lateral.steering_tire_rotation_rate =
+       (lateral.steering_tire_angle - ctrl_cmd_horizon.controls.back().steering_tire_angle) /
+       m_ctrl_period;
+     ctrl_cmd_horizon.controls.push_back(lateral);
+-  }
++  } IPOINT(2619);
+ 
+-  return ResultWithReason{true};
++  { auto __ipoint_rv = ( ResultWithReason{true}); IPOINT(2602); return __ipoint_rv; }
+ }
+ 
+ Float32MultiArrayStamped MPC::generateDiagData(
+   const MPCTrajectory & reference_trajectory, const MPCData & mpc_data,
+   const MPCMatrix & mpc_matrix, const Lateral & ctrl_cmd, const VectorXd & Uex,
+   const Odometry & current_kinematics) const
+-{
++{ IPOINT(2622);
+   Float32MultiArrayStamped diagnostic;
+ 
+   // prepare diagnostic message
+@@ -193,13 +194,13 @@ Float32MultiArrayStamped MPC::generateDiagData(
+   append_diag(runtime);                   // [19] runtime of the latest problem solved
+   append_diag(objective_value);           // [20] objective value of the latest problem solved
+ 
+-  return diagnostic;
++  { auto __ipoint_rv = ( diagnostic); IPOINT(2623); return __ipoint_rv; }
+ }
+ 
+ void MPC::setReferenceTrajectory(
+   const Trajectory & trajectory_msg, const TrajectoryFilteringParam & param,
+   const Odometry & current_kinematics)
+-{
++{ IPOINT(2624);
+   const size_t nearest_seg_idx =
+     autoware::motion_utils::findFirstNearestSegmentIndexWithSoftConstraints(
+       trajectory_msg.points, current_kinematics.pose.pose, ego_nearest_dist_threshold,
+@@ -212,10 +213,10 @@ void MPC::setReferenceTrajectory(
+   // resampling
+   const auto [success_resample, mpc_traj_resampled] = MPCUtils::resampleMPCTrajectoryByDistance(
+     mpc_traj_raw, param.traj_resample_dist, nearest_seg_idx, ego_offset_to_segment);
+-  if (!success_resample) {
++  if (!success_resample) { IPOINT(2626);
+     warn_throttle("[setReferenceTrajectory] spline error when resampling by distance");
+-    return;
+-  }
++    IPOINT(2627); IPOINT(2625); return;
++  } else { IPOINT(2628); }
+ 
+   const auto is_forward_shift =
+     autoware::motion_utils::isDrivingForward(mpc_traj_resampled.toTrajectoryPoints());
+@@ -227,17 +228,17 @@ void MPC::setReferenceTrajectory(
+   MPCTrajectory mpc_traj_smoothed = mpc_traj_resampled;  // smooth filtered trajectory
+   const int mpc_traj_resampled_size = static_cast<int>(mpc_traj_resampled.size());
+   if (
+-    param.enable_path_smoothing && mpc_traj_resampled_size > 2 * param.path_filter_moving_ave_num) {
++    param.enable_path_smoothing && mpc_traj_resampled_size > 2 * param.path_filter_moving_ave_num) { IPOINT(2629);
+     using MoveAverageFilter::filt_vector;
+     if (
+       !filt_vector(param.path_filter_moving_ave_num, mpc_traj_smoothed.x) ||
+       !filt_vector(param.path_filter_moving_ave_num, mpc_traj_smoothed.y) ||
+       !filt_vector(param.path_filter_moving_ave_num, mpc_traj_smoothed.yaw) ||
+-      !filt_vector(param.path_filter_moving_ave_num, mpc_traj_smoothed.vx)) {
++      !filt_vector(param.path_filter_moving_ave_num, mpc_traj_smoothed.vx)) { IPOINT(2631);
+       RCLCPP_DEBUG(m_logger, "path callback: filtering error. stop filtering.");
+       mpc_traj_smoothed = mpc_traj_resampled;
+-    }
+-  }
++    IPOINT(2632); } else { IPOINT(2633); }
++  IPOINT(2630); } else { IPOINT(2634); }
+ 
+   /*
+    * Extend terminal points
+@@ -246,10 +247,10 @@ void MPC::setReferenceTrajectory(
+    * attitude angle well, resulting in improved control performance. If the trajectory is
+    * well-defined considering the end point attitude angle, this feature is not necessary.
+    */
+-  if (param.extend_trajectory_for_end_yaw_control) {
++  if (param.extend_trajectory_for_end_yaw_control) { IPOINT(2635);
+     MPCUtils::extendTrajectoryInYawDirection(
+       mpc_traj_raw.yaw.back(), param.traj_resample_dist, m_is_forward_shift, mpc_traj_smoothed);
+-  }
++  IPOINT(2636); } else { IPOINT(2637); }
+ 
+   // calculate yaw angle
+   MPCUtils::calcTrajectoryYawFromXY(mpc_traj_smoothed, m_is_forward_shift);
+@@ -268,13 +269,13 @@ void MPC::setReferenceTrajectory(
+   last_point.vx = 0.0;                // stop velocity at a terminal point
+   mpc_traj_smoothed.push_back(last_point);
+ 
+-  if (!mpc_traj_smoothed.size()) {
++  if (!mpc_traj_smoothed.size()) { IPOINT(2638);
+     RCLCPP_DEBUG(m_logger, "path callback: trajectory size is undesired.");
+-    return;
+-  }
++    IPOINT(2639); IPOINT(2625); return;
++  } else { IPOINT(2640); }
+ 
+   m_reference_trajectory = mpc_traj_smoothed;
+-}
++IPOINT(2625); }
+ 
+ void MPC::resetPrevResult(const SteeringReport & current_steer)
+ {
+@@ -288,15 +289,15 @@ void MPC::resetPrevResult(const SteeringReport & current_steer)
+ std::pair<ResultWithReason, MPCData> MPC::getData(
+   const MPCTrajectory & traj, const SteeringReport & current_steer,
+   const Odometry & current_kinematics)
+-{
++{ IPOINT(2641);
+   const auto current_pose = current_kinematics.pose.pose;
+ 
+   MPCData data;
+   if (!MPCUtils::calcNearestPoseInterp(
+         traj, current_pose, &(data.nearest_pose), &(data.nearest_idx), &(data.nearest_time),
+-        ego_nearest_dist_threshold, ego_nearest_yaw_threshold)) {
+-    return {ResultWithReason{false, "error in calculating nearest pose"}, MPCData{}};
+-  }
++        ego_nearest_dist_threshold, ego_nearest_yaw_threshold)) { IPOINT(2643);
++    { std::pair<ResultWithReason, MPCData> __ipoint_rv =  {ResultWithReason{false, "error in calculating nearest pose"}, MPCData{}}; IPOINT(2644); IPOINT(2642); return __ipoint_rv; }
++  } else { IPOINT(2645); }
+ 
+   // get data
+   data.steer = static_cast<double>(current_steer.steering_tire_angle);
+@@ -311,35 +312,35 @@ std::pair<ResultWithReason, MPCData> MPC::getData(
+   const double max_prediction_time =
+     m_param.min_prediction_length / static_cast<double>(m_param.prediction_horizon - 1);
+   auto end_time = data.nearest_time + m_param.input_delay + m_ctrl_period + max_prediction_time;
+-  if (end_time > traj.relative_time.back()) {
+-    return {ResultWithReason{false, "path is too short for prediction."}, MPCData{}};
+-  }
+-  return {ResultWithReason{true}, data};
++  if (end_time > traj.relative_time.back()) { IPOINT(2646);
++    { std::pair<ResultWithReason, MPCData> __ipoint_rv =  {ResultWithReason{false, "path is too short for prediction."}, MPCData{}}; IPOINT(2647); IPOINT(2642); return __ipoint_rv; }
++  } else { IPOINT(2648); }
++  { std::pair<ResultWithReason, MPCData> __ipoint_rv =  {ResultWithReason{true}, data}; IPOINT(2642); return __ipoint_rv; }
+ }
+ 
+ std::pair<ResultWithReason, MPCTrajectory> MPC::resampleMPCTrajectoryByTime(
+   const double ts, const double prediction_dt, const MPCTrajectory & input) const
+-{
++{ IPOINT(2649);
+   MPCTrajectory output;
+   std::vector<double> mpc_time_v;
+-  for (double i = 0; i < static_cast<double>(m_param.prediction_horizon); ++i) {
++  IPOINT(2651); for (double i = 0; i < static_cast<double>(m_param.prediction_horizon); ++i) {
+     mpc_time_v.push_back(ts + i * prediction_dt);
+-  }
+-  if (!MPCUtils::linearInterpMPCTrajectory(input.relative_time, input, mpc_time_v, output)) {
+-    return {ResultWithReason{false, "mpc resample error"}, {}};
+-  }
++  } IPOINT(2652);
++  if (!MPCUtils::linearInterpMPCTrajectory(input.relative_time, input, mpc_time_v, output)) { IPOINT(2655);
++    { std::pair<ResultWithReason, MPCTrajectory> __ipoint_rv =  {ResultWithReason{false, "mpc resample error"}, {}}; IPOINT(2656); IPOINT(2650); return __ipoint_rv; }
++  } else { IPOINT(2657); }
+   // Publish resampled reference trajectory for debug purpose.
+-  if (m_publish_debug_trajectories) {
++  if (m_publish_debug_trajectories) { IPOINT(2658);
+     auto converted_output = MPCUtils::convertToAutowareTrajectory(output);
+     converted_output.header.stamp = m_clock->now();
+     converted_output.header.frame_id = "map";
+     m_debug_resampled_reference_trajectory_pub->publish(converted_output);
+-  }
+-  return {ResultWithReason{true}, output};
++  IPOINT(2659); } else { IPOINT(2660); }
++  { std::pair<ResultWithReason, MPCTrajectory> __ipoint_rv =  {ResultWithReason{true}, output}; IPOINT(2650); return __ipoint_rv; }
+ }
+ 
+ VectorXd MPC::getInitialState(const MPCData & data)
+-{
++{ IPOINT(2661);
+   const int DIM_X = m_vehicle_model_ptr->getDimX();
+   VectorXd x0 = VectorXd::Zero(DIM_X);
+ 
+@@ -350,9 +351,9 @@ VectorXd MPC::getInitialState(const MPCData & data)
+   const auto vehicle_model = m_vehicle_model_ptr->modelName();
+   if (vehicle_model == "kinematics") {
+     x0 << lat_err, yaw_err, steer;
+-  } else if (vehicle_model == "kinematics_no_delay") {
++  } else { IPOINT(2665); if (vehicle_model == "kinematics_no_delay") { IPOINT(2667);
+     x0 << lat_err, yaw_err;
+-  } else if (vehicle_model == "dynamics") {
++  IPOINT(2668); } else { IPOINT(2669); if (vehicle_model == "dynamics") { IPOINT(2671);
+     double dlat = (lat_err - m_lateral_error_prev) / m_ctrl_period;
+     double dyaw = (yaw_err - m_yaw_error_prev) / m_ctrl_period;
+     m_lateral_error_prev = lat_err;
+@@ -362,15 +363,15 @@ VectorXd MPC::getInitialState(const MPCData & data)
+     x0 << lat_err, dlat, yaw_err, dyaw;
+     RCLCPP_DEBUG(m_logger, "(before lpf) dot_lat_err = %f, dot_yaw_err = %f", dlat, dyaw);
+     RCLCPP_DEBUG(m_logger, "(after lpf) dot_lat_err = %f, dot_yaw_err = %f", dlat, dyaw);
+-  } else {
++  IPOINT(2672); } else { IPOINT(2673);
+     RCLCPP_ERROR(m_logger, "vehicle_model_type is undefined");
+-  }
+-  return x0;
++  IPOINT(2674); } IPOINT(2670); } IPOINT(2666); }
++  { auto __ipoint_rv = ( x0); IPOINT(2662); return __ipoint_rv; }
+ }
+ 
+ std::pair<bool, VectorXd> MPC::updateStateForDelayCompensation(
+   const MPCTrajectory & traj, const double & start_time, const VectorXd & x0_orig)
+-{
++{ IPOINT(2675);
+   const int DIM_X = m_vehicle_model_ptr->getDimX();
+   const int DIM_U = m_vehicle_model_ptr->getDimU();
+   const int DIM_Y = m_vehicle_model_ptr->getDimY();
+@@ -384,7 +385,7 @@ std::pair<bool, VectorXd> MPC::updateStateForDelayCompensation(
+ 
+   MatrixXd x_curr = x0_orig;
+   double mpc_curr_time = start_time;
+-  for (size_t i = 0; i < m_input_buffer.size(); ++i) {
++  IPOINT(2677); for (size_t i = 0; i < m_input_buffer.size(); ++i) { IPOINT(2679);
+     double k, v = 0.0;
+     try {
+       // NOTE: When driving backward, the curvature's sign should be reversed.
+@@ -392,7 +393,7 @@ std::pair<bool, VectorXd> MPC::updateStateForDelayCompensation(
+       v = autoware::interpolation::lerp(traj.relative_time, traj.vx, mpc_curr_time);
+     } catch (const std::exception & e) {
+       RCLCPP_ERROR(m_logger, "mpc resample failed at delay compensation, stop mpc: %s", e.what());
+-      return {false, {}};
++      { std::pair<bool, VectorXd> __ipoint_rv =  {false, {}}; IPOINT(2680); IPOINT(2678); IPOINT(2676); return __ipoint_rv; }
+     }
+ 
+     // get discrete state matrix A, B, C, W
+@@ -403,17 +404,17 @@ std::pair<bool, VectorXd> MPC::updateStateForDelayCompensation(
+     ud(0, 0) = m_input_buffer.at(i);  // for steering input delay
+     x_curr = Ad * x_curr + Bd * ud + Wd;
+     mpc_curr_time += m_ctrl_period;
+-  }
+-  return {true, x_curr};
++  IPOINT(2680); } IPOINT(2678);
++  { std::pair<bool, VectorXd> __ipoint_rv =  {true, x_curr}; IPOINT(2676); return __ipoint_rv; }
+ }
+ 
+ MPCTrajectory MPC::applyVelocityDynamicsFilter(
+   const MPCTrajectory & input, const Odometry & current_kinematics) const
+-{
++{ IPOINT(2681);
+   const auto autoware_traj = MPCUtils::convertToAutowareTrajectory(input);
+-  if (autoware_traj.points.empty()) {
+-    return input;
+-  }
++  if (autoware_traj.points.empty()) { IPOINT(2683);
++    { auto __ipoint_rv = ( input); IPOINT(2684); IPOINT(2682); return __ipoint_rv; }
++  } else { IPOINT(2685); }
+ 
+   const size_t nearest_seg_idx =
+     autoware::motion_utils::findFirstNearestSegmentIndexWithSoftConstraints(
+@@ -429,7 +430,7 @@ MPCTrajectory MPC::applyVelocityDynamicsFilter(
+   last_point.relative_time += 100.0;  // extra time to prevent mpc calc failure due to short time
+   last_point.vx = 0.0;                // stop velocity at a terminal point
+   output.push_back(last_point);
+-  return output;
++  { auto __ipoint_rv = ( output); IPOINT(2682); return __ipoint_rv; }
+ }
+ 
+ /*
+@@ -439,7 +440,7 @@ MPCTrajectory MPC::applyVelocityDynamicsFilter(
+  */
+ MPCMatrix MPC::generateMPCMatrix(
+   const MPCTrajectory & reference_trajectory, const double prediction_dt)
+-{
++{ IPOINT(2686);
+   const int N = m_param.prediction_horizon;
+   const double DT = prediction_dt;
+   const int DIM_X = m_vehicle_model_ptr->getDimX();
+@@ -471,7 +472,7 @@ MPCMatrix MPC::generateMPCMatrix(
+   const double sign_vx = m_is_forward_shift ? 1 : -1;
+ 
+   // predict dynamics for N times
+-  for (int i = 0; i < N; ++i) {
++  IPOINT(2688); for (int i = 0; i < N; ++i) { IPOINT(2690);
+     const double ref_vx = reference_trajectory.vx.at(i);
+     const double ref_vx_squared = ref_vx * ref_vx;
+ 
+@@ -496,7 +497,7 @@ MPCMatrix MPC::generateMPCMatrix(
+     if (i == N - 1) {
+       Q_adaptive(0, 0) = m_param.nominal_weight.terminal_lat_error;
+       Q_adaptive(1, 1) = m_param.nominal_weight.terminal_heading_error;
+-    }
++    } else { IPOINT(2694); }
+     Q_adaptive(1, 1) += ref_vx_squared * mpc_weight.heading_error_squared_vel;
+     R_adaptive(0, 0) += ref_vx_squared * mpc_weight.steering_input_squared_vel;
+ 
+@@ -504,20 +505,20 @@ MPCMatrix MPC::generateMPCMatrix(
+     int idx_x_i = i * DIM_X;
+     int idx_u_i = i * DIM_U;
+     int idx_y_i = i * DIM_Y;
+-    if (i == 0) {
++    if (i == 0) { IPOINT(2695);
+       m.Aex.block(0, 0, DIM_X, DIM_X) = Ad;
+       m.Bex.block(0, 0, DIM_X, DIM_U) = Bd;
+       m.Wex.block(0, 0, DIM_X, 1) = Wd;
+-    } else {
++    IPOINT(2696); } else { IPOINT(2697);
+       int idx_x_i_prev = (i - 1) * DIM_X;
+       m.Aex.block(idx_x_i, 0, DIM_X, DIM_X) = Ad * m.Aex.block(idx_x_i_prev, 0, DIM_X, DIM_X);
+-      for (int j = 0; j < i; ++j) {
++      IPOINT(2699); for (int j = 0; j < i; ++j) {
+         int idx_u_j = j * DIM_U;
+         m.Bex.block(idx_x_i, idx_u_j, DIM_X, DIM_U) =
+           Ad * m.Bex.block(idx_x_i_prev, idx_u_j, DIM_X, DIM_U);
+-      }
++      } IPOINT(2700);
+       m.Wex.block(idx_x_i, 0, DIM_X, 1) = Ad * m.Wex.block(idx_x_i_prev, 0, DIM_X, 1) + Wd;
+-    }
++    IPOINT(2698); }
+     m.Bex.block(idx_x_i, idx_u_i, DIM_X, DIM_U) = Bd;
+     m.Cex.block(idx_y_i, idx_x_i, DIM_Y, DIM_X) = Cd;
+     m.Qex.block(idx_y_i, idx_y_i, DIM_Y, DIM_Y) = Q_adaptive;
+@@ -528,22 +529,22 @@ MPCMatrix MPC::generateMPCMatrix(
+     m_vehicle_model_ptr->calculateReferenceInput(Uref);
+     if (std::fabs(Uref(0, 0)) < autoware_utils::deg2rad(m_param.zero_ff_steer_deg)) {
+       Uref(0, 0) = 0.0;  // ignore curvature noise
+-    }
++    } else { IPOINT(2705); }
+     m.Uref_ex.block(i * DIM_U, 0, DIM_U, 1) = Uref;
+-  }
++  IPOINT(2691); } IPOINT(2689);
+ 
+   // add lateral jerk : weight for (v * {u(i) - u(i-1)} )^2
+-  for (int i = 0; i < N - 1; ++i) {
++  IPOINT(2706); for (int i = 0; i < N - 1; ++i) {
+     const double ref_vx = reference_trajectory.vx.at(i);
+     const double ref_k = reference_trajectory.k.at(i) * sign_vx;
+     const double j = ref_vx * ref_vx * getWeight(ref_k).lat_jerk / (DT * DT);
+     const Eigen::Matrix2d J = (Eigen::Matrix2d() << j, -j, -j, j).finished();
+     m.R2ex.block(i, i, 2, 2) += J;
+-  }
++  } IPOINT(2707);
+ 
+   addSteerWeightR(prediction_dt, m.R1ex);
+ 
+-  return m;
++  { auto __ipoint_rv = ( m); IPOINT(2687); return __ipoint_rv; }
+ }
+ 
+ /*
+@@ -571,12 +572,12 @@ MPCMatrix MPC::generateMPCMatrix(
+ std::pair<ResultWithReason, VectorXd> MPC::executeOptimization(
+   const MPCMatrix & m, const VectorXd & x0, const double prediction_dt, const MPCTrajectory & traj,
+   const double current_velocity)
+-{
++{ IPOINT(2710);
+   VectorXd Uex;
+ 
+-  if (!isValid(m)) {
+-    return {ResultWithReason{false, "invalid model matrix"}, {}};
+-  }
++  if (!isValid(m)) { IPOINT(2712);
++    { std::pair<ResultWithReason, VectorXd> __ipoint_rv =  {ResultWithReason{false, "invalid model matrix"}, {}}; IPOINT(2713); IPOINT(2711); return __ipoint_rv; }
++  } else { IPOINT(2714); }
+ 
+   const int DIM_U_N = m_param.prediction_horizon * m_vehicle_model_ptr->getDimU();
+ 
+@@ -611,19 +612,19 @@ std::pair<ResultWithReason, VectorXd> MPC::executeOptimization(
+   auto t_start = std::chrono::system_clock::now();
+   bool solve_result = m_qpsolver_ptr->solve(H, f.transpose(), A, lb, ub, lbA, ubA, Uex);
+   auto t_end = std::chrono::system_clock::now();
+-  if (!solve_result) {
+-    return {ResultWithReason{false, "qp solver error"}, {}};
+-  }
++  if (!solve_result) { IPOINT(2719);
++    { std::pair<ResultWithReason, VectorXd> __ipoint_rv =  {ResultWithReason{false, "qp solver error"}, {}}; IPOINT(2720); IPOINT(2711); return __ipoint_rv; }
++  } else { IPOINT(2721); }
+ 
+   {
+     auto t = std::chrono::duration_cast<std::chrono::milliseconds>(t_end - t_start).count();
+     RCLCPP_DEBUG(m_logger, "qp solver calculation time = %ld [ms]", t);
+   }
+ 
+-  if (Uex.array().isNaN().any()) {
+-    return {ResultWithReason{false, "model Uex including NaN"}, {}};
+-  }
+-  return {ResultWithReason{true}, Uex};
++  if (Uex.array().isNaN().any()) { IPOINT(2722);
++    { std::pair<ResultWithReason, VectorXd> __ipoint_rv =  {ResultWithReason{false, "model Uex including NaN"}, {}}; IPOINT(2723); IPOINT(2711); return __ipoint_rv; }
++  } else { IPOINT(2724); }
++  { std::pair<ResultWithReason, VectorXd> __ipoint_rv =  {ResultWithReason{true}, Uex}; IPOINT(2711); return __ipoint_rv; }
+ }
+ 
+ void MPC::addSteerWeightR(const double prediction_dt, MatrixXd & R) const
+@@ -732,11 +733,11 @@ double MPC::getPredictionDeltaTime(
+ double MPC::calcDesiredSteeringRate(
+   const MPCMatrix & mpc_matrix, const MatrixXd & x0, const MatrixXd & Uex, const double u_filtered,
+   const float current_steer, const double predict_dt) const
+-{
+-  if (m_vehicle_model_ptr->modelName() != "kinematics") {
++{ IPOINT(2725);
++  if (m_vehicle_model_ptr->modelName() != "kinematics") { IPOINT(2727);
+     // not supported yet. Use old implementation.
+-    return (u_filtered - current_steer) / predict_dt;
+-  }
++    { auto __ipoint_rv = ( (u_filtered - current_steer) / predict_dt); IPOINT(2728); IPOINT(2726); return __ipoint_rv; }
++  } else { IPOINT(2729); }
+ 
+   // calculate predicted states to get the steering motion
+   const auto & m = mpc_matrix;
+@@ -749,12 +750,12 @@ double MPC::calcDesiredSteeringRate(
+ 
+   const auto steer_rate = (steer_1 - steer_0) / predict_dt;
+ 
+-  return steer_rate;
++  IPOINT(2726); return steer_rate;
+ }
+ 
+ VectorXd MPC::calcSteerRateLimitOnTrajectory(
+   const MPCTrajectory & trajectory, const double current_velocity) const
+-{
++{ IPOINT(2730);
+   const auto interp = [&](const auto & steer_rate_limit_map, const auto & current) {
+     std::vector<double> reference, limits;
+     for (const auto & p : steer_rate_limit_map) {
+@@ -791,37 +792,37 @@ VectorXd MPC::calcSteerRateLimitOnTrajectory(
+   constexpr double steer_rate_lim = 100.0;
+   const bool is_vehicle_stopped = std::fabs(current_velocity) < 0.01;
+   if (is_vehicle_stopped) {
+-    return steer_rate_lim * VectorXd::Ones(m_param.prediction_horizon);
+-  }
++    { auto __ipoint_rv = ( steer_rate_lim * VectorXd::Ones(m_param.prediction_horizon)); IPOINT(2731); return __ipoint_rv; }
++  } else { IPOINT(2734); }
+ 
+   // calculate steering rate limit
+   VectorXd steer_rate_limits = VectorXd::Zero(m_param.prediction_horizon);
+-  for (int i = 0; i < m_param.prediction_horizon; ++i) {
++  IPOINT(2735); for (int i = 0; i < m_param.prediction_horizon; ++i) { IPOINT(2737);
+     const auto limit_by_curvature = interp(m_steer_rate_lim_map_by_curvature, trajectory.k.at(i));
+     const auto limit_by_velocity = interp(m_steer_rate_lim_map_by_velocity, trajectory.vx.at(i));
+     steer_rate_limits(i) = std::min(limit_by_curvature, limit_by_velocity);
+-  }
++  IPOINT(2738); } IPOINT(2736);
+ 
+-  return steer_rate_limits;
++  { auto __ipoint_rv = ( steer_rate_limits); IPOINT(2731); return __ipoint_rv; }
+ }
+ 
+ Trajectory MPC::calculatePredictedTrajectory(
+   const MPCMatrix & mpc_matrix, const Eigen::MatrixXd & x0, const Eigen::MatrixXd & Uex,
+   const MPCTrajectory & reference_trajectory, const double dt, const std::string & coordinate) const
+-{
++{ IPOINT(2739);
+   MPCTrajectory predicted_mpc_trajectory;
+ 
+-  if (coordinate == "world") {
++  if (coordinate == "world") { IPOINT(2741);
+     predicted_mpc_trajectory = m_vehicle_model_ptr->calculatePredictedTrajectoryInWorldCoordinate(
+       mpc_matrix.Aex, mpc_matrix.Bex, mpc_matrix.Cex, mpc_matrix.Wex, x0, Uex, reference_trajectory,
+       dt);
+-  } else if (coordinate == "frenet") {
++  IPOINT(2742); } else { IPOINT(2743); if (coordinate == "frenet") { IPOINT(2745);
+     predicted_mpc_trajectory = m_vehicle_model_ptr->calculatePredictedTrajectoryInFrenetCoordinate(
+       mpc_matrix.Aex, mpc_matrix.Bex, mpc_matrix.Cex, mpc_matrix.Wex, x0, Uex, reference_trajectory,
+       dt);
+-  } else {
++  IPOINT(2746); } else { IPOINT(2747);
+     throw std::invalid_argument("Invalid coordinate system specified. Use 'world' or 'frenet'.");
+-  }
++  IPOINT(2748); } IPOINT(2744); }
+ 
+   // do not over the reference trajectory
+   const auto predicted_length = MPCUtils::calcMPCTrajectoryArcLength(reference_trajectory);
+@@ -831,7 +832,7 @@ Trajectory MPC::calculatePredictedTrajectory(
+   const auto predicted_trajectory =
+     MPCUtils::convertToAutowareTrajectory(clipped_trajectory, m_vehicle_model_ptr->getWheelbase());
+ 
+-  return predicted_trajectory;
++  { auto __ipoint_rv = ( predicted_trajectory); IPOINT(2740); return __ipoint_rv; }
+ }
+ 
+ bool MPC::isValid(const MPCMatrix & m) const
+diff --git a/control/autoware_mpc_lateral_controller/src/mpc_lateral_controller.cpp b/control/autoware_mpc_lateral_controller/src/mpc_lateral_controller.cpp
+index 7ca29b779..c834d3eea 100644
+--- a/control/autoware_mpc_lateral_controller/src/mpc_lateral_controller.cpp
++++ b/control/autoware_mpc_lateral_controller/src/mpc_lateral_controller.cpp
+@@ -1,3 +1,4 @@
++#include "ipoint.h"
+ // Copyright 2021 The Autoware Foundation
+ //
+ // Licensed under the Apache License, Version 2.0 (the "License");
+@@ -244,7 +245,7 @@ void MpcLateralController::setupDiag()
+ 
+ trajectory_follower::LateralOutput MpcLateralController::run(
+   trajectory_follower::InputData const & input_data)
+-{
++{ IPOINT(2301);
+   // set input data
+   setTrajectory(input_data.current_trajectory, input_data.current_odometry);
+ 
+@@ -277,7 +278,7 @@ trajectory_follower::LateralOutput MpcLateralController::run(
+   if (!m_is_ctrl_cmd_prev_initialized || !is_under_control) {
+     m_ctrl_cmd_prev = getInitialControlCommand();
+     m_is_ctrl_cmd_prev_initialized = true;
+-  }
++  } else { IPOINT(2305); }
+ 
+   trajectory_follower::LateralHorizon ctrl_cmd_horizon{};
+   const auto mpc_solved_status = m_mpc->calculateMPC(
+@@ -286,9 +287,9 @@ trajectory_follower::LateralOutput MpcLateralController::run(
+ 
+   if (
+     (m_mpc_solved_status.result == true && mpc_solved_status.result == false) ||
+-    (!mpc_solved_status.result && mpc_solved_status.reason != m_mpc_solved_status.reason)) {
++    (!mpc_solved_status.result && mpc_solved_status.reason != m_mpc_solved_status.reason)) { IPOINT(2306);
+     RCLCPP_ERROR(logger_, "MPC failed due to %s", mpc_solved_status.reason.c_str());
+-  }
++  IPOINT(2307); } else { IPOINT(2308); }
+   m_mpc_solved_status = mpc_solved_status;  // for diagnostic updater
+ 
+   // reset previous MPC result
+@@ -298,9 +299,9 @@ trajectory_follower::LateralOutput MpcLateralController::run(
+   // the actual steer angle, and it may make the optimization result unstable.
+   if (!mpc_solved_status.result || !is_under_control) {
+     m_mpc->resetPrevResult(m_current_steering);
+-  } else {
++  } else { IPOINT(2311);
+     setSteeringToHistory(ctrl_cmd);
+-  }
++  IPOINT(2312); }
+ 
+   ctrl_cmd.steering_tire_angle -= static_cast<float>(m_steering_offset_filtered_);
+ 
+@@ -325,84 +326,84 @@ trajectory_follower::LateralOutput MpcLateralController::run(
+     return output;
+   };
+ 
+-  if (isStoppedState()) {
++  if (isStoppedState()) { IPOINT(2313);
+     // Reset input buffer
+     debug_throttle("Stopped state detected, use previous control command");
+-    for (auto & value : m_mpc->m_input_buffer) {
++    IPOINT(2315); for (auto & value : m_mpc->m_input_buffer) { IPOINT(2317);
+       value = m_ctrl_cmd_prev.steering_tire_angle;
+-    }
++    IPOINT(2318); } IPOINT(2316);
+     // Use previous command value as previous raw steer command
+     m_mpc->m_raw_steer_cmd_prev = m_ctrl_cmd_prev.steering_tire_angle;
+-    return createLateralOutput(m_ctrl_cmd_prev, false, ctrl_cmd_horizon);
+-  }
++    { auto __ipoint_rv = ( createLateralOutput(m_ctrl_cmd_prev, false, ctrl_cmd_horizon)); IPOINT(2314); IPOINT(2302); return __ipoint_rv; }
++  } else { IPOINT(2319); }
+ 
+-  if (!mpc_solved_status.result) {
++  if (!mpc_solved_status.result) { IPOINT(2320);
+     debug_throttle("MPC is not solved, use stop control command");
+     ctrl_cmd = getStopControlCommand();
+-  }
++  IPOINT(2321); } else { IPOINT(2322); }
+ 
+   m_ctrl_cmd_prev = ctrl_cmd;
+-  return createLateralOutput(ctrl_cmd, mpc_solved_status.result, ctrl_cmd_horizon);
++  { auto __ipoint_rv = ( createLateralOutput(ctrl_cmd, mpc_solved_status.result, ctrl_cmd_horizon)); IPOINT(2302); return __ipoint_rv; }
+ }
+ 
+ bool MpcLateralController::isSteerConverged(const Lateral & cmd) const
+-{
++{ IPOINT(2323);
+   // wait for a while to propagate the trajectory shape to the output command when the trajectory
+   // shape is changed.
+-  if (!m_has_received_first_trajectory || isTrajectoryShapeChanged()) {
++  if (!m_has_received_first_trajectory || isTrajectoryShapeChanged()) { IPOINT(2325);
+     RCLCPP_DEBUG(logger_, "trajectory shaped is changed");
+-    return false;
+-  }
++    IPOINT(2326); IPOINT(2324); return false;
++  } else { IPOINT(2327); }
+ 
+   const bool is_converged =
+     std::abs(cmd.steering_tire_angle - m_current_steering.steering_tire_angle) <
+     static_cast<float>(m_converged_steer_rad);
+ 
+-  return is_converged;
++  IPOINT(2324); return is_converged;
+ }
+ 
+ bool MpcLateralController::isReady(const trajectory_follower::InputData & input_data)
+-{
++{ IPOINT(2328);
+   setTrajectory(input_data.current_trajectory, input_data.current_odometry);
+   m_current_kinematic_state = input_data.current_odometry;
+   m_current_steering = input_data.current_steering;
+ 
+-  if (!m_mpc->hasVehicleModel()) {
++  if (!m_mpc->hasVehicleModel()) { IPOINT(2330);
+     info_throttle("MPC does not have a vehicle model");
+-    return false;
+-  }
+-  if (!m_mpc->hasQPSolver()) {
++    IPOINT(2331); IPOINT(2329); return false;
++  } else { IPOINT(2332); }
++  if (!m_mpc->hasQPSolver()) { IPOINT(2333);
+     info_throttle("MPC does not have a QP solver");
+-    return false;
+-  }
+-  if (m_mpc->m_reference_trajectory.empty()) {
++    IPOINT(2334); IPOINT(2329); return false;
++  } else { IPOINT(2335); }
++  if (m_mpc->m_reference_trajectory.empty()) { IPOINT(2336);
+     info_throttle("trajectory size is zero.");
+-    return false;
+-  }
++    IPOINT(2337); IPOINT(2329); return false;
++  } else { IPOINT(2338); }
+ 
+-  return true;
++  IPOINT(2329); return true;
+ }
+ 
+ void MpcLateralController::setTrajectory(
+   const Trajectory & msg, const Odometry & current_kinematics)
+-{
++{ IPOINT(2339);
+   m_current_trajectory = msg;
+ 
+-  if (msg.points.size() < 3) {
++  if (msg.points.size() < 3) { IPOINT(2341);
+     RCLCPP_DEBUG(logger_, "received path size is < 3, not enough.");
+-    return;
+-  }
++    IPOINT(2342); IPOINT(2340); return;
++  } else { IPOINT(2343); }
+ 
+-  if (!isValidTrajectory(msg)) {
++  if (!isValidTrajectory(msg)) { IPOINT(2344);
+     RCLCPP_ERROR(logger_, "Trajectory is invalid!! stop computing.");
+-    return;
+-  }
++    IPOINT(2345); IPOINT(2340); return;
++  } else { IPOINT(2346); }
+ 
+   m_mpc->setReferenceTrajectory(msg, m_trajectory_filtering_param, current_kinematics);
+ 
+   // update trajectory buffer to check the trajectory shape change.
+   m_trajectory_buffer.push_back(m_current_trajectory);
+-  while (rclcpp::ok()) {
++  IPOINT(2347); while (rclcpp::ok()) { IPOINT(2349);
+     const auto time_diff = rclcpp::Time(m_trajectory_buffer.back().header.stamp) -
+                            rclcpp::Time(m_trajectory_buffer.front().header.stamp);
+ 
+@@ -411,18 +412,18 @@ void MpcLateralController::setTrajectory(
+       m_has_received_first_trajectory ? m_new_traj_duration_time : first_trajectory_duration_time;
+     if (time_diff.seconds() < duration_time) {
+       m_has_received_first_trajectory = true;
+-      break;
+-    }
++      IPOINT(2350); break;
++    } else { IPOINT(2353); }
+     m_trajectory_buffer.pop_front();
+-  }
+-}
++  IPOINT(2350); } IPOINT(2348);
++IPOINT(2340); }
+ 
+ Lateral MpcLateralController::getStopControlCommand() const
+-{
++{ IPOINT(2354);
+   Lateral cmd;
+   cmd.steering_tire_angle = static_cast<decltype(cmd.steering_tire_angle)>(m_steer_cmd_prev);
+   cmd.steering_tire_rotation_rate = 0.0;
+-  return cmd;
++  { auto __ipoint_rv = ( cmd); IPOINT(2355); return __ipoint_rv; }
+ }
+ 
+ Lateral MpcLateralController::getInitialControlCommand() const
+@@ -485,24 +486,24 @@ Lateral MpcLateralController::createCtrlCmdMsg(const Lateral & ctrl_cmd)
+ 
+ LateralHorizon MpcLateralController::createCtrlCmdHorizonMsg(
+   const LateralHorizon & ctrl_cmd_horizon) const
+-{
++{ IPOINT(2368);
+   auto out = ctrl_cmd_horizon;
+   const auto now = clock_->now();
+-  for (auto & cmd : out.controls) {
++  IPOINT(2370); for (auto & cmd : out.controls) {
+     cmd.stamp = now;
+-  }
+-  return out;
++  } IPOINT(2371);
++  { auto __ipoint_rv = ( out); IPOINT(2369); return __ipoint_rv; }
+ }
+ 
+ void MpcLateralController::publishPredictedTraj(Trajectory & predicted_traj) const
+-{
++{ IPOINT(2374);
+   predicted_traj.header.stamp = clock_->now();
+   predicted_traj.header.frame_id = m_current_trajectory.header.frame_id;
+   m_pub_predicted_traj->publish(predicted_traj);
+-}
++IPOINT(2375); }
+ 
+ void MpcLateralController::publishDebugValues(Float32MultiArrayStamped & debug_values) const
+-{
++{ IPOINT(2376);
+   debug_values.stamp = clock_->now();
+   m_pub_debug_values->publish(debug_values);
+ 
+@@ -510,34 +511,34 @@ void MpcLateralController::publishDebugValues(Float32MultiArrayStamped & debug_v
+   offset.stamp = clock_->now();
+   offset.data = static_cast<float>(m_steering_offset_filtered_);
+   m_pub_steer_offset->publish(offset);
+-}
++IPOINT(2377); }
+ 
+ void MpcLateralController::setSteeringToHistory(const Lateral & steering)
+-{
++{ IPOINT(2378);
+   const auto time = clock_->now();
+-  if (m_mpc_steering_history.empty()) {
++  if (m_mpc_steering_history.empty()) { IPOINT(2380);
+     m_mpc_steering_history.emplace_back(steering, time);
+     m_is_mpc_history_filled = false;
+-    return;
+-  }
++    IPOINT(2381); IPOINT(2379); return;
++  } else { IPOINT(2382); }
+ 
+   m_mpc_steering_history.emplace_back(steering, time);
+ 
+   // Check the history is filled or not.
+-  if (rclcpp::Duration(time - m_mpc_steering_history.begin()->second).seconds() >= 1.0) {
++  if (rclcpp::Duration(time - m_mpc_steering_history.begin()->second).seconds() >= 1.0) { IPOINT(2383);
+     m_is_mpc_history_filled = true;
+     // remove old data that is older than 1 sec
+-    for (auto itr = m_mpc_steering_history.begin(); itr != m_mpc_steering_history.end(); ++itr) {
+-      if (rclcpp::Duration(time - itr->second).seconds() > 1.0) {
++    IPOINT(2385); for (auto itr = m_mpc_steering_history.begin(); itr != m_mpc_steering_history.end(); ++itr) { IPOINT(2387);
++      if (rclcpp::Duration(time - itr->second).seconds() > 1.0) { IPOINT(2389);
+         m_mpc_steering_history.erase(m_mpc_steering_history.begin());
+-      } else {
+-        break;
++      IPOINT(2390); } else { IPOINT(2391);
++        IPOINT(2392); IPOINT(2388); break;
+       }
+-    }
+-  } else {
++    IPOINT(2388); } IPOINT(2386);
++  IPOINT(2384); } else { IPOINT(2393);
+     m_is_mpc_history_filled = false;
+-  }
+-}
++  IPOINT(2394); }
++IPOINT(2379); }
+ 
+ bool MpcLateralController::isMpcConverged()
+ {
+@@ -670,22 +671,22 @@ rcl_interfaces::msg::SetParametersResult MpcLateralController::paramCallback(
+ }
+ 
+ bool MpcLateralController::isTrajectoryShapeChanged() const
+-{
++{ IPOINT(2413);
+   // TODO(Horibe): update implementation to check trajectory shape around ego vehicle.
+   // Now temporally check the goal position.
+-  for (const auto & trajectory : m_trajectory_buffer) {
++  IPOINT(2415); for (const auto & trajectory : m_trajectory_buffer) { IPOINT(2417);
+     const auto change_distance = autoware_utils::calc_distance2d(
+       trajectory.points.back().pose, m_current_trajectory.points.back().pose);
+-    if (change_distance > m_new_traj_end_dist) {
+-      return true;
+-    }
+-  }
+-  return false;
++    if (change_distance > m_new_traj_end_dist) { IPOINT(2419);
++      IPOINT(2420); IPOINT(2418); IPOINT(2416); IPOINT(2414); return true;
++    } else { IPOINT(2421); }
++  IPOINT(2418); } IPOINT(2416);
++  IPOINT(2414); return false;
+ }
+ 
+ bool MpcLateralController::isValidTrajectory(const Trajectory & traj) const
+-{
+-  for (const auto & p : traj.points) {
++{ IPOINT(2422);
++  IPOINT(2424); for (const auto & p : traj.points) {
+     if (
+       !isfinite(p.pose.position.x) || !isfinite(p.pose.position.y) ||
+       !isfinite(p.pose.orientation.w) || !isfinite(p.pose.orientation.x) ||
+@@ -693,10 +694,10 @@ bool MpcLateralController::isValidTrajectory(const Trajectory & traj) const
+       !isfinite(p.longitudinal_velocity_mps) || !isfinite(p.lateral_velocity_mps) ||
+       !isfinite(p.heading_rate_rps) || !isfinite(p.front_wheel_angle_rad) ||
+       !isfinite(p.rear_wheel_angle_rad)) {
+-      return false;
++      IPOINT(2425); IPOINT(2423); return false;
+     }
+-  }
+-  return true;
++  } IPOINT(2425);
++  IPOINT(2423); return true;
+ }
+ 
+ }  // namespace autoware::motion::control::mpc_lateral_controller
+diff --git a/control/autoware_pid_longitudinal_controller/CMakeLists.txt b/control/autoware_pid_longitudinal_controller/CMakeLists.txt
+index d0fef75a1..f652eca0b 100644
+--- a/control/autoware_pid_longitudinal_controller/CMakeLists.txt
++++ b/control/autoware_pid_longitudinal_controller/CMakeLists.txt
+@@ -22,6 +22,11 @@ if(BUILD_TESTING)
+   target_link_libraries(${TEST_LONGITUDINAL_CONTROLLER_EXE} ${PID_LON_CON_LIB})
+ endif()
+ 
++# --- ipoint instrumentation (CHB-COP evaluation) ---
++find_package(ipoint_runtime REQUIRED)
++target_link_libraries(${PID_LON_CON_LIB} ipoint_runtime::ipoint_runtime)
++# --- end ipoint ---
++
+ ament_auto_package(
+   INSTALL_TO_SHARE
+   config
+diff --git a/control/autoware_pid_longitudinal_controller/package.xml b/control/autoware_pid_longitudinal_controller/package.xml
+index 5342af6b0..b2355d282 100644
+--- a/control/autoware_pid_longitudinal_controller/package.xml
++++ b/control/autoware_pid_longitudinal_controller/package.xml
+@@ -42,6 +42,7 @@
+   <test_depend>ament_lint_auto</test_depend>
+   <test_depend>autoware_lint_common</test_depend>
+   <test_depend>eigen</test_depend>
++  <depend>ipoint_runtime</depend>
+ 
+   <export>
+     <build_type>ament_cmake</build_type>
+diff --git a/control/autoware_pid_longitudinal_controller/src/pid_longitudinal_controller.cpp b/control/autoware_pid_longitudinal_controller/src/pid_longitudinal_controller.cpp
+index e896c2dbb..e577a5fec 100644
+--- a/control/autoware_pid_longitudinal_controller/src/pid_longitudinal_controller.cpp
++++ b/control/autoware_pid_longitudinal_controller/src/pid_longitudinal_controller.cpp
+@@ -1,3 +1,4 @@
++#include "ipoint.h"
+ // Copyright 2021 Tier IV, Inc. All rights reserved.
+ //
+ // Licensed under the Apache License, Version 2.0 (the "License");
+@@ -231,9 +232,9 @@ PidLongitudinalController::PidLongitudinalController(
+ }
+ 
+ void PidLongitudinalController::setKinematicState(const nav_msgs::msg::Odometry & msg)
+-{
++{ IPOINT(2901);
+   m_current_kinematic_state = msg;
+-}
++IPOINT(2902); }
+ 
+ void PidLongitudinalController::setCurrentAcceleration(
+   const geometry_msgs::msg::AccelWithCovarianceStamped & msg)
+@@ -247,19 +248,19 @@ void PidLongitudinalController::setCurrentOperationMode(const OperationModeState
+ }
+ 
+ void PidLongitudinalController::setTrajectory(const autoware_planning_msgs::msg::Trajectory & msg)
+-{
+-  if (!longitudinal_utils::isValidTrajectory(msg)) {
++{ IPOINT(2907);
++  if (!longitudinal_utils::isValidTrajectory(msg)) { IPOINT(2909);
+     RCLCPP_ERROR_THROTTLE(logger_, *clock_, 3000, "received invalid trajectory. ignore.");
+-    return;
+-  }
++    IPOINT(2910); IPOINT(2908); return;
++  } else { IPOINT(2911); }
+ 
+-  if (msg.points.size() < 2) {
++  if (msg.points.size() < 2) { IPOINT(2912);
+     RCLCPP_WARN_THROTTLE(logger_, *clock_, 3000, "Unexpected trajectory size < 2. Ignored.");
+-    return;
+-  }
++    IPOINT(2913); IPOINT(2908); return;
++  } else { IPOINT(2914); }
+ 
+   m_trajectory = msg;
+-}
++IPOINT(2908); }
+ 
+ rcl_interfaces::msg::SetParametersResult PidLongitudinalController::paramCallback(
+   const std::vector<rclcpp::Parameter> & parameters)
+@@ -406,13 +407,13 @@ rcl_interfaces::msg::SetParametersResult PidLongitudinalController::paramCallbac
+ 
+ bool PidLongitudinalController::isReady(
+   [[maybe_unused]] const trajectory_follower::InputData & input_data)
+-{
+-  return true;
++{ IPOINT(2915);
++  IPOINT(2916); return true;
+ }
+ 
+ trajectory_follower::LongitudinalOutput PidLongitudinalController::run(
+   trajectory_follower::InputData const & input_data)
+-{
++{ IPOINT(2917);
+   // set input data
+   setTrajectory(input_data.current_trajectory);
+   setKinematicState(input_data.current_odometry);
+@@ -442,12 +443,12 @@ trajectory_follower::LongitudinalOutput PidLongitudinalController::run(
+   // publish debug data
+   publishDebugData(ctrl_cmd, control_data);
+ 
+-  return output;
++  { auto __ipoint_rv = ( output); IPOINT(2918); return __ipoint_rv; }
+ }
+ 
+ PidLongitudinalController::ControlData PidLongitudinalController::getControlData(
+   const geometry_msgs::msg::Pose & current_pose)
+-{
++{ IPOINT(2919);
+   ControlData control_data{};
+ 
+   // dt
+@@ -478,7 +479,7 @@ PidLongitudinalController::ControlData PidLongitudinalController::getControlData
+ 
+   // calculate the target motion for delay compensation
+   constexpr double min_running_dist = 0.01;
+-  if (control_data.state_after_delay.running_distance > min_running_dist) {
++  if (control_data.state_after_delay.running_distance > min_running_dist) { IPOINT(2921);
+     control_data.interpolated_traj.points =
+       autoware::motion_utils::removeOverlapPoints(control_data.interpolated_traj.points);
+     const auto target_pose = longitudinal_utils::findTrajectoryPoseAfterDistance(
+@@ -491,7 +492,7 @@ PidLongitudinalController::ControlData PidLongitudinalController::getControlData
+       control_data.interpolated_traj.points.begin() + control_data.target_idx,
+       target_interpolated_point.first);
+     target_point = target_interpolated_point.first;
+-  }
++  IPOINT(2922); } else { IPOINT(2923); }
+ 
+   // ==========================================================================================
+   // NOTE: due to removeOverlapPoints(), the obtained control_data.target_idx and
+@@ -518,9 +519,9 @@ PidLongitudinalController::ControlData PidLongitudinalController::getControlData
+ 
+   // shift
+   control_data.shift = getCurrentShift(control_data);
+-  if (control_data.shift != m_prev_shift) {
++  if (control_data.shift != m_prev_shift) { IPOINT(2924);
+     m_pid_vel.reset();
+-  }
++  IPOINT(2925); } else { IPOINT(2926); }
+   m_prev_shift = control_data.shift;
+ 
+   // distance to stopline
+@@ -536,13 +537,13 @@ PidLongitudinalController::ControlData PidLongitudinalController::getControlData
+   const double traj_pitch = longitudinal_utils::getPitchByTraj(
+     control_data.interpolated_traj, control_data.target_idx, m_wheel_base);
+ 
+-  if (m_slope_source == SlopeSource::RAW_PITCH) {
++  if (m_slope_source == SlopeSource::RAW_PITCH) { IPOINT(2927);
+     control_data.slope_angle = m_lpf_pitch->getValue();
+-  } else if (m_slope_source == SlopeSource::TRAJECTORY_PITCH) {
++  IPOINT(2928); } else { IPOINT(2929); if (m_slope_source == SlopeSource::TRAJECTORY_PITCH) { IPOINT(2931);
+     control_data.slope_angle = traj_pitch;
+-  } else if (
++  IPOINT(2932); } else { IPOINT(2933); if (
+     m_slope_source == SlopeSource::TRAJECTORY_ADAPTIVE ||
+-    m_slope_source == SlopeSource::TRAJECTORY_GOAL_ADAPTIVE) {
++    m_slope_source == SlopeSource::TRAJECTORY_GOAL_ADAPTIVE) { IPOINT(2935);
+     // if velocity is high, use target idx for slope, otherwise, use raw_pitch
+     const bool is_vel_slow = control_data.current_motion.vel < m_adaptive_trajectory_velocity_th &&
+                              m_slope_source == SlopeSource::TRAJECTORY_ADAPTIVE;
+@@ -562,21 +563,21 @@ PidLongitudinalController::ControlData PidLongitudinalController::getControlData
+         control_data.slope_angle,
+         m_previous_slope_angle.value() + m_min_jerk * control_data.dt / gravity_const,
+         m_previous_slope_angle.value() + m_max_jerk * control_data.dt / gravity_const);
+-    }
++    } else { IPOINT(2939); }
+     m_previous_slope_angle = control_data.slope_angle;
+-  } else {
++  IPOINT(2936); } else { IPOINT(2940);
+     RCLCPP_ERROR_THROTTLE(
+       logger_, *clock_, 3000, "Slope source is not valid. Using raw_pitch option as default");
+     control_data.slope_angle = m_lpf_pitch->getValue();
+-  }
++  IPOINT(2941); } IPOINT(2934); } IPOINT(2930); }
+ 
+   updatePitchDebugValues(control_data.slope_angle, traj_pitch, raw_pitch, m_lpf_pitch->getValue());
+ 
+-  return control_data;
++  { auto __ipoint_rv = ( control_data); IPOINT(2920); return __ipoint_rv; }
+ }
+ 
+ PidLongitudinalController::Motion PidLongitudinalController::calcEmergencyCtrlCmd(const double dt)
+-{
++{ IPOINT(2942);
+   // These accelerations are without slope compensation
+   const auto & p = m_emergency_state_params;
+   Motion raw_ctrl_cmd{p.vel, p.acc};
+@@ -594,7 +595,7 @@ PidLongitudinalController::Motion PidLongitudinalController::calcEmergencyCtrlCm
+     m_wheel_base + m_front_overhang);
+   m_pub_virtual_wall_marker->publish(virtual_wall_marker);
+ 
+-  return raw_ctrl_cmd;
++  { auto __ipoint_rv = ( raw_ctrl_cmd); IPOINT(2943); return __ipoint_rv; }
+ }
+ 
+ void PidLongitudinalController::changeControlState(
+@@ -612,7 +613,7 @@ void PidLongitudinalController::changeControlState(
+ }
+ 
+ void PidLongitudinalController::updateControlState(const ControlData & control_data)
+-{
++{ IPOINT(2944);
+   const double current_vel = control_data.current_motion.vel;
+   const double stop_dist = control_data.stop_dist;
+ 
+@@ -646,9 +647,9 @@ void PidLongitudinalController::updateControlState(const ControlData & control_d
+     }
+     return false;
+   }();
+-  if (!is_not_running) {
++  if (!is_not_running) { IPOINT(2946);
+     m_last_running_time = std::make_shared<rclcpp::Time>(clock_->now());
+-  }
++  IPOINT(2947); } else { IPOINT(2948); }
+   const bool stopped_condition =
+     m_last_running_time
+       ? (clock_->now() - *m_last_running_time).seconds() > p.stopped_state_entry_duration_time
+@@ -676,25 +677,25 @@ void PidLongitudinalController::updateControlState(const ControlData & control_d
+   const bool is_under_control = m_current_operation_mode.is_autoware_control_enabled &&
+                                 m_current_operation_mode.mode == OperationModeState::AUTONOMOUS;
+ 
+-  if (is_under_control != m_prev_vehicle_is_under_control) {
++  if (is_under_control != m_prev_vehicle_is_under_control) { IPOINT(2949);
+     m_prev_vehicle_is_under_control = is_under_control;
+     m_under_control_starting_time =
+       is_under_control ? std::make_shared<rclcpp::Time>(clock_->now()) : nullptr;
+-  }
++  IPOINT(2950); } else { IPOINT(2951); }
+ 
+   if (m_control_state != ControlState::STOPPED) {
+     m_prev_keep_stopped_condition = std::nullopt;
+-  }
++  } else { IPOINT(2954); }
+ 
+   // transit state
+   // in DRIVE state
+-  if (m_control_state == ControlState::DRIVE) {
+-    if (emergency_condition.result) {
+-      return changeControlState(ControlState::EMERGENCY, emergency_condition.reason);
+-    }
+-    if (!is_under_control && stopped_condition) {
+-      return changeControlState(ControlState::STOPPED);
+-    }
++  if (m_control_state == ControlState::DRIVE) { IPOINT(2955);
++    if (emergency_condition.result) { IPOINT(2957);
++      { ( changeControlState(ControlState::EMERGENCY, emergency_condition.reason)); IPOINT(2958); IPOINT(2956); IPOINT(2945); return; }
++    } else { IPOINT(2959); }
++    if (!is_under_control && stopped_condition) { IPOINT(2960);
++      { ( changeControlState(ControlState::STOPPED)); IPOINT(2961); IPOINT(2956); IPOINT(2945); return; }
++    } else { IPOINT(2962); }
+ 
+     if (m_enable_smooth_stop) {
+       if (stopping_condition) {
+@@ -704,39 +705,39 @@ void PidLongitudinalController::updateControlState(const ControlData & control_d
+           control_data.stop_dist -
+           0.5 * (pred_vel_in_target + current_vel) * m_delay_compensation_time;
+         m_smooth_stop.init(pred_vel_in_target, pred_stop_dist);
+-        return changeControlState(ControlState::STOPPING);
+-      }
+-    } else {
+-      if (stopped_condition && !departure_condition_from_stopped) {
+-        return changeControlState(ControlState::STOPPED);
++        { ( changeControlState(ControlState::STOPPING)); IPOINT(2956); IPOINT(2945); return; }
+       }
+-    }
+-    return;
+-  }
++    } else { IPOINT(2968);
++      if (stopped_condition && !departure_condition_from_stopped) { IPOINT(2970);
++        { ( changeControlState(ControlState::STOPPED)); IPOINT(2971); IPOINT(2969); IPOINT(2956); IPOINT(2945); return; }
++      } else { IPOINT(2972); }
++    IPOINT(2969); }
++    IPOINT(2956); IPOINT(2945); return;
++  } else { IPOINT(2973); }
+ 
+   // in STOPPING state
+-  if (m_control_state == ControlState::STOPPING) {
+-    if (emergency_condition.result) {
+-      return changeControlState(ControlState::EMERGENCY, emergency_condition.reason);
+-    }
+-    if (stopped_condition) {
+-      return changeControlState(ControlState::STOPPED);
+-    }
+-
+-    if (departure_condition_from_stopping) {
++  if (m_control_state == ControlState::STOPPING) { IPOINT(2974);
++    if (emergency_condition.result) { IPOINT(2976);
++      { ( changeControlState(ControlState::EMERGENCY, emergency_condition.reason)); IPOINT(2977); IPOINT(2975); IPOINT(2945); return; }
++    } else { IPOINT(2978); }
++    if (stopped_condition) { IPOINT(2979);
++      { ( changeControlState(ControlState::STOPPED)); IPOINT(2980); IPOINT(2975); IPOINT(2945); return; }
++    } else { IPOINT(2981); }
++
++    if (departure_condition_from_stopping) { IPOINT(2982);
+       m_pid_vel.reset();
+       m_lpf_vel_error->reset(0.0);
+       // prevent the car from taking a long time to start to move
+       m_prev_raw_ctrl_cmd.acc = std::max(0.0, m_prev_raw_ctrl_cmd.acc);
+-      return changeControlState(ControlState::DRIVE);
+-    }
+-    return;
+-  }
++      { ( changeControlState(ControlState::DRIVE)); IPOINT(2983); IPOINT(2975); IPOINT(2945); return; }
++    } else { IPOINT(2984); }
++    IPOINT(2975); IPOINT(2945); return;
++  } else { IPOINT(2985); }
+ 
+   // in STOPPED state
+   if (m_control_state == ControlState::STOPPED) {
+     // keep STOPPED if is_under_control is false
+-    if (!is_under_control && stopped_condition) return;
++    if (!is_under_control && stopped_condition) { IPOINT(2945); return; }
+ 
+     // debug print
+     if (has_nonzero_target_vel && !departure_condition_from_stopped) {
+@@ -769,40 +770,40 @@ void PidLongitudinalController::updateControlState(const ControlData & control_d
+         }
+ 
+         // keep STOPPED
+-        return;
++        IPOINT(2945); return;
+       }
+ 
+       m_pid_vel.reset();
+       m_lpf_vel_error->reset(0.0);
+       m_lpf_acc_error->reset(0.0);
+-      return changeControlState(ControlState::DRIVE);
++      { ( changeControlState(ControlState::DRIVE)); IPOINT(2945); return; }
+     }
+ 
+-    return;
+-  }
++    IPOINT(2945); return;
++  } else { IPOINT(3006); }
+ 
+   // in EMERGENCY state
+-  if (m_control_state == ControlState::EMERGENCY) {
+-    if (stopped_condition) {
+-      return changeControlState(ControlState::STOPPED);
+-    }
++  if (m_control_state == ControlState::EMERGENCY) { IPOINT(3007);
++    if (stopped_condition) { IPOINT(3009);
++      { ( changeControlState(ControlState::STOPPED)); IPOINT(3010); IPOINT(3008); IPOINT(2945); return; }
++    } else { IPOINT(3011); }
+ 
+-    if (!emergency_condition.result) {
+-      if (!is_under_control) {
++    if (!emergency_condition.result) { IPOINT(3012);
++      if (!is_under_control) { IPOINT(3014);
+         // NOTE: On manual driving, no need stopping to exit the emergency.
+-        return changeControlState(ControlState::DRIVE);
+-      }
+-    }
+-    return;
+-  }
++        { ( changeControlState(ControlState::DRIVE)); IPOINT(3015); IPOINT(3013); IPOINT(3008); IPOINT(2945); return; }
++      } else { IPOINT(3016); }
++    IPOINT(3013); } else { IPOINT(3017); }
++    IPOINT(3008); IPOINT(2945); return;
++  } else { IPOINT(3018); }
+ 
+   RCLCPP_FATAL(logger_, "invalid state found.");
+-  return;
++  IPOINT(2945); return;
+ }
+ 
+ PidLongitudinalController::Motion PidLongitudinalController::calcCtrlCmd(
+   const ControlData & control_data)
+-{
++{ IPOINT(3019);
+   const size_t target_idx = control_data.target_idx;
+ 
+   // velocity and acceleration command
+@@ -810,7 +811,7 @@ PidLongitudinalController::Motion PidLongitudinalController::calcCtrlCmd(
+     control_data.interpolated_traj.points.at(target_idx).longitudinal_velocity_mps,
+     control_data.interpolated_traj.points.at(target_idx).acceleration_mps2};
+ 
+-  if (m_control_state == ControlState::STOPPED) {
++  if (m_control_state == ControlState::STOPPED) { IPOINT(3021);
+     const auto & p = m_stopped_state_params;
+     ctrl_cmd_as_pedal_pos.vel = p.vel;
+     ctrl_cmd_as_pedal_pos.acc = p.acc;
+@@ -825,20 +826,20 @@ PidLongitudinalController::Motion PidLongitudinalController::calcCtrlCmd(
+       const double pitch_limited =
+         std::clamp(control_data.slope_angle, m_min_pitch_rad, m_max_pitch_rad);
+       ctrl_cmd_as_pedal_pos.acc -= 9.81 * std::sin(std::abs(pitch_limited));
+-    }
++    } else { IPOINT(3025); }
+     m_debug_values.setValues(DebugValues::TYPE::ACC_CMD_SLOPE_APPLIED, ctrl_cmd_as_pedal_pos.acc);
+ 
+     RCLCPP_DEBUG(
+       logger_, "[Stopped]. vel: %3.3f, acc: %3.3f", ctrl_cmd_as_pedal_pos.vel,
+       ctrl_cmd_as_pedal_pos.acc);
+-  } else {
++  IPOINT(3022); } else { IPOINT(3026);
+     Motion raw_ctrl_cmd{
+       control_data.interpolated_traj.points.at(target_idx).longitudinal_velocity_mps,
+       control_data.interpolated_traj.points.at(target_idx).acceleration_mps2};
+-    if (m_control_state == ControlState::EMERGENCY) {
++    if (m_control_state == ControlState::EMERGENCY) { IPOINT(3028);
+       raw_ctrl_cmd = calcEmergencyCtrlCmd(control_data.dt);
+-    } else {
+-      if (m_control_state == ControlState::DRIVE) {
++    IPOINT(3029); } else { IPOINT(3030);
++      if (m_control_state == ControlState::DRIVE) { IPOINT(3032);
+         raw_ctrl_cmd.vel = control_data.interpolated_traj.points.at(control_data.target_idx)
+                              .longitudinal_velocity_mps;
+         raw_ctrl_cmd.acc = applyVelocityFeedback(control_data);
+@@ -852,7 +853,7 @@ PidLongitudinalController::Motion PidLongitudinalController::calcCtrlCmd(
+           control_data.interpolated_traj.points.at(control_data.target_idx)
+             .longitudinal_velocity_mps,
+           raw_ctrl_cmd.acc);
+-      } else if (m_control_state == ControlState::STOPPING) {
++      IPOINT(3033); } else { IPOINT(3034); if (m_control_state == ControlState::STOPPING) { IPOINT(3036);
+         raw_ctrl_cmd.acc = m_smooth_stop.calculate(
+           control_data.stop_dist, control_data.current_motion.vel, control_data.current_motion.acc,
+           m_vel_hist, m_delay_compensation_time, m_debug_values);
+@@ -861,13 +862,13 @@ PidLongitudinalController::Motion PidLongitudinalController::calcCtrlCmd(
+         RCLCPP_DEBUG(
+           logger_, "[smooth stop]: Smooth stopping. vel: %3.3f, acc: %3.3f", raw_ctrl_cmd.vel,
+           raw_ctrl_cmd.acc);
+-      }
++      IPOINT(3037); } else { IPOINT(3038); } IPOINT(3035); }
+       raw_ctrl_cmd.acc = std::clamp(raw_ctrl_cmd.acc, m_min_acc, m_max_acc);
+       m_debug_values.setValues(DebugValues::TYPE::ACC_CMD_ACC_LIMITED, raw_ctrl_cmd.acc);
+       raw_ctrl_cmd.acc = longitudinal_utils::applyDiffLimitFilter(
+         raw_ctrl_cmd.acc, m_prev_raw_ctrl_cmd.acc, control_data.dt, m_max_jerk, m_min_jerk);
+       m_debug_values.setValues(DebugValues::TYPE::ACC_CMD_JERK_LIMITED, raw_ctrl_cmd.acc);
+-    }
++    IPOINT(3031); }
+ 
+     // store acceleration without slope compensation
+     m_prev_raw_ctrl_cmd = raw_ctrl_cmd;
+@@ -893,7 +894,7 @@ PidLongitudinalController::Motion PidLongitudinalController::calcCtrlCmd(
+       applySlopeCompensation(acc_cmd, control_data.slope_angle, control_data.shift);
+     m_debug_values.setValues(DebugValues::TYPE::ACC_CMD_SLOPE_APPLIED, ctrl_cmd_as_pedal_pos.acc);
+     ctrl_cmd_as_pedal_pos.vel = raw_ctrl_cmd.vel;
+-  }
++  IPOINT(3027); }
+ 
+   storeAccelCmd(m_prev_raw_ctrl_cmd.acc);
+ 
+@@ -907,13 +908,13 @@ PidLongitudinalController::Motion PidLongitudinalController::calcCtrlCmd(
+     logger_, "[final output]: acc: %3.3f, v_curr: %3.3f", ctrl_cmd_as_pedal_pos.acc,
+     control_data.current_motion.vel);
+ 
+-  return ctrl_cmd_as_pedal_pos;
++  { auto __ipoint_rv = ( ctrl_cmd_as_pedal_pos); IPOINT(3020); return __ipoint_rv; }
+ }
+ 
+ // Do not use nearest_idx here
+ autoware_control_msgs::msg::Longitudinal PidLongitudinalController::createCtrlCmdMsg(
+   const Motion & ctrl_cmd, const double & current_vel)
+-{
++{ IPOINT(3039);
+   // publish control command
+   autoware_control_msgs::msg::Longitudinal cmd{};
+   cmd.stamp = clock_->now();
+@@ -929,12 +930,12 @@ autoware_control_msgs::msg::Longitudinal PidLongitudinalController::createCtrlCm
+ 
+   m_prev_ctrl_cmd = ctrl_cmd;
+ 
+-  return cmd;
++  { auto __ipoint_rv = ( cmd); IPOINT(3040); return __ipoint_rv; }
+ }
+ 
+ void PidLongitudinalController::publishDebugData(
+   const Motion & ctrl_cmd, const ControlData & control_data)
+-{
++{ IPOINT(3045);
+   // set debug values
+   m_debug_values.setValues(DebugValues::TYPE::DT, control_data.dt);
+   m_debug_values.setValues(DebugValues::TYPE::CALCULATED_ACC, control_data.current_motion.acc);
+@@ -946,9 +947,9 @@ void PidLongitudinalController::publishDebugData(
+   // publish debug values
+   autoware_internal_debug_msgs::msg::Float32MultiArrayStamped debug_msg{};
+   debug_msg.stamp = clock_->now();
+-  for (const auto & v : m_debug_values.getValues()) {
++  IPOINT(3047); for (const auto & v : m_debug_values.getValues()) {
+     debug_msg.data.push_back(static_cast<decltype(debug_msg.data)::value_type>(v));
+-  }
++  } IPOINT(3048);
+   m_pub_debug->publish(debug_msg);
+ 
+   // slope angle
+@@ -957,7 +958,7 @@ void PidLongitudinalController::publishDebugData(
+   slope_msg.data.push_back(
+     static_cast<decltype(slope_msg.data)::value_type>(control_data.slope_angle));
+   m_pub_slope->publish(slope_msg);
+-}
++IPOINT(3046); }
+ 
+ double PidLongitudinalController::getDt()
+ {
+@@ -992,7 +993,7 @@ enum PidLongitudinalController::Shift PidLongitudinalController::getCurrentShift
+ }
+ 
+ void PidLongitudinalController::storeAccelCmd(const double accel)
+-{
++{ IPOINT(3051);
+   if (m_control_state == ControlState::DRIVE) {
+     // convert format
+     autoware_control_msgs::msg::Longitudinal cmd;
+@@ -1008,12 +1009,12 @@ void PidLongitudinalController::storeAccelCmd(const double accel)
+ 
+   // remove unused ctrl cmd
+   if (m_ctrl_cmd_vec.size() <= 2) {
+-    return;
+-  }
++    IPOINT(3052); return;
++  } else { IPOINT(3059); }
+   if ((clock_->now() - m_ctrl_cmd_vec.at(1).stamp).seconds() > m_delay_compensation_time) {
+     m_ctrl_cmd_vec.erase(m_ctrl_cmd_vec.begin());
+-  }
+-}
++  } else { IPOINT(3062); }
++IPOINT(3052); }
+ 
+ double PidLongitudinalController::applySlopeCompensation(
+   const double input_acc, const double pitch, const Shift shift) const
+@@ -1130,7 +1131,7 @@ PidLongitudinalController::StateAfterDelay PidLongitudinalController::predictedS
+ }
+ 
+ double PidLongitudinalController::applyVelocityFeedback(const ControlData & control_data)
+-{
++{ IPOINT(3101);
+   // NOTE: Acceleration command is always positive even if the ego drives backward.
+   const double vel_sign = (control_data.shift == Shift::Forward)
+                             ? 1.0
+@@ -1179,7 +1180,7 @@ double PidLongitudinalController::applyVelocityFeedback(const ControlData & cont
+   m_debug_values.setValues(DebugValues::TYPE::FF_SCALE, ff_scale);
+   m_debug_values.setValues(DebugValues::TYPE::ACC_CMD_FF, ff_acc);
+ 
+-  return feedback_acc;
++  IPOINT(3102); return feedback_acc;
+ }
+ 
+ void PidLongitudinalController::updatePitchDebugValues(
+@@ -1225,20 +1226,20 @@ void PidLongitudinalController::setupDiagnosticUpdater()
+ 
+ void PidLongitudinalController::checkControlState(
+   diagnostic_updater::DiagnosticStatusWrapper & stat)
+-{
++{ IPOINT(3103);
+   using diagnostic_msgs::msg::DiagnosticStatus;
+ 
+   auto level = DiagnosticStatus::OK;
+   std::string msg = "OK";
+ 
+-  if (m_control_state == ControlState::EMERGENCY) {
++  if (m_control_state == ControlState::EMERGENCY) { IPOINT(3105);
+     level = DiagnosticStatus::ERROR;
+     msg = "emergency occurred due to ";
+-  }
++  IPOINT(3106); } else { IPOINT(3107); }
+ 
+   stat.add<int32_t>("control_state", static_cast<int32_t>(m_control_state));
+   stat.summary(level, msg);
+-}
++IPOINT(3104); }
+ 
+ double PidLongitudinalController::getTimeUnderControl()
+ {
+diff --git a/control/autoware_trajectory_follower_node/CMakeLists.txt b/control/autoware_trajectory_follower_node/CMakeLists.txt
+index 726922a02..6fbded3ca 100644
+--- a/control/autoware_trajectory_follower_node/CMakeLists.txt
++++ b/control/autoware_trajectory_follower_node/CMakeLists.txt
+@@ -63,6 +63,11 @@ if(BUILD_TESTING)
+ 
+ endif()
+ 
++# --- ipoint instrumentation (CHB-COP evaluation) ---
++find_package(ipoint_runtime REQUIRED)
++target_link_libraries(${CONTROLLER_NODE} ipoint_runtime::ipoint_runtime)
++# --- end ipoint ---
++
+ ament_auto_package(
+   INSTALL_TO_SHARE
+   param
+diff --git a/control/autoware_trajectory_follower_node/package.xml b/control/autoware_trajectory_follower_node/package.xml
+index 1ccdc841e..af43887c6 100644
+--- a/control/autoware_trajectory_follower_node/package.xml
++++ b/control/autoware_trajectory_follower_node/package.xml
+@@ -43,6 +43,7 @@
+   <test_depend>autoware_lint_common</test_depend>
+   <test_depend>autoware_testing</test_depend>
+   <test_depend>ros_testing</test_depend>
++  <depend>ipoint_runtime</depend>
+ 
+   <export>
+     <build_type>ament_cmake</build_type>
+diff --git a/control/autoware_trajectory_follower_node/src/controller_node.cpp b/control/autoware_trajectory_follower_node/src/controller_node.cpp
+index 6115fa769..0b472dc4e 100644
+--- a/control/autoware_trajectory_follower_node/src/controller_node.cpp
++++ b/control/autoware_trajectory_follower_node/src/controller_node.cpp
+@@ -1,3 +1,4 @@
++#include "ipoint.h"
+ // Copyright 2021 Tier IV, Inc. All rights reserved.
+ //
+ // Licensed under the Apache License, Version 2.0 (the "License");
+@@ -148,27 +149,27 @@ Controller::LongitudinalControllerMode Controller::getLongitudinalControllerMode
+ }
+ 
+ void Controller::check_cyclic_message_timeout(diagnostic_updater::DiagnosticStatusWrapper & stat)
+-{
++{ IPOINT(2001);
+   const auto traj_timestamp = sub_ref_path_.last_taken_data_timestamp();
+ 
+-  if (!traj_timestamp) {
++  if (!traj_timestamp) { IPOINT(2003);
+     stat.summary(diagnostic_msgs::msg::DiagnosticStatus::ERROR, "timeout");
+     stat.add("trajectory", "no message received");
+-    return;
+-  }
++    IPOINT(2004); IPOINT(2002); return;
++  } else { IPOINT(2005); }
+ 
+   const auto elapsed = (this->now() - traj_timestamp.value()).seconds();
+-  if (elapsed > cyclic_message_timeout_thr_sec_) {
++  if (elapsed > cyclic_message_timeout_thr_sec_) { IPOINT(2006);
+     stat.summary(diagnostic_msgs::msg::DiagnosticStatus::ERROR, "timeout");
+     stat.add("trajectory", "timeout (elapsed: " + std::to_string(elapsed) + " sec)");
+-  } else {
++  IPOINT(2007); } else { IPOINT(2008);
+     stat.summary(diagnostic_msgs::msg::DiagnosticStatus::OK, "OK");
+     stat.add("trajectory", "OK");
+-  }
+-}
++  IPOINT(2009); }
++IPOINT(2002); }
+ 
+ bool Controller::processData(rclcpp::Clock & clock)
+-{
++{ IPOINT(2010);
+   bool is_ready = true;
+ 
+   const auto & logData = [&clock, this](const std::string & data_type) {
+@@ -192,34 +193,34 @@ bool Controller::processData(rclcpp::Clock & clock)
+   is_ready &= getData(current_odometry_ptr_, sub_odometry_, "odometry");
+   is_ready &= getData(current_operation_mode_ptr_, sub_operation_mode_, "operation mode");
+ 
+-  return is_ready;
++  IPOINT(2011); return is_ready;
+ }
+ 
+ bool Controller::isTimeOut(
+   const trajectory_follower::LongitudinalOutput & lon_out,
+   const trajectory_follower::LateralOutput & lat_out)
+-{
++{ IPOINT(2012);
+   const auto now = this->now();
+-  if ((now - lat_out.control_cmd.stamp).seconds() > timeout_thr_sec_) {
++  if ((now - lat_out.control_cmd.stamp).seconds() > timeout_thr_sec_) { IPOINT(2014);
+     RCLCPP_ERROR_THROTTLE(
+       get_logger(), *get_clock(), 5000 /*ms*/,
+       "Lateral control command too old, control_cmd will not be published.");
+-    return true;
+-  }
+-  if ((now - lon_out.control_cmd.stamp).seconds() > timeout_thr_sec_) {
++    IPOINT(2015); IPOINT(2013); return true;
++  } else { IPOINT(2016); }
++  if ((now - lon_out.control_cmd.stamp).seconds() > timeout_thr_sec_) { IPOINT(2017);
+     RCLCPP_ERROR_THROTTLE(
+       get_logger(), *get_clock(), 5000 /*ms*/,
+       "Longitudinal control command too old, control_cmd will not be published.");
+-    return true;
+-  }
+-  return false;
++    IPOINT(2018); IPOINT(2013); return true;
++  } else { IPOINT(2019); }
++  IPOINT(2013); return false;
+ }
+ 
+ boost::optional<trajectory_follower::InputData> Controller::createInputData(rclcpp::Clock & clock)
+-{
++{ IPOINT(2020);
+   if (!processData(clock)) {
+-    return {};
+-  }
++    { boost::optional<trajectory_follower::InputData> __ipoint_rv =  {}; IPOINT(2021); return __ipoint_rv; }
++  } else { IPOINT(2024); }
+ 
+   trajectory_follower::InputData input_data;
+   input_data.current_trajectory = *current_trajectory_ptr_;
+@@ -228,31 +229,31 @@ boost::optional<trajectory_follower::InputData> Controller::createInputData(rclc
+   input_data.current_accel = *current_accel_ptr_;
+   input_data.current_operation_mode = *current_operation_mode_ptr_;
+ 
+-  return input_data;
++  { auto __ipoint_rv = ( input_data); IPOINT(2021); return __ipoint_rv; }
+ }
+ 
+ void Controller::callbackTimerControl()
+-{
++{ IPOINT_JOB_BEGIN(2025);
+   autoware_control_msgs::msg::Control out;
+   out.stamp = this->now();
+ 
+   // 1. create input data
+   const auto input_data = createInputData(*get_clock());
+-  if (!input_data) {
++  if (!input_data) { IPOINT(2027);
+     RCLCPP_INFO_THROTTLE(
+       get_logger(), *get_clock(), 5000, "Control is skipped since input data is not ready.");
+-    return;
+-  }
++    IPOINT(2028); IPOINT_JOB_END(2026); return;
++  } else { IPOINT(2029); }
+ 
+   // 2. check if controllers are ready
+   const bool is_lat_ready = lateral_controller_->isReady(*input_data);
+   const bool is_lon_ready = longitudinal_controller_->isReady(*input_data);
+-  if (!is_lat_ready || !is_lon_ready) {
++  if (!is_lat_ready || !is_lon_ready) { IPOINT(2030);
+     RCLCPP_INFO_THROTTLE(
+       get_logger(), *get_clock(), 5000,
+       "Control is skipped since lateral and/or longitudinal controllers are not ready to run.");
+-    return;
+-  }
++    IPOINT(2031); IPOINT_JOB_END(2026); return;
++  } else { IPOINT(2032); }
+ 
+   // 3. run controllers
+   stop_watch_.tic("lateral");
+@@ -268,7 +269,7 @@ void Controller::callbackTimerControl()
+   lateral_controller_->sync(lon_out.sync_data);
+ 
+   // TODO(Horibe): Think specification. This comes from the old implementation.
+-  if (isTimeOut(lon_out, lat_out)) return;
++  if (isTimeOut(lon_out, lat_out)) { IPOINT(2033); IPOINT(2034); IPOINT_JOB_END(2026); return; } else { IPOINT(2035); }
+ 
+   // 4.5. update diagnostics
+   diag_updater_->force_update();
+@@ -283,19 +284,19 @@ void Controller::callbackTimerControl()
+   publishDebugMarker(*input_data, lat_out);
+ 
+   // 7. publish experimental topic
+-  if (enable_control_cmd_horizon_pub_) {
++  if (enable_control_cmd_horizon_pub_) { IPOINT(2036);
+     const auto control_horizon =
+       mergeLatLonHorizon(lat_out.control_cmd_horizon, lon_out.control_cmd_horizon, this->now());
+-    if (control_horizon.has_value()) {
++    if (control_horizon.has_value()) { IPOINT(2038);
+       control_cmd_horizon_pub_->publish(control_horizon.value());
+-    }
+-  }
+-}
++    IPOINT(2039); } else { IPOINT(2040); }
++  IPOINT(2037); } else { IPOINT(2041); }
++IPOINT_JOB_END(2026); }
+ 
+ void Controller::publishDebugMarker(
+   const trajectory_follower::InputData & input_data,
+   const trajectory_follower::LateralOutput & lat_out) const
+-{
++{ IPOINT(2042);
+   visualization_msgs::msg::MarkerArray debug_marker_array{};
+ 
+   // steer converged marker
+@@ -318,53 +319,53 @@ void Controller::publishDebugMarker(
+   }
+ 
+   debug_marker_pub_->publish(debug_marker_array);
+-}
++IPOINT(2043); }
+ 
+ void Controller::publishProcessingTime(
+   const double t_ms, const rclcpp::Publisher<Float64Stamped>::SharedPtr pub)
+-{
++{ IPOINT(2044);
+   Float64Stamped msg{};
+   msg.stamp = this->now();
+   msg.data = t_ms;
+   pub->publish(msg);
+-}
++IPOINT(2045); }
+ 
+ std::optional<ControlHorizon> Controller::mergeLatLonHorizon(
+   const LateralHorizon & lateral_horizon, const LongitudinalHorizon & longitudinal_horizon,
+   const rclcpp::Time & stamp)
+-{
+-  if (lateral_horizon.controls.empty() || longitudinal_horizon.controls.empty()) {
+-    return std::nullopt;
+-  }
++{ IPOINT(2046);
++  if (lateral_horizon.controls.empty() || longitudinal_horizon.controls.empty()) { IPOINT(2048);
++    { auto __ipoint_rv = ( std::nullopt); IPOINT(2049); IPOINT(2047); return __ipoint_rv; }
++  } else { IPOINT(2050); }
+ 
+   autoware_control_msgs::msg::ControlHorizon control_horizon{};
+   control_horizon.stamp = stamp;
+ 
+   // If either of the horizons has only one control, repeat the control to match the other horizon.
+-  if (lateral_horizon.controls.size() == 1) {
++  if (lateral_horizon.controls.size() == 1) { IPOINT(2051);
+     control_horizon.time_step_ms = longitudinal_horizon.time_step_ms;
+     const auto lateral = lateral_horizon.controls.front();
+-    for (const auto & longitudinal : longitudinal_horizon.controls) {
++    IPOINT(2053); for (const auto & longitudinal : longitudinal_horizon.controls) { IPOINT(2055);
+       autoware_control_msgs::msg::Control control;
+       control.longitudinal = longitudinal;
+       control.lateral = lateral;
+       control.stamp = stamp;
+       control_horizon.controls.push_back(control);
+-    }
+-    return control_horizon;
+-  }
+-  if (longitudinal_horizon.controls.size() == 1) {
++    IPOINT(2056); } IPOINT(2054);
++    { auto __ipoint_rv = ( control_horizon); IPOINT(2052); IPOINT(2047); return __ipoint_rv; }
++  } else { IPOINT(2057); }
++  if (longitudinal_horizon.controls.size() == 1) { IPOINT(2058);
+     control_horizon.time_step_ms = lateral_horizon.time_step_ms;
+     const auto longitudinal = longitudinal_horizon.controls.front();
+-    for (const auto & lateral : lateral_horizon.controls) {
++    IPOINT(2060); for (const auto & lateral : lateral_horizon.controls) { IPOINT(2062);
+       autoware_control_msgs::msg::Control control;
+       control.longitudinal = longitudinal;
+       control.lateral = lateral;
+       control.stamp = stamp;
+       control_horizon.controls.push_back(control);
+-    }
+-    return control_horizon;
+-  }
++    IPOINT(2063); } IPOINT(2061);
++    { auto __ipoint_rv = ( control_horizon); IPOINT(2059); IPOINT(2047); return __ipoint_rv; }
++  } else { IPOINT(2064); }
+ 
+   // If both horizons have multiple controls, align the time steps and zero-order hold the controls.
+   // calculate greatest common divisor of time steps
+@@ -383,19 +384,19 @@ std::optional<ControlHorizon> Controller::mergeLatLonHorizon(
+   const auto longitudinal_controls = resampleHorizonByZeroOrderHold(
+     longitudinal_horizon.controls, longitudinal_horizon.time_step_ms, time_step_ms);
+ 
+-  if (lateral_controls.size() != longitudinal_controls.size()) {
+-    return std::nullopt;
+-  }
++  if (lateral_controls.size() != longitudinal_controls.size()) { IPOINT(2065);
++    { auto __ipoint_rv = ( std::nullopt); IPOINT(2066); IPOINT(2047); return __ipoint_rv; }
++  } else { IPOINT(2067); }
+ 
+   const size_t num_steps = lateral_controls.size();
+-  for (size_t i = 0; i < num_steps; ++i) {
++  IPOINT(2068); for (size_t i = 0; i < num_steps; ++i) { IPOINT(2070);
+     autoware_control_msgs::msg::Control control{};
+     control.stamp = stamp;
+     control.lateral = lateral_controls.at(i);
+     control.longitudinal = longitudinal_controls.at(i);
+     control_horizon.controls.push_back(control);
+-  }
+-  return control_horizon;
++  IPOINT(2071); } IPOINT(2069);
++  { auto __ipoint_rv = ( control_horizon); IPOINT(2047); return __ipoint_rv; }
+ }
+ 
+ }  // namespace autoware::motion::control::trajectory_follower_node
+diff --git a/perception/autoware_ground_segmentation/CMakeLists.txt b/perception/autoware_ground_segmentation/CMakeLists.txt
+index 957f06e8c..7ef811c51 100644
+--- a/perception/autoware_ground_segmentation/CMakeLists.txt
++++ b/perception/autoware_ground_segmentation/CMakeLists.txt
+@@ -58,6 +58,11 @@ rclcpp_components_register_node(${PROJECT_NAME}
+   EXECUTABLE scan_ground_filter_node)
+ 
+ 
++# --- ipoint instrumentation (CHB-COP evaluation) ---
++find_package(ipoint_runtime REQUIRED)
++target_link_libraries(${PROJECT_NAME} ipoint_runtime::ipoint_runtime)
++# --- end ipoint ---
++
+ ament_auto_package(INSTALL_TO_SHARE
+   launch
+   test/data
+diff --git a/perception/autoware_ground_segmentation/package.xml b/perception/autoware_ground_segmentation/package.xml
+index 0e73c6fe2..77dd83e99 100644
+--- a/perception/autoware_ground_segmentation/package.xml
++++ b/perception/autoware_ground_segmentation/package.xml
+@@ -39,6 +39,7 @@
+ 
+   <test_depend>ament_lint_auto</test_depend>
+   <test_depend>autoware_lint_common</test_depend>
++  <depend>ipoint_runtime</depend>
+ 
+   <export>
+     <build_type>ament_cmake</build_type>
+diff --git a/perception/autoware_ground_segmentation/src/scan_ground_filter/grid_ground_filter.cpp b/perception/autoware_ground_segmentation/src/scan_ground_filter/grid_ground_filter.cpp
+index a502b0747..7d1dde1d8 100644
+--- a/perception/autoware_ground_segmentation/src/scan_ground_filter/grid_ground_filter.cpp
++++ b/perception/autoware_ground_segmentation/src/scan_ground_filter/grid_ground_filter.cpp
+@@ -1,3 +1,4 @@
++#include "ipoint.h"
+ // Copyright 2024 TIER IV, Inc.
+ //
+ // Licensed under the Apache License, Version 2.0 (the "License");
+@@ -26,7 +27,7 @@ namespace autoware::ground_segmentation
+ 
+ // assign the pointcloud data to the grid
+ void GridGroundFilter::convert()
+-{
++{ IPOINT(5001);
+   std::unique_ptr<ScopedTimeTrack> st_ptr;
+   if (time_keeper_) st_ptr = std::make_unique<ScopedTimeTrack>(__func__, *time_keeper_);
+ 
+@@ -40,17 +41,17 @@ void GridGroundFilter::convert()
+     data_accessor_.getPoint(in_cloud_, data_index, input_point);
+     grid_ptr_->addPoint(input_point.x, input_point.y, input_point.z, data_index);
+   }
+-}
++IPOINT(5002); }
+ 
+ // preprocess the grid data, set the grid connections
+ void GridGroundFilter::preprocess()
+-{
++{ IPOINT(5010);
+   std::unique_ptr<ScopedTimeTrack> st_ptr;
+   if (time_keeper_) st_ptr = std::make_unique<ScopedTimeTrack>(__func__, *time_keeper_);
+ 
+   // eliminate empty cells from connection for efficiency
+   grid_ptr_->setGridConnections();
+-}
++IPOINT(5011); }
+ 
+ // recursive search for the ground grid cell close to the grid origin
+ bool GridGroundFilter::recursiveSearch(
+@@ -128,7 +129,7 @@ void GridGroundFilter::fitLineFromGndGrid(const std::vector<int> & idx, float &
+ 
+ // process the grid data to initialize the ground cells prior to the ground segmentation
+ void GridGroundFilter::initializeGround(pcl::PointIndices & out_no_ground_indices)
+-{
++{ IPOINT(5015);
+   std::unique_ptr<ScopedTimeTrack> st_ptr;
+   if (time_keeper_) st_ptr = std::make_unique<ScopedTimeTrack>(__func__, *time_keeper_);
+ 
+@@ -188,7 +189,7 @@ void GridGroundFilter::initializeGround(pcl::PointIndices & out_no_ground_indice
+       cell.is_ground_initialized_ = false;
+     }
+   }
+-}
++IPOINT(5016); }
+ 
+ // segment the point in the cell, logic for the continuous cell
+ void GridGroundFilter::SegmentContinuousCell(
+@@ -356,7 +357,7 @@ void GridGroundFilter::SegmentBreakCell(
+ 
+ // classify the point cloud into ground and non-ground points
+ void GridGroundFilter::classify(pcl::PointIndices & out_no_ground_indices)
+-{
++{ IPOINT(5051);
+   std::unique_ptr<ScopedTimeTrack> st_ptr;
+   if (time_keeper_) st_ptr = std::make_unique<ScopedTimeTrack>(__func__, *time_keeper_);
+ 
+@@ -462,12 +463,12 @@ void GridGroundFilter::classify(pcl::PointIndices & out_no_ground_indices)
+       cell.is_processed_ = true;
+     }
+   }
+-}
++IPOINT(5052); }
+ 
+ // process the point cloud to segment the ground points
+ void GridGroundFilter::process(
+   const PointCloud2ConstPtr & in_cloud, pcl::PointIndices & out_no_ground_indices)
+-{
++{ IPOINT(5109);
+   std::unique_ptr<ScopedTimeTrack> st_ptr;
+   if (time_keeper_) st_ptr = std::make_unique<ScopedTimeTrack>(__func__, *time_keeper_);
+ 
+@@ -491,6 +492,6 @@ void GridGroundFilter::process(
+ 
+   // 4. classify point cloud
+   classify(out_no_ground_indices);
+-}
++IPOINT(5110); }
+ 
+ }  // namespace autoware::ground_segmentation
+diff --git a/perception/autoware_ground_segmentation/src/scan_ground_filter/node.cpp b/perception/autoware_ground_segmentation/src/scan_ground_filter/node.cpp
+index db1cbd751..0dfa327a4 100644
+--- a/perception/autoware_ground_segmentation/src/scan_ground_filter/node.cpp
++++ b/perception/autoware_ground_segmentation/src/scan_ground_filter/node.cpp
+@@ -1,3 +1,4 @@
++#include "ipoint.h"
+ // Copyright 2021 Tier IV, Inc. All rights reserved.
+ //
+ // Licensed under the Apache License, Version 2.0 (the "License");
+@@ -133,9 +134,9 @@ ScanGroundFilterComponent::ScanGroundFilterComponent(const rclcpp::NodeOptions &
+ void ScanGroundFilterComponent::convertPointcloud(
+   const PointCloud2ConstPtr & in_cloud,
+   std::vector<PointCloudVector> & out_radial_ordered_points) const
+-{
++{ IPOINT(3201);
+   std::unique_ptr<ScopedTimeTrack> st_ptr;
+-  if (time_keeper_) st_ptr = std::make_unique<ScopedTimeTrack>(__func__, *time_keeper_);
++  if (time_keeper_) { IPOINT(3203); st_ptr = std::make_unique<ScopedTimeTrack>(__func__, *time_keeper_); IPOINT(3204); } else { IPOINT(3205); }
+ 
+   out_radial_ordered_points.resize(radial_dividers_num_);
+   PointData current_point;
+@@ -148,7 +149,7 @@ void ScanGroundFilterComponent::convertPointcloud(
+   {  // grouping pointcloud by its azimuth angle
+     std::unique_ptr<ScopedTimeTrack> inner_st_ptr;
+     if (time_keeper_)
+-      inner_st_ptr = std::make_unique<ScopedTimeTrack>("azimuth_angle_grouping", *time_keeper_);
++      { IPOINT(3206); inner_st_ptr = std::make_unique<ScopedTimeTrack>("azimuth_angle_grouping", *time_keeper_); IPOINT(3207); } else { IPOINT(3208); }
+ 
+     pcl::PointXYZ input_point;
+     for (size_t data_index = 0; data_index + in_cloud_point_step <= in_cloud_data_size;
+@@ -172,7 +173,7 @@ void ScanGroundFilterComponent::convertPointcloud(
+ 
+   {  // sorting pointcloud by distance, on each azimuth angle group
+     std::unique_ptr<ScopedTimeTrack> inner_st_ptr;
+-    if (time_keeper_) inner_st_ptr = std::make_unique<ScopedTimeTrack>("sort", *time_keeper_);
++    if (time_keeper_) { IPOINT(3213); inner_st_ptr = std::make_unique<ScopedTimeTrack>("sort", *time_keeper_); IPOINT(3214); } else { IPOINT(3215); }
+ 
+     for (size_t i = 0; i < radial_dividers_num_; ++i) {
+       std::sort(
+@@ -180,22 +181,22 @@ void ScanGroundFilterComponent::convertPointcloud(
+         [](const PointData & a, const PointData & b) { return a.radius < b.radius; });
+     }
+   }
+-}
++IPOINT(3202); }
+ 
+ void ScanGroundFilterComponent::calcVirtualGroundOrigin(pcl::PointXYZ & point) const
+-{
++{ IPOINT(3220);
+   point.x = vehicle_info_.wheel_base_m;
+   point.y = 0;
+   point.z = 0;
+-}
++IPOINT(3221); }
+ 
+ void ScanGroundFilterComponent::classifyPointCloud(
+   const PointCloud2ConstPtr & in_cloud,
+   const std::vector<PointCloudVector> & in_radial_ordered_clouds,
+   pcl::PointIndices & out_no_ground_indices) const
+-{
++{ IPOINT(3222);
+   std::unique_ptr<ScopedTimeTrack> st_ptr;
+-  if (time_keeper_) st_ptr = std::make_unique<ScopedTimeTrack>(__func__, *time_keeper_);
++  if (time_keeper_) { IPOINT(3224); st_ptr = std::make_unique<ScopedTimeTrack>(__func__, *time_keeper_); IPOINT(3225); } else { IPOINT(3226); }
+ 
+   out_no_ground_indices.indices.clear();
+ 
+@@ -312,14 +313,14 @@ void ScanGroundFilterComponent::classifyPointCloud(
+       }
+     }
+   }
+-}
++IPOINT(3223); }
+ 
+ void ScanGroundFilterComponent::extractObjectPoints(
+   const PointCloud2ConstPtr & in_cloud_ptr, const pcl::PointIndices & in_indices,
+   PointCloud2 & out_object_cloud) const
+-{
++{ IPOINT(3286);
+   std::unique_ptr<ScopedTimeTrack> st_ptr;
+-  if (time_keeper_) st_ptr = std::make_unique<ScopedTimeTrack>(__func__, *time_keeper_);
++  if (time_keeper_) { IPOINT(3288); st_ptr = std::make_unique<ScopedTimeTrack>(__func__, *time_keeper_); IPOINT(3289); } else { IPOINT(3290); }
+ 
+   size_t output_data_size = 0;
+ 
+@@ -329,33 +330,33 @@ void ScanGroundFilterComponent::extractObjectPoints(
+       in_cloud_ptr->point_step * sizeof(uint8_t));
+     output_data_size += in_cloud_ptr->point_step;
+   }
+-}
++IPOINT(3287); }
+ 
+ void ScanGroundFilterComponent::faster_filter(
+   const PointCloud2ConstPtr & input, [[maybe_unused]] const IndicesPtr & indices,
+   PointCloud2 & output,
+   [[maybe_unused]] const autoware::pointcloud_preprocessor::TransformInfo & transform_info)
+-{
++{ IPOINT_JOB_BEGIN(3295);
+   std::unique_ptr<ScopedTimeTrack> st_ptr;
+-  if (time_keeper_) st_ptr = std::make_unique<ScopedTimeTrack>(__func__, *time_keeper_);
++  if (time_keeper_) { IPOINT(3297); st_ptr = std::make_unique<ScopedTimeTrack>(__func__, *time_keeper_); IPOINT(3298); } else { IPOINT(3299); }
+ 
+   std::scoped_lock lock(mutex_);
+-  if (stop_watch_ptr_) stop_watch_ptr_->toc("processing_time", true);
++  if (stop_watch_ptr_) { IPOINT(3300); stop_watch_ptr_->toc("processing_time", true); IPOINT(3301); } else { IPOINT(3302); }
+ 
+-  if (!data_accessor_.isInitialized()) {
++  if (!data_accessor_.isInitialized()) { IPOINT(3303);
+     data_accessor_.setField(input);
+     grid_ground_filter_ptr_->setDataAccessor(input);
+-  }
++  IPOINT(3304); } else { IPOINT(3305); }
+ 
+   pcl::PointIndices no_ground_indices;
+ 
+-  if (elevation_grid_mode_) {
++  if (elevation_grid_mode_) { IPOINT(3306);
+     grid_ground_filter_ptr_->process(input, no_ground_indices);
+-  } else {
++  IPOINT(3307); } else { IPOINT(3308);
+     std::vector<PointCloudVector> radial_ordered_points;
+     convertPointcloud(input, radial_ordered_points);
+     classifyPointCloud(input, radial_ordered_points, no_ground_indices);
+-  }
++  IPOINT(3309); }
+   output.row_step = no_ground_indices.indices.size() * input->point_step;
+   output.data.resize(output.row_step);
+   output.width = no_ground_indices.indices.size();
+@@ -367,26 +368,26 @@ void ScanGroundFilterComponent::faster_filter(
+   output.header = input->header;
+ 
+   extractObjectPoints(input, no_ground_indices, output);
+-  if (debug_publisher_ptr_ && stop_watch_ptr_) {
++  if (debug_publisher_ptr_ && stop_watch_ptr_) { IPOINT(3310);
+     const double cyclic_time_ms = stop_watch_ptr_->toc("cyclic_time", true);
+     const double processing_time_ms = stop_watch_ptr_->toc("processing_time", true);
+     debug_publisher_ptr_->publish<autoware_internal_debug_msgs::msg::Float64Stamped>(
+       "debug/cyclic_time_ms", cyclic_time_ms);
+     debug_publisher_ptr_->publish<autoware_internal_debug_msgs::msg::Float64Stamped>(
+       "debug/processing_time_ms", processing_time_ms);
+-  }
+-}
++  IPOINT(3311); } else { IPOINT(3312); }
++IPOINT_JOB_END(3296); }
+ 
+ // TODO(taisa1): Temporary Implementation: Delete this function definition when all the filter
+ // nodes conform to new API.
+ void ScanGroundFilterComponent::filter(
+   const PointCloud2ConstPtr & input, [[maybe_unused]] const IndicesPtr & indices,
+   PointCloud2 & output)
+-{
++{ IPOINT(3313);
+   (void)input;
+   (void)indices;
+   (void)output;
+-}
++IPOINT(3314); }
+ 
+ rcl_interfaces::msg::SetParametersResult ScanGroundFilterComponent::onParameter(
+   const std::vector<rclcpp::Parameter> & param)

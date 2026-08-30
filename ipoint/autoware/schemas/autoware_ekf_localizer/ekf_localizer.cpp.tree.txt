@@ -1,0 +1,56 @@
+*EKFLocalizer::update_predict_frequency <function> d=0 L117 [1001-1002] calls=operator bool,operator=,make_shared
+   EKFLocalizer::update_predict_frequency.if1 <branch/if> d=1 L119
+*    EKFLocalizer::update_predict_frequency.if1.then <alternative/then> d=1 L119 [1003-1004] calls=operator<,operator*
+       EKFLocalizer::update_predict_frequency.if1.then.if1 <branch/if> d=2 L120
+*        EKFLocalizer::update_predict_frequency.if1.then.if1.then <alternative/then> d=2 L120 [1005-1006] calls=warn,operator->,basic_string
+*        EKFLocalizer::update_predict_frequency.if1.then.if1.else <alternative/else> d=2 L122 [1007-1008] calls=seconds,operator-,operator*,accumulate_delay_time,operator->
+           EKFLocalizer::update_predict_frequency.if1.then.if1.else.if1 <branch/if> d=3 L128
+*            EKFLocalizer::update_predict_frequency.if1.then.if1.else.if1.then <alternative/then> d=3 L128 [1009-1010] calls=warn,operator->,large_ekf_dt_waring_message
+             EKFLocalizer::update_predict_frequency.if1.then.if1.else.if1.else <alternative/else> d=3 L131 [1011-1012]
+               EKFLocalizer::update_predict_frequency.if1.then.if1.else.if1.else.if1 <branch/if> d=4 L131
+                 EKFLocalizer::update_predict_frequency.if1.then.if1.else.if1.else.if1.then <alternative/then> d=4 L131 [1013-1014] calls=warn_throttle,operator->,too_slow_ekf_dt_waring_message
+                 EKFLocalizer::update_predict_frequency.if1.then.if1.else.if1.else.if1.else <alternative/else> d=4 L131 [1015] empty
+*    EKFLocalizer::update_predict_frequency.if1.else <alternative/else> d=1 L119 [1016] empty
+*EKFLocalizer::timer_callback <function> d=0 L145 [1017-1018] calls=tic,now,vector,push_back,check_process_activated,initialize_diagnostic_info,push_back,check_set_initialpose,update_predict_frequency,tic,predict_with_delay,operator->,empty,push_back,check_measurement_updated,basic_string,push_back,check_measurement_queue_size,basic_string,push_back,check_measurement_delay_gate,basic_string,push_back,check_measurement_mahalanobis_gate,basic_string,empty,push_back,check_measurement_updated,basic_string,push_back,check_measurement_queue_size,basic_string,push_back,check_measurement_delay_gate,basic_string,push_back,check_measurement_mahalanobis_gate,basic_string,get_current_pose,operator->,get_current_pose,operator->,get_current_twist,operator->,PoseWithCovariance_,operator=,operator=,get_current_pose_covariance,operator->,calculate_xy_ellipse,push_back,check_covariance_ellipse,basic_string,push_back,check_covariance_ellipse,basic_string,publish_estimate_result,update_diagnostics,toc,publish,operator->,data,stamp,build,operator Time_ job
+   EKFLocalizer::timer_callback.if1 <branch/if> d=1 L159
+*    EKFLocalizer::timer_callback.if1.then <alternative/then> d=1 L159 [1019-1020] calls=warn_throttle,operator->,basic_string,update_diagnostics
+*    EKFLocalizer::timer_callback.if1.else <alternative/else> d=1 L159 [1021] empty
+   EKFLocalizer::timer_callback.if2 <branch/if> d=1 L170
+*    EKFLocalizer::timer_callback.if2.then <alternative/then> d=1 L170 [1022-1023] calls=warn_throttle,operator->,basic_string,update_diagnostics
+*    EKFLocalizer::timer_callback.if2.else <alternative/else> d=1 L170 [1024] empty
+   EKFLocalizer::timer_callback.if3 <branch/if> d=1 L192
+*    EKFLocalizer::timer_callback.if3.then <alternative/then> d=1 L192 [1025-1026] calls=tic,size
+*      EKFLocalizer::timer_callback.if3.then.L1 <loop/for> d=2 L202 [1027-1028] bound=5(parameter max_pose_queue_size (AgedObjectQueue::push enforces it))
+*        EKFLocalizer::timer_callback.if3.then.L1.body <loop_body/for> d=2 L202 [1029-1030] calls=pop_increment_age,measurement_update_pose,operator->,operator*
+*    EKFLocalizer::timer_callback.if3.else <alternative/else> d=1 L192 [1031] empty
+   EKFLocalizer::timer_callback.if4 <branch/if> d=1 L227
+*    EKFLocalizer::timer_callback.if4.then <alternative/then> d=1 L227 [1032-1033] calls=tic,size
+*      EKFLocalizer::timer_callback.if4.then.L1 <loop/for> d=2 L237 [1034-1035] bound=2(parameter max_twist_queue_size (AgedObjectQueue::push enforces it))
+*        EKFLocalizer::timer_callback.if4.then.L1.body <loop_body/for> d=2 L237 [1036-1037] calls=pop_increment_age,measurement_update_twist,operator->,operator*
+*    EKFLocalizer::timer_callback.if4.else <alternative/else> d=1 L227 [1038] empty
+*EKFLocalizer::publish_estimate_result <function> d=0 L390 [1039-1040] calls=publish,operator->,publish,operator->,PoseWithCovarianceStamped_,operator=,operator=,operator=,operator=,get_current_pose_covariance,operator->,publish,operator->,PoseWithCovarianceStamped_,operator=,publish,operator->,publish,operator->,TwistWithCovarianceStamped_,operator=,operator=,operator=,operator=,get_current_twist_covariance,operator->,publish,operator->,Float64Stamped_,operator=,get_yaw_bias,operator->,publish,operator->,Odometry_,operator=,operator=,operator=,operator=,operator=,publish,operator->,pose2transform,basic_string,sendTransform,operator->
+*EKFLocalizer::publish_diagnostics <function> d=0 L443 [1041-1042] calls=basic_string,get_name,operator+,operator+,operator+,DiagnosticStatus_,operator=,operator=,DiagnosticStatus_,operator=,operator=,operator=,KeyValue_,operator=,operator=,to_string,nanoseconds,push_back,DiagnosticStatus_,operator=,operator=,operator=,KeyValue_,operator=,operator=,to_string,nanoseconds,push_back,DiagnosticArray_,operator=,operator Time_,now,push_back,push_back,push_back,publish,operator->
+*EKFLocalizer::update_diagnostics <function> d=0 L488 [1043-1044] calls=DiagnosticStatus_,operator=,merge_diagnostic_status,operator=,erase,__normal_iterator,remove_if,begin,end,__normal_iterator,end,nanoseconds
+   EKFLocalizer::update_diagnostics.if1 <branch/if> d=1 L504
+     EKFLocalizer::update_diagnostics.if1.then <alternative/then> d=1 L504 [1045-1046] calls=operator=
+*    EKFLocalizer::update_diagnostics.if1.else <alternative/else> d=1 L504 [1047] empty
+   EKFLocalizer::update_diagnostics.if2 <branch/if> d=1 L517
+*    EKFLocalizer::update_diagnostics.if2.then <alternative/then> d=1 L517 [1048-1049] calls=KeyValue_,operator=,operator=,to_string,nanoseconds,push_back
+*    EKFLocalizer::update_diagnostics.if2.else <alternative/else> d=1 L517 [1050] empty
+   EKFLocalizer::update_diagnostics.if3 <branch/if> d=1 L524
+*    EKFLocalizer::update_diagnostics.if3.then <alternative/then> d=1 L524 [1051-1052] calls=publish_diagnostics
+*    EKFLocalizer::update_diagnostics.if3.else <alternative/else> d=1 L524 [1053] empty
+
+# stderr
+warning: statement expanded from a macro at line 125 is treated as part of EKFLocalizer::update_predict_frequency.if1.then.if1.else
+warning: statement expanded from a macro at line 178 is treated as part of EKFLocalizer::timer_callback
+warning: statement expanded from a macro at line 185 is treated as part of EKFLocalizer::timer_callback
+warning: statement expanded from a macro at line 187 is treated as part of EKFLocalizer::timer_callback
+warning: statement expanded from a macro at line 188 is treated as part of EKFLocalizer::timer_callback
+warning: statement expanded from a macro at line 193 is treated as part of EKFLocalizer::timer_callback.if3.then
+warning: statement expanded from a macro at line 207 is treated as part of EKFLocalizer::timer_callback.if3.then
+warning: statement expanded from a macro at line 209 is treated as part of EKFLocalizer::timer_callback.if3.then
+warning: statement expanded from a macro at line 228 is treated as part of EKFLocalizer::timer_callback.if4.then
+warning: statement expanded from a macro at line 243 is treated as part of EKFLocalizer::timer_callback.if4.then
+warning: statement expanded from a macro at line 245 is treated as part of EKFLocalizer::timer_callback.if4.then
+wrote /home/atsushi/autoware/src/core/autoware_core/localization/autoware_ekf_localizer/src/ekf_localizer.cpp and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/autoware/schemas/autoware_ekf_localizer/ekf_localizer.cpp.schema.json (27 instrumented units, ids 1001..1053)

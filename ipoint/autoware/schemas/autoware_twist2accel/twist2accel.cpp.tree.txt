@@ -1,0 +1,7 @@
+*Twist2Accel::callback_odometry <function> d=0 L43 [1601-1602] calls=make_unique,operator*,operator=,operator*,estimate,operator->,operator*,publish,operator->,unique_ptr,move job
+   Twist2Accel::callback_odometry.if1 <branch/if> d=1 L46
+*    Twist2Accel::callback_odometry.if1.then <alternative/then> d=1 L46 [1603-1604]
+*    Twist2Accel::callback_odometry.if1.else <alternative/else> d=1 L46 [1605] empty
+
+# stderr
+wrote /home/atsushi/autoware/src/core/autoware_core/localization/autoware_twist2accel/src/twist2accel.cpp and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/autoware/schemas/autoware_twist2accel/twist2accel.cpp.schema.json (3 instrumented units, ids 1601..1605)

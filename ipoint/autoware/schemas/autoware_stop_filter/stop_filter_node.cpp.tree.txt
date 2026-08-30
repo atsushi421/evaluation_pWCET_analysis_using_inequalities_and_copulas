@@ -1,0 +1,4 @@
+*StopFilterNode::callback_odometry <function> d=0 L34 [1801-1802] calls=make_unique,operator*,operator=,operator*,create_stop_flag_msg,operator*,publish,operator->,unique_ptr,move,make_unique,operator*,operator=,operator*,create_filtered_msg,operator*,publish,operator->,unique_ptr,move job
+
+# stderr
+wrote /home/atsushi/autoware/src/core/autoware_core/localization/autoware_stop_filter/src/stop_filter_node.cpp and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/autoware/schemas/autoware_stop_filter/stop_filter_node.cpp.schema.json (1 instrumented units, ids 1801..1802)

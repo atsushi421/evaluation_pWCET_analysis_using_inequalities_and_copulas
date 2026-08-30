@@ -1,0 +1,185 @@
+*PidLongitudinalController::setKinematicState <function> d=0 L233 [2901-2902] calls=operator=
+ PidLongitudinalController::setCurrentAcceleration <function> d=0 L238 [2903-2904] calls=operator=
+ PidLongitudinalController::setCurrentOperationMode <function> d=0 L244 [2905-2906] calls=operator=
+*PidLongitudinalController::setTrajectory <function> d=0 L249 [2907-2908] calls=isValidTrajectory,size,operator=
+   PidLongitudinalController::setTrajectory.if1 <branch/if> d=1 L251
+*    PidLongitudinalController::setTrajectory.if1.then <alternative/then> d=1 L251 [2909-2910]
+*    PidLongitudinalController::setTrajectory.if1.else <alternative/else> d=1 L251 [2911] empty
+   PidLongitudinalController::setTrajectory.if2 <branch/if> d=1 L256
+*    PidLongitudinalController::setTrajectory.if2.then <alternative/then> d=1 L256 [2912-2913]
+*    PidLongitudinalController::setTrajectory.if2.else <alternative/else> d=1 L256 [2914] empty
+*PidLongitudinalController::isReady <function> d=0 L407 [2915-2916]
+*PidLongitudinalController::run <function> d=0 L413 [2917-2918] calls=setTrajectory,setKinematicState,setCurrentAcceleration,setCurrentOperationMode,Pose_,getControlData,updateControlState,calcCtrlCmd,createCtrlCmdMsg,LongitudinalOutput,operator=,push_back,publishDebugData,LongitudinalOutput
+*PidLongitudinalController::getControlData <function> d=0 L448 [2919-2920] calls=getDt,operator=,calcInterpolatedTrajPointAndSegment,insert,__normal_iterator,operator+,operator+,begin,TrajectoryPoint_,TrajectoryPoint_,operator=,predictedStateAfterDelay,Motion,operator=,removeOverlapPoints,findFirstNearestIndexWithSoftConstraints,findFirstNearestIndexWithSoftConstraints,setValues,setValues,at,getCurrentShift,calcStopDistance,getPitchByPose,filter,operator->,getPitchByTraj,updatePitchDebugValues,getValue,operator->,ControlData
+   PidLongitudinalController::getControlData.if1 <branch/if> d=1 L481
+*    PidLongitudinalController::getControlData.if1.then <alternative/then> d=1 L481 [2921-2922] calls=operator=,removeOverlapPoints,findTrajectoryPoseAfterDistance,calcInterpolatedTrajPointAndSegment,insert,__normal_iterator,operator+,begin,operator=
+*    PidLongitudinalController::getControlData.if1.else <alternative/else> d=1 L481 [2923] empty
+   PidLongitudinalController::getControlData.if2 <branch/if> d=1 L521
+*    PidLongitudinalController::getControlData.if2.then <alternative/then> d=1 L521 [2924-2925] calls=reset
+*    PidLongitudinalController::getControlData.if2.else <alternative/else> d=1 L521 [2926] empty
+   PidLongitudinalController::getControlData.if3 <branch/if> d=1 L539
+*    PidLongitudinalController::getControlData.if3.then <alternative/then> d=1 L539 [2927-2928] calls=getValue,operator->
+*    PidLongitudinalController::getControlData.if3.else <alternative/else> d=1 L541 [2929-2930]
+       PidLongitudinalController::getControlData.if3.else.if1 <branch/if> d=2 L541
+*        PidLongitudinalController::getControlData.if3.else.if1.then <alternative/then> d=2 L541 [2931-2932]
+*        PidLongitudinalController::getControlData.if3.else.if1.else <alternative/else> d=2 L543 [2933-2934]
+           PidLongitudinalController::getControlData.if3.else.if1.else.if1 <branch/if> d=3 L543
+*            PidLongitudinalController::getControlData.if3.else.if1.else.if1.then <alternative/then> d=3 L545 [2935-2936] calls=calcSignedArcLength,size,getValue,operator->,has_value,operator=,optional
+               PidLongitudinalController::getControlData.if3.else.if1.else.if1.then.if1 <branch/if> d=4 L559
+                 PidLongitudinalController::getControlData.if3.else.if1.else.if1.then.if1.then <alternative/then> d=4 L559 [2937-2938] calls=clamp,value,value
+*                PidLongitudinalController::getControlData.if3.else.if1.else.if1.then.if1.else <alternative/else> d=4 L559 [2939] empty
+*            PidLongitudinalController::getControlData.if3.else.if1.else.if1.else <alternative/else> d=3 L567 [2940-2941] calls=getValue,operator->
+*PidLongitudinalController::calcEmergencyCtrlCmd <function> d=0 L578 [2942-2943] calls=applyDiffLimitFilter,clamp,setValues,applyDiffLimitFilter,setValues,createStopVirtualWallMarker,basic_string,now,operator->,publish,operator->,Motion
+*PidLongitudinalController::updateControlState <function> d=0 L614 [2944-2945] calls=abs,operator(),operator bool,seconds,operator-,now,operator->,operator*,fabs,at,operator(),abs
+   PidLongitudinalController::updateControlState.if1 <branch/if> d=1 L649
+*    PidLongitudinalController::updateControlState.if1.then <alternative/then> d=1 L649 [2946-2947] calls=operator=,make_shared,now,operator->
+*    PidLongitudinalController::updateControlState.if1.else <alternative/else> d=1 L649 [2948] empty
+   PidLongitudinalController::updateControlState.if2 <branch/if> d=1 L679
+*    PidLongitudinalController::updateControlState.if2.then <alternative/then> d=1 L679 [2949-2950] calls=operator=,make_shared,now,operator->,shared_ptr
+*    PidLongitudinalController::updateControlState.if2.else <alternative/else> d=1 L679 [2951] empty
+   PidLongitudinalController::updateControlState.if3 <branch/if> d=1 L685
+     PidLongitudinalController::updateControlState.if3.then <alternative/then> d=1 L685 [2952-2953] calls=operator=,nullopt_t
+*    PidLongitudinalController::updateControlState.if3.else <alternative/else> d=1 L685 [2954] empty
+   PidLongitudinalController::updateControlState.if4 <branch/if> d=1 L691
+*    PidLongitudinalController::updateControlState.if4.then <alternative/then> d=1 L691 [2955-2956]
+       PidLongitudinalController::updateControlState.if4.then.if1 <branch/if> d=2 L692
+*        PidLongitudinalController::updateControlState.if4.then.if1.then <alternative/then> d=2 L692 [2957-2958] calls=changeControlState
+*        PidLongitudinalController::updateControlState.if4.then.if1.else <alternative/else> d=2 L692 [2959] empty
+       PidLongitudinalController::updateControlState.if4.then.if2 <branch/if> d=2 L695
+*        PidLongitudinalController::updateControlState.if4.then.if2.then <alternative/then> d=2 L695 [2960-2961] calls=changeControlState
+*        PidLongitudinalController::updateControlState.if4.then.if2.else <alternative/else> d=2 L695 [2962] empty
+       PidLongitudinalController::updateControlState.if4.then.if3 <branch/if> d=2 L699
+         PidLongitudinalController::updateControlState.if4.then.if3.then <alternative/then> d=2 L699 [2963-2964]
+           PidLongitudinalController::updateControlState.if4.then.if3.then.if1 <branch/if> d=3 L700
+             PidLongitudinalController::updateControlState.if4.then.if3.then.if1.then <alternative/then> d=3 L700 [2965-2966] calls=init,changeControlState
+             PidLongitudinalController::updateControlState.if4.then.if3.then.if1.else <alternative/else> d=3 L700 [2967] empty
+*        PidLongitudinalController::updateControlState.if4.then.if3.else <alternative/else> d=2 L709 [2968-2969]
+           PidLongitudinalController::updateControlState.if4.then.if3.else.if1 <branch/if> d=3 L710
+*            PidLongitudinalController::updateControlState.if4.then.if3.else.if1.then <alternative/then> d=3 L710 [2970-2971] calls=changeControlState
+*            PidLongitudinalController::updateControlState.if4.then.if3.else.if1.else <alternative/else> d=3 L710 [2972] empty
+*    PidLongitudinalController::updateControlState.if4.else <alternative/else> d=1 L691 [2973] empty
+   PidLongitudinalController::updateControlState.if5 <branch/if> d=1 L718
+*    PidLongitudinalController::updateControlState.if5.then <alternative/then> d=1 L718 [2974-2975]
+       PidLongitudinalController::updateControlState.if5.then.if1 <branch/if> d=2 L719
+*        PidLongitudinalController::updateControlState.if5.then.if1.then <alternative/then> d=2 L719 [2976-2977] calls=changeControlState
+*        PidLongitudinalController::updateControlState.if5.then.if1.else <alternative/else> d=2 L719 [2978] empty
+       PidLongitudinalController::updateControlState.if5.then.if2 <branch/if> d=2 L722
+*        PidLongitudinalController::updateControlState.if5.then.if2.then <alternative/then> d=2 L722 [2979-2980] calls=changeControlState
+*        PidLongitudinalController::updateControlState.if5.then.if2.else <alternative/else> d=2 L722 [2981] empty
+       PidLongitudinalController::updateControlState.if5.then.if3 <branch/if> d=2 L726
+*        PidLongitudinalController::updateControlState.if5.then.if3.then <alternative/then> d=2 L726 [2982-2983] calls=reset,reset,operator->,max,changeControlState
+*        PidLongitudinalController::updateControlState.if5.then.if3.else <alternative/else> d=2 L726 [2984] empty
+*    PidLongitudinalController::updateControlState.if5.else <alternative/else> d=1 L718 [2985] empty
+   PidLongitudinalController::updateControlState.if6 <branch/if> d=1 L737
+     PidLongitudinalController::updateControlState.if6.then <alternative/then> d=1 L737 [2986-2987]
+       PidLongitudinalController::updateControlState.if6.then.if1 <branch/if> d=2 L739
+         PidLongitudinalController::updateControlState.if6.then.if1.then <alternative/then> d=2 L739 [2988-2989]
+         PidLongitudinalController::updateControlState.if6.then.if1.else <alternative/else> d=2 L739 [2990] empty
+       PidLongitudinalController::updateControlState.if6.then.if2 <branch/if> d=2 L742
+         PidLongitudinalController::updateControlState.if6.then.if2.then <alternative/then> d=2 L742 [2991-2992] calls=operator()
+         PidLongitudinalController::updateControlState.if6.then.if2.else <alternative/else> d=2 L742 [2993] empty
+       PidLongitudinalController::updateControlState.if6.then.if3 <branch/if> d=2 L746
+         PidLongitudinalController::updateControlState.if6.then.if3.then <alternative/then> d=2 L746 [2994-2995] calls=fabs,operator bool,operator*,operator=,optional,reset,reset,operator->,reset,operator->,changeControlState
+           PidLongitudinalController::updateControlState.if6.then.if3.then.if1 <branch/if> d=3 L757
+             PidLongitudinalController::updateControlState.if6.then.if3.then.if1.then <alternative/then> d=3 L757 [2996-2997]
+               PidLongitudinalController::updateControlState.if6.then.if3.then.if1.then.if1 <branch/if> d=4 L759
+                 PidLongitudinalController::updateControlState.if6.then.if3.then.if1.then.if1.then <alternative/then> d=4 L759 [2998-2999] calls=operator()
+                 PidLongitudinalController::updateControlState.if6.then.if3.then.if1.then.if1.else <alternative/else> d=4 L759 [3000] empty
+               PidLongitudinalController::updateControlState.if6.then.if3.then.if1.then.if2 <branch/if> d=4 L764
+                 PidLongitudinalController::updateControlState.if6.then.if3.then.if1.then.if2.then <alternative/then> d=4 L764 [3001-3002] calls=createStopVirtualWallMarker,basic_string,now,operator->,publish,operator->
+                 PidLongitudinalController::updateControlState.if6.then.if3.then.if1.then.if2.else <alternative/else> d=4 L764 [3003] empty
+             PidLongitudinalController::updateControlState.if6.then.if3.then.if1.else <alternative/else> d=3 L757 [3004] empty
+         PidLongitudinalController::updateControlState.if6.then.if3.else <alternative/else> d=2 L746 [3005] empty
+*    PidLongitudinalController::updateControlState.if6.else <alternative/else> d=1 L737 [3006] empty
+   PidLongitudinalController::updateControlState.if7 <branch/if> d=1 L785
+*    PidLongitudinalController::updateControlState.if7.then <alternative/then> d=1 L785 [3007-3008]
+       PidLongitudinalController::updateControlState.if7.then.if1 <branch/if> d=2 L786
+*        PidLongitudinalController::updateControlState.if7.then.if1.then <alternative/then> d=2 L786 [3009-3010] calls=changeControlState
+*        PidLongitudinalController::updateControlState.if7.then.if1.else <alternative/else> d=2 L786 [3011] empty
+       PidLongitudinalController::updateControlState.if7.then.if2 <branch/if> d=2 L790
+*        PidLongitudinalController::updateControlState.if7.then.if2.then <alternative/then> d=2 L790 [3012-3013]
+           PidLongitudinalController::updateControlState.if7.then.if2.then.if1 <branch/if> d=3 L791
+*            PidLongitudinalController::updateControlState.if7.then.if2.then.if1.then <alternative/then> d=3 L791 [3014-3015] calls=changeControlState
+*            PidLongitudinalController::updateControlState.if7.then.if2.then.if1.else <alternative/else> d=3 L791 [3016] empty
+*        PidLongitudinalController::updateControlState.if7.then.if2.else <alternative/else> d=2 L790 [3017] empty
+*    PidLongitudinalController::updateControlState.if7.else <alternative/else> d=1 L785 [3018] empty
+*PidLongitudinalController::calcCtrlCmd <function> d=0 L803 [3019-3020] calls=at,at,storeAccelCmd,applyDiffLimitFilter,updateDebugVelAcc,Motion
+   PidLongitudinalController::calcCtrlCmd.if1 <branch/if> d=1 L813
+*    PidLongitudinalController::calcCtrlCmd.if1.then <alternative/then> d=1 L813 [3021-3022] calls=setValues,setValues,setValues
+       PidLongitudinalController::calcCtrlCmd.if1.then.if1 <branch/if> d=2 L824
+         PidLongitudinalController::calcCtrlCmd.if1.then.if1.then <alternative/then> d=2 L824 [3023-3024] calls=clamp,sin,abs
+*        PidLongitudinalController::calcCtrlCmd.if1.then.if1.else <alternative/else> d=2 L824 [3025] empty
+*    PidLongitudinalController::calcCtrlCmd.if1.else <alternative/else> d=1 L834 [3026-3027] calls=at,at,operator=,setValues,filter,operator->,setValues,getValue,operator->,getValue,operator->,setValues,applySlopeCompensation,setValues
+       PidLongitudinalController::calcCtrlCmd.if1.else.if1 <branch/if> d=2 L838
+*        PidLongitudinalController::calcCtrlCmd.if1.else.if1.then <alternative/then> d=2 L838 [3028-3029] calls=operator=,calcEmergencyCtrlCmd
+*        PidLongitudinalController::calcCtrlCmd.if1.else.if1.else <alternative/else> d=2 L840 [3030-3031] calls=clamp,setValues,applyDiffLimitFilter,setValues
+           PidLongitudinalController::calcCtrlCmd.if1.else.if1.else.if1 <branch/if> d=3 L841
+*            PidLongitudinalController::calcCtrlCmd.if1.else.if1.else.if1.then <alternative/then> d=3 L841 [3032-3033] calls=at,applyVelocityFeedback,operator=,keepBrakeBeforeStop
+*            PidLongitudinalController::calcCtrlCmd.if1.else.if1.else.if1.else <alternative/else> d=3 L855 [3034-3035]
+               PidLongitudinalController::calcCtrlCmd.if1.else.if1.else.if1.else.if1 <branch/if> d=4 L855
+*                PidLongitudinalController::calcCtrlCmd.if1.else.if1.else.if1.else.if1.then <alternative/then> d=4 L855 [3036-3037] calls=calculate
+*                PidLongitudinalController::calcCtrlCmd.if1.else.if1.else.if1.else.if1.else <alternative/else> d=4 L855 [3038] empty
+*PidLongitudinalController::createCtrlCmdMsg <function> d=0 L914 [3039-3040] calls=Longitudinal_,operator=,operator Time_,now,operator->,emplace_back,now,operator->,size,operator=,Longitudinal_
+   PidLongitudinalController::createCtrlCmdMsg.L1 <loop/while> d=1 L925 [3041-3042]
+     PidLongitudinalController::createCtrlCmdMsg.L1.body <loop_body/while> d=1 L926 [3043-3044] calls=erase,__normal_iterator,begin
+*PidLongitudinalController::publishDebugData <function> d=0 L935 [3045-3046] calls=setValues,setValues,setValues,setValues,setValues,setValues,Float32MultiArrayStamped_,operator=,operator Time_,now,operator->,getValues,publish,operator->,Float32MultiArrayStamped_,operator=,operator Time_,now,operator->,push_back,publish,operator->
+*  PidLongitudinalController::publishDebugData.L1 <loop/for-range> d=1 L949 [3047-3048]
+     PidLongitudinalController::publishDebugData.L1.body <loop_body/for-range> d=1 L949 [3049-3050] calls=push_back
+*PidLongitudinalController::storeAccelCmd <function> d=0 L994 [3051-3052] calls=size,seconds,operator-,now,operator->,Time,at
+   PidLongitudinalController::storeAccelCmd.if1 <branch/if> d=1 L996
+     PidLongitudinalController::storeAccelCmd.if1.then <alternative/then> d=1 L996 [3053-3054] calls=Longitudinal_,operator=,operator Time_,now,operator->,emplace_back
+     PidLongitudinalController::storeAccelCmd.if1.else <alternative/else> d=1 L1004 [3055-3056] calls=clear
+   PidLongitudinalController::storeAccelCmd.if2 <branch/if> d=1 L1010
+     PidLongitudinalController::storeAccelCmd.if2.then <alternative/then> d=1 L1010 [3057-3058]
+*    PidLongitudinalController::storeAccelCmd.if2.else <alternative/else> d=1 L1010 [3059] empty
+   PidLongitudinalController::storeAccelCmd.if3 <branch/if> d=1 L1013
+     PidLongitudinalController::storeAccelCmd.if3.then <alternative/then> d=1 L1013 [3060-3061] calls=erase,__normal_iterator,begin
+*    PidLongitudinalController::storeAccelCmd.if3.else <alternative/else> d=1 L1013 [3062] empty
+ PidLongitudinalController::applySlopeCompensation <function> d=0 L1018 [3063-3064] calls=min,max,sin
+   PidLongitudinalController::applySlopeCompensation.if1 <branch/if> d=1 L1021
+     PidLongitudinalController::applySlopeCompensation.if1.then <alternative/then> d=1 L1021 [3065-3066]
+     PidLongitudinalController::applySlopeCompensation.if1.else <alternative/else> d=1 L1021 [3067] empty
+ PidLongitudinalController::keepBrakeBeforeStop <function> d=0 L1032 [3068-3069] calls=Motion,Trajectory_,searchZeroVelocityIndex,operator bool,max,max,operator*,max,Motion
+   PidLongitudinalController::keepBrakeBeforeStop.if1 <branch/if> d=1 L1037
+     PidLongitudinalController::keepBrakeBeforeStop.if1.then <alternative/then> d=1 L1037 [3070-3071] calls=Motion
+     PidLongitudinalController::keepBrakeBeforeStop.if1.else <alternative/else> d=1 L1037 [3072] empty
+   PidLongitudinalController::keepBrakeBeforeStop.if2 <branch/if> d=1 L1043
+     PidLongitudinalController::keepBrakeBeforeStop.if2.then <alternative/then> d=1 L1043 [3073-3074] calls=Motion
+     PidLongitudinalController::keepBrakeBeforeStop.if2.else <alternative/else> d=1 L1043 [3075] empty
+   PidLongitudinalController::keepBrakeBeforeStop.L1 <loop/for> d=1 L1049 [3076-3077]
+     PidLongitudinalController::keepBrakeBeforeStop.L1.body <loop_body/for> d=1 L1049 [3078-3079] calls=at,at
+       PidLongitudinalController::keepBrakeBeforeStop.L1.body.if1 <branch/if> d=2 L1051
+         PidLongitudinalController::keepBrakeBeforeStop.L1.body.if1.then <alternative/then> d=2 L1051 [3080-3081]
+         PidLongitudinalController::keepBrakeBeforeStop.L1.body.if1.else <alternative/else> d=2 L1051 [3082] empty
+   PidLongitudinalController::keepBrakeBeforeStop.if3 <branch/if> d=1 L1059
+     PidLongitudinalController::keepBrakeBeforeStop.if3.then <alternative/then> d=1 L1059 [3083-3084]
+     PidLongitudinalController::keepBrakeBeforeStop.if3.else <alternative/else> d=1 L1059 [3085] empty
+ PidLongitudinalController::predictedStateAfterDelay <function> d=0 L1079 [3086-3087] calls=empty,size,StateAfterDelay
+   PidLongitudinalController::predictedStateAfterDelay.if1 <branch/if> d=1 L1088
+     PidLongitudinalController::predictedStateAfterDelay.if1.then <alternative/then> d=1 L1088 [3088-3089] calls=abs,StateAfterDelay
+     PidLongitudinalController::predictedStateAfterDelay.if1.else <alternative/else> d=1 L1088 [3090] empty
+   PidLongitudinalController::predictedStateAfterDelay.L1 <loop/for> d=1 L1103 [3091-3092]
+     PidLongitudinalController::predictedStateAfterDelay.L1.body <loop_body/for> d=1 L1103 [3093-3094] calls=seconds,operator-,now,operator->,Time,at
+       PidLongitudinalController::predictedStateAfterDelay.L1.body.if1 <branch/if> d=2 L1104
+         PidLongitudinalController::predictedStateAfterDelay.L1.body.if1.then <alternative/then> d=2 L1104 [3095-3096] calls=size,min,seconds,operator-,now,operator->,Time,back,min,seconds,operator-,Time,at,Time,at,at,copysignf,abs,abs
+           PidLongitudinalController::predictedStateAfterDelay.L1.body.if1.then.if1 <branch/if> d=3 L1121
+             PidLongitudinalController::predictedStateAfterDelay.L1.body.if1.then.if1.then <alternative/then> d=3 L1121 [3097-3098]
+             PidLongitudinalController::predictedStateAfterDelay.L1.body.if1.then.if1.else <alternative/else> d=3 L1121 [3099] empty
+         PidLongitudinalController::predictedStateAfterDelay.L1.body.if1.else <alternative/else> d=2 L1104 [3100] empty
+*PidLongitudinalController::applyVelocityFeedback <function> d=0 L1132 [3101-3102] calls=at,at,abs,getTimeUnderControl,filter,operator->,vector,calculate,clamp,abs,max,abs,at,setValues,setValues,setValues,at,setValues,at,setValues,at,setValues,setValues
+*PidLongitudinalController::checkControlState <function> d=0 L1226 [3103-3104] calls=basic_string,add,basic_string,summary,basic_string
+   PidLongitudinalController::checkControlState.if1 <branch/if> d=1 L1234
+*    PidLongitudinalController::checkControlState.if1.then <alternative/then> d=1 L1234 [3105-3106] calls=operator=
+*    PidLongitudinalController::checkControlState.if1.else <alternative/else> d=1 L1234 [3107] empty
+
+# stderr
+warning: statement expanded from a macro at line 252 is treated as part of PidLongitudinalController::setTrajectory.if1.then
+warning: statement expanded from a macro at line 257 is treated as part of PidLongitudinalController::setTrajectory.if2.then
+warning: statement expanded from a macro at line 568 is treated as part of PidLongitudinalController::getControlData.if3.else.if1.else.if1.else
+warning: statement expanded from a macro at line 799 is treated as part of PidLongitudinalController::updateControlState
+warning: statement expanded from a macro at line 831 is treated as part of PidLongitudinalController::calcCtrlCmd.if1.then
+warning: statement expanded from a macro at line 847 is treated as part of PidLongitudinalController::calcCtrlCmd.if1.else.if1.else.if1.then
+warning: statement expanded from a macro at line 861 is treated as part of PidLongitudinalController::calcCtrlCmd.if1.else.if1.else.if1.else.if1.then
+warning: statement expanded from a macro at line 886 is treated as part of PidLongitudinalController::calcCtrlCmd.if1.else
+warning: statement expanded from a macro at line 906 is treated as part of PidLongitudinalController::calcCtrlCmd
+wrote /home/atsushi/autoware/src/universe/autoware_universe/control/autoware_pid_longitudinal_controller/src/pid_longitudinal_controller.cpp and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/autoware/schemas/autoware_pid_longitudinal_controller/pid_longitudinal_controller.cpp.schema.json (73 instrumented units, ids 2901..3107)

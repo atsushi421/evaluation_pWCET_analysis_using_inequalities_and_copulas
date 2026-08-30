@@ -1,0 +1,58 @@
+*NDTScanMatcher::callback_sensor_points <function> d=0 L277 [3701-3702] calls=clear,operator->,callback_sensor_points_main,shared_ptr,operator bool,add_key_value,operator->,basic_string,publish,operator->,Time,operator-> job
+   NDTScanMatcher::callback_sensor_points.if1 <branch/if> d=1 L292
+*    NDTScanMatcher::callback_sensor_points.if1.then <alternative/then> d=1 L292 [3703-3704] calls=basic_stringstream,operator<<,operator<<,operator<<,update_level_and_message,operator->,str
+*    NDTScanMatcher::callback_sensor_points.if1.else <alternative/else> d=1 L292 [3705] empty
+*NDTScanMatcher::callback_sensor_points_main <function> d=0 L302 [3706-3707] calls=now,Time,operator->,add_key_value,operator->,basic_string,nanoseconds,operator->,add_key_value,operator->,basic_string,seconds,operator-,now,Time,operator->,add_key_value,operator->,basic_string,shared_ptr,PointCloud,shared_ptr,PointCloud,operator->,fromROSMsg,operator*,operator*,transform_sensor_measurement,basic_stringstream,operator<<,operator<<,operator<<,operator<<,operator<<,what,update_level_and_message,operator->,str,add_key_value,operator->,basic_string,add_key_value,operator->,basic_string,operator*,operator->,add_key_value,operator->,basic_string,with
+   NDTScanMatcher::callback_sensor_points_main.if1 <branch/if> d=1 L314
+*    NDTScanMatcher::callback_sensor_points_main.if1.then <alternative/then> d=1 L314 [3708-3709] calls=basic_stringstream,operator<<,update_level_and_message,operator->,str
+*    NDTScanMatcher::callback_sensor_points_main.if1.else <alternative/else> d=1 L314 [3710] empty
+   NDTScanMatcher::callback_sensor_points_main.if2 <branch/if> d=1 L327
+*    NDTScanMatcher::callback_sensor_points_main.if2.then <alternative/then> d=1 L327 [3711-3712] calls=basic_stringstream,operator<<,operator<<,operator<<,operator<<,operator<<,operator<<,operator<<,update_level_and_message,operator->,str
+*    NDTScanMatcher::callback_sensor_points_main.if2.else <alternative/else> d=1 L327 [3713] empty
+   NDTScanMatcher::callback_sensor_points_main.L1 <loop/for-range> d=1 L371 [3714-3715]
+     NDTScanMatcher::callback_sensor_points_main.L1.body <loop_body/for-range> d=1 L371 [3716-3717] calls=hypot,max
+   NDTScanMatcher::callback_sensor_points_main.if3 <branch/if> d=1 L377
+*    NDTScanMatcher::callback_sensor_points_main.if3.then <alternative/then> d=1 L377 [3718-3719] calls=basic_stringstream,operator<<,operator<<,operator<<,operator<<,operator<<,operator<<,operator<<,setprecision,update_level_and_message,operator->,str
+*    NDTScanMatcher::callback_sensor_points_main.if3.else <alternative/else> d=1 L377 [3720] empty
+*NDTScanMatcher::transform_sensor_measurement <function> d=0 L691 [3721-3722] calls=operator==,TransformStamped_,operator=,lookupTransform,transform2pose,pose_to_matrix4f,transform_pointcloud,operator*,operator*
+   NDTScanMatcher::transform_sensor_measurement.if1 <branch/if> d=1 L696
+*    NDTScanMatcher::transform_sensor_measurement.if1.then <alternative/then> d=1 L696 [3723-3724] calls=operator=
+*    NDTScanMatcher::transform_sensor_measurement.if1.else <alternative/else> d=1 L696 [3725] empty
+*NDTScanMatcher::publish_tf <function> d=0 L716 [3726-3727] calls=PoseStamped_,operator=,operator Time_,operator=,operator=,sendTransform,pose2transform
+*NDTScanMatcher::publish_pose <function> d=0 L727 [3728-3729] calls=PoseStamped_,operator=,operator Time_,operator=,operator=,PoseWithCovarianceStamped_,operator=,operator Time_,operator=,operator=,operator=
+   NDTScanMatcher::publish_pose.if1 <branch/if> d=1 L742
+*    NDTScanMatcher::publish_pose.if1.then <alternative/then> d=1 L742 [3730-3731] calls=publish,operator->,publish,operator->
+*    NDTScanMatcher::publish_pose.if1.else <alternative/else> d=1 L742 [3732] empty
+*NDTScanMatcher::publish_point_cloud <function> d=0 L748 [3733-3734] calls=PointCloud2_,toROSMsg,operator*,operator=,operator Time_,operator=,publish,operator->
+*NDTScanMatcher::publish_marker <function> d=0 L759 [3735-3736] calls=MarkerArray_,Marker_,operator=,operator Time_,operator=,operator=,create_marker_scale,operator=,operator*,getMaximumIterations,publish,operator->
+*  NDTScanMatcher::publish_marker.L1 <loop/for-range> d=1 L773 [3737-3738]
+*    NDTScanMatcher::publish_marker.L1.body <loop_body/for-range> d=1 L773 [3739-3740] calls=operator=,operator=,exchange_color_crc,push_back
+*  NDTScanMatcher::publish_marker.L2 <loop/for> d=1 L781 [3741-3742]
+     NDTScanMatcher::publish_marker.L2.body <loop_body/for> d=1 L781 [3743-3744] calls=operator=,Pose_,operator=,exchange_color_crc,push_back
+*NDTScanMatcher::publish_initial_to_result <function> d=0 L790 [3745-3746] calls=PoseStamped_,operator=,inverse_transform_pose,operator=,operator Time_,operator=,publish,operator->,norm,publish,operator->,make_float32_stamped,operator Time_,norm,publish,operator->,make_float32_stamped,operator Time_,norm,publish,operator->,make_float32_stamped,operator Time_
+*NDTScanMatcher::count_oscillation <function> d=0 L819 [3747-3748] calls=count_oscillation
+*NDTScanMatcher::estimate_covariance <function> d=0 L825 [3749-3750] calls=PoseArray_,PoseArray_,operator=,operator Time_,operator=,operator=,operator Time_,operator=,push_back,matrix4f_to_pose,push_back,matrix4f_to_pose
+   NDTScanMatcher::estimate_covariance.if1 <branch/if> d=1 L838
+*    NDTScanMatcher::estimate_covariance.if1.then <alternative/then> d=1 L840 [3751-3752] calls=estimate_xy_covariance_by_laplace_approximation
+*    NDTScanMatcher::estimate_covariance.if1.else <alternative/else> d=1 L842 [3753-3754]
+       NDTScanMatcher::estimate_covariance.if1.else.if1 <branch/if> d=2 L842
+*        NDTScanMatcher::estimate_covariance.if1.else.if1.then <alternative/then> d=2 L844 [3755-3756] calls=propose_poses_to_search,estimate_xy_covariance_by_multi_ndt,shared_ptr,size,publish,operator->,publish,operator->,Matrix
+*          NDTScanMatcher::estimate_covariance.if1.else.if1.then.L1 <loop/for> d=3 L851 [3757-3758]
+*            NDTScanMatcher::estimate_covariance.if1.else.if1.then.L1.body <loop_body/for> d=3 L852 [3759-3760] calls=push_back,matrix4f_to_pose,operator[],push_back,matrix4f_to_pose,operator[]
+*        NDTScanMatcher::estimate_covariance.if1.else.if1.else <alternative/else> d=2 L861 [3761-3762]
+           NDTScanMatcher::estimate_covariance.if1.else.if1.else.if1 <branch/if> d=3 L861
+*            NDTScanMatcher::estimate_covariance.if1.else.if1.else.if1.then <alternative/then> d=3 L863 [3763-3764] calls=propose_poses_to_search,estimate_xy_covariance_by_multi_ndt_score,shared_ptr,operator*,publish,operator->,Matrix
+*              NDTScanMatcher::estimate_covariance.if1.else.if1.else.if1.then.L1 <loop/for-range> d=4 L871 [3765-3766]
+*                NDTScanMatcher::estimate_covariance.if1.else.if1.else.if1.then.L1.body <loop_body/for-range> d=4 L871 [3767-3768] calls=push_back,matrix4f_to_pose
+*            NDTScanMatcher::estimate_covariance.if1.else.if1.else.if1.else <alternative/else> d=3 L876 [3769-3770] calls=Matrix,operator*,Identity,operator[]
+*NDTScanMatcher::visualize_point_score <function> d=0 L881 [3771-3772] calls=PointCloud,operator=,calculateNearestVoxelScoreEachPoint,operator*,shared_ptr,PointCloud,size,shared_ptr
+*  NDTScanMatcher::visualize_point_score.L1 <loop/for> d=1 L891 [3773-3774]
+*    NDTScanMatcher::visualize_point_score.L1.body <loop_body/for> d=1 L891 [3775-3776] calls=PointXYZRGB,operator[],operator[],operator[],exchange_color_crc,operator[],push_back,operator->
+*NDTScanMatcher::add_regularization_pose <function> d=0 L906 [3777-3778] calls=unsetRegularizationPose,interpolate,operator->,operator bool,pop_old,operator->,value,pose_to_matrix4f,setRegularizationPose,Matrix
+   NDTScanMatcher::add_regularization_pose.if1 <branch/if> d=1 L912
+*    NDTScanMatcher::add_regularization_pose.if1.then <alternative/then> d=1 L912 [3779-3780]
+*    NDTScanMatcher::add_regularization_pose.if1.else <alternative/else> d=1 L912 [3781] empty
+
+# stderr
+warning: statement expanded from a macro at line 363 is treated as part of NDTScanMatcher::callback_sensor_points_main
+wrote /home/atsushi/autoware/src/core/autoware_core/localization/autoware_ndt_scan_matcher/src/ndt_scan_matcher_core.cpp and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/autoware/schemas/autoware_ndt_scan_matcher/ndt_scan_matcher_core.cpp.schema.json (41 instrumented units, ids 3701..3781)

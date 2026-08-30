@@ -1,0 +1,451 @@
+{
+ "_comment": "Instrumentation targets of the Autoware campaign (notes/autoware_campaign_design.md in the paper repo, sec. 4). One entry per source file; files of the same process must have disjoint id ranges (id_base). 'job' marks the callback whose invocations are recorded as runs; 'functions' are the callees instrumented as function units (Class::method); 'bounds' gives static loop bounds by unit uid.",
+ "workspace": "~/autoware",
+ "processes": {
+  "cb1": {
+   "packages": [
+    "autoware_ekf_localizer"
+   ],
+   "pgrep": "autoware_ekf_localizer_node",
+   "cores": [
+    6
+   ]
+  },
+  "cb2": {
+   "packages": [
+    "autoware_twist2accel"
+   ],
+   "pgrep": "autoware_twist2accel_node",
+   "cores": [
+    6
+   ],
+   "_note": "shares core 6 with cb1: cb1 -> cb3 -> cb2 form a sequential data flow (each runs when the previous one has published), so they never contend for the core; both are ~100 us at 50 Hz"
+  },
+  "cb3": {
+   "packages": [
+    "autoware_stop_filter"
+   ],
+   "pgrep": "autoware_stop_filter_node",
+   "cores": [
+    6
+   ],
+   "_note": "shares core 6 with cb1: cb1 -> cb3 -> cb2 form a sequential data flow (each runs when the previous one has published), so they never contend for the core; both are ~100 us at 50 Hz"
+  },
+  "cb4": {
+   "packages": [
+    "autoware_trajectory_follower_node",
+    "autoware_mpc_lateral_controller",
+    "autoware_pid_longitudinal_controller"
+   ],
+   "pgrep": "__node:=trajectory_follower_container",
+   "cores": [
+    8
+   ]
+  },
+  "cb5": {
+   "packages": [
+    "autoware_ground_segmentation"
+   ],
+   "pgrep": "__node:=pointcloud_container -r __ns:=/",
+   "cores": [
+    12,
+    13,
+    14,
+    15
+   ],
+   "pin_after_init": true,
+   "_note": "pointcloud_container: pinned to the NON-isolated cores 12-15 once the localization initialized (multi-core pinning onto isolcpus cores does not spread the threads: isolated CPUs have no load balancing, verified with 4 busy tasks piling on one core). During start-up and initialization it uses every non-isolated core. The runner confines the rest of the stack and the desktop away from 12-15; only root jobs can wander in, which the foreign sampler reports separately."
+  },
+  "cb6": {
+   "packages": [
+    "autoware_lane_departure_checker"
+   ],
+   "pgrep": "__node:=control_check_container",
+   "cores": [
+    9
+   ]
+  },
+  "cb7": {
+   "packages": [
+    "autoware_ndt_scan_matcher"
+   ],
+   "pgrep": "autoware_ndt_scan_matcher_node",
+   "cores": [
+    7
+   ],
+   "pin_after_init": false,
+   "_note": "NDT: on its own isolated core 7 once the localization initialized (single core -> no balancing needed; the whole process time-shares it, num_threads stays 4). During initialization it runs unpinned on the non-isolated cores; pinning it to a set of isolated cores made the particle search pile on one core and never finish (smoke #9).",
+   "init_cores": []
+  }
+ },
+ "packages": {
+  "autoware_ekf_localizer": {
+   "cmake_targets": [
+    "${PROJECT_NAME}"
+   ],
+   "files": [
+    {
+     "path": "src/ekf_localizer.cpp",
+     "id_base": 1000,
+     "job": "EKFLocalizer::timer_callback",
+     "functions": [
+      "EKFLocalizer::timer_callback",
+      "EKFLocalizer::update_predict_frequency",
+      "EKFLocalizer::publish_estimate_result",
+      "EKFLocalizer::update_diagnostics",
+      "EKFLocalizer::publish_diagnostics"
+     ],
+     "bounds": {
+      "EKFLocalizer::timer_callback.if3.then.L1": {
+       "bound": 5,
+       "source": "parameter max_pose_queue_size (AgedObjectQueue::push enforces it)"
+      },
+      "EKFLocalizer::timer_callback.if4.then.L1": {
+       "bound": 2,
+       "source": "parameter max_twist_queue_size (AgedObjectQueue::push enforces it)"
+      }
+     },
+     "exclude_units": [
+      "EKFLocalizer::update_diagnostics.if1.then",
+      "EKFLocalizer::update_predict_frequency.if1.then.if1.else.if1.else"
+     ]
+    },
+    {
+     "path": "src/ekf_module.cpp",
+     "id_base": 1300,
+     "functions": [
+      "EKFModule::predict_with_delay",
+      "EKFModule::measurement_update_pose",
+      "EKFModule::measurement_update_twist",
+      "EKFModule::get_current_pose",
+      "EKFModule::get_current_twist",
+      "EKFModule::get_current_pose_covariance",
+      "EKFModule::find_closest_delay_time_index",
+      "EKFModule::compensate_rph_with_delay",
+      "EKFModule::accumulate_delay_time"
+     ],
+     "exclude_units": [
+      "EKFModule::accumulate_delay_time.L1",
+      "EKFModule::accumulate_delay_time.L1.body",
+      "EKFModule::compensate_rph_with_delay.if1.else",
+      "EKFModule::compensate_rph_with_delay.if1.then",
+      "EKFModule::find_closest_delay_time_index.if3.then",
+      "EKFModule::get_current_pose.if1.then"
+     ]
+    }
+   ]
+  },
+  "autoware_twist2accel": {
+   "cmake_targets": [
+    "${PROJECT_NAME}"
+   ],
+   "files": [
+    {
+     "path": "src/twist2accel.cpp",
+     "id_base": 1600,
+     "job": "Twist2Accel::callback_odometry",
+     "functions": [
+      "Twist2Accel::callback_odometry"
+     ]
+    },
+    {
+     "path": "src/accel_estimator.cpp",
+     "id_base": 1700,
+     "functions": [
+      "AccelEstimator::estimate"
+     ]
+    }
+   ]
+  },
+  "autoware_stop_filter": {
+   "cmake_targets": [
+    "${PROJECT_NAME}",
+    "${PROJECT_NAME}_ros"
+   ],
+   "files": [
+    {
+     "path": "src/stop_filter_node.cpp",
+     "id_base": 1800,
+     "job": "StopFilterNode::callback_odometry",
+     "functions": [
+      "StopFilterNode::callback_odometry"
+     ]
+    },
+    {
+     "path": "src/stop_filter.cpp",
+     "id_base": 1900,
+     "functions": [
+      "StopFilter::create_stop_flag_msg",
+      "StopFilter::create_filtered_msg",
+      "is_stopped"
+     ],
+     "exclude_units": [
+      "StopFilter::create_filtered_msg.if1.then",
+      "is_stopped"
+     ]
+    }
+   ]
+  },
+  "autoware_trajectory_follower_node": {
+   "cmake_targets": [
+    "${CONTROLLER_NODE}"
+   ],
+   "files": [
+    {
+     "path": "src/controller_node.cpp",
+     "id_base": 2000,
+     "job": "Controller::callbackTimerControl",
+     "functions": [
+      "Controller::callbackTimerControl",
+      "Controller::createInputData",
+      "Controller::processData",
+      "Controller::check_cyclic_message_timeout",
+      "Controller::isTimeOut",
+      "Controller::publishDebugMarker",
+      "Controller::publishProcessingTime",
+      "Controller::mergeLatLonHorizon"
+     ],
+     "exclude_units": [
+      "Controller::createInputData.if1.then"
+     ]
+    }
+   ]
+  },
+  "autoware_mpc_lateral_controller": {
+   "cmake_targets": [
+    "${MPC_LAT_CON_LIB}"
+   ],
+   "files": [
+    {
+     "path": "src/mpc_lateral_controller.cpp",
+     "id_base": 2300,
+     "functions": [
+      "MpcLateralController::run",
+      "MpcLateralController::isReady",
+      "MpcLateralController::isSteerConverged",
+      "MpcLateralController::setTrajectory",
+      "MpcLateralController::getStopControlCommand",
+      "MpcLateralController::getInitialControlCommand",
+      "MpcLateralController::isStoppedState",
+      "MpcLateralController::createCtrlCmdMsg",
+      "MpcLateralController::createCtrlCmdHorizonMsg",
+      "MpcLateralController::publishPredictedTraj",
+      "MpcLateralController::publishDebugValues",
+      "MpcLateralController::setSteeringToHistory",
+      "MpcLateralController::isMpcConverged",
+      "MpcLateralController::isTrajectoryShapeChanged",
+      "MpcLateralController::isValidTrajectory"
+     ],
+     "exclude_units": [
+      "MpcLateralController::createCtrlCmdHorizonMsg.L1.body",
+      "MpcLateralController::createCtrlCmdMsg",
+      "MpcLateralController::getInitialControlCommand",
+      "MpcLateralController::isMpcConverged",
+      "MpcLateralController::isMpcConverged.if1.then",
+      "MpcLateralController::isStoppedState",
+      "MpcLateralController::isStoppedState.if1.then",
+      "MpcLateralController::isValidTrajectory.L1.body",
+      "MpcLateralController::run.if1.then",
+      "MpcLateralController::run.if3.then",
+      "MpcLateralController::setTrajectory.L1.body.if1.then"
+     ]
+    },
+    {
+     "path": "src/mpc.cpp",
+     "id_base": 2600,
+     "functions": [
+      "MPC::calculateMPC",
+      "MPC::generateDiagData",
+      "MPC::setReferenceTrajectory",
+      "MPC::getData",
+      "MPC::resampleMPCTrajectoryByTime",
+      "MPC::getInitialState",
+      "MPC::updateStateForDelayCompensation",
+      "MPC::applyVelocityDynamicsFilter",
+      "MPC::generateMPCMatrix",
+      "MPC::executeOptimization",
+      "MPC::calcDesiredSteeringRate",
+      "MPC::calcSteerRateLimitOnTrajectory",
+      "MPC::calculatePredictedTrajectory"
+     ],
+     "exclude_units": [
+      "MPC::calcSteerRateLimitOnTrajectory.if1.then",
+      "MPC::calculateMPC.L1.body",
+      "MPC::executeOptimization.L1",
+      "MPC::executeOptimization.L1.body",
+      "MPC::generateMPCMatrix.L1.body.if1.then",
+      "MPC::generateMPCMatrix.L1.body.if2.else.L1.body",
+      "MPC::generateMPCMatrix.L1.body.if3.then",
+      "MPC::generateMPCMatrix.L2.body",
+      "MPC::getInitialState.if1.then",
+      "MPC::resampleMPCTrajectoryByTime.L1.body"
+     ]
+    }
+   ]
+  },
+  "autoware_pid_longitudinal_controller": {
+   "cmake_targets": [
+    "${PID_LON_CON_LIB}"
+   ],
+   "files": [
+    {
+     "path": "src/pid_longitudinal_controller.cpp",
+     "id_base": 2900,
+     "functions": [
+      "PidLongitudinalController::run",
+      "PidLongitudinalController::isReady",
+      "PidLongitudinalController::setKinematicState",
+      "PidLongitudinalController::setCurrentAcceleration",
+      "PidLongitudinalController::setCurrentOperationMode",
+      "PidLongitudinalController::setTrajectory",
+      "PidLongitudinalController::getControlData",
+      "PidLongitudinalController::calcEmergencyCtrlCmd",
+      "PidLongitudinalController::updateControlState",
+      "PidLongitudinalController::calcCtrlCmd",
+      "PidLongitudinalController::createCtrlCmdMsg",
+      "PidLongitudinalController::publishDebugData",
+      "PidLongitudinalController::storeAccelCmd",
+      "PidLongitudinalController::applySlopeCompensation",
+      "PidLongitudinalController::keepBrakeBeforeStop",
+      "PidLongitudinalController::predictedStateAfterDelay",
+      "PidLongitudinalController::applyVelocityFeedback",
+      "PidLongitudinalController::checkControlState"
+     ],
+     "exclude_units": [
+      "PidLongitudinalController::applySlopeCompensation",
+      "PidLongitudinalController::calcCtrlCmd.if1.then.if1.then",
+      "PidLongitudinalController::createCtrlCmdMsg.L1",
+      "PidLongitudinalController::createCtrlCmdMsg.L1.body",
+      "PidLongitudinalController::getControlData.if3.else.if1.else.if1.then.if1.then",
+      "PidLongitudinalController::keepBrakeBeforeStop",
+      "PidLongitudinalController::keepBrakeBeforeStop.if1.then",
+      "PidLongitudinalController::predictedStateAfterDelay",
+      "PidLongitudinalController::predictedStateAfterDelay.if1.then",
+      "PidLongitudinalController::publishDebugData.L1.body",
+      "PidLongitudinalController::setCurrentAcceleration",
+      "PidLongitudinalController::setCurrentOperationMode",
+      "PidLongitudinalController::storeAccelCmd.if1.else",
+      "PidLongitudinalController::storeAccelCmd.if1.then",
+      "PidLongitudinalController::storeAccelCmd.if2.then",
+      "PidLongitudinalController::storeAccelCmd.if3.then",
+      "PidLongitudinalController::updateControlState.if3.then",
+      "PidLongitudinalController::updateControlState.if4.then.if3.then",
+      "PidLongitudinalController::updateControlState.if6.then",
+      "PidLongitudinalController::updateControlState.if6.then.if1.then"
+     ]
+    }
+   ]
+  },
+  "autoware_ground_segmentation": {
+   "cmake_targets": [
+    "${PROJECT_NAME}"
+   ],
+   "files": [
+    {
+     "path": "src/scan_ground_filter/node.cpp",
+     "id_base": 3200,
+     "job": "ScanGroundFilterComponent::faster_filter",
+     "functions": [
+      "ScanGroundFilterComponent::faster_filter",
+      "ScanGroundFilterComponent::filter",
+      "ScanGroundFilterComponent::convertPointcloud",
+      "ScanGroundFilterComponent::calcVirtualGroundOrigin",
+      "ScanGroundFilterComponent::classifyPointCloud",
+      "ScanGroundFilterComponent::extractObjectPoints"
+     ],
+     "exclude_units": [
+      "ScanGroundFilterComponent::classifyPointCloud.L1",
+      "ScanGroundFilterComponent::convertPointcloud.L1",
+      "ScanGroundFilterComponent::convertPointcloud.L2",
+      "ScanGroundFilterComponent::extractObjectPoints.L1"
+     ],
+     "_note": "per-point loops (10^4-10^5 iterations per cloud) are excluded up front: their probes would dominate the callback and produce GBs of trace per replay"
+    },
+    {
+     "path": "src/scan_ground_filter/grid_ground_filter.cpp",
+     "id_base": 5000,
+     "policy": "functions-only",
+     "functions": [
+      "GridGroundFilter::process",
+      "GridGroundFilter::convert",
+      "GridGroundFilter::preprocess",
+      "GridGroundFilter::initializeGround",
+      "GridGroundFilter::classify"
+     ],
+     "_note": "the classification path actually taken (elevation grid mode); coarse functions only: recursiveSearch/fitLineFromGndGrid/Segment*Cell run per cell (10^4-10^5 calls per cloud)"
+    }
+   ]
+  },
+  "autoware_lane_departure_checker": {
+   "cmake_targets": [
+    "${PROJECT_NAME}"
+   ],
+   "files": [
+    {
+     "path": "src/lane_departure_checker_node/lane_departure_checker_node.cpp",
+     "id_base": 3400,
+     "job": "LaneDepartureCheckerNode::onTimer",
+     "functions": [
+      "LaneDepartureCheckerNode::onTimer",
+      "LaneDepartureCheckerNode::isDataReady",
+      "LaneDepartureCheckerNode::isDataTimeout",
+      "LaneDepartureCheckerNode::isDataValid",
+      "LaneDepartureCheckerNode::checkLaneDeparture",
+      "LaneDepartureCheckerNode::createMarkerArray",
+      "LaneDepartureCheckerNode::getAllSharedLineStringLanelets",
+      "LaneDepartureCheckerNode::getAllRightSharedLinestringLanelets",
+      "LaneDepartureCheckerNode::getAllLeftSharedLinestringLanelets",
+      "LaneDepartureCheckerNode::getLeftLanelet",
+      "LaneDepartureCheckerNode::getLeftOppositeLanelets",
+      "LaneDepartureCheckerNode::getRightLanelet",
+      "LaneDepartureCheckerNode::getRightOppositeLanelets"
+     ],
+     "exclude_units": [
+      "LaneDepartureCheckerNode::createMarkerArray.L1.body",
+      "LaneDepartureCheckerNode::createMarkerArray.L1.body.L1",
+      "LaneDepartureCheckerNode::createMarkerArray.L1.body.L1.body",
+      "LaneDepartureCheckerNode::createMarkerArray.if2.then.L1.body",
+      "LaneDepartureCheckerNode::createMarkerArray.if2.then.L2.body",
+      "LaneDepartureCheckerNode::createMarkerArray.if3.then",
+      "LaneDepartureCheckerNode::createMarkerArray.if4.then",
+      "LaneDepartureCheckerNode::isDataValid",
+      "LaneDepartureCheckerNode::onTimer.if2.then",
+      "LaneDepartureCheckerNode::onTimer.if5.then.L2.body",
+      "LaneDepartureCheckerNode::onTimer.if5.then.L3.body"
+     ]
+    }
+   ]
+  },
+  "autoware_ndt_scan_matcher": {
+   "cmake_targets": [
+    "${PROJECT_NAME}"
+   ],
+   "files": [
+    {
+     "path": "src/ndt_scan_matcher_core.cpp",
+     "id_base": 3700,
+     "job": "NDTScanMatcher::callback_sensor_points",
+     "functions": [
+      "NDTScanMatcher::callback_sensor_points",
+      "NDTScanMatcher::callback_sensor_points_main",
+      "NDTScanMatcher::transform_sensor_measurement",
+      "NDTScanMatcher::publish_tf",
+      "NDTScanMatcher::publish_pose",
+      "NDTScanMatcher::publish_point_cloud",
+      "NDTScanMatcher::publish_marker",
+      "NDTScanMatcher::publish_initial_to_result",
+      "NDTScanMatcher::count_oscillation",
+      "NDTScanMatcher::estimate_covariance",
+      "NDTScanMatcher::visualize_point_score",
+      "NDTScanMatcher::add_regularization_pose"
+     ],
+     "exclude_units": [
+      "NDTScanMatcher::callback_sensor_points_main.L1",
+      "NDTScanMatcher::publish_marker.L2.body"
+     ],
+     "_note": "L1 of callback_sensor_points_main iterates over the sensor points (about 1500 per cloud)"
+    }
+   ]
+  }
+ }
+}

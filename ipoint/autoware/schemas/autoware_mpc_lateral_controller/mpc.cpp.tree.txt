@@ -1,0 +1,123 @@
+*MPC::calculateMPC <function> d=0 L46 [2601-2602] calls=applyVelocityDynamicsFilter,getData,getInitialState,updateStateForDelayCompensation,getPredictionDeltaTime,resampleMPCTrajectoryByTime,generateMPCMatrix,executeOptimization,clamp,operator(),filter,calcDesiredSteeringRate,Matrix,Matrix,storeSteerCmd,operator->,push_back,pop_front,operator(),Matrix,operator=,calculatePredictedTrajectory,Matrix,Matrix,basic_string,operator=,generateDiagData,clear,push_back,next,begin,operator!=,end,operator++
+   MPC::calculateMPC.if1 <branch/if> d=1 L59
+*    MPC::calculateMPC.if1.then <alternative/then> d=1 L59 [2603-2604] calls=format,basic_format_string
+*    MPC::calculateMPC.if1.else <alternative/else> d=1 L59 [2605] empty
+   MPC::calculateMPC.if2 <branch/if> d=1 L69
+*    MPC::calculateMPC.if2.then <alternative/then> d=1 L69 [2606-2607]
+*    MPC::calculateMPC.if2.else <alternative/else> d=1 L69 [2608] empty
+   MPC::calculateMPC.if3 <branch/if> d=1 L80
+*    MPC::calculateMPC.if3.then <alternative/then> d=1 L80 [2609-2610] calls=format,basic_format_string
+*    MPC::calculateMPC.if3.else <alternative/else> d=1 L80 [2611] empty
+   MPC::calculateMPC.if4 <branch/if> d=1 L92
+*    MPC::calculateMPC.if4.then <alternative/then> d=1 L92 [2612-2613] calls=format,basic_format_string
+*    MPC::calculateMPC.if4.else <alternative/else> d=1 L92 [2614] empty
+   MPC::calculateMPC.if5 <branch/if> d=1 L122
+*    MPC::calculateMPC.if5.then <alternative/then> d=1 L122 [2615-2616] calls=calculatePredictedTrajectory,Matrix,Matrix,basic_string,operator=,operator Time_,now,operator->,operator=,publish,operator->
+*    MPC::calculateMPC.if5.else <alternative/else> d=1 L122 [2617] empty
+*  MPC::calculateMPC.L1 <loop/for> d=1 L139 [2618-2619]
+     MPC::calculateMPC.L1.body <loop_body/for> d=1 L139 [2620-2621] calls=Lateral_,clamp,operator*,back,push_back
+*MPC::generateDiagData <function> d=0 L151 [2622-2623] calls=Float32MultiArrayStamped_,at,at,getWheelbase,operator->,tan,tan,tan,getTakenIter,operator->,getRunTime,operator->,getObjVal,operator->,operator(),operator(),operator(),operator(),operator(),operator(),atan,operator(),operator(),operator(),getYaw,operator(),getYaw,operator(),operator(),at,operator(),operator(),operator(),operator(),operator(),operator(),operator(),operator(),operator(),operator(),operator(),Float32MultiArrayStamped_
+*MPC::setReferenceTrajectory <function> d=0 L199 [2624-2625] calls=findFirstNearestSegmentIndexWithSoftConstraints,calcLongitudinalOffsetToSegment,convertToMPCTrajectory,resampleMPCTrajectoryByDistance,isDrivingForward,toTrajectoryPoints,operator bool,value,MPCTrajectory,size,calcTrajectoryYawFromXY,convertEulerAngleToMonotonic,calcTrajectoryCurvature,back,back,push_back,size,operator=
+   MPC::setReferenceTrajectory.if1 <branch/if> d=1 L215
+*    MPC::setReferenceTrajectory.if1.then <alternative/then> d=1 L215 [2626-2627] calls=warn_throttle
+*    MPC::setReferenceTrajectory.if1.else <alternative/else> d=1 L215 [2628] empty
+   MPC::setReferenceTrajectory.if2 <branch/if> d=1 L229
+*    MPC::setReferenceTrajectory.if2.then <alternative/then> d=1 L230 [2629-2630] calls=filt_vector,filt_vector,filt_vector,filt_vector
+       MPC::setReferenceTrajectory.if2.then.if1 <branch/if> d=2 L232
+*        MPC::setReferenceTrajectory.if2.then.if1.then <alternative/then> d=2 L236 [2631-2632] calls=operator=
+*        MPC::setReferenceTrajectory.if2.then.if1.else <alternative/else> d=2 L232 [2633] empty
+*    MPC::setReferenceTrajectory.if2.else <alternative/else> d=1 L229 [2634] empty
+   MPC::setReferenceTrajectory.if3 <branch/if> d=1 L249
+*    MPC::setReferenceTrajectory.if3.then <alternative/then> d=1 L249 [2635-2636] calls=extendTrajectoryInYawDirection,back
+*    MPC::setReferenceTrajectory.if3.else <alternative/else> d=1 L249 [2637] empty
+   MPC::setReferenceTrajectory.if4 <branch/if> d=1 L271
+*    MPC::setReferenceTrajectory.if4.then <alternative/then> d=1 L271 [2638-2639]
+*    MPC::setReferenceTrajectory.if4.else <alternative/else> d=1 L271 [2640] empty
+*MPC::getData <function> d=0 L288 [2641-2642] calls=Pose_,MPCData,calcNearestPoseInterp,calcLateralError,normalize_radian,getYaw,getYaw,calcSteerPrediction,operator->,back,pair
+   MPC::getData.if1 <branch/if> d=1 L295
+*    MPC::getData.if1.then <alternative/then> d=1 L297 [2643-2644] calls=pair
+*    MPC::getData.if1.else <alternative/else> d=1 L295 [2645] empty
+   MPC::getData.if2 <branch/if> d=1 L314
+*    MPC::getData.if2.then <alternative/then> d=1 L314 [2646-2647] calls=pair
+*    MPC::getData.if2.else <alternative/else> d=1 L314 [2648] empty
+*MPC::resampleMPCTrajectoryByTime <function> d=0 L320 [2649-2650] calls=MPCTrajectory,vector,linearInterpMPCTrajectory,pair
+*  MPC::resampleMPCTrajectoryByTime.L1 <loop/for> d=1 L325 [2651-2652]
+     MPC::resampleMPCTrajectoryByTime.L1.body <loop_body/for> d=1 L325 [2653-2654] calls=push_back
+   MPC::resampleMPCTrajectoryByTime.if1 <branch/if> d=1 L328
+*    MPC::resampleMPCTrajectoryByTime.if1.then <alternative/then> d=1 L328 [2655-2656] calls=pair
+*    MPC::resampleMPCTrajectoryByTime.if1.else <alternative/else> d=1 L328 [2657] empty
+   MPC::resampleMPCTrajectoryByTime.if2 <branch/if> d=1 L332
+*    MPC::resampleMPCTrajectoryByTime.if2.then <alternative/then> d=1 L332 [2658-2659] calls=convertToAutowareTrajectory,operator=,operator Time_,now,operator->,operator=,publish,operator->
+*    MPC::resampleMPCTrajectoryByTime.if2.else <alternative/else> d=1 L332 [2660] empty
+*MPC::getInitialState <function> d=0 L341 [2661-2662] calls=getDimX,operator->,Matrix,Zero,modelName,operator->,operator==,Matrix
+   MPC::getInitialState.if1 <branch/if> d=1 L351
+     MPC::getInitialState.if1.then <alternative/then> d=1 L351 [2663-2664] calls=operator,,operator,,operator<<
+*    MPC::getInitialState.if1.else <alternative/else> d=1 L353 [2665-2666] calls=operator==
+       MPC::getInitialState.if1.else.if1 <branch/if> d=2 L353
+*        MPC::getInitialState.if1.else.if1.then <alternative/then> d=2 L353 [2667-2668] calls=operator,,operator<<
+*        MPC::getInitialState.if1.else.if1.else <alternative/else> d=2 L355 [2669-2670] calls=operator==
+           MPC::getInitialState.if1.else.if1.else.if1 <branch/if> d=3 L355
+*            MPC::getInitialState.if1.else.if1.else.if1.then <alternative/then> d=3 L355 [2671-2672] calls=filter,filter,operator,,operator,,operator,,operator<<
+*            MPC::getInitialState.if1.else.if1.else.if1.else <alternative/else> d=3 L365 [2673-2674]
+*MPC::updateStateForDelayCompensation <function> d=0 L371 [2675-2676] calls=getDimX,operator->,getDimU,operator->,getDimY,operator->,Matrix,Matrix,Matrix,Matrix,Matrix,size,pair
+*  MPC::updateStateForDelayCompensation.L1 <loop/for> d=1 L387 [2677-2678]
+*    MPC::updateStateForDelayCompensation.L1.body <loop_body/for> d=1 L387 [2679-2680] calls=lerp,lerp,pair,Matrix,setVelocity,operator->,setCurvature,operator->,calculateDiscreteMatrix,operator->,Matrix,Zero,operator(),at,operator=,operator+,operator+,operator*,operator*
+*MPC::applyVelocityDynamicsFilter <function> d=0 L410 [2681-2682] calls=convertToAutowareTrajectory,empty,findFirstNearestSegmentIndexWithSoftConstraints,MPCTrajectory,dynamicSmoothingVelocity,back,push_back,MPCTrajectory
+   MPC::applyVelocityDynamicsFilter.if1 <branch/if> d=1 L414
+*    MPC::applyVelocityDynamicsFilter.if1.then <alternative/then> d=1 L414 [2683-2684] calls=MPCTrajectory
+*    MPC::applyVelocityDynamicsFilter.if1.else <alternative/else> d=1 L414 [2685] empty
+*MPC::generateMPCMatrix <function> d=0 L440 [2686-2687] calls=getDimX,operator->,getDimU,operator->,getDimY,operator->,MPCMatrix,operator=,Zero,operator=,Zero,operator=,Zero,operator=,Zero,operator=,Zero,operator=,Zero,operator=,Zero,operator=,Zero,Matrix,Zero,Matrix,Zero,Matrix,Zero,Matrix,Zero,Matrix,Matrix,Matrix,Matrix,Matrix,addSteerWeightR,MPCMatrix
+*  MPC::generateMPCMatrix.L1 <loop/for> d=1 L474 [2688-2689]
+*    MPC::generateMPCMatrix.L1.body <loop_body/for> d=1 L474 [2690-2691] calls=at,at,at,setVelocity,operator->,setCurvature,operator->,calculateDiscreteMatrix,operator->,operator=,Zero,operator=,Zero,getWeight,operator(),operator(),operator(),operator=,operator=,operator(),operator(),operator=,block,operator=,block,operator=,block,operator=,block,setCurvature,operator->,calculateReferenceInput,operator->,fabs,operator(),deg2rad,operator=,block
+       MPC::generateMPCMatrix.L1.body.if1 <branch/if> d=2 L496
+         MPC::generateMPCMatrix.L1.body.if1.then <alternative/then> d=2 L496 [2692-2693] calls=operator(),operator()
+*        MPC::generateMPCMatrix.L1.body.if1.else <alternative/else> d=2 L496 [2694] empty
+       MPC::generateMPCMatrix.L1.body.if2 <branch/if> d=2 L507
+*        MPC::generateMPCMatrix.L1.body.if2.then <alternative/then> d=2 L507 [2695-2696] calls=operator=,block,operator=,block,operator=,block
+*        MPC::generateMPCMatrix.L1.body.if2.else <alternative/else> d=2 L511 [2697-2698] calls=operator=,block,operator*,block,operator=,block,operator+,operator*,block
+*          MPC::generateMPCMatrix.L1.body.if2.else.L1 <loop/for> d=3 L514 [2699-2700]
+             MPC::generateMPCMatrix.L1.body.if2.else.L1.body <loop_body/for> d=3 L514 [2701-2702] calls=operator=,block,operator*,block
+       MPC::generateMPCMatrix.L1.body.if3 <branch/if> d=2 L529
+         MPC::generateMPCMatrix.L1.body.if3.then <alternative/then> d=2 L529 [2703-2704] calls=operator()
+*        MPC::generateMPCMatrix.L1.body.if3.else <alternative/else> d=2 L529 [2705] empty
+*  MPC::generateMPCMatrix.L2 <loop/for> d=1 L536 [2706-2707]
+     MPC::generateMPCMatrix.L2.body <loop_body/for> d=1 L536 [2708-2709] calls=at,at,getWeight,Matrix,finished,operator,,operator,,operator,,operator<<,Matrix,operator+=,block
+*MPC::executeOptimization <function> d=0 L571 [2710-2711] calls=Matrix,isValid,getDimU,operator->,Matrix,operator*,Matrix,operator*,Matrix,Zero,operator=,triangularView,operator*,transpose,operator+=,triangularView,operator+,operator=,triangularView,transpose,Matrix,operator-,operator*,transpose,operator*,operator+,operator*,operator*,transpose,addSteerWeightF,Matrix,Identity,Matrix,Constant,Matrix,Constant,calcSteerRateLimitOnTrajectory,Matrix,operator*,Matrix,operator*,operator-,operator(),operator(),operator(),operator(),now,solve,operator->,Matrix,transpose,now,count,duration_cast,operator-,any,isNaN,array,pair
+   MPC::executeOptimization.if1 <branch/if> d=1 L577
+*    MPC::executeOptimization.if1.then <alternative/then> d=1 L577 [2712-2713] calls=pair,Matrix
+*    MPC::executeOptimization.if1.else <alternative/else> d=1 L577 [2714] empty
+   MPC::executeOptimization.L1 <loop/for> d=1 L596 [2715-2716]
+     MPC::executeOptimization.L1.body <loop_body/for> d=1 L596 [2717-2718] calls=operator()
+   MPC::executeOptimization.if2 <branch/if> d=1 L614
+*    MPC::executeOptimization.if2.then <alternative/then> d=1 L614 [2719-2720] calls=pair,Matrix
+*    MPC::executeOptimization.if2.else <alternative/else> d=1 L614 [2721] empty
+   MPC::executeOptimization.if3 <branch/if> d=1 L623
+*    MPC::executeOptimization.if3.then <alternative/then> d=1 L623 [2722-2723] calls=pair,Matrix
+*    MPC::executeOptimization.if3.else <alternative/else> d=1 L623 [2724] empty
+*MPC::calcDesiredSteeringRate <function> d=0 L732 [2725-2726] calls=operator!=,modelName,operator->,Matrix,operator+,operator+,operator*,operator*,operator(),operator()
+   MPC::calcDesiredSteeringRate.if1 <branch/if> d=1 L736
+*    MPC::calcDesiredSteeringRate.if1.then <alternative/then> d=1 L736 [2727-2728]
+*    MPC::calcDesiredSteeringRate.if1.else <alternative/else> d=1 L736 [2729] empty
+*MPC::calcSteerRateLimitOnTrajectory <function> d=0 L755 [2730-2731] calls=fabs,Matrix,Zero,Matrix
+   MPC::calcSteerRateLimitOnTrajectory.if1 <branch/if> d=1 L793
+     MPC::calcSteerRateLimitOnTrajectory.if1.then <alternative/then> d=1 L793 [2732-2733] calls=Matrix,operator*,Ones
+*    MPC::calcSteerRateLimitOnTrajectory.if1.else <alternative/else> d=1 L793 [2734] empty
+*  MPC::calcSteerRateLimitOnTrajectory.L1 <loop/for> d=1 L799 [2735-2736]
+*    MPC::calcSteerRateLimitOnTrajectory.L1.body <loop_body/for> d=1 L799 [2737-2738] calls=operator(),at,operator(),at,operator(),min
+*MPC::calculatePredictedTrajectory <function> d=0 L808 [2739-2740] calls=MPCTrajectory,operator==,calcMPCTrajectoryArcLength,clipTrajectoryByLength,convertToAutowareTrajectory,getWheelbase,operator->,Trajectory_
+   MPC::calculatePredictedTrajectory.if1 <branch/if> d=1 L814
+*    MPC::calculatePredictedTrajectory.if1.then <alternative/then> d=1 L814 [2741-2742] calls=operator=,calculatePredictedTrajectoryInWorldCoordinate,operator->
+*    MPC::calculatePredictedTrajectory.if1.else <alternative/else> d=1 L818 [2743-2744] calls=operator==
+       MPC::calculatePredictedTrajectory.if1.else.if1 <branch/if> d=2 L818
+*        MPC::calculatePredictedTrajectory.if1.else.if1.then <alternative/then> d=2 L818 [2745-2746] calls=operator=,calculatePredictedTrajectoryInFrenetCoordinate,operator->
+*        MPC::calculatePredictedTrajectory.if1.else.if1.else <alternative/else> d=2 L822 [2747-2748] calls=invalid_argument
+
+# stderr
+warning: statement expanded from a macro at line 237 is treated as part of MPC::setReferenceTrajectory.if2.then.if1.then
+warning: statement expanded from a macro at line 272 is treated as part of MPC::setReferenceTrajectory.if4.then
+warning: statement expanded from a macro at line 363 is treated as part of MPC::getInitialState.if1.else.if1.else.if1.then
+warning: statement expanded from a macro at line 364 is treated as part of MPC::getInitialState.if1.else.if1.else.if1.then
+warning: statement expanded from a macro at line 366 is treated as part of MPC::getInitialState.if1.else.if1.else.if1.else
+warning: statement expanded from a macro at line 394 is treated as part of MPC::updateStateForDelayCompensation.L1.body
+warning: statement expanded from a macro at line 620 is treated as part of MPC::executeOptimization
+wrote /home/atsushi/autoware/src/universe/autoware_universe/control/autoware_mpc_lateral_controller/src/mpc.cpp and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/autoware/schemas/autoware_mpc_lateral_controller/mpc.cpp.schema.json (75 instrumented units, ids 2601..2748)

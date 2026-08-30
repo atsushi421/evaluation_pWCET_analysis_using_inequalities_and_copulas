@@ -1,0 +1,11 @@
+*AccelEstimator::estimate <function> d=0 L36 [1701-1702] calls=AccelWithCovarianceStamped_,operator=,has_value,seconds,operator-,Time,Time,operator->,max,operator->,filter,filter,filter,filter,filter,filter,operator[],operator[],operator[],operator[],operator[],operator[],operator=,AccelWithCovarianceStamped_
+   AccelEstimator::estimate.if1 <branch/if> d=1 L42
+*    AccelEstimator::estimate.if1.then <alternative/then> d=1 L42 [1703-1704] calls=operator=,AccelWithCovarianceStamped_
+*    AccelEstimator::estimate.if1.else <alternative/else> d=1 L42 [1705] empty
+*AccelEstimator::estimate#2 <function> d=0 L73 [1706-1707] calls=TwistStamped_,operator=,operator=,estimate
+*AccelEstimator::estimate#3 <function> d=0 L82 [1708-1709] calls=TwistStamped_,operator=,operator=,estimate
+
+# stderr
+warning: overloaded function AccelEstimator::estimate (definition 2 at line 73) is named AccelEstimator::estimate#2
+warning: overloaded function AccelEstimator::estimate (definition 3 at line 82) is named AccelEstimator::estimate#3
+wrote /home/atsushi/autoware/src/core/autoware_core/localization/autoware_twist2accel/src/accel_estimator.cpp and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/autoware/schemas/autoware_twist2accel/accel_estimator.cpp.schema.json (5 instrumented units, ids 1701..1709)

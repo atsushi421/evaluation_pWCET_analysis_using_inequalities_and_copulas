@@ -1,0 +1,93 @@
+*GridGroundFilter::convert <function> d=0 L28 [5001-5002] calls=unique_ptr,operator bool,size,operator->,operator->
+   GridGroundFilter::convert.if1 <branch/if> d=1 L31
+     GridGroundFilter::convert.if1.then <alternative/then> d=1 L31 [5003-5004] calls=operator=,make_unique,operator*
+     GridGroundFilter::convert.if1.else <alternative/else> d=1 L31 [5005] empty
+   GridGroundFilter::convert.L1 <loop/for> d=1 L36 [5006-5007]
+     GridGroundFilter::convert.L1.body <loop_body/for> d=1 L37 [5008-5009] calls=PointXYZ,getPoint,addPoint,operator->
+*GridGroundFilter::preprocess <function> d=0 L46 [5010-5011] calls=unique_ptr,operator bool,setGridConnections,operator->
+   GridGroundFilter::preprocess.if1 <branch/if> d=1 L49
+     GridGroundFilter::preprocess.if1.then <alternative/then> d=1 L49 [5012-5013] calls=operator=,make_unique,operator*
+     GridGroundFilter::preprocess.if1.else <alternative/else> d=1 L49 [5014] empty
+*GridGroundFilter::initializeGround <function> d=0 L130 [5015-5016] calls=unique_ptr,operator bool,getGridSize,operator->
+   GridGroundFilter::initializeGround.if1 <branch/if> d=1 L133
+     GridGroundFilter::initializeGround.if1.then <alternative/then> d=1 L133 [5017-5018] calls=operator=,make_unique,operator*
+     GridGroundFilter::initializeGround.if1.else <alternative/else> d=1 L133 [5019] empty
+   GridGroundFilter::initializeGround.L1 <loop/for> d=1 L137 [5020-5021]
+     GridGroundFilter::initializeGround.L1.body <loop_body/for> d=1 L137 [5022-5023] calls=getCell,operator->,isEmpty,PointsCentroid,operator*
+       GridGroundFilter::initializeGround.L1.body.if1 <branch/if> d=2 L139
+         GridGroundFilter::initializeGround.L1.body.if1.then <alternative/then> d=2 L139 [5024-5025]
+         GridGroundFilter::initializeGround.L1.body.if1.else <alternative/else> d=2 L139 [5026] empty
+       GridGroundFilter::initializeGround.L1.body.if2 <branch/if> d=2 L141
+         GridGroundFilter::initializeGround.L1.body.if2.then <alternative/then> d=2 L141 [5027-5028]
+         GridGroundFilter::initializeGround.L1.body.if2.else <alternative/else> d=2 L141 [5029] empty
+       GridGroundFilter::initializeGround.L1.body.if3 <branch/if> d=2 L144
+         GridGroundFilter::initializeGround.L1.body.if3.then <alternative/then> d=2 L144 [5030-5031] calls=getCell,operator->
+           GridGroundFilter::initializeGround.L1.body.if3.then.if1 <branch/if> d=3 L146
+             GridGroundFilter::initializeGround.L1.body.if3.then.if1.then <alternative/then> d=3 L146 [5032-5033]
+             GridGroundFilter::initializeGround.L1.body.if3.then.if1.else <alternative/else> d=3 L146 [5034] empty
+         GridGroundFilter::initializeGround.L1.body.if3.else <alternative/else> d=2 L144 [5035] empty
+       GridGroundFilter::initializeGround.L1.body.L1 <loop/for-range> d=2 L156 [5036-5037]
+         GridGroundFilter::initializeGround.L1.body.L1.body <loop_body/for-range> d=2 L156 [5038-5039]
+           GridGroundFilter::initializeGround.L1.body.L1.body.if1 <branch/if> d=3 L162
+             GridGroundFilter::initializeGround.L1.body.L1.body.if1.then <alternative/then> d=3 L162 [5040-5041] calls=push_back
+             GridGroundFilter::initializeGround.L1.body.L1.body.if1.else <alternative/else> d=3 L165 [5042-5043] calls=abs,abs
+               GridGroundFilter::initializeGround.L1.body.L1.body.if1.else.if1 <branch/if> d=4 L165
+                 GridGroundFilter::initializeGround.L1.body.L1.body.if1.else.if1.then <alternative/then> d=4 L167 [5044-5045] calls=addPoint
+                 GridGroundFilter::initializeGround.L1.body.L1.body.if1.else.if1.else <alternative/else> d=4 L165 [5046] empty
+       GridGroundFilter::initializeGround.L1.body.if4 <branch/if> d=2 L176
+         GridGroundFilter::initializeGround.L1.body.if4.then <alternative/then> d=2 L176 [5047-5048] calls=processAverage,getAverageHeight,getAverageRadius,getMaxHeight,getMinHeight,clamp
+         GridGroundFilter::initializeGround.L1.body.if4.else <alternative/else> d=2 L187 [5049-5050]
+*GridGroundFilter::classify <function> d=0 L358 [5051-5052] calls=unique_ptr,operator bool,getGridSize,operator->
+   GridGroundFilter::classify.if1 <branch/if> d=1 L361
+     GridGroundFilter::classify.if1.then <alternative/then> d=1 L361 [5053-5054] calls=operator=,make_unique,operator*
+     GridGroundFilter::classify.if1.else <alternative/else> d=1 L361 [5055] empty
+   GridGroundFilter::classify.L1 <loop/for> d=1 L365 [5056-5057]
+     GridGroundFilter::classify.L1.body <loop_body/for> d=1 L365 [5058-5059] calls=getCell,operator->,isEmpty,getCell,operator->,vector,recursiveSearch,getCell,operator->,back,size,PointsCentroid,getGroundPointNum,getGroundPointNum
+       GridGroundFilter::classify.L1.body.if1 <branch/if> d=2 L368
+         GridGroundFilter::classify.L1.body.if1.then <alternative/then> d=2 L368 [5060-5061]
+         GridGroundFilter::classify.L1.body.if1.else <alternative/else> d=2 L368 [5062] empty
+       GridGroundFilter::classify.L1.body.if2 <branch/if> d=2 L369
+         GridGroundFilter::classify.L1.body.if2.then <alternative/then> d=2 L369 [5063-5064]
+         GridGroundFilter::classify.L1.body.if2.else <alternative/else> d=2 L369 [5065] empty
+       GridGroundFilter::classify.L1.body.if3 <branch/if> d=2 L373
+         GridGroundFilter::classify.L1.body.if3.then <alternative/then> d=2 L373 [5066-5067]
+         GridGroundFilter::classify.L1.body.if3.else <alternative/else> d=2 L373 [5068] empty
+       GridGroundFilter::classify.L1.body.if4 <branch/if> d=2 L375
+         GridGroundFilter::classify.L1.body.if4.then <alternative/then> d=2 L375 [5069-5070]
+         GridGroundFilter::classify.L1.body.if4.else <alternative/else> d=2 L375 [5071] empty
+       GridGroundFilter::classify.L1.body.if5 <branch/if> d=2 L393
+         GridGroundFilter::classify.L1.body.if5.then <alternative/then> d=2 L393 [5072-5073]
+           GridGroundFilter::classify.L1.body.if5.then.if1 <branch/if> d=3 L394
+             GridGroundFilter::classify.L1.body.if5.then.if1.then <alternative/then> d=3 L394 [5074-5075]
+             GridGroundFilter::classify.L1.body.if5.then.if1.else <alternative/else> d=3 L396 [5076-5077]
+         GridGroundFilter::classify.L1.body.if5.else <alternative/else> d=2 L399 [5078-5079]
+       GridGroundFilter::classify.L1.body.if6 <branch/if> d=2 L406
+         GridGroundFilter::classify.L1.body.if6.then <alternative/then> d=2 L406 [5080-5081] calls=fitLineFromGndGrid,SegmentContinuousCell
+         GridGroundFilter::classify.L1.body.if6.else <alternative/else> d=2 L414 [5082-5083]
+           GridGroundFilter::classify.L1.body.if6.else.if1 <branch/if> d=3 L414
+             GridGroundFilter::classify.L1.body.if6.else.if1.then <alternative/then> d=3 L414 [5084-5085] calls=SegmentDiscontinuousCell
+             GridGroundFilter::classify.L1.body.if6.else.if1.else <alternative/else> d=3 L416 [5086-5087]
+               GridGroundFilter::classify.L1.body.if6.else.if1.else.if1 <branch/if> d=4 L416
+                 GridGroundFilter::classify.L1.body.if6.else.if1.else.if1.then <alternative/then> d=4 L416 [5088-5089] calls=SegmentBreakCell
+                 GridGroundFilter::classify.L1.body.if6.else.if1.else.if1.else <alternative/else> d=4 L416 [5090] empty
+       GridGroundFilter::classify.L1.body.if7 <branch/if> d=2 L421
+         GridGroundFilter::classify.L1.body.if7.then <alternative/then> d=2 L423 [5091-5092] calls=getIndicesRef,getHeightListRef,size
+           GridGroundFilter::classify.L1.body.if7.then.if1 <branch/if> d=3 L426
+             GridGroundFilter::classify.L1.body.if7.then.if1.then <alternative/then> d=3 L426 [5093-5094] calls=getMinHeightOnly
+             GridGroundFilter::classify.L1.body.if7.then.if1.else <alternative/else> d=3 L428 [5095-5096] calls=processAverage,getAverageHeight
+           GridGroundFilter::classify.L1.body.if7.then.L1 <loop/for> d=3 L435 [5097-5098]
+             GridGroundFilter::classify.L1.body.if7.then.L1.body <loop_body/for> d=3 L435 [5099-5100] calls=at
+               GridGroundFilter::classify.L1.body.if7.then.L1.body.if1 <branch/if> d=4 L436
+                 GridGroundFilter::classify.L1.body.if7.then.L1.body.if1.then <alternative/then> d=4 L436 [5101-5102] calls=push_back,at,operator=,at
+                 GridGroundFilter::classify.L1.body.if7.then.L1.body.if1.else <alternative/else> d=4 L436 [5103] empty
+         GridGroundFilter::classify.L1.body.if7.else <alternative/else> d=2 L421 [5104] empty
+       GridGroundFilter::classify.L1.body.if8 <branch/if> d=2 L446
+         GridGroundFilter::classify.L1.body.if8.then <alternative/then> d=2 L446 [5105-5106] calls=processAverage,getAverageHeight,getAverageRadius,getMaxHeight,getMinHeight
+         GridGroundFilter::classify.L1.body.if8.else <alternative/else> d=2 L453 [5107-5108]
+*GridGroundFilter::process <function> d=0 L468 [5109-5110] calls=unique_ptr,operator bool,operator=,clear,resetCells,operator->,convert,preprocess,initializeGround,classify
+   GridGroundFilter::process.if1 <branch/if> d=1 L472
+     GridGroundFilter::process.if1.then <alternative/then> d=1 L472 [5111-5112] calls=operator=,make_unique,operator*
+     GridGroundFilter::process.if1.else <alternative/else> d=1 L472 [5113] empty
+
+# stderr
+wrote /home/atsushi/autoware/src/universe/autoware_universe/perception/autoware_ground_segmentation/src/scan_ground_filter/grid_ground_filter.cpp and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/autoware/schemas/autoware_ground_segmentation/grid_ground_filter.cpp.schema.json (5 instrumented units, ids 5001..5113)

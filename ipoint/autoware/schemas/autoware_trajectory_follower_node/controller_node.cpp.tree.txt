@@ -1,0 +1,63 @@
+*Controller::check_cyclic_message_timeout <function> d=0 L150 [2001-2002] calls=last_taken_data_timestamp,operator bool,seconds,operator-,now,value
+   Controller::check_cyclic_message_timeout.if1 <branch/if> d=1 L154
+*    Controller::check_cyclic_message_timeout.if1.then <alternative/then> d=1 L154 [2003-2004] calls=summary,basic_string,add,basic_string
+*    Controller::check_cyclic_message_timeout.if1.else <alternative/else> d=1 L154 [2005] empty
+   Controller::check_cyclic_message_timeout.if2 <branch/if> d=1 L161
+*    Controller::check_cyclic_message_timeout.if2.then <alternative/then> d=1 L161 [2006-2007] calls=summary,basic_string,add,basic_string,operator+,operator+,to_string
+*    Controller::check_cyclic_message_timeout.if2.else <alternative/else> d=1 L164 [2008-2009] calls=summary,basic_string,add,basic_string
+*Controller::processData <function> d=0 L170 [2010-2011] calls=operator(),basic_string,operator(),basic_string,operator(),basic_string,operator(),basic_string,operator(),basic_string
+*Controller::isTimeOut <function> d=0 L198 [2012-2013] calls=now,seconds,operator-,Time,seconds,operator-,Time
+   Controller::isTimeOut.if1 <branch/if> d=1 L203
+*    Controller::isTimeOut.if1.then <alternative/then> d=1 L203 [2014-2015]
+*    Controller::isTimeOut.if1.else <alternative/else> d=1 L203 [2016] empty
+   Controller::isTimeOut.if2 <branch/if> d=1 L209
+*    Controller::isTimeOut.if2.then <alternative/then> d=1 L209 [2017-2018]
+*    Controller::isTimeOut.if2.else <alternative/else> d=1 L209 [2019] empty
+*Controller::createInputData <function> d=0 L218 [2020-2021] calls=processData,InputData,operator=,operator*,operator=,operator*,operator=,operator*,operator=,operator*,operator=,operator*,optional
+   Controller::createInputData.if1 <branch/if> d=1 L220
+     Controller::createInputData.if1.then <alternative/then> d=1 L220 [2022-2023] calls=optional
+*    Controller::createInputData.if1.else <alternative/else> d=1 L220 [2024] empty
+*Controller::callbackTimerControl <function> d=0 L234 [2025-2026] calls=Control_,operator=,operator Time_,now,createInputData,operator*,get_clock,operator!,isReady,operator->,operator*,isReady,operator->,operator*,tic,run,operator->,operator*,publishProcessingTime,toc,shared_ptr,tic,run,operator->,operator*,publishProcessingTime,toc,shared_ptr,sync,operator->,sync,operator->,isTimeOut,force_update,operator->,operator=,operator=,publish,operator->,publish_if_subscribed,operator->,Time,publishDebugMarker,operator* job
+   Controller::callbackTimerControl.if1 <branch/if> d=1 L241
+*    Controller::callbackTimerControl.if1.then <alternative/then> d=1 L241 [2027-2028]
+*    Controller::callbackTimerControl.if1.else <alternative/else> d=1 L241 [2029] empty
+   Controller::callbackTimerControl.if2 <branch/if> d=1 L250
+*    Controller::callbackTimerControl.if2.then <alternative/then> d=1 L250 [2030-2031]
+*    Controller::callbackTimerControl.if2.else <alternative/else> d=1 L250 [2032] empty
+   Controller::callbackTimerControl.if3 <branch/if> d=1 L271
+*    Controller::callbackTimerControl.if3.then <alternative/then> d=1 L271 [2033-2034]
+*    Controller::callbackTimerControl.if3.else <alternative/else> d=1 L271 [2035] empty
+   Controller::callbackTimerControl.if4 <branch/if> d=1 L286
+*    Controller::callbackTimerControl.if4.then <alternative/then> d=1 L286 [2036-2037] calls=mergeLatLonHorizon,now,has_value
+       Controller::callbackTimerControl.if4.then.if1 <branch/if> d=2 L289
+*        Controller::callbackTimerControl.if4.then.if1.then <alternative/then> d=2 L289 [2038-2039] calls=publish,operator->,value
+*        Controller::callbackTimerControl.if4.then.if1.else <alternative/else> d=2 L289 [2040] empty
+*    Controller::callbackTimerControl.if4.else <alternative/else> d=1 L286 [2041] empty
+*Controller::publishDebugMarker <function> d=0 L295 [2042-2043] calls=MarkerArray_,create_default_marker,basic_string,now,basic_string,create_marker_scale,create_marker_color,operator=,basic_stringstream,operator<<,operator<<,operator<<,operator<<,operator<<,operator<<,operator<<,operator=,str,push_back,publish,operator->
+*Controller::publishProcessingTime <function> d=0 L323 [2044-2045] calls=Float64Stamped_,operator=,operator Time_,now,publish,operator->
+*Controller::mergeLatLonHorizon <function> d=0 L332 [2046-2047] calls=empty,empty,ControlHorizon_,operator=,operator Time_,size,size,operator(),resampleHorizonByZeroOrderHold,resampleHorizonByZeroOrderHold,size,size,size,optional
+   Controller::mergeLatLonHorizon.if1 <branch/if> d=1 L336
+*    Controller::mergeLatLonHorizon.if1.then <alternative/then> d=1 L336 [2048-2049] calls=optional,nullopt_t
+*    Controller::mergeLatLonHorizon.if1.else <alternative/else> d=1 L336 [2050] empty
+   Controller::mergeLatLonHorizon.if2 <branch/if> d=1 L344
+*    Controller::mergeLatLonHorizon.if2.then <alternative/then> d=1 L344 [2051-2052] calls=Lateral_,front,operator*,optional
+*      Controller::mergeLatLonHorizon.if2.then.L1 <loop/for-range> d=2 L347 [2053-2054]
+*        Controller::mergeLatLonHorizon.if2.then.L1.body <loop_body/for-range> d=2 L347 [2055-2056] calls=Control_,operator=,operator=,operator=,operator Time_,push_back
+*    Controller::mergeLatLonHorizon.if2.else <alternative/else> d=1 L344 [2057] empty
+   Controller::mergeLatLonHorizon.if3 <branch/if> d=1 L356
+*    Controller::mergeLatLonHorizon.if3.then <alternative/then> d=1 L356 [2058-2059] calls=Longitudinal_,front,operator*,optional
+*      Controller::mergeLatLonHorizon.if3.then.L1 <loop/for-range> d=2 L359 [2060-2061]
+*        Controller::mergeLatLonHorizon.if3.then.L1.body <loop_body/for-range> d=2 L359 [2062-2063] calls=Control_,operator=,operator=,operator=,operator Time_,push_back
+*    Controller::mergeLatLonHorizon.if3.else <alternative/else> d=1 L356 [2064] empty
+   Controller::mergeLatLonHorizon.if4 <branch/if> d=1 L386
+*    Controller::mergeLatLonHorizon.if4.then <alternative/then> d=1 L386 [2065-2066] calls=optional,nullopt_t
+*    Controller::mergeLatLonHorizon.if4.else <alternative/else> d=1 L386 [2067] empty
+*  Controller::mergeLatLonHorizon.L1 <loop/for> d=1 L391 [2068-2069]
+*    Controller::mergeLatLonHorizon.L1.body <loop_body/for> d=1 L391 [2070-2071] calls=Control_,operator=,operator Time_,operator=,at,operator=,at,push_back
+
+# stderr
+warning: statement expanded from a macro at line 204 is treated as part of Controller::isTimeOut.if1.then
+warning: statement expanded from a macro at line 210 is treated as part of Controller::isTimeOut.if2.then
+warning: statement expanded from a macro at line 242 is treated as part of Controller::callbackTimerControl.if1.then
+warning: statement expanded from a macro at line 251 is treated as part of Controller::callbackTimerControl.if2.then
+wrote /home/atsushi/autoware/src/universe/autoware_universe/control/autoware_trajectory_follower_node/src/controller_node.cpp and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/autoware/schemas/autoware_trajectory_follower_node/controller_node.cpp.schema.json (41 instrumented units, ids 2001..2071)

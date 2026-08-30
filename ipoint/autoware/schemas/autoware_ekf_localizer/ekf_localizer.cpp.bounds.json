@@ -1,0 +1,10 @@
+{
+ "EKFLocalizer::timer_callback.if3.then.L1": {
+  "bound": 5,
+  "source": "parameter max_pose_queue_size (AgedObjectQueue::push enforces it)"
+ },
+ "EKFLocalizer::timer_callback.if4.then.L1": {
+  "bound": 2,
+  "source": "parameter max_twist_queue_size (AgedObjectQueue::push enforces it)"
+ }
+}

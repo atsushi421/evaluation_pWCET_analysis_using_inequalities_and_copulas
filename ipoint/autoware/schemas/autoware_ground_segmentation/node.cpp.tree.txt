@@ -1,0 +1,94 @@
+*ScanGroundFilterComponent::convertPointcloud <function> d=0 L133 [3201-3202] calls=unique_ptr,operator bool,resize,PointData,size,operator->,operator->,unique_ptr,operator bool,PointXYZ,unique_ptr,operator bool
+   ScanGroundFilterComponent::convertPointcloud.if1 <branch/if> d=1 L138
+*    ScanGroundFilterComponent::convertPointcloud.if1.then <alternative/then> d=1 L138 [3203-3204] calls=operator=,make_unique,operator*
+*    ScanGroundFilterComponent::convertPointcloud.if1.else <alternative/else> d=1 L138 [3205] empty
+   ScanGroundFilterComponent::convertPointcloud.if2 <branch/if> d=1 L150
+*    ScanGroundFilterComponent::convertPointcloud.if2.then <alternative/then> d=1 L151 [3206-3207] calls=operator=,make_unique,operator*
+*    ScanGroundFilterComponent::convertPointcloud.if2.else <alternative/else> d=1 L150 [3208] empty
+   ScanGroundFilterComponent::convertPointcloud.L1 <loop/for> d=1 L154 [3209-3210]
+     ScanGroundFilterComponent::convertPointcloud.L1.body <loop_body/for> d=1 L155 [3211-3212] calls=getPoint,hypot,normalize_radian,atan2,floor,emplace_back,operator[]
+   ScanGroundFilterComponent::convertPointcloud.if3 <branch/if> d=1 L175
+*    ScanGroundFilterComponent::convertPointcloud.if3.then <alternative/then> d=1 L175 [3213-3214] calls=operator=,make_unique,operator*
+*    ScanGroundFilterComponent::convertPointcloud.if3.else <alternative/else> d=1 L175 [3215] empty
+   ScanGroundFilterComponent::convertPointcloud.L2 <loop/for> d=1 L177 [3216-3217]
+     ScanGroundFilterComponent::convertPointcloud.L2.body <loop_body/for> d=1 L177 [3218-3219] calls=sort,begin,operator[],end,operator[]
+*ScanGroundFilterComponent::calcVirtualGroundOrigin <function> d=0 L185 [3220-3221]
+*ScanGroundFilterComponent::classifyPointCloud <function> d=0 L192 [3222-3223] calls=unique_ptr,operator bool,clear,PointXYZ,PointXYZ,calcVirtualGroundOrigin,size
+   ScanGroundFilterComponent::classifyPointCloud.if1 <branch/if> d=1 L198
+*    ScanGroundFilterComponent::classifyPointCloud.if1.then <alternative/then> d=1 L198 [3224-3225] calls=operator=,make_unique,operator*
+*    ScanGroundFilterComponent::classifyPointCloud.if1.else <alternative/else> d=1 L198 [3226] empty
+   ScanGroundFilterComponent::classifyPointCloud.L1 <loop/for> d=1 L207 [3227-3228]
+     ScanGroundFilterComponent::classifyPointCloud.L1.body <loop_body/for> d=1 L207 [3229-3230] calls=PointsCentroid,PointsCentroid,PointXYZ,PointXYZ,PointXYZ,size,operator[]
+       ScanGroundFilterComponent::classifyPointCloud.L1.body.L1 <loop/for> d=2 L216 [3231-3232]
+         ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body <loop_body/for> d=2 L216 [3233-3234] calls=operator=,operator[],operator[],getPoint
+           ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if1 <branch/if> d=3 L229
+             ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if1.then <alternative/then> d=3 L229 [3235-3236] calls=hypot,initialize,initialize,calc_distance3d
+               ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if1.then.if1 <branch/if> d=4 L231
+                 ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if1.then.if1.then <alternative/then> d=4 L231 [3237-3238] calls=operator=
+                 ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if1.then.if1.else <alternative/else> d=4 L233 [3239-3240] calls=operator=
+             ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if1.else <alternative/else> d=3 L241 [3241-3242] calls=calc_distance3d
+           ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if2 <branch/if> d=3 L248
+             ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if2.then <alternative/then> d=3 L248 [3243-3244] calls=getAverageHeight
+             ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if2.else <alternative/else> d=3 L248 [3245] empty
+           ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if3 <branch/if> d=3 L256
+             ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if3.then <alternative/then> d=3 L256 [3246-3247]
+               ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if3.then.if1 <branch/if> d=4 L257
+                 ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if3.then.if1.then <alternative/then> d=4 L257 [3248-3249] calls=getAverageHeight,getAverageRadius
+                 ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if3.then.if1.else <alternative/else> d=4 L257 [3250] empty
+             ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if3.else <alternative/else> d=3 L256 [3251] empty
+           ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if4 <branch/if> d=3 L265
+             ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if4.then <alternative/then> d=3 L265 [3252-3253]
+             ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if4.else <alternative/else> d=3 L268 [3254-3255] calls=abs
+               ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if4.else.if1 <branch/if> d=4 L268
+                 ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if4.else.if1.then <alternative/then> d=4 L270 [3256-3257]
+                 ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if4.else.if1.else <alternative/else> d=4 L272 [3258-3259] calls=abs
+                   ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if4.else.if1.else.if1 <branch/if> d=5 L272
+                     ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if4.else.if1.else.if1.then <alternative/then> d=5 L274 [3260-3261]
+                     ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if4.else.if1.else.if1.else <alternative/else> d=5 L272 [3262] empty
+           ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if5 <branch/if> d=3 L280
+             ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if5.then <alternative/then> d=3 L280 [3263-3264] calls=atan2
+               ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if5.then.if1 <branch/if> d=4 L283
+                 ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if5.then.if1.then <alternative/then> d=4 L283 [3265-3266]
+                 ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if5.then.if1.else <alternative/else> d=4 L286 [3267-3268]
+             ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if5.else <alternative/else> d=3 L280 [3269] empty
+           ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if6 <branch/if> d=3 L291
+             ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if6.then <alternative/then> d=3 L291 [3270-3271] calls=initialize,initialize
+             ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if6.else <alternative/else> d=3 L291 [3272] empty
+           ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if7 <branch/if> d=3 L295
+             ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if7.then <alternative/then> d=3 L295 [3273-3274] calls=push_back
+             ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if7.else <alternative/else> d=3 L297 [3275-3276]
+               ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if7.else.if1 <branch/if> d=4 L297
+                 ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if7.else.if1.then <alternative/then> d=4 L297 [3277-3278]
+                 ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if7.else.if1.else <alternative/else> d=4 L299 [3279] empty
+           ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if8 <branch/if> d=3 L303
+             ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if8.then <alternative/then> d=3 L303 [3280-3281] calls=operator=,PointXYZ,addPoint,getAverageSlope
+             ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if8.else <alternative/else> d=3 L303 [3282] empty
+           ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if9 <branch/if> d=3 L310
+             ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if9.then <alternative/then> d=3 L310 [3283-3284] calls=addPoint
+             ScanGroundFilterComponent::classifyPointCloud.L1.body.L1.body.if9.else <alternative/else> d=3 L310 [3285] empty
+*ScanGroundFilterComponent::extractObjectPoints <function> d=0 L317 [3286-3287] calls=unique_ptr,operator bool,operator*
+   ScanGroundFilterComponent::extractObjectPoints.if1 <branch/if> d=1 L322
+*    ScanGroundFilterComponent::extractObjectPoints.if1.then <alternative/then> d=1 L322 [3288-3289] calls=operator=,make_unique,operator*
+*    ScanGroundFilterComponent::extractObjectPoints.if1.else <alternative/else> d=1 L322 [3290] empty
+   ScanGroundFilterComponent::extractObjectPoints.L1 <loop/for-range> d=1 L326 [3291-3292]
+     ScanGroundFilterComponent::extractObjectPoints.L1.body <loop_body/for-range> d=1 L326 [3293-3294] calls=memcpy,operator[],operator[],operator->,operator->,operator->
+*ScanGroundFilterComponent::faster_filter <function> d=0 L334 [3295-3296] calls=unique_ptr,operator bool,scoped_lock,operator bool,isInitialized,PointIndices,size,operator->,resize,size,operator=,operator->,operator->,operator->,operator->,operator=,operator->,extractObjectPoints,operator bool,operator bool job
+   ScanGroundFilterComponent::faster_filter.if1 <branch/if> d=1 L340
+*    ScanGroundFilterComponent::faster_filter.if1.then <alternative/then> d=1 L340 [3297-3298] calls=operator=,make_unique,operator*
+*    ScanGroundFilterComponent::faster_filter.if1.else <alternative/else> d=1 L340 [3299] empty
+   ScanGroundFilterComponent::faster_filter.if2 <branch/if> d=1 L343
+*    ScanGroundFilterComponent::faster_filter.if2.then <alternative/then> d=1 L343 [3300-3301] calls=toc,operator->
+*    ScanGroundFilterComponent::faster_filter.if2.else <alternative/else> d=1 L343 [3302] empty
+   ScanGroundFilterComponent::faster_filter.if3 <branch/if> d=1 L345
+*    ScanGroundFilterComponent::faster_filter.if3.then <alternative/then> d=1 L345 [3303-3304] calls=setField,setDataAccessor,operator->
+*    ScanGroundFilterComponent::faster_filter.if3.else <alternative/else> d=1 L345 [3305] empty
+   ScanGroundFilterComponent::faster_filter.if4 <branch/if> d=1 L352
+*    ScanGroundFilterComponent::faster_filter.if4.then <alternative/then> d=1 L352 [3306-3307] calls=process,operator->
+*    ScanGroundFilterComponent::faster_filter.if4.else <alternative/else> d=1 L354 [3308-3309] calls=vector,convertPointcloud,classifyPointCloud
+   ScanGroundFilterComponent::faster_filter.if5 <branch/if> d=1 L370
+*    ScanGroundFilterComponent::faster_filter.if5.then <alternative/then> d=1 L370 [3310-3311] calls=toc,operator->,toc,operator->,publish,operator->,basic_string,publish,operator->,basic_string
+*    ScanGroundFilterComponent::faster_filter.if5.else <alternative/else> d=1 L370 [3312] empty
+*ScanGroundFilterComponent::filter <function> d=0 L382 [3313-3314]
+
+# stderr
+wrote /home/atsushi/autoware/src/universe/autoware_universe/perception/autoware_ground_segmentation/src/scan_ground_filter/node.cpp and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/autoware/schemas/autoware_ground_segmentation/node.cpp.schema.json (26 instrumented units, ids 3201..3314)

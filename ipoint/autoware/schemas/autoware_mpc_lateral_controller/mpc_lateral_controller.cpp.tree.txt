@@ -1,0 +1,105 @@
+*MpcLateralController::run <function> d=0 L245 [2301-2302] calls=setTrajectory,operator=,operator=,invoke,filter,operator->,Lateral_,Trajectory_,Float32MultiArrayStamped_,calculateMPC,operator->,operator!=,operator=,publishPredictedTraj,publishDebugValues,isStoppedState,operator=,operator()
+   MpcLateralController::run.if1 <branch/if> d=1 L277
+     MpcLateralController::run.if1.then <alternative/then> d=1 L277 [2303-2304] calls=operator=,getInitialControlCommand
+*    MpcLateralController::run.if1.else <alternative/else> d=1 L277 [2305] empty
+   MpcLateralController::run.if2 <branch/if> d=1 L287
+*    MpcLateralController::run.if2.then <alternative/then> d=1 L289 [2306-2307]
+*    MpcLateralController::run.if2.else <alternative/else> d=1 L287 [2308] empty
+   MpcLateralController::run.if3 <branch/if> d=1 L299
+     MpcLateralController::run.if3.then <alternative/then> d=1 L299 [2309-2310] calls=resetPrevResult,operator->
+*    MpcLateralController::run.if3.else <alternative/else> d=1 L301 [2311-2312] calls=setSteeringToHistory
+   MpcLateralController::run.if4 <branch/if> d=1 L328
+*    MpcLateralController::run.if4.then <alternative/then> d=1 L328 [2313-2314] calls=debug_throttle,operator*,operator->,operator->,operator()
+*      MpcLateralController::run.if4.then.L1 <loop/for-range> d=2 L331 [2315-2316]
+*        MpcLateralController::run.if4.then.L1.body <loop_body/for-range> d=2 L331 [2317-2318]
+*    MpcLateralController::run.if4.else <alternative/else> d=1 L328 [2319] empty
+   MpcLateralController::run.if5 <branch/if> d=1 L339
+*    MpcLateralController::run.if5.then <alternative/then> d=1 L339 [2320-2321] calls=debug_throttle,operator=,getStopControlCommand
+*    MpcLateralController::run.if5.else <alternative/else> d=1 L339 [2322] empty
+*MpcLateralController::isSteerConverged <function> d=0 L348 [2323-2324] calls=isTrajectoryShapeChanged,abs
+   MpcLateralController::isSteerConverged.if1 <branch/if> d=1 L352
+*    MpcLateralController::isSteerConverged.if1.then <alternative/then> d=1 L352 [2325-2326]
+*    MpcLateralController::isSteerConverged.if1.else <alternative/else> d=1 L352 [2327] empty
+*MpcLateralController::isReady <function> d=0 L364 [2328-2329] calls=setTrajectory,operator=,operator=,hasVehicleModel,operator->,hasQPSolver,operator->,empty,operator->
+   MpcLateralController::isReady.if1 <branch/if> d=1 L370
+*    MpcLateralController::isReady.if1.then <alternative/then> d=1 L370 [2330-2331] calls=info_throttle
+*    MpcLateralController::isReady.if1.else <alternative/else> d=1 L370 [2332] empty
+   MpcLateralController::isReady.if2 <branch/if> d=1 L374
+*    MpcLateralController::isReady.if2.then <alternative/then> d=1 L374 [2333-2334] calls=info_throttle
+*    MpcLateralController::isReady.if2.else <alternative/else> d=1 L374 [2335] empty
+   MpcLateralController::isReady.if3 <branch/if> d=1 L378
+*    MpcLateralController::isReady.if3.then <alternative/then> d=1 L378 [2336-2337] calls=info_throttle
+*    MpcLateralController::isReady.if3.else <alternative/else> d=1 L378 [2338] empty
+*MpcLateralController::setTrajectory <function> d=0 L386 [2339-2340] calls=operator=,size,isValidTrajectory,setReferenceTrajectory,operator->,push_back,ok
+   MpcLateralController::setTrajectory.if1 <branch/if> d=1 L391
+*    MpcLateralController::setTrajectory.if1.then <alternative/then> d=1 L391 [2341-2342]
+*    MpcLateralController::setTrajectory.if1.else <alternative/else> d=1 L391 [2343] empty
+   MpcLateralController::setTrajectory.if2 <branch/if> d=1 L396
+*    MpcLateralController::setTrajectory.if2.then <alternative/then> d=1 L396 [2344-2345]
+*    MpcLateralController::setTrajectory.if2.else <alternative/else> d=1 L396 [2346] empty
+*  MpcLateralController::setTrajectory.L1 <loop/while> d=1 L405 [2347-2348]
+*    MpcLateralController::setTrajectory.L1.body <loop_body/while> d=1 L405 [2349-2350] calls=operator-,Time,back,Time,front,seconds,pop_front
+       MpcLateralController::setTrajectory.L1.body.if1 <branch/if> d=2 L412
+         MpcLateralController::setTrajectory.L1.body.if1.then <alternative/then> d=2 L412 [2351-2352]
+*        MpcLateralController::setTrajectory.L1.body.if1.else <alternative/else> d=2 L412 [2353] empty
+*MpcLateralController::getStopControlCommand <function> d=0 L420 [2354-2355] calls=Lateral_,Lateral_
+ MpcLateralController::getInitialControlCommand <function> d=0 L428 [2356-2357] calls=Lateral_,Lateral_
+ MpcLateralController::isStoppedState <function> d=0 L436 [2358-2359] calls=empty,fabs,Lateral_,isSteerConverged,findFirstNearestIndexWithSoftConstraints,invoke,fabs
+   MpcLateralController::isStoppedState.if1 <branch/if> d=1 L440
+     MpcLateralController::isStoppedState.if1.then <alternative/then> d=1 L441 [2360-2361]
+     MpcLateralController::isStoppedState.if1.else <alternative/else> d=1 L440 [2362] empty
+   MpcLateralController::isStoppedState.if2 <branch/if> d=1 L446
+     MpcLateralController::isStoppedState.if2.then <alternative/then> d=1 L446 [2363-2364] calls=debug_throttle
+     MpcLateralController::isStoppedState.if2.else <alternative/else> d=1 L446 [2365] empty
+ MpcLateralController::createCtrlCmdMsg <function> d=0 L478 [2366-2367] calls=Lateral_,operator=,operator Time_,now,operator->,Lateral_
+*MpcLateralController::createCtrlCmdHorizonMsg <function> d=0 L486 [2368-2369] calls=LateralHorizon,now,operator->,operator*,LateralHorizon
+*  MpcLateralController::createCtrlCmdHorizonMsg.L1 <loop/for-range> d=1 L491 [2370-2371]
+     MpcLateralController::createCtrlCmdHorizonMsg.L1.body <loop_body/for-range> d=1 L491 [2372-2373] calls=operator=,operator Time_
+*MpcLateralController::publishPredictedTraj <function> d=0 L497 [2374-2375] calls=operator=,operator Time_,now,operator->,operator=,publish,operator->
+*MpcLateralController::publishDebugValues <function> d=0 L504 [2376-2377] calls=operator=,operator Time_,now,operator->,publish,operator->,Float32Stamped_,operator=,operator Time_,now,operator->,publish,operator->
+*MpcLateralController::setSteeringToHistory <function> d=0 L515 [2378-2379] calls=now,operator->,empty,emplace_back,seconds,operator-,operator->,begin
+   MpcLateralController::setSteeringToHistory.if1 <branch/if> d=1 L518
+*    MpcLateralController::setSteeringToHistory.if1.then <alternative/then> d=1 L518 [2380-2381] calls=emplace_back
+*    MpcLateralController::setSteeringToHistory.if1.else <alternative/else> d=1 L518 [2382] empty
+   MpcLateralController::setSteeringToHistory.if2 <branch/if> d=1 L527
+*    MpcLateralController::setSteeringToHistory.if2.then <alternative/then> d=1 L527 [2383-2384] calls=begin,operator!=,end,operator++
+*      MpcLateralController::setSteeringToHistory.if2.then.L1 <loop/for> d=2 L530 [2385-2386]
+*        MpcLateralController::setSteeringToHistory.if2.then.L1.body <loop_body/for> d=2 L530 [2387-2388] calls=seconds,operator-,operator->
+           MpcLateralController::setSteeringToHistory.if2.then.L1.body.if1 <branch/if> d=3 L531
+*            MpcLateralController::setSteeringToHistory.if2.then.L1.body.if1.then <alternative/then> d=3 L531 [2389-2390] calls=erase,__normal_iterator,begin
+*            MpcLateralController::setSteeringToHistory.if2.then.L1.body.if1.else <alternative/else> d=3 L533 [2391-2392]
+*    MpcLateralController::setSteeringToHistory.if2.else <alternative/else> d=1 L537 [2393-2394]
+ MpcLateralController::isMpcConverged <function> d=0 L542 [2395-2396] calls=size,operator[],size
+   MpcLateralController::isMpcConverged.if1 <branch/if> d=1 L545
+     MpcLateralController::isMpcConverged.if1.then <alternative/then> d=1 L545 [2397-2398]
+     MpcLateralController::isMpcConverged.if1.else <alternative/else> d=1 L545 [2399] empty
+   MpcLateralController::isMpcConverged.if2 <branch/if> d=1 L551
+     MpcLateralController::isMpcConverged.if2.then <alternative/then> d=1 L551 [2400-2401]
+     MpcLateralController::isMpcConverged.if2.else <alternative/else> d=1 L551 [2402] empty
+   MpcLateralController::isMpcConverged.L1 <loop/for> d=1 L558 [2403-2404]
+     MpcLateralController::isMpcConverged.L1.body <loop_body/for> d=1 L558 [2405-2406] calls=at,at
+       MpcLateralController::isMpcConverged.L1.body.if1 <branch/if> d=2 L559
+         MpcLateralController::isMpcConverged.L1.body.if1.then <alternative/then> d=2 L559 [2407-2408] calls=at
+         MpcLateralController::isMpcConverged.L1.body.if1.else <alternative/else> d=2 L559 [2409] empty
+       MpcLateralController::isMpcConverged.L1.body.if2 <branch/if> d=2 L562
+         MpcLateralController::isMpcConverged.L1.body.if2.then <alternative/then> d=2 L562 [2410-2411] calls=at
+         MpcLateralController::isMpcConverged.L1.body.if2.else <alternative/else> d=2 L562 [2412] empty
+*MpcLateralController::isTrajectoryShapeChanged <function> d=0 L672 [2413-2414] calls=operator*
+*  MpcLateralController::isTrajectoryShapeChanged.L1 <loop/for-range> d=1 L676 [2415-2416]
+*    MpcLateralController::isTrajectoryShapeChanged.L1.body <loop_body/for-range> d=1 L676 [2417-2418] calls=calc_distance2d,back,back
+       MpcLateralController::isTrajectoryShapeChanged.L1.body.if1 <branch/if> d=2 L679
+*        MpcLateralController::isTrajectoryShapeChanged.L1.body.if1.then <alternative/then> d=2 L679 [2419-2420]
+*        MpcLateralController::isTrajectoryShapeChanged.L1.body.if1.else <alternative/else> d=2 L679 [2421] empty
+*MpcLateralController::isValidTrajectory <function> d=0 L686 [2422-2423] calls=operator*
+*  MpcLateralController::isValidTrajectory.L1 <loop/for-range> d=1 L688 [2424-2425]
+     MpcLateralController::isValidTrajectory.L1.body <loop_body/for-range> d=1 L688 [2426-2427] calls=isfinite,isfinite,isfinite,isfinite,isfinite,isfinite,isfinite,isfinite,isfinite,isfinite,isfinite
+       MpcLateralController::isValidTrajectory.L1.body.if1 <branch/if> d=2 L689
+         MpcLateralController::isValidTrajectory.L1.body.if1.then <alternative/then> d=2 L695 [2428-2429]
+         MpcLateralController::isValidTrajectory.L1.body.if1.else <alternative/else> d=2 L689 [2430] empty
+
+# stderr
+warning: statement expanded from a macro at line 290 is treated as part of MpcLateralController::run.if2.then
+warning: statement expanded from a macro at line 353 is treated as part of MpcLateralController::isSteerConverged.if1.then
+warning: statement expanded from a macro at line 392 is treated as part of MpcLateralController::setTrajectory.if1.then
+warning: statement expanded from a macro at line 397 is treated as part of MpcLateralController::setTrajectory.if2.then
+wrote /home/atsushi/autoware/src/universe/autoware_universe/control/autoware_mpc_lateral_controller/src/mpc_lateral_controller.cpp and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/autoware/schemas/autoware_mpc_lateral_controller/mpc_lateral_controller.cpp.schema.json (50 instrumented units, ids 2301..2430)

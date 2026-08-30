@@ -1,0 +1,5 @@
+{
+ "autoware_core": {"commit": "f25f83c632c1984ec276c894c41857d4abc0dad8", "patch": "autoware_core.patch", "paths": "localization/autoware_stop_filter localization/autoware_twist2accel localization/autoware_ndt_scan_matcher localization/autoware_ekf_localizer ", "lines": 1167},
+ "autoware_universe": {"commit": "6e477c645efec33f7909095eea684474e97f5e3d", "patch": "autoware_universe.patch", "paths": "perception/autoware_ground_segmentation control/autoware_lane_departure_checker control/autoware_pid_longitudinal_controller control/autoware_mpc_lateral_controller control/autoware_trajectory_follower_node ", "lines": 2669},
+ "autoware_launch": {"commit": "f942598d44b5769353167c76b784323d5c14c8c7", "patch": "autoware_launch.patch", "paths": "tier4_universe_launch/tier4_control_launch/launch/control.launch.xml autoware_launch/config/localization/ndt_scan_matcher/ndt_scan_matcher.param.yaml ", "lines": 23}
+}

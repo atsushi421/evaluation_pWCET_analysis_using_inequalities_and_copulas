@@ -1,0 +1,74 @@
+*EKFModule::get_current_pose <function> d=0 L105 [1301-1302] calls=get_x,get_x,get_x,getXelement,getXelement,getXelement,getXelement,PoseStamped_,operator=,operator=,operator Time_,operator=,create_point,PoseStamped_
+   EKFModule::get_current_pose.if1 <branch/if> d=1 L127
+     EKFModule::get_current_pose.if1.then <alternative/then> d=1 L127 [1303-1304] calls=operator=,create_quaternion_from_rpy
+*    EKFModule::get_current_pose.if1.else <alternative/else> d=1 L130 [1305-1306] calls=operator=,create_quaternion_from_rpy
+*EKFModule::get_current_twist <function> d=0 L137 [1307-1308] calls=getXelement,getXelement,TwistStamped_,operator=,operator=,operator Time_,TwistStamped_
+*EKFModule::get_current_pose_covariance <function> d=0 L151 [1309-1310] calls=ekf_covariance_to_pose_message_covariance,Matrix,getLatestP,operator[],get_var,operator[],get_var,operator[],get_var,array
+*EKFModule::find_closest_delay_time_index <function> d=0 L174 [1311-1312] calls=empty,back,lower_bound,begin,end,operator==,begin,operator==,end,operator-,operator*,operator*,distance,begin,__normal_iterator,distance,begin,__normal_iterator
+   EKFModule::find_closest_delay_time_index.if1 <branch/if> d=1 L180
+*    EKFModule::find_closest_delay_time_index.if1.then <alternative/then> d=1 L180 [1313-1314]
+*    EKFModule::find_closest_delay_time_index.if1.else <alternative/else> d=1 L180 [1315] empty
+   EKFModule::find_closest_delay_time_index.if2 <branch/if> d=1 L185
+*    EKFModule::find_closest_delay_time_index.if2.then <alternative/then> d=1 L185 [1316-1317] calls=size
+*    EKFModule::find_closest_delay_time_index.if2.else <alternative/else> d=1 L185 [1318] empty
+   EKFModule::find_closest_delay_time_index.if3 <branch/if> d=1 L195
+     EKFModule::find_closest_delay_time_index.if3.then <alternative/then> d=1 L195 [1319-1320]
+*    EKFModule::find_closest_delay_time_index.if3.else <alternative/else> d=1 L195 [1321] empty
+   EKFModule::find_closest_delay_time_index.if4 <branch/if> d=1 L198
+*    EKFModule::find_closest_delay_time_index.if4.then <alternative/then> d=1 L198 [1322-1323] calls=size
+*    EKFModule::find_closest_delay_time_index.if4.else <alternative/else> d=1 L198 [1324] empty
+*EKFModule::accumulate_delay_time <function> d=0 L210 [1325-1326] calls=copy_backward,begin,operator-,end,end,front,size
+   EKFModule::accumulate_delay_time.L1 <loop/for> d=1 L219 [1327-1328]
+     EKFModule::accumulate_delay_time.L1.body <loop_body/for> d=1 L219 [1329-1330] calls=operator[]
+*EKFModule::predict_with_delay <function> d=0 L224 [1331-1332] calls=Matrix,getLatestX,pow,pow,pow,predict_next_state,create_state_transition_matrix,process_noise_covariance,predictWithDelay,Matrix,Matrix,Matrix
+*EKFModule::measurement_update_pose <function> d=0 L239 [1333-1334] calls=operator!=,getLatestX,seconds,operator-,Time,max,find_closest_delay_time_index,max,back,getYaw,getXelement,normalize_yaw,Matrix,operator,,operator,,operator<<,has_nan,has_inf,Matrix,getXelement,getXelement,getLatestP,Matrix,block,mahalanobis,Matrix,Matrix,max,pose_measurement_matrix,pose_measurement_covariance,updateWithDelay,Matrix,Matrix,compensate_rph_with_delay,Vector3,update_simple_1d_filters,getLatestX
+   EKFModule::measurement_update_pose.if1 <branch/if> d=1 L242
+*    EKFModule::measurement_update_pose.if1.then <alternative/then> d=1 L242 [1335-1336] calls=warn_throttle,operator->,format,basic_format_string,c_str,c_str
+*    EKFModule::measurement_update_pose.if1.else <alternative/else> d=1 L242 [1337] empty
+   EKFModule::measurement_update_pose.if2 <branch/if> d=1 L256
+*    EKFModule::measurement_update_pose.if2.then <alternative/then> d=1 L256 [1338-1339] calls=warn_throttle,operator->,pose_delay_time_warning_message
+*    EKFModule::measurement_update_pose.if2.else <alternative/else> d=1 L256 [1340] empty
+   EKFModule::measurement_update_pose.if3 <branch/if> d=1 L268
+*    EKFModule::measurement_update_pose.if3.then <alternative/then> d=1 L268 [1341-1342] calls=warn_throttle,operator->,pose_delay_step_warning_message
+*    EKFModule::measurement_update_pose.if3.else <alternative/else> d=1 L268 [1343] empty
+   EKFModule::measurement_update_pose.if4 <branch/if> d=1 L289
+*    EKFModule::measurement_update_pose.if4.then <alternative/then> d=1 L289 [1344-1345] calls=warn,operator->,basic_string
+*    EKFModule::measurement_update_pose.if4.else <alternative/else> d=1 L289 [1346] empty
+   EKFModule::measurement_update_pose.if5 <branch/if> d=1 L306
+*    EKFModule::measurement_update_pose.if5.then <alternative/then> d=1 L306 [1347-1348] calls=warn_throttle,operator->,mahalanobis_warning_message,warn_throttle,operator->,basic_string
+*    EKFModule::measurement_update_pose.if5.else <alternative/else> d=1 L306 [1349] empty
+*EKFModule::compensate_rph_with_delay <function> d=0 L337 [1350-1351] calls=Quaternion,length,Quaternion,Quaternion,operator=,operator*,normalize,PoseWithCovarianceStamped_,operator=,operator=,operator Time_,operator+,Time,from_seconds,x,y,z,w,get_rpy,getXelement,sin,PoseWithCovarianceStamped_
+   EKFModule::compensate_rph_with_delay.if1 <branch/if> d=1 L341
+     EKFModule::compensate_rph_with_delay.if1.then <alternative/then> d=1 L341 [1352-1353] calls=setRotation,normalized,length
+     EKFModule::compensate_rph_with_delay.if1.else <alternative/else> d=1 L344 [1354-1355] calls=setValue
+*EKFModule::measurement_update_twist <function> d=0 L372 [1356-1357] calls=operator!=,operator=,Vector3,getLatestX,seconds,operator-,Time,max,find_closest_delay_time_index,max,back,Matrix,operator,,operator<<,has_nan,has_inf,Matrix,getXelement,getXelement,getLatestP,Matrix,block,mahalanobis,Matrix,Matrix,max,twist_measurement_matrix,twist_measurement_covariance,updateWithDelay,Matrix,Matrix,operator=,Vector3,getLatestX
+   EKFModule::measurement_update_twist.if1 <branch/if> d=1 L376
+*    EKFModule::measurement_update_twist.if1.then <alternative/then> d=1 L376 [1358-1359] calls=warn_throttle,operator->,basic_string
+*    EKFModule::measurement_update_twist.if1.else <alternative/else> d=1 L376 [1360] empty
+   EKFModule::measurement_update_twist.if2 <branch/if> d=1 L389
+*    EKFModule::measurement_update_twist.if2.then <alternative/then> d=1 L389 [1361-1362] calls=warn_throttle,operator->,twist_delay_time_warning_message
+*    EKFModule::measurement_update_twist.if2.else <alternative/else> d=1 L389 [1363] empty
+   EKFModule::measurement_update_twist.if3 <branch/if> d=1 L400
+*    EKFModule::measurement_update_twist.if3.then <alternative/then> d=1 L400 [1364-1365] calls=warn_throttle,operator->,twist_delay_step_warning_message
+*    EKFModule::measurement_update_twist.if3.else <alternative/else> d=1 L400 [1366] empty
+   EKFModule::measurement_update_twist.if4 <branch/if> d=1 L413
+*    EKFModule::measurement_update_twist.if4.then <alternative/then> d=1 L413 [1367-1368] calls=warn,operator->,basic_string
+*    EKFModule::measurement_update_twist.if4.else <alternative/else> d=1 L413 [1369] empty
+   EKFModule::measurement_update_twist.if5 <branch/if> d=1 L429
+*    EKFModule::measurement_update_twist.if5.then <alternative/then> d=1 L429 [1370-1371] calls=warn_throttle,operator->,mahalanobis_warning_message,warn_throttle,operator->,basic_string
+*    EKFModule::measurement_update_twist.if5.else <alternative/else> d=1 L429 [1372] empty
+
+# stderr
+warning: statement expanded from a macro at line 250 is treated as part of EKFModule::measurement_update_pose
+warning: statement expanded from a macro at line 313 is treated as part of EKFModule::measurement_update_pose
+warning: statement expanded from a macro at line 314 is treated as part of EKFModule::measurement_update_pose
+warning: statement expanded from a macro at line 315 is treated as part of EKFModule::measurement_update_pose
+warning: statement expanded from a macro at line 331 is treated as part of EKFModule::measurement_update_pose
+warning: statement expanded from a macro at line 332 is treated as part of EKFModule::measurement_update_pose
+warning: statement expanded from a macro at line 383 is treated as part of EKFModule::measurement_update_twist
+warning: statement expanded from a macro at line 436 is treated as part of EKFModule::measurement_update_twist
+warning: statement expanded from a macro at line 437 is treated as part of EKFModule::measurement_update_twist
+warning: statement expanded from a macro at line 438 is treated as part of EKFModule::measurement_update_twist
+warning: statement expanded from a macro at line 451 is treated as part of EKFModule::measurement_update_twist
+warning: statement expanded from a macro at line 452 is treated as part of EKFModule::measurement_update_twist
+wrote /home/atsushi/autoware/src/core/autoware_core/localization/autoware_ekf_localizer/src/ekf_module.cpp and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/autoware/schemas/autoware_ekf_localizer/ekf_module.cpp.schema.json (37 instrumented units, ids 1301..1372)

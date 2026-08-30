@@ -1,0 +1,9 @@
+ is_stopped <function> d=0 L23 [1901-1902] calls=fabs,fabs
+*StopFilter::create_stop_flag_msg <function> d=0 L38 [1903-1904] calls=BoolStamped_,operator=,is_stopped,BoolStamped_
+*StopFilter::create_filtered_msg <function> d=0 L47 [1905-1906] calls=Odometry_,is_stopped,Odometry_
+   StopFilter::create_filtered_msg.if1 <branch/if> d=1 L51
+     StopFilter::create_filtered_msg.if1.then <alternative/then> d=1 L51 [1907-1908]
+*    StopFilter::create_filtered_msg.if1.else <alternative/else> d=1 L51 [1909] empty
+
+# stderr
+wrote /home/atsushi/autoware/src/core/autoware_core/localization/autoware_stop_filter/src/stop_filter.cpp and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/autoware/schemas/autoware_stop_filter/stop_filter.cpp.schema.json (3 instrumented units, ids 1901..1909)
