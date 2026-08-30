@@ -1,0 +1,11 @@
+--- cnt.c	2026-08-30 15:22:42.567324858 +0900
++++ patched/cnt.c	2026-08-30 15:45:17.538621681 +0900
+@@ -7,7 +7,7 @@
+ 
+ /* #define WORSTCASE 1 */
+ /* #define MAXSIZE 100 Changed JG/Ebbe */
+-#define MAXSIZE 10
++#define MAXSIZE 100
+ 
+ /* Typedefs */
+ typedef int matrix [MAXSIZE][MAXSIZE];
