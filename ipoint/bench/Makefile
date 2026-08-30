@@ -10,7 +10,12 @@ SRC ?= build/$(BENCH)/$(BENCH).ipoint.c
 BUILD ?= build/$(BENCH)/$(MODE)
 CC ?= gcc
 KERNEL_CFLAGS ?= -O2 -fno-builtin
+# extra flags for the kernel object only (e.g. -std=c11 -Dselect=mrtc_select for
+# the kernel whose function clashes with libc); run_campaign.py sets them from
+# BENCHES[b]["kernel_flags"]
+KERNEL_DEFS ?=
 HARNESS_CFLAGS ?= -O2
+LDLIBS ?= -lm
 MODE_UPPER := $(shell echo $(MODE) | tr a-z A-Z)
 CFLAGS_COMMON := -std=gnu11 -Wall -I$(IPOINT_DIR)/include -I$(IPOINT_DIR)/bench/common \
                  -DIPOINT_MODE_$(MODE_UPPER) -DIPOINT_TS_IMPL=$(TS_IMPL)
@@ -22,7 +27,7 @@ $(BUILD):
 	mkdir -p $@
 
 $(BUILD)/kernel.o: $(SRC) $(IPOINT_DIR)/include/ipoint.h | $(BUILD)
-	$(CC) $(KERNEL_CFLAGS) $(CFLAGS_COMMON) -Dmain=ipoint_orig_main -c $< -o $@
+	$(CC) $(KERNEL_CFLAGS) $(CFLAGS_COMMON) -Dmain=ipoint_orig_main $(KERNEL_DEFS) -c $< -o $@
 
 $(BUILD)/kernel.objdump: $(BUILD)/kernel.o
 	objdump -d $< > $@
@@ -34,7 +39,7 @@ $(BUILD)/adapter.o: $(IPOINT_DIR)/bench/$(BENCH)/bench_$(BENCH).c | $(BUILD)
 	$(CC) $(HARNESS_CFLAGS) $(CFLAGS_COMMON) -c $< -o $@
 
 $(EXE): $(BUILD)/kernel.o $(BUILD)/harness.o $(BUILD)/adapter.o
-	$(CC) $^ -o $@
+	$(CC) $^ -o $@ $(LDLIBS)
 
 clean:
 	rm -rf build

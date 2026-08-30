@@ -6,7 +6,7 @@ libclang, insert IPOINT(id) probes at unit boundaries and emit schema.json.
         [--cflags "-std=gnu11 -fno-builtin"] [--entry FUNC] \
         [--max-depth N | --all | --functions-only] \
         [--exclude-function F]... [--exclude-unit UID]... [--include-unit UID]... \
-        [--bounds bounds.json] [--noinline-units] [--dry-run] [--print-tree]
+        [--bounds bounds.json] [--keep-main] [--noinline-units] [--dry-run] [--print-tree]
 
 Insertion rules (all edits are textual, source order preserved):
   function     IPOINT(e) after the opening brace; IPOINT(x) before every
@@ -31,6 +31,7 @@ import hashlib
 import json
 import os
 import re
+import subprocess
 import sys
 from typing import Dict, List, Optional, Tuple
 
@@ -106,6 +107,17 @@ def safe_int_eval(expr: str) -> Optional[int]:
         return None
 
 
+
+def gcc_include_flags() -> List[str]:
+    """The pip `libclang` wheel has no resource directory, so <stddef.h> and
+    friends are only found through the host compiler's include directory."""
+    try:
+        d = subprocess.run(["gcc", "-print-file-name=include"], capture_output=True, text=True, check=True).stdout.strip()
+        return ["-I" + d] if d and os.path.isdir(d) else []
+    except (OSError, subprocess.CalledProcessError):
+        return []
+
+
 class Instrumenter:
     def __init__(self, src_path: str, cflags: List[str], policy: Dict, bounds: Dict[str, Dict]):
         self.src_path = src_path
@@ -116,7 +128,8 @@ class Instrumenter:
             self.src = f.read()
         self.sha256 = hashlib.sha256(self.src).hexdigest()
         idx = cindex.Index.create()
-        self.tu = idx.parse(src_path, args=cflags, options=cindex.TranslationUnit.PARSE_DETAILED_PROCESSING_RECORD)
+        self.tu = idx.parse(src_path, args=cflags + gcc_include_flags(),
+                            options=cindex.TranslationUnit.PARSE_DETAILED_PROCESSING_RECORD)
         fatal = [d for d in self.tu.diagnostics if d.severity >= cindex.Diagnostic.Error]
         for d in self.tu.diagnostics:
             print(f"clang: {d}", file=sys.stderr)
@@ -526,7 +539,8 @@ def main(argv=None) -> int:
     g.add_argument("--max-depth", type=int, default=1, help="instrument units nested up to this depth (function = 0)")
     g.add_argument("--all", action="store_true", help="instrument every unit")
     g.add_argument("--functions-only", action="store_true")
-    ap.add_argument("--exclude-function", action="append", default=["main"], help="skip this function entirely (default: main)")
+    ap.add_argument("--exclude-function", action="append", default=[], help="skip this function entirely")
+    ap.add_argument("--keep-main", action="store_true", help="instrument main() too (it is skipped by default; use when main is the entry)")
     ap.add_argument("--exclude-unit", action="append", default=[])
     ap.add_argument("--include-unit", action="append", default=[])
     ap.add_argument("--bounds", help="json {uid: bound | {bound, source}} for loops without a static bound")
@@ -541,7 +555,8 @@ def main(argv=None) -> int:
         max_depth = 0
     else:
         max_depth = a.max_depth
-    policy = {"max_depth": max_depth, "exclude_functions": a.exclude_function, "exclude_units": a.exclude_unit,
+    exclude_functions = list(a.exclude_function) + ([] if a.keep_main else ["main"])
+    policy = {"max_depth": max_depth, "exclude_functions": exclude_functions, "exclude_units": a.exclude_unit,
               "include_units": a.include_unit, "noinline_units": a.noinline_units}
     bounds = {}
     if a.bounds:

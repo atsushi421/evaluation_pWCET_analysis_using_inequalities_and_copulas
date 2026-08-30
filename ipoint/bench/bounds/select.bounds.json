@@ -1,0 +1,6 @@
+{
+  "select.L1": {"bound": 1000, "source": "every iteration shrinks the active range [l, ir] by at least one element; n = 1000 elements (harness, size patch)"},
+  "select.L1.body.if1.else.if1.then.L1": {"bound": 500, "source": "one swap of a distinct pair per iteration, at most n/2 pairs"},
+  "select.L1.body.if1.else.if1.then.L1.body.L1": {"bound": 1000, "source": "i scans forward within the active range, at most n elements"},
+  "select.L1.body.if1.else.if1.then.L1.body.L2": {"bound": 1000, "source": "j scans backward within the active range, at most n elements"}
+}

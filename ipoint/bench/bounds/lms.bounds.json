@@ -1,0 +1,9 @@
+{
+  "lms_sin.L1": {"bound": 10, "source": "rad -= 2 pi while rad > 2 pi; rad = 2 pi k / 20 with k <= 200 (lms.c main), so at most 9 subtractions"},
+  "lms_sin.L2": {"bound": 0, "source": "rad += 2 pi while rad < -2 pi; every argument is non-negative"},
+  "lms_sin.L3": {"bound": 15, "source": "Taylor series of sin with |rad| <= 2 pi after normalization; the term of degree 25 (13th iteration) is below the 1e-5 stopping tolerance"},
+  "gaussian.if1.then.L1": {"bound": 16, "source": "rejection sampling (acceptance probability pi/4) driven by the kernel's fixed-seed generator, so the trial count is the same in every run; 16 is an upper bound on the observed maximum, to be replaced by the value measured in the campaign"},
+  "lms.L1": {"bound": 20, "source": "ll = 1 .. l with l = L = 20"},
+  "lms.L2": {"bound": 21, "source": "ll = 0 .. l with l = L = 20"},
+  "lms.L3": {"bound": 20, "source": "ll = l .. 1 with l = L = 20"}
+}

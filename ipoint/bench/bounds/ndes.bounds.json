@@ -1,0 +1,10 @@
+{
+  "des.if2.then.L1": {"bound": 28, "source": "j = 28 .. 1"},
+  "des.L1": {"bound": 32, "source": "j = 32 .. 1"},
+  "des.L3": {"bound": 32, "source": "j = 32 .. 1"},
+  "ks.L1": {"bound": 16, "source": "j = 16 .. 1"},
+  "cyfun.L1": {"bound": 16, "source": "j = 16 .. 1"},
+  "cyfun.L2": {"bound": 4, "source": "j = 1 .. 4"},
+  "cyfun.L3": {"bound": 8, "source": "jj = 8 .. 1"},
+  "cyfun.L4": {"bound": 32, "source": "j = 32 .. 1"}
+}

@@ -1,0 +1,11 @@
+{
+  "ludcmp.L1": {"bound": 49, "source": "i = 0 .. n-1 with n = 49 (harness)"},
+  "ludcmp.L1.body.L1": {"bound": 49, "source": "j = i+1 .. n, at most n iterations (i = 0)"},
+  "ludcmp.L1.body.L1.body.if1.then.L1": {"bound": 48, "source": "k = 0 .. i-1 with i <= n-1"},
+  "ludcmp.L1.body.L2": {"bound": 49, "source": "j = i+1 .. n, at most n iterations (i = 0)"},
+  "ludcmp.L1.body.L2.body.L1": {"bound": 49, "source": "k = 0 .. i with i <= n-1"},
+  "ludcmp.L2": {"bound": 49, "source": "i = 1 .. n"},
+  "ludcmp.L2.body.L1": {"bound": 49, "source": "j = 0 .. i-1 with i <= n"},
+  "ludcmp.L3": {"bound": 49, "source": "i = n-1 .. 0"},
+  "ludcmp.L3.body.L1": {"bound": 49, "source": "j = i+1 .. n with i >= 0"}
+}

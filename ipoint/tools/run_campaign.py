@@ -3,7 +3,7 @@
 
     run_campaign.py --bench all --out traces [--stages instrument,pilot,build,run,parse]
         [--runs 1e7 --full 1e5 --overhead-runs 1e5 --coverage-runs 1e7]
-        [--pilot-runs 1000 --pilot-rounds 4 --min-unit-ns 300 | --max-depth N]
+        [--pilot-runs 1000 --pilot-rounds 8 --min-unit-ns 300 --max-probe-share 0.05 | --max-depth N]
         [--seed0 20260829 --core 3 --warmup 1000] [--dry-run]
     run_campaign.py --probe-bench --out traces
 
@@ -35,12 +35,30 @@ ROOT = os.path.dirname(HERE)
 REPO = os.path.dirname(ROOT)
 BENCH_DIR = os.path.join(ROOT, "bench")
 SRC_DIR = os.path.join(REPO, "benchmarks", "malardalen")
+# entry: function whose outermost IPoint pair is the end-to-end time ("main" needs
+# keep_main, the harness then calls the renamed ipoint_orig_main); patch: size patch
+# in benchmarks/malardalen/patches applied before instrumentation; kernel_flags:
+# extra compiler flags for the kernel object only.
 BENCHES = {
     "bsort100": {"entry": "BubbleSort", "param": 0.0},
     "fdct": {"entry": "fdct", "param": 0.0},
     "fir": {"entry": "fir_filter_int", "param": 0.0, "bounds": "bounds/fir.bounds.json"},
     "matmult": {"entry": "Multiply", "param": 0.0},
     "sqrt": {"entry": "sqrtfcn", "param": 1e-3},
+    "edn": {"entry": "main", "keep_main": True, "param": 0.0, "bounds": "bounds/edn.bounds.json"},
+    "ndes": {"entry": "des", "param": 0.0, "bounds": "bounds/ndes.bounds.json"},
+    "st": {"entry": "main", "keep_main": True, "param": 0.0},
+    "lms": {"entry": "main", "keep_main": True, "param": 0.0, "bounds": "bounds/lms.bounds.json"},
+    "prime": {"entry": "prime", "param": 0.0, "bounds": "bounds/prime.bounds.json"},
+    "cnt": {"entry": "Sum", "param": 0.0, "patch": "cnt.size.patch"},
+    "ludcmp": {"entry": "ludcmp", "param": 0.0, "bounds": "bounds/ludcmp.bounds.json"},
+    # the kernel function select() clashes with libc's select(), which <stdlib.h>
+    # declares under the GNU feature set; strict C11 hides it and the kernel
+    # symbol is renamed (like main) for the adapter
+    "select": {"entry": "select", "param": 0.0, "patch": "select.size.patch", "bounds": "bounds/select.bounds.json",
+               "kernel_flags": ["-std=c11", "-Dselect=mrtc_select"]},
+    "qsort-exam": {"entry": "sort", "param": 0.0, "patch": "qsort-exam.size.patch",
+                   "bounds": "bounds/qsort-exam.bounds.json"},
 }
 TS_IMPLS = ["RDTSCP_LFENCE", "LFENCE_RDTSC_LFENCE", "CPUID_RDTSC", "CLOCK_GETTIME_RAW"]
 
@@ -72,12 +90,26 @@ class Campaign:
         u = {x["uid"]: x for x in d["units"]}[d["entry_function"]]
         return u["entry"], u["exit"], d["max_id"]
 
+    def source(self, b):
+        """Upstream source, or the size-patched copy in the build directory."""
+        cfg = BENCHES[b]
+        src = os.path.join(SRC_DIR, b + ".c")
+        if "patch" not in cfg:
+            return src
+        out = os.path.join(self.build_dir(b), b + ".c")
+        if not os.path.exists(out):
+            os.makedirs(self.build_dir(b), exist_ok=True)
+            self.sh(["patch", "-s", "-o", out, src, os.path.join(SRC_DIR, "patches", cfg["patch"])])
+        return out
+
     def instrument_cmd(self, b, out_c, schema, extra):
         cfg = BENCHES[b]
-        cmd = [sys.executable, os.path.join(HERE, "ipoint_instrument.py"), os.path.join(SRC_DIR, b + ".c"),
+        cmd = [sys.executable, os.path.join(HERE, "ipoint_instrument.py"), self.source(b),
                "--entry", cfg["entry"], "--out", out_c, "--schema", schema]
         if "bounds" in cfg:
             cmd += ["--bounds", os.path.join(BENCH_DIR, cfg["bounds"])]
+        if cfg.get("keep_main"):
+            cmd.append("--keep-main")
         return cmd + extra
 
     # stages
@@ -94,7 +126,8 @@ class Campaign:
                                     os.path.join(self.build_dir(b), "schema_timing.json"), extra))
 
     def make(self, b, mode, src):
-        self.sh(["make", "-s", f"BENCH={b}", f"MODE={mode}", f"SRC={src}"], cwd=BENCH_DIR)
+        defs = " ".join(BENCHES[b].get("kernel_flags", []))
+        self.sh(["make", "-s", f"BENCH={b}", f"MODE={mode}", f"SRC={src}", f"KERNEL_DEFS={defs}"], cwd=BENCH_DIR)
 
     def run_bench(self, b, mode, out, runs, full, schema, extra=()):
         exe = os.path.join(self.build_dir(b), mode, f"bench_{b}")
@@ -128,6 +161,8 @@ class Campaign:
             with open(os.path.join(parsed, "stats.json")) as f:
                 st = json.load(f)
             new = set(st["suggested_exclusions"]) - exclusions
+            if self.a.max_probe_share > 0 and not new:
+                new |= self.probe_budget_exclusions(schema, st) - exclusions
             rounds.append({"round": k, "instrumented_units": len([u for u in st["units"].values() if u.get("kind") != "branch"]),
                            "new_exclusions": sorted(new)})
             if os.path.exists(os.path.join(out, "trace.bin")):
@@ -139,8 +174,32 @@ class Campaign:
             print(f"warning: {b}: pilot did not converge within {self.a.pilot_rounds} rounds", file=sys.stderr)
         self.instrument_pruned(b, exclusions)
         with open(excl_path, "w") as f:
-            json.dump({"policy": "pilot", "min_unit_ns": self.a.min_unit_ns, "pilot_runs": self.a.pilot_runs,
+            json.dump({"policy": "pilot", "min_unit_ns": self.a.min_unit_ns, "max_probe_share": self.a.max_probe_share,
+                       "probe_ns": self.a.probe_ns, "pilot_runs": self.a.pilot_runs,
                        "exclusions": sorted(exclusions), "rounds": rounds}, f, indent=1)
+
+    def probe_budget_exclusions(self, schema_path, st):
+        """Units to drop so that the probes of a run cost at most --max-probe-share
+        of the end-to-end median: the unit with the most probes per run goes
+        first (its descendants are already below the floor, or go with it)."""
+        with open(schema_path) as f:
+            sch = json.load(f)
+        entry = sch["entry_function"]
+        runs = max(1, st["runs_parsed"])
+        e2e_ns = st["units"].get(entry, {}).get("median_ns", 0.0)
+        cost = {}
+        for u in sch["units"]:
+            if u["kind"] == "branch" or u["uid"] == entry or not u.get("instrumented", True):
+                continue
+            n = st["units"].get(u["uid"], {}).get("n", 0)
+            cost[u["uid"]] = (1 if u.get("empty") else 2) * n / runs
+        budget = self.a.max_probe_share * e2e_ns / self.a.probe_ns - 2  # the entry pair is always paid
+        drop = set()
+        while cost and sum(cost.values()) > budget:
+            worst = max(cost, key=lambda k: (cost[k], -st["units"].get(k, {}).get("median_ns", 0.0)))
+            drop.add(worst)
+            del cost[worst]
+        return drop
 
     def build(self, b):
         d = self.build_dir(b)
@@ -215,8 +274,13 @@ def main(argv=None) -> int:
     ap.add_argument("--overhead-runs", type=float, default=1e5)
     ap.add_argument("--coverage-runs", type=float, default=1e7)
     ap.add_argument("--pilot-runs", type=int, default=1000)
-    ap.add_argument("--pilot-rounds", type=int, default=4)
+    ap.add_argument("--pilot-rounds", type=int, default=8, help="a round re-measures after each pruning step; kernels with deep unit trees need 4-6")
     ap.add_argument("--min-unit-ns", type=float, default=300.0)
+    ap.add_argument("--max-probe-share", type=float, default=0.05,
+                    help="after the floor has converged, also drop the units with the most probes per run until "
+                         "probes * --probe-ns is at most this share of the end-to-end median (0 = off; "
+                         "the paper uses 0.05)")
+    ap.add_argument("--probe-ns", type=float, default=22.0, help="probe cost assumed by --max-probe-share")
     ap.add_argument("--max-depth", type=int, default=None, help="fixed depth policy instead of the pilot")
     ap.add_argument("--seed0", type=int, default=20260829)
     ap.add_argument("--core", type=int, default=3)

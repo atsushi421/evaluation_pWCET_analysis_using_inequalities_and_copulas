@@ -1,0 +1,5 @@
+{
+  "latsynth.L1": {"bound": 99, "source": "i = n-2 .. 0 with n = N = 100 at the call site (edn.c main)"},
+  "codebook.L1": {"bound": 16, "source": "j = bitchanged+1 .. numbasis with codebook(d, 1, 17, ...) at the call site"},
+  "jpegdct.L1": {"bound": 2, "source": "k = 1, 8 (k += 7 while k <= 8)"}
+}

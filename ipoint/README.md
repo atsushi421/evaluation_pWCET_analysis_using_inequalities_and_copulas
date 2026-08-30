@@ -117,9 +117,15 @@ uses to pair the records of a run and to attribute self time to parents.
 
 Granularity is decided by data (`pilot` stage): every unit is instrumented,
 a short pilot is measured, and units whose median duration is below
-`--min-unit-ns` (default 300 ns, about 14 probe costs) lose their probes;
+`--min-unit-ns` (default 300 ns, about 14 probe costs) lose their probes
+(functions included; only the entry function is always kept);
 this is repeated until it converges, because a parent shrinks once its
-children lose their probes. `--max-depth N` replaces the pilot by a fixed
+children lose their probes. Once the floor has converged, the units with the
+most probes per run are dropped until the probes of a run cost at most
+`--max-probe-share` (default 0.05) of the end-to-end median at `--probe-ns`
+(22 ns) per probe; a unit just above the floor that runs hundreds of times per
+run would otherwise dominate the probe effect (`lms`: 1.57x with the floor
+alone, 1.01x with the budget). Both settings are recorded in `exclusions.json`. `--max-depth N` replaces the pilot by a fixed
 policy. Excluding a unit excludes its descendants. The `coverage` build always
 instruments every unit, so path coverage (`coverage.json`) is measured at the
 finest granularity while timing is measured at the granularity the probe
@@ -137,7 +143,19 @@ dozen instructions). Input ranges: `bsort100` 100 unconstrained 32-bit
 integers (`bsort100.ann`, the only kernel with an upstream annotation),
 `matmult` `[0, 8095)` as the kernel's own generator, `fdct` 8-bit samples,
 `fir` 7-bit samples with the kernel's coefficients, `sqrt` `val ~ U(0, 65536)`
-with `val = 0` with probability `--param` (default `10^-3`).
+with `val = 0` with probability `--param` (default `10^-3`), `ndes` uniform
+64-bit block and key with a fresh key schedule and a random direction,
+`prime` `x ~ U(0, 2^32)`, `cnt` signed values in `[-8095, 8095)` over the
+100x100 matrix of the size patch, `ludcmp` a diagonally dominant random
+49x49 system (the largest order the upstream arrays admit), `select` and
+`qsort-exam` 1000 (999) values `U(0, 1000)` in the size-patched arrays.
+`edn`, `st` and `lms` keep their workload inside `main`, which is then the
+instrumented entry (`--keep-main`; the Makefile renames it to
+`ipoint_orig_main`) and runs on the kernel's own constant or fixed-seed input,
+so their path is the same in every run (`lms` additionally restores the global
+step size `mu` that `main` rescales). Size patches
+(`benchmarks/malardalen/patches/`) are applied by `run_campaign.py` into
+`bench/build/<bench>/<bench>.c`; the upstream files stay untouched.
 
 The harness pins itself to `--core`, locks its memory, warms up, and for every
 run records one summary row (`run, seed, e2e_ticks, harness_ticks, sink,

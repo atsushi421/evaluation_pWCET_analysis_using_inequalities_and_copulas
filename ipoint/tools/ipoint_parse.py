@@ -241,7 +241,9 @@ def main(argv=None) -> int:
                 col = np.asarray([x[k] if k < len(x) else np.nan for x in g], dtype=np.float64) * scale
                 np.save(os.path.join(a.out, "units", f"{uid}.gap{k}.npy"), col)
             st["gaps"] = width
-        if not u.empty and med_ns < a.min_unit_ns and u.kind != "function":
+        # every unit below the granularity floor loses its probes, except the
+        # entry function whose IPoint pair defines the end-to-end time
+        if not u.empty and med_ns < a.min_unit_ns and uid != schema.entry_function:
             stats["suggested_exclusions"].append(uid)
         stats["units"][uid] = st
     for b, alts in rp.alts.items():

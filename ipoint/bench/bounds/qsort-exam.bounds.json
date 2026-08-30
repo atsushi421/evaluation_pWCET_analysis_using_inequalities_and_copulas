@@ -1,0 +1,8 @@
+{
+  "sort.L1": {"bound": 1998, "source": "each iteration either partitions a segment (at most n partitions) or insertion-sorts and pops a segment (at most n); n = 999 elements (harness, size patch)"},
+  "sort.L1.body.if1.then.L1": {"bound": 6, "source": "j = l+1 .. ir with ir-l < M = 7"},
+  "sort.L1.body.if1.then.L1.body.L1": {"bound": 6, "source": "i = j-1 .. l within a segment shorter than M = 7"},
+  "sort.L1.body.if1.else.L1": {"bound": 500, "source": "one swap of a distinct pair per iteration, at most n/2 pairs"},
+  "sort.L1.body.if1.else.L1.body.L1": {"bound": 999, "source": "i scans forward within the segment, at most n elements"},
+  "sort.L1.body.if1.else.L1.body.L2": {"bound": 999, "source": "j scans backward within the segment, at most n elements"}
+}
