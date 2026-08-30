@@ -21,7 +21,7 @@ import json
 from dataclasses import asdict, dataclass, field
 from typing import Dict, List, Optional
 
-TOOL_VERSION = "ipoint_instrument 0.1"
+TOOL_VERSION = "ipoint_instrument 0.2"
 KINDS = ("function", "loop", "loop_body", "branch", "alternative")
 
 
@@ -42,6 +42,8 @@ class Unit:
     bound: Optional[int] = None
     bound_source: Optional[str] = None
     loop_var: Optional[str] = None
+    job: bool = False           # function whose entry/exit probes delimit a run (IPOINT_JOB_BEGIN/END)
+    qualified: Optional[str] = None  # fully qualified C++ name (uid drops the namespaces)
 
     @property
     def has_ipoints(self) -> bool:
@@ -58,6 +60,8 @@ class Schema:
     max_id: int
     units: List[Unit]
     tool: str = TOOL_VERSION
+    lang: str = "c"
+    id_base: int = 0            # ids are id_base+1 .. max_id (several schemas can share one process)
 
     def by_uid(self) -> Dict[str, Unit]:
         return {u.uid: u for u in self.units}
@@ -125,8 +129,8 @@ class Schema:
                     if i in ids:
                         errors.append(f"{u.uid}: ipoint id {i} also used by {ids[i]}")
                     ids[i] = u.uid
-                    if i > self.max_id:
-                        errors.append(f"{u.uid}: id {i} exceeds max_id {self.max_id}")
+                    if i > self.max_id or i <= self.id_base:
+                        errors.append(f"{u.uid}: id {i} outside ({self.id_base}, {self.max_id}]")
             if u.instrumented and u.parent is not None and not (by[u.parent].instrumented or by[u.parent].kind == "branch" and by[by[u.parent].parent].instrumented):
                 errors.append(f"{u.uid}: instrumented but ancestor is not")
         if self.entry_function is not None and self.entry_function not in by:
@@ -146,6 +150,8 @@ class Schema:
                 extra += " calls=" + ",".join(u.calls)
             if u.empty:
                 extra += " empty"
+            if u.job:
+                extra += " job"
             print(f"{flag}{'  ' * indent}{u.uid} <{u.kind}{('/' + u.stmt) if u.stmt else ''}> d={u.depth} L{u.line}{ids}{extra}", file=out)
             for c in u.children:
                 rec(by[c], indent + 1)

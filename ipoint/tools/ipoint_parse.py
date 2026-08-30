@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """Turn the raw IPoint trace of a measurement run into per-unit samples.
 
-    ipoint_parse.py --schema schema.json --trace-dir DIR --out OUT
-        [--ns] [--max-runs N] [--min-unit-ns 300] [--legacy-names map.json]
+    ipoint_parse.py --schema schema.json [--schema other.json]... --trace-dir DIR --out OUT
+        [--entry FUNC] [--ns] [--max-runs N] [--min-unit-ns 300] [--legacy-names map.json]
 
 Reads DIR/trace.bin (records of the fully traced runs), DIR/summary.bin
-(one row per run) and DIR/meta.json written by bench_main.
+(one row per run, optional; absent for traces merged from job-mode processes
+by autoware_trace_merge.py) and DIR/meta.json written by bench_main or the
+merge tool. Several schemas (one per instrumented source file loaded into the
+same process, with disjoint --id-base ranges) are merged into one unit tree;
+the end-to-end unit is --entry or the entry function of the first schema.
 
 Each run is replayed through a stack machine: an entry IPoint pushes the unit,
 its exit pops it and yields one sample (exit - entry). A parent's self time is
@@ -53,6 +57,25 @@ def summary_dtype(max_id: int) -> np.dtype:
 
 def load_summary(trace_dir: str, meta: dict) -> np.ndarray:
     return np.fromfile(os.path.join(trace_dir, "summary.bin"), dtype=summary_dtype(meta["max_id"]))
+
+
+def merge_schemas(schemas: List[Schema], entry: str = None) -> Schema:
+    """One unit tree from the schemas of every instrumented source file of a
+    process. Ids must be disjoint (--id-base); uids must be unique."""
+    if len(schemas) == 1 and entry is None:
+        return schemas[0]
+    units: List[Unit] = []
+    for s in schemas:
+        units += s.units
+    first = schemas[0]
+    merged = Schema(source="+".join(s.source for s in schemas), source_sha256="", cflags=first.cflags,
+                    policy=first.policy, entry_function=entry or first.entry_function,
+                    max_id=max(s.max_id for s in schemas), units=units, lang=first.lang,
+                    id_base=min(s.id_base for s in schemas))
+    errors = merged.validate()
+    if errors:
+        sys.exit("merged schema invalid: " + "; ".join(errors[:5]))
+    return merged
 
 
 class RunParser:
@@ -143,16 +166,17 @@ class RunParser:
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--schema", required=True)
+    ap.add_argument("--schema", required=True, action="append", help="schema json (repeat to merge several)")
     ap.add_argument("--trace-dir", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--entry", help="uid of the function whose outermost IPoint pair is the end-to-end time")
     ap.add_argument("--ns", action="store_true", help="convert ticks to nanoseconds with tsc_hz_start")
     ap.add_argument("--max-runs", type=int, default=None)
     ap.add_argument("--min-unit-ns", type=float, default=300.0, help="units with median below this are suggested for exclusion")
     ap.add_argument("--legacy-names", help="json {uid: name} for sample/<name>.pkl aliases")
     a = ap.parse_args(argv)
 
-    schema = Schema.from_json(a.schema)
+    schema = merge_schemas([Schema.from_json(p) for p in a.schema], a.entry)
     with open(os.path.join(a.trace_dir, "meta.json")) as f:
         meta = json.load(f)
     tick_ns = 1e9 / meta["tsc_hz_start"] if meta.get("ts_impl") != "clock_gettime_raw" else 1.0
@@ -161,11 +185,12 @@ def main(argv=None) -> int:
     os.makedirs(os.path.join(a.out, "branches"), exist_ok=True)
     os.makedirs(os.path.join(a.out, "sample"), exist_ok=True)
 
-    summary = load_summary(a.trace_dir, meta)
-    np.save(os.path.join(a.out, "e2e_all.npy"), summary["e2e"].astype(np.float64) * scale)
-    np.save(os.path.join(a.out, "harness_all.npy"), summary["harness"].astype(np.float64) * scale)
-    np.save(os.path.join(a.out, "hits_all.npy"), summary["hits"])
-    np.save(os.path.join(a.out, "runs_all.npy"), summary["run"])
+    if os.path.exists(os.path.join(a.trace_dir, "summary.bin")):
+        summary = load_summary(a.trace_dir, meta)
+        np.save(os.path.join(a.out, "e2e_all.npy"), summary["e2e"].astype(np.float64) * scale)
+        np.save(os.path.join(a.out, "harness_all.npy"), summary["harness"].astype(np.float64) * scale)
+        np.save(os.path.join(a.out, "hits_all.npy"), summary["hits"])
+        np.save(os.path.join(a.out, "runs_all.npy"), summary["run"])
 
     trace_path = os.path.join(a.trace_dir, "trace.bin")
     recs = np.memmap(trace_path, dtype=REC_DTYPE, mode="r") if os.path.getsize(trace_path) else np.zeros(0, REC_DTYPE)
