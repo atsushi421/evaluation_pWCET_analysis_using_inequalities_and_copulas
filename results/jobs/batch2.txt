@@ -1,0 +1,34 @@
+# E2-5 family-fixed copulas, window 0 (R-vine benchmarks with n_mc 1e7)
+ipoint/traces lms 0 CHB-FAM-gaussian 10000 results/jobs/e25/lms_gaussian 1e7
+ipoint/traces lms 0 CHB-FAM-student 10000 results/jobs/e25/lms_student 1e7
+ipoint/traces lms 0 CHB-FAM-clayton 10000 results/jobs/e25/lms_clayton 1e7
+ipoint/traces lms 0 CHB-FAM-gumbel 10000 results/jobs/e25/lms_gumbel 1e7
+ipoint/traces lms 0 CHB-FAM-frank 10000 results/jobs/e25/lms_frank 1e7
+ipoint/traces lms 0 CHB-FAM-joe 10000 results/jobs/e25/lms_joe 1e7
+ipoint/traces lms 0 CHB-FAM-bb1 10000 results/jobs/e25/lms_bb1 1e7
+ipoint/traces lms 0 CHB-FAM-tawn 10000 results/jobs/e25/lms_tawn 1e7
+ipoint/traces ludcmp 0 CHB-FAM-gaussian 10000 results/jobs/e25/ludcmp_gaussian 1e7
+ipoint/traces ludcmp 0 CHB-FAM-student 10000 results/jobs/e25/ludcmp_student 1e7
+ipoint/traces ludcmp 0 CHB-FAM-clayton 10000 results/jobs/e25/ludcmp_clayton 1e7
+ipoint/traces ludcmp 0 CHB-FAM-gumbel 10000 results/jobs/e25/ludcmp_gumbel 1e7
+ipoint/traces ludcmp 0 CHB-FAM-frank 10000 results/jobs/e25/ludcmp_frank 1e7
+ipoint/traces ludcmp 0 CHB-FAM-joe 10000 results/jobs/e25/ludcmp_joe 1e7
+ipoint/traces ludcmp 0 CHB-FAM-bb1 10000 results/jobs/e25/ludcmp_bb1 1e7
+ipoint/traces ludcmp 0 CHB-FAM-tawn 10000 results/jobs/e25/ludcmp_tawn 1e7
+ipoint/traces ndes 0 CHB-FAM-gaussian 10000 results/jobs/e25/ndes_gaussian 1e7
+ipoint/traces ndes 0 CHB-FAM-student 10000 results/jobs/e25/ndes_student 1e7
+ipoint/traces ndes 0 CHB-FAM-clayton 10000 results/jobs/e25/ndes_clayton 1e7
+ipoint/traces ndes 0 CHB-FAM-gumbel 10000 results/jobs/e25/ndes_gumbel 1e7
+ipoint/traces ndes 0 CHB-FAM-frank 10000 results/jobs/e25/ndes_frank 1e7
+ipoint/traces ndes 0 CHB-FAM-joe 10000 results/jobs/e25/ndes_joe 1e7
+ipoint/traces ndes 0 CHB-FAM-bb1 10000 results/jobs/e25/ndes_bb1 1e7
+ipoint/traces ndes 0 CHB-FAM-tawn 10000 results/jobs/e25/ndes_tawn 1e7
+ipoint/traces bsort100 0 CHB-FAM-gaussian,CHB-FAM-student,CHB-FAM-clayton,CHB-FAM-gumbel,CHB-FAM-frank,CHB-FAM-joe,CHB-FAM-bb1,CHB-FAM-tawn 10000 results/jobs/e25/bsort100_all
+ipoint/traces fir 0 CHB-FAM-gaussian,CHB-FAM-student,CHB-FAM-clayton,CHB-FAM-gumbel,CHB-FAM-frank,CHB-FAM-joe,CHB-FAM-bb1,CHB-FAM-tawn 10000 results/jobs/e25/fir_all
+ipoint/traces matmult 0 CHB-FAM-gaussian,CHB-FAM-student,CHB-FAM-clayton,CHB-FAM-gumbel,CHB-FAM-frank,CHB-FAM-joe,CHB-FAM-bb1,CHB-FAM-tawn 10000 results/jobs/e25/matmult_all
+ipoint/traces edn 0 CHB-FAM-gaussian,CHB-FAM-student,CHB-FAM-clayton,CHB-FAM-gumbel,CHB-FAM-frank,CHB-FAM-joe,CHB-FAM-bb1,CHB-FAM-tawn 10000 results/jobs/e25/edn_all
+ipoint/traces st 0 CHB-FAM-gaussian,CHB-FAM-student,CHB-FAM-clayton,CHB-FAM-gumbel,CHB-FAM-frank,CHB-FAM-joe,CHB-FAM-bb1,CHB-FAM-tawn 10000 results/jobs/e25/st_all
+ipoint/traces prime 0 CHB-FAM-gaussian,CHB-FAM-student,CHB-FAM-clayton,CHB-FAM-gumbel,CHB-FAM-frank,CHB-FAM-joe,CHB-FAM-bb1,CHB-FAM-tawn 10000 results/jobs/e25/prime_all
+ipoint/traces cnt 0 CHB-FAM-gaussian,CHB-FAM-student,CHB-FAM-clayton,CHB-FAM-gumbel,CHB-FAM-frank,CHB-FAM-joe,CHB-FAM-bb1,CHB-FAM-tawn 10000 results/jobs/e25/cnt_all
+ipoint/traces select 0 CHB-FAM-gaussian,CHB-FAM-student,CHB-FAM-clayton,CHB-FAM-gumbel,CHB-FAM-frank,CHB-FAM-joe,CHB-FAM-bb1,CHB-FAM-tawn 10000 results/jobs/e25/select_all
+ipoint/traces qsort-exam 0 CHB-FAM-gaussian,CHB-FAM-student,CHB-FAM-clayton,CHB-FAM-gumbel,CHB-FAM-frank,CHB-FAM-joe,CHB-FAM-bb1,CHB-FAM-tawn 10000 results/jobs/e25/qsort-exam_all

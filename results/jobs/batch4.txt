@@ -1,0 +1,3 @@
+# E2-9 rerun under the step convention for +inf bounds (fine bsort100, window 0, n_mc 1e8)
+ipoint/traces_fine bsort100 0 CHB-IND 10000 results/jobs/e29c/CHB-IND
+ipoint/traces_fine bsort100 0 CHB-COP 10000 results/jobs/e29c/CHB-COP

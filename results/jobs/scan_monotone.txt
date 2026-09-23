@@ -1,0 +1,562 @@
+ipoint/traces/bsort100 w0 BubbleSort.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=55710 min_below=54847 (1.6%)
+ipoint/traces/bsort100 w0 BubbleSort.L1.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=55509 min_below=54680 (1.5%)
+ipoint/traces/bsort100 w0 BubbleSort.L1.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=55509 min_below=54651 (1.6%)
+bsort100 w0 done
+ipoint/traces/bsort100 w1 BubbleSort.vals: non-monotone at ['1e-05'] worst p=1e-05 v=55145 min_below=54608 (1.0%)
+ipoint/traces/bsort100 w1 BubbleSort.L1.vals: non-monotone at ['1e-05'] worst p=1e-05 v=54979 min_below=54447 (1.0%)
+ipoint/traces/bsort100 w1 BubbleSort.L1.self: non-monotone at ['1e-05'] worst p=1e-05 v=54984 min_below=54447 (1.0%)
+bsort100 w1 done
+ipoint/traces/bsort100 w2 BubbleSort.vals: non-monotone at ['1e-05'] worst p=1e-05 v=54915 min_below=54547 (0.7%)
+ipoint/traces/bsort100 w2 BubbleSort.self: non-monotone at ['2e-06'] worst p=2e-06 v=184 min_below=184 (0.1%)
+ipoint/traces/bsort100 w2 BubbleSort.L1.vals: non-monotone at ['1e-05'] worst p=1e-05 v=54812 min_below=54386 (0.8%)
+ipoint/traces/bsort100 w2 BubbleSort.L1.self: non-monotone at ['1e-05'] worst p=1e-05 v=54812 min_below=54414 (0.7%)
+bsort100 w2 done
+ipoint/traces/bsort100 w3 BubbleSort.vals: non-monotone at ['1e-05'] worst p=1e-05 v=55734 min_below=55326 (0.7%)
+ipoint/traces/bsort100 w3 BubbleSort.L1.vals: non-monotone at ['1e-05'] worst p=1e-05 v=55564 min_below=55191 (0.7%)
+ipoint/traces/bsort100 w3 BubbleSort.L1.self: non-monotone at ['1e-05'] worst p=1e-05 v=55564 min_below=55191 (0.7%)
+bsort100 w3 done
+ipoint/traces/bsort100 w4 BubbleSort.vals: non-monotone at ['1e-05'] worst p=1e-05 v=54689 min_below=54282 (0.7%)
+ipoint/traces/bsort100 w4 BubbleSort.L1.vals: non-monotone at ['1e-05'] worst p=1e-05 v=54464 min_below=54090 (0.7%)
+ipoint/traces/bsort100 w4 BubbleSort.L1.self: non-monotone at ['1e-05'] worst p=1e-05 v=54520 min_below=54117 (0.7%)
+bsort100 w4 done
+ipoint/traces/bsort100 w5 BubbleSort.self: non-monotone at ['1e-08', '5e-07', '2e-06', '1e-05'] worst p=5e-07 v=44119 min_below=32201 (37.0%)
+bsort100 w5 done
+bsort100 w6 done
+ipoint/traces/bsort100 w7 BubbleSort.vals: non-monotone at ['1e-05'] worst p=1e-05 v=54293 min_below=53975 (0.6%)
+ipoint/traces/bsort100 w7 BubbleSort.L1.vals: non-monotone at ['1e-05'] worst p=1e-05 v=54147 min_below=53754 (0.7%)
+ipoint/traces/bsort100 w7 BubbleSort.L1.self: non-monotone at ['1e-05'] worst p=1e-05 v=54122 min_below=53811 (0.6%)
+bsort100 w7 done
+ipoint/traces/bsort100 w8 BubbleSort.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=59719 min_below=58149 (2.7%)
+ipoint/traces/bsort100 w8 BubbleSort.L1.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=59548 min_below=58021 (2.6%)
+ipoint/traces/bsort100 w8 BubbleSort.L1.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=59548 min_below=58021 (2.6%)
+bsort100 w8 done
+ipoint/traces/bsort100 w9 BubbleSort.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=55787 min_below=55195 (1.1%)
+ipoint/traces/bsort100 w9 BubbleSort.L1.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=55426 min_below=55032 (0.7%)
+ipoint/traces/bsort100 w9 BubbleSort.L1.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=55570 min_below=55032 (1.0%)
+bsort100 w9 done
+ipoint/traces/bsort100 w0 BubbleSort.vals: non-monotone at ['1e-05'] worst p=1e-05 v=55920 min_below=55745 (0.3%)
+ipoint/traces/bsort100 w0 BubbleSort.L1.vals: non-monotone at ['1e-05'] worst p=1e-05 v=55772 min_below=55582 (0.3%)
+ipoint/traces/bsort100 w0 BubbleSort.L1.self: non-monotone at ['1e-05'] worst p=1e-05 v=55747 min_below=55582 (0.3%)
+bsort100 w0 done
+fir w0 done
+fir w1 done
+fir w2 done
+ipoint/traces/fir w3 fir_filter_int.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=416 min_below=359 (15.9%)
+fir w3 done
+ipoint/traces/fir w4 fir_filter_int.self: non-monotone at ['2e-06', '5e-06', '1e-05'] worst p=5e-06 v=5607 min_below=5537 (1.3%)
+fir w4 done
+ipoint/traces/fir w5 fir_filter_int.self: non-monotone at ['1e-05'] worst p=1e-05 v=464 min_below=399 (16.5%)
+fir w5 done
+fir w6 done
+ipoint/traces/fir w7 fir_filter_int.self: non-monotone at ['2e-05'] worst p=2e-05 v=9400 min_below=9343 (0.6%)
+fir w7 done
+ipoint/traces/fir w8 fir_filter_int.self: non-monotone at ['1e-05'] worst p=1e-05 v=425 min_below=369 (15.1%)
+fir w8 done
+fir w9 done
+ipoint/traces/fir w0 fir_filter_int.self: non-monotone at ['1e-06', '0.0001'] worst p=1e-06 v=17236 min_below=9808 (75.7%)
+fir w0 done
+ipoint/traces/matmult w0 Multiply.vals: non-monotone at ['1e-06'] worst p=1e-06 v=30699 min_below=29017 (5.8%)
+ipoint/traces/matmult w0 Multiply.self: non-monotone at ['2e-06', '2e-05'] worst p=2e-06 v=312 min_below=310 (0.8%)
+ipoint/traces/matmult w0 Multiply.L1.self: non-monotone at ['2e-06', '5e-06'] worst p=2e-06 v=27933 min_below=27799 (0.5%)
+matmult w0 done
+ipoint/traces/matmult w1 Multiply.vals: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=26877 min_below=26190 (2.6%)
+ipoint/traces/matmult w1 Multiply.L1.vals: non-monotone at ['2e-06', '2e-05'] worst p=2e-06 v=26272 min_below=26124 (0.6%)
+ipoint/traces/matmult w1 Multiply.L1.self: non-monotone at ['2e-06', '2e-05'] worst p=2e-06 v=26272 min_below=26124 (0.6%)
+matmult w1 done
+ipoint/traces/matmult w2 Multiply.vals: non-monotone at ['2e-06'] worst p=2e-06 v=25344 min_below=25196 (0.6%)
+ipoint/traces/matmult w2 Multiply.L1.vals: non-monotone at ['2e-06'] worst p=2e-06 v=25203 min_below=25055 (0.6%)
+ipoint/traces/matmult w2 Multiply.L1.self: non-monotone at ['2e-06'] worst p=2e-06 v=25203 min_below=25055 (0.6%)
+matmult w2 done
+ipoint/traces/matmult w3 Multiply.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=28881 min_below=27026 (6.9%)
+ipoint/traces/matmult w3 Multiply.L1.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=27989 min_below=26883 (4.1%)
+ipoint/traces/matmult w3 Multiply.L1.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=27989 min_below=26883 (4.1%)
+matmult w3 done
+ipoint/traces/matmult w4 Multiply.vals: non-monotone at ['1e-05'] worst p=1e-05 v=27423 min_below=27119 (1.1%)
+ipoint/traces/matmult w4 Multiply.L1.vals: non-monotone at ['2e-06', '5e-06', '1e-05'] worst p=1e-05 v=27389 min_below=26408 (3.7%)
+ipoint/traces/matmult w4 Multiply.L1.self: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=27182 min_below=26324 (3.3%)
+matmult w4 done
+ipoint/traces/matmult w5 Multiply.L1.vals: non-monotone at ['2e-06'] worst p=2e-06 v=25973 min_below=25849 (0.5%)
+ipoint/traces/matmult w5 Multiply.L1.self: non-monotone at ['2e-06'] worst p=2e-06 v=25973 min_below=25849 (0.5%)
+matmult w5 done
+ipoint/traces/matmult w6 Multiply.vals: non-monotone at ['2e-05'] worst p=2e-05 v=25332 min_below=25245 (0.3%)
+ipoint/traces/matmult w6 Multiply.L1.vals: non-monotone at ['2e-05'] worst p=2e-05 v=25204 min_below=25111 (0.4%)
+ipoint/traces/matmult w6 Multiply.L1.self: non-monotone at ['2e-05'] worst p=2e-05 v=25204 min_below=25111 (0.4%)
+matmult w6 done
+ipoint/traces/matmult w7 Multiply.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=32040 min_below=29594 (8.3%)
+ipoint/traces/matmult w7 Multiply.self: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=235 min_below=217 (8.4%)
+ipoint/traces/matmult w7 Multiply.L1.vals: non-monotone at ['1e-05'] worst p=1e-05 v=30202 min_below=29027 (4.0%)
+ipoint/traces/matmult w7 Multiply.L1.self: non-monotone at ['1e-05'] worst p=1e-05 v=30202 min_below=29027 (4.0%)
+matmult w7 done
+ipoint/traces/matmult w8 Multiply.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=28863 min_below=27649 (4.4%)
+ipoint/traces/matmult w8 Multiply.L1.vals: non-monotone at ['2e-05'] worst p=2e-05 v=26264 min_below=26177 (0.3%)
+ipoint/traces/matmult w8 Multiply.L1.self: non-monotone at ['2e-05'] worst p=2e-05 v=26264 min_below=26177 (0.3%)
+matmult w8 done
+ipoint/traces/matmult w9 Multiply.vals: non-monotone at ['1e-06'] worst p=1e-06 v=26871 min_below=26645 (0.8%)
+matmult w9 done
+ipoint/traces/matmult w0 Multiply.vals: non-monotone at ['1e-06'] worst p=1e-06 v=29801 min_below=28593 (4.2%)
+ipoint/traces/matmult w0 Multiply.L1.vals: non-monotone at ['1e-06'] worst p=1e-06 v=30136 min_below=28513 (5.7%)
+ipoint/traces/matmult w0 Multiply.L1.self: non-monotone at ['1e-06'] worst p=1e-06 v=30136 min_below=28513 (5.7%)
+matmult w0 done
+ipoint/traces/edn w0 fir.vals: non-monotone at ['2e-06'] worst p=2e-06 v=18491 min_below=18378 (0.6%)
+ipoint/traces/edn w0 fir.L1.vals: non-monotone at ['2e-06'] worst p=2e-06 v=18352 min_below=18240 (0.6%)
+ipoint/traces/edn w0 fir.L1.self: non-monotone at ['2e-06'] worst p=2e-06 v=18352 min_below=18240 (0.6%)
+ipoint/traces/edn w0 fir_no_red_ld.vals: non-monotone at ['2e-06', '5e-06', '2e-05'] worst p=5e-06 v=12154 min_below=12053 (0.8%)
+ipoint/traces/edn w0 fir_no_red_ld.self: non-monotone at ['2e-06', '5e-06', '2e-05'] worst p=5e-06 v=12154 min_below=12053 (0.8%)
+ipoint/traces/edn w0 main.vals: non-monotone at ['2e-05'] worst p=2e-05 v=25497 min_below=25350 (0.6%)
+edn w0 done
+ipoint/traces/edn w1 fir.vals: non-monotone at ['2e-06', '5e-06'] worst p=2e-06 v=17728 min_below=17629 (0.6%)
+ipoint/traces/edn w1 fir.L1.vals: non-monotone at ['2e-06', '5e-06', '2e-05'] worst p=5e-06 v=17601 min_below=17487 (0.7%)
+ipoint/traces/edn w1 fir.L1.self: non-monotone at ['2e-06', '5e-06', '2e-05'] worst p=5e-06 v=17601 min_below=17487 (0.7%)
+ipoint/traces/edn w1 fir_no_red_ld.vals: non-monotone at ['1e-05'] worst p=1e-05 v=15762 min_below=13954 (13.0%)
+ipoint/traces/edn w1 fir_no_red_ld.self: non-monotone at ['1e-05'] worst p=1e-05 v=15762 min_below=13954 (13.0%)
+ipoint/traces/edn w1 main.vals: non-monotone at ['1e-05'] worst p=1e-05 v=28498 min_below=27548 (3.4%)
+edn w1 done
+ipoint/traces/edn w2 fir.vals: non-monotone at ['2e-05'] worst p=2e-05 v=18077 min_below=18011 (0.4%)
+ipoint/traces/edn w2 fir.self: non-monotone at ['1e-05'] worst p=1e-05 v=300 min_below=282 (6.7%)
+ipoint/traces/edn w2 fir_no_red_ld.vals: non-monotone at ['1e-06'] worst p=1e-06 v=18785 min_below=18531 (1.4%)
+ipoint/traces/edn w2 fir_no_red_ld.self: non-monotone at ['1e-06'] worst p=1e-06 v=18785 min_below=18531 (1.4%)
+ipoint/traces/edn w2 main.vals: non-monotone at ['1e-05'] worst p=1e-05 v=28445 min_below=27578 (3.1%)
+edn w2 done
+ipoint/traces/edn w3 fir.vals: non-monotone at ['2e-06', '5e-06', '1e-05'] worst p=1e-05 v=16692 min_below=15293 (9.2%)
+ipoint/traces/edn w3 fir.L1.vals: non-monotone at ['2e-06', '5e-06', '2e-05'] worst p=2e-05 v=15176 min_below=14924 (1.7%)
+ipoint/traces/edn w3 fir.L1.self: non-monotone at ['2e-06', '5e-06', '2e-05'] worst p=5e-06 v=15311 min_below=15155 (1.0%)
+ipoint/traces/edn w3 fir_no_red_ld.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=12858 min_below=11813 (8.8%)
+ipoint/traces/edn w3 fir_no_red_ld.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=12858 min_below=11813 (8.8%)
+ipoint/traces/edn w3 main.vals: non-monotone at ['1e-06'] worst p=1e-06 v=34867 min_below=31973 (9.1%)
+edn w3 done
+ipoint/traces/edn w4 fir.vals: non-monotone at ['2e-05'] worst p=2e-05 v=15365 min_below=15294 (0.5%)
+ipoint/traces/edn w4 fir.L1.vals: non-monotone at ['2e-05'] worst p=2e-05 v=15227 min_below=15157 (0.5%)
+ipoint/traces/edn w4 fir.L1.self: non-monotone at ['2e-05'] worst p=2e-05 v=15227 min_below=15157 (0.5%)
+ipoint/traces/edn w4 fir_no_red_ld.vals: non-monotone at ['2e-06', '5e-06'] worst p=5e-06 v=11602 min_below=11512 (0.8%)
+ipoint/traces/edn w4 fir_no_red_ld.self: non-monotone at ['2e-06', '5e-06'] worst p=5e-06 v=11602 min_below=11512 (0.8%)
+edn w4 done
+ipoint/traces/edn w5 fir.vals: non-monotone at ['1e-06'] worst p=1e-06 v=23090 min_below=20730 (11.4%)
+ipoint/traces/edn w5 fir.L1.vals: non-monotone at ['1e-06'] worst p=1e-06 v=21977 min_below=20361 (7.9%)
+ipoint/traces/edn w5 fir.L1.self: non-monotone at ['1e-06'] worst p=1e-06 v=21977 min_below=20361 (7.9%)
+ipoint/traces/edn w5 fir_no_red_ld.vals: non-monotone at ['2e-06', '5e-06'] worst p=2e-06 v=11392 min_below=11318 (0.7%)
+ipoint/traces/edn w5 fir_no_red_ld.self: non-monotone at ['2e-06', '5e-06'] worst p=2e-06 v=11392 min_below=11318 (0.7%)
+ipoint/traces/edn w5 main.vals: non-monotone at ['1e-06'] worst p=1e-06 v=29061 min_below=28233 (2.9%)
+edn w5 done
+ipoint/traces/edn w6 fir.vals: non-monotone at ['2e-05'] worst p=2e-05 v=17077 min_below=16958 (0.7%)
+ipoint/traces/edn w6 fir.L1.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=18583 min_below=17645 (5.3%)
+ipoint/traces/edn w6 fir.L1.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=18583 min_below=17702 (5.0%)
+ipoint/traces/edn w6 fir_no_red_ld.vals: non-monotone at ['1e-05'] worst p=1e-05 v=17571 min_below=14725 (19.3%)
+ipoint/traces/edn w6 fir_no_red_ld.self: non-monotone at ['1e-05'] worst p=1e-05 v=17571 min_below=14725 (19.3%)
+ipoint/traces/edn w6 main.vals: non-monotone at ['1e-06'] worst p=1e-06 v=28678 min_below=28063 (2.2%)
+edn w6 done
+ipoint/traces/edn w7 fir.vals: non-monotone at ['2e-06'] worst p=2e-06 v=19804 min_below=19674 (0.7%)
+ipoint/traces/edn w7 fir.self: non-monotone at ['2e-06', '5e-06'] worst p=2e-06 v=4919 min_below=4874 (0.9%)
+ipoint/traces/edn w7 fir.L1.vals: non-monotone at ['2e-06'] worst p=2e-06 v=19665 min_below=19536 (0.7%)
+ipoint/traces/edn w7 fir.L1.self: non-monotone at ['2e-06'] worst p=2e-06 v=19665 min_below=19536 (0.7%)
+edn w7 done
+ipoint/traces/edn w8 fir.vals: non-monotone at ['2e-05', '5e-05', '0.0001'] worst p=0.0001 v=18988 min_below=17948 (5.8%)
+ipoint/traces/edn w8 fir.L1.vals: non-monotone at ['2e-05', '5e-05', '0.0001'] worst p=0.0001 v=18306 min_below=17812 (2.8%)
+ipoint/traces/edn w8 fir.L1.self: non-monotone at ['2e-05', '5e-05', '0.0001'] worst p=0.0001 v=18403 min_below=17812 (3.3%)
+ipoint/traces/edn w8 fir_no_red_ld.vals: non-monotone at ['2e-06'] worst p=2e-06 v=13423 min_below=13322 (0.8%)
+ipoint/traces/edn w8 fir_no_red_ld.self: non-monotone at ['2e-06'] worst p=2e-06 v=13640 min_below=13502 (1.0%)
+ipoint/traces/edn w8 main.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=29665 min_below=27915 (6.3%)
+edn w8 done
+ipoint/traces/edn w9 fir.vals: non-monotone at ['2e-06', '5e-06'] worst p=2e-06 v=17854 min_below=17757 (0.5%)
+ipoint/traces/edn w9 fir.L1.vals: non-monotone at ['2e-05'] worst p=2e-05 v=17404 min_below=17348 (0.3%)
+ipoint/traces/edn w9 fir.L1.self: non-monotone at ['2e-05'] worst p=2e-05 v=17404 min_below=17348 (0.3%)
+ipoint/traces/edn w9 fir_no_red_ld.vals: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=15095 min_below=11817 (27.7%)
+ipoint/traces/edn w9 fir_no_red_ld.self: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=15095 min_below=11698 (29.0%)
+ipoint/traces/edn w9 main.vals: non-monotone at ['1e-06'] worst p=1e-06 v=26353 min_below=26285 (0.3%)
+edn w9 done
+ipoint/traces/edn w0 fir.L1.vals: non-monotone at ['2e-06'] worst p=2e-06 v=19377 min_below=19345 (0.2%)
+ipoint/traces/edn w0 fir.L1.self: non-monotone at ['2e-06'] worst p=2e-06 v=19377 min_below=19345 (0.2%)
+ipoint/traces/edn w0 fir_no_red_ld.vals: non-monotone at ['1e-06'] worst p=1e-06 v=19023 min_below=18749 (1.5%)
+ipoint/traces/edn w0 fir_no_red_ld.self: non-monotone at ['1e-06'] worst p=1e-06 v=19023 min_below=18749 (1.5%)
+ipoint/traces/edn w0 main.vals: non-monotone at ['1e-06'] worst p=1e-06 v=32700 min_below=30815 (6.1%)
+edn w0 done
+ipoint/traces/ndes w0 des.vals: non-monotone at ['2e-06', '5e-06'] worst p=2e-06 v=17120 min_below=17026 (0.6%)
+ipoint/traces/ndes w0 des.self: non-monotone at ['1e-06'] worst p=1e-06 v=9580 min_below=8892 (7.7%)
+ipoint/traces/ndes w0 des.if2.then.vals: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=12421 min_below=11649 (6.6%)
+ipoint/traces/ndes w0 des.if2.then.self: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=12421 min_below=11631 (6.8%)
+ipoint/traces/ndes w0 des.L2.vals: non-monotone at ['2e-06'] worst p=2e-06 v=11506 min_below=11473 (0.3%)
+ipoint/traces/ndes w0 des.L2.self: non-monotone at ['2e-06', '5e-06'] worst p=2e-06 v=11543 min_below=11473 (0.6%)
+ndes w0 done
+ipoint/traces/ndes w1 des.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=27501 min_below=22746 (20.9%)
+ipoint/traces/ndes w1 des.if2.then.vals: non-monotone at ['1e-06'] worst p=1e-06 v=9090 min_below=8953 (1.5%)
+ipoint/traces/ndes w1 des.if2.then.self: non-monotone at ['1e-06'] worst p=1e-06 v=9090 min_below=8953 (1.5%)
+ipoint/traces/ndes w1 des.L2.vals: non-monotone at ['2e-06'] worst p=2e-06 v=16722 min_below=16692 (0.2%)
+ipoint/traces/ndes w1 des.L2.self: non-monotone at ['2e-06'] worst p=2e-06 v=16722 min_below=16692 (0.2%)
+ndes w1 done
+ipoint/traces/ndes w2 des.vals: non-monotone at ['2e-06', '5e-06'] worst p=2e-06 v=17284 min_below=17162 (0.7%)
+ipoint/traces/ndes w2 des.self: non-monotone at ['2e-05'] worst p=2e-05 v=924 min_below=919 (0.5%)
+ipoint/traces/ndes w2 des.L2.vals: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=12429 min_below=10469 (18.7%)
+ipoint/traces/ndes w2 des.L2.self: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=12429 min_below=10469 (18.7%)
+ndes w2 done
+ipoint/traces/ndes w3 des.vals: non-monotone at ['2e-06', '5e-06'] worst p=5e-06 v=22150 min_below=21988 (0.7%)
+ipoint/traces/ndes w3 des.if2.then.vals: non-monotone at ['1e-06'] worst p=1e-06 v=15917 min_below=15825 (0.6%)
+ipoint/traces/ndes w3 des.if2.then.self: non-monotone at ['1e-06'] worst p=1e-06 v=15917 min_below=15825 (0.6%)
+ipoint/traces/ndes w3 des.L2.vals: non-monotone at ['1e-06'] worst p=1e-06 v=25616 min_below=25249 (1.5%)
+ipoint/traces/ndes w3 des.L2.self: non-monotone at ['1e-06'] worst p=1e-06 v=25616 min_below=25249 (1.5%)
+ndes w3 done
+ipoint/traces/ndes w4 des.vals: non-monotone at ['2e-06', '5e-06', '2e-05'] worst p=5e-06 v=17298 min_below=17170 (0.7%)
+ipoint/traces/ndes w4 des.self: non-monotone at ['1e-06'] worst p=1e-06 v=10045 min_below=9330 (7.7%)
+ipoint/traces/ndes w4 des.if2.then.vals: non-monotone at ['1e-06'] worst p=1e-06 v=11955 min_below=11951 (0.0%)
+ipoint/traces/ndes w4 des.if2.then.self: non-monotone at ['1e-09', '1e-08', '1e-07', '2e-07', '5e-07', '1e-06'] worst p=1e-06 v=11955 min_below=11419 (4.7%)
+ipoint/traces/ndes w4 des.L2.self: non-monotone at ['2e-06'] worst p=2e-06 v=12721 min_below=12587 (1.1%)
+ndes w4 done
+ipoint/traces/ndes w5 des.vals: non-monotone at ['2e-05'] worst p=2e-05 v=19959 min_below=19872 (0.4%)
+ipoint/traces/ndes w5 des.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=6485 min_below=6388 (1.5%)
+ipoint/traces/ndes w5 des.if2.then.vals: non-monotone at ['1e-05'] worst p=1e-05 v=17831 min_below=15212 (17.2%)
+ipoint/traces/ndes w5 des.if2.then.self: non-monotone at ['1e-05'] worst p=1e-05 v=17831 min_below=15212 (17.2%)
+ipoint/traces/ndes w5 des.L2.vals: non-monotone at ['2e-05'] worst p=2e-05 v=13493 min_below=13434 (0.4%)
+ipoint/traces/ndes w5 des.L2.self: non-monotone at ['2e-05'] worst p=2e-05 v=13493 min_below=13434 (0.4%)
+ndes w5 done
+ipoint/traces/ndes w6 des.vals: non-monotone at ['2e-05'] worst p=2e-05 v=16365 min_below=16276 (0.5%)
+ipoint/traces/ndes w6 des.if2.then.self: non-monotone at ['1e-07', '2e-07', '5e-07', '2e-06'] worst p=2e-06 v=11139 min_below=11028 (1.0%)
+ndes w6 done
+ipoint/traces/ndes w7 des.vals: non-monotone at ['2e-05'] worst p=2e-05 v=18044 min_below=17945 (0.5%)
+ipoint/traces/ndes w7 des.if2.then.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=15447 min_below=13208 (17.0%)
+ipoint/traces/ndes w7 des.if2.then.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=15447 min_below=13208 (17.0%)
+ipoint/traces/ndes w7 des.L2.vals: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=16277 min_below=12955 (25.6%)
+ipoint/traces/ndes w7 des.L2.self: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=16277 min_below=13084 (24.4%)
+ndes w7 done
+ipoint/traces/ndes w8 des.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=19098 min_below=18423 (3.7%)
+ipoint/traces/ndes w8 des.self: non-monotone at ['1e-06'] worst p=1e-06 v=11732 min_below=10778 (8.9%)
+ipoint/traces/ndes w8 des.if2.then.vals: non-monotone at ['2e-06'] worst p=2e-06 v=12174 min_below=12041 (1.1%)
+ipoint/traces/ndes w8 des.if2.then.self: non-monotone at ['2e-06'] worst p=2e-06 v=12174 min_below=12041 (1.1%)
+ipoint/traces/ndes w8 des.L2.vals: non-monotone at ['1e-06'] worst p=1e-06 v=14394 min_below=11754 (22.5%)
+ndes w8 done
+ipoint/traces/ndes w9 des.vals: non-monotone at ['2e-06', '5e-06', '2e-05'] worst p=5e-06 v=19340 min_below=19208 (0.7%)
+ipoint/traces/ndes w9 des.self: non-monotone at ['1e-06'] worst p=1e-06 v=8812 min_below=8168 (7.9%)
+ipoint/traces/ndes w9 des.if2.then.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=15618 min_below=11576 (34.9%)
+ipoint/traces/ndes w9 des.if2.then.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=15618 min_below=11576 (34.9%)
+ipoint/traces/ndes w9 des.L2.vals: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=17940 min_below=15133 (18.5%)
+ipoint/traces/ndes w9 des.L2.self: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=17940 min_below=15163 (18.3%)
+ndes w9 done
+ipoint/traces/ndes w0 des.vals: non-monotone at ['1e-06'] worst p=1e-06 v=26363 min_below=22501 (17.2%)
+ipoint/traces/ndes w0 des.self: non-monotone at ['1e-06'] worst p=1e-06 v=7406 min_below=7071 (4.7%)
+ipoint/traces/ndes w0 des.L2.vals: non-monotone at ['1e-06'] worst p=1e-06 v=22368 min_below=17618 (27.0%)
+ipoint/traces/ndes w0 des.L2.self: non-monotone at ['1e-06'] worst p=1e-06 v=22368 min_below=17618 (27.0%)
+ndes w0 done
+ipoint/traces/st w0 Calc_Sum_Mean.vals: non-monotone at ['2e-06'] worst p=2e-06 v=10823 min_below=10767 (0.5%)
+ipoint/traces/st w0 Calc_Sum_Mean.L1.vals: non-monotone at ['2e-06'] worst p=2e-06 v=10674 min_below=10619 (0.5%)
+ipoint/traces/st w0 Calc_Sum_Mean.L1.self: non-monotone at ['2e-06'] worst p=2e-06 v=10674 min_below=10619 (0.5%)
+ipoint/traces/st w0 Calc_Var_Stddev.L1.vals: non-monotone at ['2e-06', '5e-06', '1e-05'] worst p=1e-05 v=19114 min_below=15676 (21.9%)
+ipoint/traces/st w0 Calc_Var_Stddev.L1.self: non-monotone at ['2e-06', '5e-06', '1e-05'] worst p=1e-05 v=19114 min_below=15676 (21.9%)
+ipoint/traces/st w0 Calc_LinCorrCoef.self: non-monotone at ['1e-06'] worst p=1e-06 v=1366 min_below=1321 (3.4%)
+ipoint/traces/st w0 Calc_LinCorrCoef.L1.vals: non-monotone at ['2e-06'] worst p=2e-06 v=9175 min_below=9112 (0.7%)
+ipoint/traces/st w0 Calc_LinCorrCoef.L1.self: non-monotone at ['2e-06'] worst p=2e-06 v=9175 min_below=9112 (0.7%)
+ipoint/traces/st w0 Initialize.vals: non-monotone at ['1e-06', '2e-05', '0.0001'] worst p=1e-06 v=27499 min_below=25013 (9.9%)
+ipoint/traces/st w0 Initialize.L1.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=27338 min_below=24873 (9.9%)
+ipoint/traces/st w0 Initialize.L1.self: non-monotone at ['1e-06', '2e-05', '0.0001'] worst p=1e-06 v=27338 min_below=24873 (9.9%)
+st w0 done
+ipoint/traces/st w1 Calc_Sum_Mean.vals: non-monotone at ['2e-06'] worst p=2e-06 v=8936 min_below=8873 (0.7%)
+ipoint/traces/st w1 Calc_Sum_Mean.self: non-monotone at ['1e-06'] worst p=1e-06 v=584 min_below=583 (0.1%)
+ipoint/traces/st w1 Calc_Sum_Mean.L1.vals: non-monotone at ['2e-06', '5e-06'] worst p=2e-06 v=8790 min_below=8735 (0.6%)
+ipoint/traces/st w1 Calc_Sum_Mean.L1.self: non-monotone at ['2e-06', '5e-06'] worst p=2e-06 v=8790 min_below=8735 (0.6%)
+ipoint/traces/st w1 Calc_Var_Stddev.vals: non-monotone at ['2e-06', '5e-06', '1e-05'] worst p=1e-05 v=9623 min_below=9309 (3.4%)
+ipoint/traces/st w1 Calc_Var_Stddev.L1.vals: non-monotone at ['5e-07', '2e-06'] worst p=2e-06 v=8959 min_below=8948 (0.1%)
+ipoint/traces/st w1 Calc_Var_Stddev.L1.self: non-monotone at ['5e-07'] worst p=5e-07 v=9016 min_below=9015 (0.0%)
+ipoint/traces/st w1 Initialize.vals: non-monotone at ['2e-05'] worst p=2e-05 v=23598 min_below=23585 (0.1%)
+ipoint/traces/st w1 Initialize.L1.vals: non-monotone at ['2e-05'] worst p=2e-05 v=23456 min_below=23443 (0.1%)
+ipoint/traces/st w1 Initialize.L1.self: non-monotone at ['2e-05'] worst p=2e-05 v=23456 min_below=23443 (0.1%)
+st w1 done
+ipoint/traces/st w2 Calc_Sum_Mean.vals: non-monotone at ['1e-05'] worst p=1e-05 v=9100 min_below=9016 (0.9%)
+ipoint/traces/st w2 Calc_Sum_Mean.L1.vals: non-monotone at ['2e-06'] worst p=2e-06 v=8886 min_below=8828 (0.7%)
+ipoint/traces/st w2 Calc_Sum_Mean.L1.self: non-monotone at ['2e-06'] worst p=2e-06 v=8886 min_below=8828 (0.7%)
+ipoint/traces/st w2 Calc_Var_Stddev.L1.vals: non-monotone at ['1e-06'] worst p=1e-06 v=18604 min_below=16162 (15.1%)
+ipoint/traces/st w2 Calc_Var_Stddev.L1.self: non-monotone at ['1e-06'] worst p=1e-06 v=18604 min_below=16162 (15.1%)
+ipoint/traces/st w2 Calc_LinCorrCoef.vals: non-monotone at ['1e-06'] worst p=1e-06 v=15395 min_below=15331 (0.4%)
+ipoint/traces/st w2 Calc_LinCorrCoef.self: non-monotone at ['1e-06'] worst p=1e-06 v=448 min_below=439 (1.9%)
+ipoint/traces/st w2 Calc_LinCorrCoef.L1.vals: non-monotone at ['1e-06'] worst p=1e-06 v=15059 min_below=11638 (29.4%)
+ipoint/traces/st w2 Calc_LinCorrCoef.L1.self: non-monotone at ['1e-06'] worst p=1e-06 v=15059 min_below=14170 (6.3%)
+ipoint/traces/st w2 Initialize.self: non-monotone at ['1e-05'] worst p=1e-05 v=241 min_below=229 (5.0%)
+st w2 done
+ipoint/traces/st w3 Calc_Sum_Mean.L1.vals: non-monotone at ['2e-06', '5e-06', '1e-05'] worst p=1e-05 v=10815 min_below=8736 (23.8%)
+ipoint/traces/st w3 Calc_Sum_Mean.L1.self: non-monotone at ['2e-06', '5e-06', '1e-05'] worst p=1e-05 v=10815 min_below=8736 (23.8%)
+ipoint/traces/st w3 Calc_Var_Stddev.L1.vals: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=16002 min_below=13603 (17.6%)
+ipoint/traces/st w3 Calc_Var_Stddev.L1.self: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=16002 min_below=13603 (17.6%)
+ipoint/traces/st w3 Calc_LinCorrCoef.self: non-monotone at ['1e-05'] worst p=1e-05 v=386 min_below=359 (7.5%)
+ipoint/traces/st w3 Initialize.vals: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=24410 min_below=23874 (2.2%)
+ipoint/traces/st w3 Initialize.L1.vals: non-monotone at ['2e-05'] worst p=2e-05 v=22679 min_below=22612 (0.3%)
+ipoint/traces/st w3 Initialize.L1.self: non-monotone at ['2e-05'] worst p=2e-05 v=22679 min_below=22612 (0.3%)
+st w3 done
+ipoint/traces/st w4 Calc_Sum_Mean.L1.vals: non-monotone at ['2e-06', '1e-05'] worst p=2e-06 v=13887 min_below=13460 (3.2%)
+ipoint/traces/st w4 Calc_Sum_Mean.L1.self: non-monotone at ['2e-06', '1e-05'] worst p=2e-06 v=13887 min_below=13460 (3.2%)
+ipoint/traces/st w4 Calc_Var_Stddev.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=248 min_below=236 (5.0%)
+ipoint/traces/st w4 Initialize.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=25417 min_below=23601 (7.7%)
+ipoint/traces/st w4 Initialize.L1.vals: non-monotone at ['1e-06'] worst p=1e-06 v=25292 min_below=23469 (7.8%)
+ipoint/traces/st w4 Initialize.L1.self: non-monotone at ['1e-06'] worst p=1e-06 v=25292 min_below=23469 (7.8%)
+st w4 done
+ipoint/traces/st w5 Calc_Sum_Mean.L1.self: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=14393 min_below=13671 (5.3%)
+ipoint/traces/st w5 Calc_Var_Stddev.vals: non-monotone at ['1e-05'] worst p=1e-05 v=11494 min_below=10288 (11.7%)
+ipoint/traces/st w5 Calc_Var_Stddev.L1.vals: non-monotone at ['2e-06', '5e-06'] worst p=2e-06 v=9820 min_below=9778 (0.4%)
+ipoint/traces/st w5 Calc_Var_Stddev.L1.self: non-monotone at ['2e-06', '5e-06'] worst p=2e-06 v=9820 min_below=9778 (0.4%)
+ipoint/traces/st w5 Calc_LinCorrCoef.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=14038 min_below=11075 (26.8%)
+ipoint/traces/st w5 Calc_LinCorrCoef.L1.vals: non-monotone at ['2e-05'] worst p=2e-05 v=10172 min_below=10125 (0.5%)
+ipoint/traces/st w5 Calc_LinCorrCoef.L1.self: non-monotone at ['2e-05'] worst p=2e-05 v=10172 min_below=10125 (0.5%)
+ipoint/traces/st w5 Initialize.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=26207 min_below=24105 (8.7%)
+ipoint/traces/st w5 Initialize.L1.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=26043 min_below=23956 (8.7%)
+ipoint/traces/st w5 Initialize.L1.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=26043 min_below=23956 (8.7%)
+st w5 done
+ipoint/traces/st w6 Calc_Sum_Mean.L1.vals: non-monotone at ['2e-06'] worst p=2e-06 v=8945 min_below=8847 (1.1%)
+ipoint/traces/st w6 Calc_Sum_Mean.L1.self: non-monotone at ['2e-06'] worst p=2e-06 v=8978 min_below=8873 (1.2%)
+ipoint/traces/st w6 Calc_Var_Stddev.vals: non-monotone at ['2e-06', '5e-06'] worst p=2e-06 v=13276 min_below=13215 (0.5%)
+ipoint/traces/st w6 Calc_Var_Stddev.self: non-monotone at ['2e-06'] worst p=2e-06 v=4224 min_below=4197 (0.6%)
+ipoint/traces/st w6 Calc_LinCorrCoef.vals: non-monotone at ['1e-06'] worst p=1e-06 v=15838 min_below=15484 (2.3%)
+ipoint/traces/st w6 Initialize.vals: non-monotone at ['1e-06'] worst p=1e-06 v=24006 min_below=23457 (2.3%)
+ipoint/traces/st w6 Initialize.L1.vals: non-monotone at ['1e-06'] worst p=1e-06 v=23849 min_below=23303 (2.3%)
+ipoint/traces/st w6 Initialize.L1.self: non-monotone at ['1e-06'] worst p=1e-06 v=23899 min_below=23303 (2.6%)
+st w6 done
+ipoint/traces/st w7 Calc_Sum_Mean.vals: non-monotone at ['2e-06', '5e-06'] worst p=2e-06 v=8900 min_below=8839 (0.7%)
+ipoint/traces/st w7 Calc_Sum_Mean.L1.vals: non-monotone at ['2e-06', '5e-06', '1e-05'] worst p=1e-05 v=10443 min_below=8700 (20.0%)
+ipoint/traces/st w7 Calc_Sum_Mean.L1.self: non-monotone at ['2e-06', '5e-06', '1e-05'] worst p=1e-05 v=10443 min_below=8700 (20.0%)
+ipoint/traces/st w7 Calc_Var_Stddev.vals: non-monotone at ['2e-06'] worst p=2e-06 v=9072 min_below=9019 (0.6%)
+ipoint/traces/st w7 Calc_Var_Stddev.self: non-monotone at ['1e-05'] worst p=1e-05 v=356 min_below=339 (5.0%)
+ipoint/traces/st w7 Calc_Var_Stddev.L1.vals: non-monotone at ['2e-06'] worst p=2e-06 v=8901 min_below=8849 (0.6%)
+ipoint/traces/st w7 Calc_Var_Stddev.L1.self: non-monotone at ['2e-06'] worst p=2e-06 v=8901 min_below=8849 (0.6%)
+ipoint/traces/st w7 Calc_LinCorrCoef.vals: non-monotone at ['2e-06', '2e-05'] worst p=2e-06 v=9498 min_below=9368 (1.4%)
+ipoint/traces/st w7 Calc_LinCorrCoef.L1.vals: non-monotone at ['1e-07', '2e-07'] worst p=2e-07 v=9421 min_below=9414 (0.1%)
+ipoint/traces/st w7 Calc_LinCorrCoef.L1.self: non-monotone at ['1e-07', '2e-07'] worst p=2e-07 v=9421 min_below=9414 (0.1%)
+ipoint/traces/st w7 Initialize.vals: non-monotone at ['2e-05', '0.0001'] worst p=0.0001 v=23523 min_below=22780 (3.3%)
+ipoint/traces/st w7 Initialize.L1.vals: non-monotone at ['1e-06', '2e-05', '0.0001'] worst p=1e-06 v=25706 min_below=24056 (6.9%)
+ipoint/traces/st w7 Initialize.L1.self: non-monotone at ['1e-06', '2e-05', '0.0001'] worst p=1e-06 v=25401 min_below=24056 (5.6%)
+st w7 done
+ipoint/traces/st w8 Calc_Sum_Mean.vals: non-monotone at ['2e-06', '5e-06', '1e-05'] worst p=1e-05 v=11167 min_below=9287 (20.2%)
+ipoint/traces/st w8 Calc_Sum_Mean.L1.vals: non-monotone at ['1e-05'] worst p=1e-05 v=9468 min_below=9287 (1.9%)
+ipoint/traces/st w8 Calc_Sum_Mean.L1.self: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=9468 min_below=9256 (2.3%)
+ipoint/traces/st w8 Calc_Var_Stddev.L1.vals: non-monotone at ['2e-06'] worst p=2e-06 v=29263 min_below=29026 (0.8%)
+ipoint/traces/st w8 Calc_Var_Stddev.L1.self: non-monotone at ['2e-06'] worst p=2e-06 v=29263 min_below=29026 (0.8%)
+ipoint/traces/st w8 Initialize.vals: non-monotone at ['1e-06'] worst p=1e-06 v=26825 min_below=24478 (9.6%)
+ipoint/traces/st w8 Initialize.L1.vals: non-monotone at ['1e-06'] worst p=1e-06 v=23629 min_below=23527 (0.4%)
+st w8 done
+ipoint/traces/st w9 Calc_Sum_Mean.L1.vals: non-monotone at ['2e-06', '5e-06', '1e-05'] worst p=1e-05 v=9530 min_below=9148 (4.2%)
+ipoint/traces/st w9 Calc_Sum_Mean.L1.self: non-monotone at ['2e-06', '5e-06', '1e-05'] worst p=1e-05 v=9530 min_below=9148 (4.2%)
+ipoint/traces/st w9 Calc_Var_Stddev.L1.vals: non-monotone at ['2e-06', '5e-06', '1e-05'] worst p=1e-05 v=16659 min_below=14148 (17.7%)
+ipoint/traces/st w9 Calc_Var_Stddev.L1.self: non-monotone at ['2e-06', '5e-06', '1e-05'] worst p=1e-05 v=16659 min_below=14148 (17.7%)
+ipoint/traces/st w9 Calc_LinCorrCoef.vals: non-monotone at ['1e-06'] worst p=1e-06 v=19715 min_below=19362 (1.8%)
+ipoint/traces/st w9 Calc_LinCorrCoef.self: non-monotone at ['2e-06', '5e-06', '2e-05', '0.0001'] worst p=2e-05 v=8175 min_below=8040 (1.7%)
+ipoint/traces/st w9 Calc_LinCorrCoef.L1.vals: non-monotone at ['2e-06', '5e-06', '1e-05'] worst p=1e-05 v=15313 min_below=12998 (17.8%)
+ipoint/traces/st w9 Calc_LinCorrCoef.L1.self: non-monotone at ['2e-06', '5e-06', '1e-05'] worst p=1e-05 v=15313 min_below=12998 (17.8%)
+ipoint/traces/st w9 Initialize.vals: non-monotone at ['2e-05'] worst p=2e-05 v=21507 min_below=21479 (0.1%)
+ipoint/traces/st w9 Initialize.L1.vals: non-monotone at ['2e-05'] worst p=2e-05 v=21372 min_below=21344 (0.1%)
+ipoint/traces/st w9 Initialize.L1.self: non-monotone at ['2e-05'] worst p=2e-05 v=21372 min_below=21344 (0.1%)
+st w9 done
+ipoint/traces/st w0 main.vals: non-monotone at ['1e-06'] worst p=1e-06 v=75818 min_below=75801 (0.0%)
+ipoint/traces/st w0 Calc_Sum_Mean.vals: non-monotone at ['1e-06'] worst p=1e-06 v=14378 min_below=13537 (6.2%)
+ipoint/traces/st w0 Calc_Sum_Mean.self: non-monotone at ['1e-06'] worst p=1e-06 v=4964 min_below=4624 (7.3%)
+ipoint/traces/st w0 Calc_Var_Stddev.vals: non-monotone at ['1e-06'] worst p=1e-06 v=37595 min_below=29463 (27.6%)
+ipoint/traces/st w0 Calc_Var_Stddev.self: non-monotone at ['1e-06'] worst p=1e-06 v=5325 min_below=5270 (1.0%)
+ipoint/traces/st w0 Calc_LinCorrCoef.L1.vals: non-monotone at ['1e-06'] worst p=1e-06 v=16206 min_below=14140 (14.6%)
+ipoint/traces/st w0 Calc_LinCorrCoef.L1.self: non-monotone at ['1e-06'] worst p=1e-06 v=16206 min_below=14140 (14.6%)
+ipoint/traces/st w0 Initialize.vals: non-monotone at ['1e-06'] worst p=1e-06 v=26620 min_below=24396 (9.1%)
+ipoint/traces/st w0 Initialize.L1.vals: non-monotone at ['1e-06', '0.0001'] worst p=1e-06 v=26444 min_below=24242 (9.1%)
+ipoint/traces/st w0 Initialize.L1.self: non-monotone at ['1e-06', '0.0001'] worst p=1e-06 v=26444 min_below=24242 (9.1%)
+st w0 done
+ipoint/traces/lms w0 main.L2.vals: non-monotone at ['1e-05'] worst p=1e-05 v=42095 min_below=41611 (1.2%)
+ipoint/traces/lms w0 main.L2.self: non-monotone at ['1e-05'] worst p=1e-05 v=42095 min_below=41611 (1.2%)
+lms w0 done
+ipoint/traces/lms w1 main.self: non-monotone at ['1e-05'] worst p=1e-05 v=6741 min_below=4897 (37.6%)
+lms w1 done
+ipoint/traces/lms w2 main.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=2104 min_below=1711 (23.0%)
+lms w2 done
+ipoint/traces/lms w3 main.L2.vals: non-monotone at ['1e-06'] worst p=1e-06 v=42601 min_below=41681 (2.2%)
+ipoint/traces/lms w3 main.L2.self: non-monotone at ['1e-06'] worst p=1e-06 v=42601 min_below=41681 (2.2%)
+lms w3 done
+ipoint/traces/lms w4 main.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=6299 min_below=6184 (1.9%)
+ipoint/traces/lms w4 main.L2.vals: non-monotone at ['2e-06'] worst p=2e-06 v=41539 min_below=41409 (0.3%)
+ipoint/traces/lms w4 main.L2.self: non-monotone at ['2e-06'] worst p=2e-06 v=41539 min_below=41409 (0.3%)
+lms w4 done
+ipoint/traces/lms w5 main.vals: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=193680 min_below=191711 (1.0%)
+ipoint/traces/lms w5 main.self: non-monotone at ['1e-05'] worst p=1e-05 v=9460 min_below=6254 (51.3%)
+lms w5 done
+ipoint/traces/lms w6 main.self: non-monotone at ['1e-05'] worst p=1e-05 v=7253 min_below=7071 (2.6%)
+ipoint/traces/lms w6 main.L2.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=43281 min_below=42750 (1.2%)
+ipoint/traces/lms w6 main.L2.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=43313 min_below=42767 (1.3%)
+lms w6 done
+ipoint/traces/lms w7 main.self: non-monotone at ['1e-05'] worst p=1e-05 v=1438 min_below=1354 (6.2%)
+ipoint/traces/lms w7 main.L2.vals: non-monotone at ['2e-06'] worst p=2e-06 v=42311 min_below=42229 (0.2%)
+ipoint/traces/lms w7 main.L2.self: non-monotone at ['2e-06'] worst p=2e-06 v=42421 min_below=42317 (0.2%)
+lms w7 done
+ipoint/traces/lms w8 main.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=6810 min_below=6367 (6.9%)
+lms w8 done
+ipoint/traces/lms w9 main.self: non-monotone at ['1e-05'] worst p=1e-05 v=8913 min_below=5919 (50.6%)
+lms w9 done
+ipoint/traces/lms w0 main.self: non-monotone at ['1e-06'] worst p=1e-06 v=12373 min_below=6777 (82.6%)
+lms w0 done
+ipoint/traces/prime w0 prime.vals: non-monotone at ['5e-06'] worst p=5e-06 v=274317 min_below=273828 (0.2%)
+ipoint/traces/prime w0 prime.self: non-monotone at ['5e-06', '2e-05', '5e-05', '0.0001'] worst p=5e-05 v=273549 min_below=270784 (1.0%)
+prime w0 done
+ipoint/traces/prime w1 prime.vals: non-monotone at ['2e-06'] worst p=2e-06 v=275905 min_below=275521 (0.1%)
+ipoint/traces/prime w1 prime.self: non-monotone at ['5e-06', '2e-05', '5e-05', '0.0001'] worst p=2e-05 v=273697 min_below=270643 (1.1%)
+prime w1 done
+ipoint/traces/prime w2 prime.vals: non-monotone at ['2e-06', '5e-06', '2e-05', '5e-05'] worst p=2e-05 v=275888 min_below=274644 (0.5%)
+ipoint/traces/prime w2 prime.self: non-monotone at ['2e-06', '5e-06', '2e-05'] worst p=2e-06 v=274741 min_below=273929 (0.3%)
+prime w2 done
+ipoint/traces/prime w3 prime.vals: non-monotone at ['2e-05', '5e-05', '0.0001'] worst p=2e-05 v=279550 min_below=275810 (1.4%)
+ipoint/traces/prime w3 prime.self: non-monotone at ['2e-06', '5e-06', '2e-05'] worst p=5e-06 v=280339 min_below=279427 (0.3%)
+prime w3 done
+ipoint/traces/prime w4 prime.vals: non-monotone at ['2e-05'] worst p=2e-05 v=270959 min_below=270900 (0.0%)
+ipoint/traces/prime w4 prime.self: non-monotone at ['2e-06', '2e-05'] worst p=2e-05 v=272536 min_below=272059 (0.2%)
+prime w4 done
+ipoint/traces/prime w5 prime.vals: non-monotone at ['2e-06', '5e-06', '2e-05'] worst p=2e-05 v=276992 min_below=275136 (0.7%)
+ipoint/traces/prime w5 prime.self: non-monotone at ['2e-06', '5e-06', '2e-05'] worst p=2e-06 v=277905 min_below=277170 (0.3%)
+prime w5 done
+ipoint/traces/prime w6 prime.vals: non-monotone at ['2e-05'] worst p=2e-05 v=271221 min_below=269948 (0.5%)
+ipoint/traces/prime w6 prime.self: non-monotone at ['2e-05', '5e-05', '0.0001'] worst p=2e-05 v=270515 min_below=269302 (0.5%)
+prime w6 done
+ipoint/traces/prime w7 prime.vals: non-monotone at ['2e-06', '5e-06', '1e-05', '2e-05', '5e-05'] worst p=2e-05 v=275531 min_below=274189 (0.5%)
+ipoint/traces/prime w7 prime.self: non-monotone at ['2e-06', '5e-06', '2e-05', '5e-05', '0.0001'] worst p=2e-05 v=275503 min_below=272182 (1.2%)
+prime w7 done
+ipoint/traces/prime w8 prime.vals: non-monotone at ['2e-06', '5e-06', '2e-05'] worst p=5e-06 v=278250 min_below=276570 (0.6%)
+ipoint/traces/prime w8 prime.self: non-monotone at ['2e-06', '5e-06', '2e-05'] worst p=5e-06 v=278574 min_below=276485 (0.8%)
+prime w8 done
+ipoint/traces/prime w9 prime.vals: non-monotone at ['2e-05'] worst p=2e-05 v=271190 min_below=270437 (0.3%)
+ipoint/traces/prime w9 prime.self: non-monotone at ['2e-05'] worst p=2e-05 v=271809 min_below=270855 (0.4%)
+prime w9 done
+ipoint/traces/prime w0 prime.vals: non-monotone at ['2e-05'] worst p=2e-05 v=275539 min_below=275279 (0.1%)
+ipoint/traces/prime w0 prime.self: non-monotone at ['5e-07', '2e-06', '5e-06', '2e-05', '5e-05'] worst p=2e-05 v=278480 min_below=275131 (1.2%)
+prime w0 done
+cnt w0 done
+ipoint/traces/cnt w1 Sum.self: non-monotone at ['2e-06', '2e-05'] worst p=2e-06 v=4622 min_below=4584 (0.8%)
+cnt w1 done
+cnt w2 done
+ipoint/traces/cnt w3 Sum.self: non-monotone at ['1e-05'] worst p=1e-05 v=221 min_below=219 (0.7%)
+cnt w3 done
+ipoint/traces/cnt w4 Sum.self: non-monotone at ['2e-05'] worst p=2e-05 v=214 min_below=214 (0.2%)
+cnt w4 done
+cnt w5 done
+cnt w6 done
+ipoint/traces/cnt w7 Sum.self: non-monotone at ['2e-06'] worst p=2e-06 v=218 min_below=217 (0.4%)
+cnt w7 done
+cnt w8 done
+ipoint/traces/cnt w9 Sum.self: non-monotone at ['1e-05'] worst p=1e-05 v=7589 min_below=5312 (42.9%)
+cnt w9 done
+cnt w0 done
+ipoint/traces/ludcmp w0 ludcmp.self: non-monotone at ['1e-05'] worst p=1e-05 v=455 min_below=454 (0.3%)
+ipoint/traces/ludcmp w0 ludcmp.L2.vals: non-monotone at ['2e-06'] worst p=2e-06 v=8562 min_below=8496 (0.8%)
+ipoint/traces/ludcmp w0 ludcmp.L2.self: non-monotone at ['2e-06'] worst p=2e-06 v=8562 min_below=8496 (0.8%)
+ipoint/traces/ludcmp w0 ludcmp.L3.vals: non-monotone at ['2e-05'] worst p=2e-05 v=14082 min_below=13969 (0.8%)
+ipoint/traces/ludcmp w0 ludcmp.L3.self: non-monotone at ['2e-05'] worst p=2e-05 v=14082 min_below=13969 (0.8%)
+ludcmp w0 done
+ipoint/traces/ludcmp w1 ludcmp.L2.vals: non-monotone at ['1e-06'] worst p=1e-06 v=12388 min_below=10756 (15.2%)
+ipoint/traces/ludcmp w1 ludcmp.L2.self: non-monotone at ['1e-06'] worst p=1e-06 v=12388 min_below=10756 (15.2%)
+ipoint/traces/ludcmp w1 ludcmp.L3.vals: non-monotone at ['2e-06', '5e-06'] worst p=5e-06 v=11259 min_below=11146 (1.0%)
+ipoint/traces/ludcmp w1 ludcmp.L3.self: non-monotone at ['2e-06', '5e-06'] worst p=5e-06 v=11259 min_below=11146 (1.0%)
+ludcmp w1 done
+ipoint/traces/ludcmp w2 ludcmp.vals: non-monotone at ['2e-06'] worst p=2e-06 v=153827 min_below=153634 (0.1%)
+ipoint/traces/ludcmp w2 ludcmp.L3.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=54332 min_below=33132 (64.0%)
+ipoint/traces/ludcmp w2 ludcmp.L3.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=54332 min_below=33132 (64.0%)
+ludcmp w2 done
+ipoint/traces/ludcmp w3 ludcmp.L2.vals: non-monotone at ['2e-06'] worst p=2e-06 v=8743 min_below=8622 (1.4%)
+ipoint/traces/ludcmp w3 ludcmp.L2.self: non-monotone at ['2e-06'] worst p=2e-06 v=8743 min_below=8622 (1.4%)
+ipoint/traces/ludcmp w3 ludcmp.L3.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=14553 min_below=14092 (3.3%)
+ipoint/traces/ludcmp w3 ludcmp.L3.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=14553 min_below=14092 (3.3%)
+ludcmp w3 done
+ipoint/traces/ludcmp w4 ludcmp.L3.vals: non-monotone at ['1e-07', '2e-07', '5e-07', '2e-06', '2e-05'] worst p=2e-05 v=11727 min_below=11639 (0.8%)
+ipoint/traces/ludcmp w4 ludcmp.L3.self: non-monotone at ['1e-07', '2e-07', '5e-07', '2e-06', '2e-05'] worst p=2e-05 v=11727 min_below=11639 (0.8%)
+ludcmp w4 done
+ipoint/traces/ludcmp w5 ludcmp.self: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=12778 min_below=6240 (104.8%)
+ipoint/traces/ludcmp w5 ludcmp.L3.vals: non-monotone at ['2e-06', '5e-06'] worst p=2e-06 v=12885 min_below=12810 (0.6%)
+ipoint/traces/ludcmp w5 ludcmp.L3.self: non-monotone at ['2e-06', '5e-06'] worst p=2e-06 v=12885 min_below=12810 (0.6%)
+ludcmp w5 done
+ipoint/traces/ludcmp w6 ludcmp.self: non-monotone at ['1e-05'] worst p=1e-05 v=9823 min_below=5612 (75.0%)
+ipoint/traces/ludcmp w6 ludcmp.L3.vals: non-monotone at ['2e-06', '5e-06'] worst p=2e-06 v=14894 min_below=14777 (0.8%)
+ipoint/traces/ludcmp w6 ludcmp.L3.self: non-monotone at ['2e-06', '5e-06'] worst p=2e-06 v=14894 min_below=14777 (0.8%)
+ludcmp w6 done
+ipoint/traces/ludcmp w7 ludcmp.vals: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=150538 min_below=149536 (0.7%)
+ipoint/traces/ludcmp w7 ludcmp.L1.self: non-monotone at ['1e-05'] worst p=1e-05 v=140972 min_below=140951 (0.0%)
+ipoint/traces/ludcmp w7 ludcmp.L3.vals: non-monotone at ['2e-06', '2e-05'] worst p=2e-06 v=11778 min_below=11647 (1.1%)
+ipoint/traces/ludcmp w7 ludcmp.L3.self: non-monotone at ['2e-06', '2e-05'] worst p=2e-06 v=11778 min_below=11647 (1.1%)
+ludcmp w7 done
+ipoint/traces/ludcmp w8 ludcmp.self: non-monotone at ['1e-05'] worst p=1e-05 v=9737 min_below=5550 (75.4%)
+ipoint/traces/ludcmp w8 ludcmp.L1.vals: non-monotone at ['1e-06'] worst p=1e-06 v=145823 min_below=145512 (0.2%)
+ipoint/traces/ludcmp w8 ludcmp.L1.self: non-monotone at ['1e-06'] worst p=1e-06 v=145823 min_below=145600 (0.2%)
+ipoint/traces/ludcmp w8 ludcmp.L2.vals: non-monotone at ['2e-07', '5e-07', '2e-06', '5e-06', '1e-05'] worst p=1e-05 v=10533 min_below=8258 (27.5%)
+ipoint/traces/ludcmp w8 ludcmp.L2.self: non-monotone at ['1e-05'] worst p=1e-05 v=10533 min_below=8755 (20.3%)
+ipoint/traces/ludcmp w8 ludcmp.L3.vals: non-monotone at ['1e-07', '2e-07', '5e-07', '1e-06', '2e-05'] worst p=2e-05 v=11848 min_below=11761 (0.7%)
+ipoint/traces/ludcmp w8 ludcmp.L3.self: non-monotone at ['2e-05'] worst p=2e-05 v=11844 min_below=11761 (0.7%)
+ludcmp w8 done
+ipoint/traces/ludcmp w9 ludcmp.L2.vals: non-monotone at ['1e-09', '1e-08', '1e-07', '2e-07', '5e-07', '1e-06'] worst p=2e-07 v=12877 min_below=11835 (8.8%)
+ipoint/traces/ludcmp w9 ludcmp.L2.self: non-monotone at ['1e-06'] worst p=1e-06 v=12278 min_below=12107 (1.4%)
+ludcmp w9 done
+ipoint/traces/ludcmp w0 ludcmp.L2.vals: non-monotone at ['1e-06'] worst p=1e-06 v=15427 min_below=11763 (31.1%)
+ipoint/traces/ludcmp w0 ludcmp.L2.self: non-monotone at ['1e-06'] worst p=1e-06 v=15427 min_below=11763 (31.1%)
+ipoint/traces/ludcmp w0 ludcmp.L3.vals: non-monotone at ['1e-06'] worst p=1e-06 v=40080 min_below=31842 (25.9%)
+ipoint/traces/ludcmp w0 ludcmp.L3.self: non-monotone at ['1e-06'] worst p=1e-06 v=39520 min_below=31842 (24.1%)
+ludcmp w0 done
+ipoint/traces/select w0 select.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=298 min_below=274 (8.8%)
+ipoint/traces/select w0 select.L1.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=49663 min_below=49537 (0.3%)
+select w0 done
+ipoint/traces/select w1 select.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=55932 min_below=53858 (3.9%)
+ipoint/traces/select w1 select.self: non-monotone at ['2e-05'] worst p=2e-05 v=196 min_below=195 (0.5%)
+ipoint/traces/select w1 select.L1.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=55763 min_below=53695 (3.9%)
+ipoint/traces/select w1 select.L1.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=55763 min_below=53650 (3.9%)
+select w1 done
+ipoint/traces/select w2 select.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=50420 min_below=49438 (2.0%)
+ipoint/traces/select w2 select.self: non-monotone at ['2e-05'] worst p=2e-05 v=196 min_below=195 (0.1%)
+ipoint/traces/select w2 select.L1.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=50361 min_below=49216 (2.3%)
+ipoint/traces/select w2 select.L1.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=50190 min_below=49216 (2.0%)
+select w2 done
+ipoint/traces/select w3 select.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=47462 min_below=47173 (0.6%)
+ipoint/traces/select w3 select.L1.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=47243 min_below=47017 (0.5%)
+ipoint/traces/select w3 select.L1.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=47339 min_below=47017 (0.7%)
+select w3 done
+ipoint/traces/select w4 select.self: non-monotone at ['2e-05'] worst p=2e-05 v=195 min_below=195 (0.3%)
+ipoint/traces/select w4 select.L1.vals: non-monotone at ['2e-05'] worst p=2e-05 v=44526 min_below=44257 (0.6%)
+ipoint/traces/select w4 select.L1.self: non-monotone at ['2e-05'] worst p=2e-05 v=44526 min_below=44257 (0.6%)
+select w4 done
+ipoint/traces/select w5 select.vals: non-monotone at ['2e-05'] worst p=2e-05 v=45165 min_below=45115 (0.1%)
+ipoint/traces/select w5 select.self: non-monotone at ['2e-06', '5e-06', '2e-05', '0.0001'] worst p=2e-05 v=5504 min_below=5409 (1.7%)
+ipoint/traces/select w5 select.L1.vals: non-monotone at ['2e-05'] worst p=2e-05 v=45020 min_below=44974 (0.1%)
+ipoint/traces/select w5 select.L1.self: non-monotone at ['2e-05'] worst p=2e-05 v=45020 min_below=44974 (0.1%)
+select w5 done
+ipoint/traces/select w6 select.vals: non-monotone at ['1e-05'] worst p=1e-05 v=46624 min_below=46470 (0.3%)
+ipoint/traces/select w6 select.L1.vals: non-monotone at ['1e-05'] worst p=1e-05 v=46547 min_below=46292 (0.6%)
+ipoint/traces/select w6 select.L1.self: non-monotone at ['1e-05'] worst p=1e-05 v=46547 min_below=46337 (0.5%)
+select w6 done
+ipoint/traces/select w7 select.vals: non-monotone at ['1e-06', '2e-05', '5e-05', '0.0001'] worst p=2e-05 v=45731 min_below=45327 (0.9%)
+ipoint/traces/select w7 select.self: non-monotone at ['2e-06', '5e-06', '2e-05'] worst p=2e-06 v=202 min_below=201 (0.5%)
+ipoint/traces/select w7 select.L1.vals: non-monotone at ['1e-06', '2e-05'] worst p=2e-05 v=45298 min_below=45170 (0.3%)
+ipoint/traces/select w7 select.L1.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=46910 min_below=46493 (0.9%)
+select w7 done
+ipoint/traces/select w8 select.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=46698 min_below=46690 (0.0%)
+ipoint/traces/select w8 select.self: non-monotone at ['1e-06', '2e-05', '0.0001'] worst p=1e-06 v=24427 min_below=5304 (360.5%)
+ipoint/traces/select w8 select.L1.vals: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=46559 min_below=46528 (0.1%)
+ipoint/traces/select w8 select.L1.self: non-monotone at ['2e-05'] worst p=2e-05 v=45076 min_below=45065 (0.0%)
+select w8 done
+ipoint/traces/select w9 select.vals: non-monotone at ['1e-05'] worst p=1e-05 v=50535 min_below=49891 (1.3%)
+ipoint/traces/select w9 select.self: non-monotone at ['1e-06', '2e-05', '0.0001'] worst p=1e-06 v=27963 min_below=6175 (352.9%)
+ipoint/traces/select w9 select.L1.vals: non-monotone at ['1e-05'] worst p=1e-05 v=50336 min_below=49732 (1.2%)
+ipoint/traces/select w9 select.L1.self: non-monotone at ['1e-05'] worst p=1e-05 v=50426 min_below=49732 (1.4%)
+select w9 done
+ipoint/traces/select w0 select.vals: non-monotone at ['1e-06'] worst p=1e-06 v=53476 min_below=52377 (2.1%)
+ipoint/traces/select w0 select.self: non-monotone at ['1e-06'] worst p=1e-06 v=7591 min_below=6167 (23.1%)
+ipoint/traces/select w0 select.L1.self: non-monotone at ['1e-06'] worst p=1e-06 v=53429 min_below=52247 (2.3%)
+select w0 done
+qsort-exam w0 done
+qsort-exam w1 done
+qsort-exam w2 done
+qsort-exam w3 done
+ipoint/traces/qsort-exam w4 sort.self: non-monotone at ['2e-05'] worst p=2e-05 v=4749 min_below=4723 (0.5%)
+qsort-exam w4 done
+qsort-exam w5 done
+ipoint/traces/qsort-exam w6 sort.self: non-monotone at ['1e-09'] worst p=1e-09 v=429 min_below=427 (0.5%)
+qsort-exam w6 done
+ipoint/traces/qsort-exam w7 sort.self: non-monotone at ['1e-06', '2e-05'] worst p=1e-06 v=2288 min_below=1147 (99.4%)
+qsort-exam w7 done
+ipoint/traces/qsort-exam w8 sort.self: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=484 min_below=401 (20.5%)
+qsort-exam w8 done
+ipoint/traces/qsort-exam w9 sort.self: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=396 min_below=326 (21.5%)
+qsort-exam w9 done
+ipoint/traces/qsort-exam w0 sort.self: non-monotone at ['2e-06', '1e-05'] worst p=1e-05 v=5460 min_below=4727 (15.5%)
+qsort-exam w0 done
+ipoint/traces_fine/bsort100 w0 BubbleSort.self: non-monotone at ['1e-05'] worst p=1e-05 v=1226 min_below=938 (30.7%)
+ipoint/traces_fine/bsort100 w0 BubbleSort.L1.self: non-monotone at ['1e-06'] worst p=1e-06 v=23425 min_below=23236 (0.8%)
+ipoint/traces_fine/bsort100 w0 BubbleSort.L1.body.vals: non-monotone at ['1e-06'] worst p=1e-06 v=20362 min_below=14038 (45.0%)
+ipoint/traces_fine/bsort100 w0 BubbleSort.L1.body.self: non-monotone at ['1e-06'] worst p=1e-06 v=13840 min_below=13345 (3.7%)
+ipoint/traces_fine/bsort100 w0 BubbleSort.L1.body.L1.vals: non-monotone at ['5e-07'] worst p=5e-07 v=19688 min_below=19664 (0.1%)
+bsort100 w0 done
+results/e214/rand/qsort-exam w0 sort.L1.self: non-monotone at ['1e-06'] worst p=1e-06 v=41031 min_below=38745 (5.9%)
+results/e214/rand/qsort-exam w0 sort.L1.body.vals: non-monotone at ['1e-06', '0.0001'] worst p=1e-06 v=47404 min_below=32355 (46.5%)
+results/e214/rand/qsort-exam w0 sort.L1.body.if1.then.vals: non-monotone at ['1e-05'] worst p=1e-05 v=15392 min_below=10909 (41.1%)
+results/e214/rand/qsort-exam w0 sort.L1.body.if1.then.self: non-monotone at ['1e-05'] worst p=1e-05 v=15392 min_below=10798 (42.5%)
+results/e214/rand/qsort-exam w0 sort.L1.body.if1.else.vals: non-monotone at ['1e-06'] worst p=1e-06 v=40568 min_below=32645 (24.3%)
+results/e214/rand/qsort-exam w0 sort.L1.body.if1.else.L1.vals: non-monotone at ['1e-06'] worst p=1e-06 v=39871 min_below=36044 (10.6%)
+qsort-exam w0 done
+SCAN DONE

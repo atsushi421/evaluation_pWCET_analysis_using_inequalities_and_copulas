@@ -1,0 +1,26 @@
+# E2E-CHB / E2E-MEMIK with the monotone curve (hybrid rule, 2026-09-23), all windows and the n=1e5 window
+ipoint/traces bsort100 0,1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK 10000 results/jobs/mono_e2e/bsort100
+ipoint/traces bsort100 0 E2E-CHB,E2E-MEMIK 100000 results/jobs/mono_e2e/bsort100_n1e5
+ipoint/traces fir 0,1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK 10000 results/jobs/mono_e2e/fir
+ipoint/traces fir 0 E2E-CHB,E2E-MEMIK 100000 results/jobs/mono_e2e/fir_n1e5
+ipoint/traces matmult 0,1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK 10000 results/jobs/mono_e2e/matmult
+ipoint/traces matmult 0 E2E-CHB,E2E-MEMIK 100000 results/jobs/mono_e2e/matmult_n1e5
+ipoint/traces edn 0,1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK 10000 results/jobs/mono_e2e/edn
+ipoint/traces edn 0 E2E-CHB,E2E-MEMIK 100000 results/jobs/mono_e2e/edn_n1e5
+ipoint/traces ndes 0,1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK 10000 results/jobs/mono_e2e/ndes
+ipoint/traces ndes 0 E2E-CHB,E2E-MEMIK 100000 results/jobs/mono_e2e/ndes_n1e5
+ipoint/traces st 0,1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK 10000 results/jobs/mono_e2e/st
+ipoint/traces st 0 E2E-CHB,E2E-MEMIK 100000 results/jobs/mono_e2e/st_n1e5
+ipoint/traces lms 0,1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK 10000 results/jobs/mono_e2e/lms
+ipoint/traces lms 0 E2E-CHB,E2E-MEMIK 100000 results/jobs/mono_e2e/lms_n1e5
+ipoint/traces prime 0,1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK 10000 results/jobs/mono_e2e/prime
+ipoint/traces prime 0 E2E-CHB,E2E-MEMIK 100000 results/jobs/mono_e2e/prime_n1e5
+ipoint/traces cnt 0,1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK 10000 results/jobs/mono_e2e/cnt
+ipoint/traces cnt 0 E2E-CHB,E2E-MEMIK 100000 results/jobs/mono_e2e/cnt_n1e5
+ipoint/traces ludcmp 0,1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK 10000 results/jobs/mono_e2e/ludcmp
+ipoint/traces ludcmp 0 E2E-CHB,E2E-MEMIK 100000 results/jobs/mono_e2e/ludcmp_n1e5
+ipoint/traces select 0,1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK 10000 results/jobs/mono_e2e/select
+ipoint/traces select 0 E2E-CHB,E2E-MEMIK 100000 results/jobs/mono_e2e/select_n1e5
+ipoint/traces qsort-exam 0,1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK 10000 results/jobs/mono_e2e/qsort-exam
+ipoint/traces qsort-exam 0 E2E-CHB,E2E-MEMIK 100000 results/jobs/mono_e2e/qsort-exam_n1e5
+ipoint/traces_fine bsort100 0 E2E-CHB,E2E-MEMIK 10000 results/jobs/mono_e2e/fine_bsort100

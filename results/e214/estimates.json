@@ -1,0 +1,210 @@
+{
+ "tick_ns": 0.477309403759856,
+ "n_mc": 10000000,
+ "killer_runs": 2000,
+ "killer_median": 706201.0,
+ "killer_max": 746102.0,
+ "rand_window_max": 341146.0,
+ "rand_ref": {
+  "0.0001": 338554.0,
+  "1e-05": 341146.0,
+  "1e-06": 341146.0
+ },
+ "methods": {
+  "E2E-CHB": {
+   "estimate_ticks": {
+    "0.0001": 341405.0709925081,
+    "1e-05": 348656.60712703073,
+    "1e-06": 352049.1509779951
+   },
+   "vs_killer_median": {
+    "0.0001": 0.48343895150602745,
+    "1e-05": 0.4937073257146772,
+    "1e-06": 0.49851126092712283
+   },
+   "seconds": 8.6
+  },
+  "E2E-MEMIK": {
+   "estimate_ticks": {
+    "0.0001": 362396.41885793844,
+    "1e-05": 377890.2750707939,
+    "1e-06": 394046.55389009084
+   },
+   "vs_killer_median": {
+    "0.0001": 0.5131632762597879,
+    "1e-05": 0.5351030019368337,
+    "1e-06": 0.5579807362069593
+   },
+   "seconds": 2.2
+  },
+  "CHB-COMONO": {
+   "estimate_ticks": {
+    "0.0001": 49939058.15207435,
+    "1e-05": 89702809.33682793,
+    "1e-06": 129084273.33409296
+   },
+   "vs_killer_median": {
+    "0.0001": 70.71507708439148,
+    "1e-05": 127.02164020842216,
+    "1e-06": 182.78687418184478
+   },
+   "seconds": 1490.9,
+   "tree": {
+    "sort.L1.body.if1.then": {
+     "parts": [
+      "sort.L1.body.if1.then.self",
+      "max(sort.L1.body.if1.then.if1)"
+     ],
+     "model": "comono"
+    },
+    "sort.L1.body.if1.else": {
+     "parts": [
+      "sort.L1.body.if1.else.self",
+      "sort.L1.body.if1.else.L1",
+      "max(sort.L1.body.if1.else.if1)",
+      "max(sort.L1.body.if1.else.if2)",
+      "max(sort.L1.body.if1.else.if3)"
+     ],
+     "model": "comono"
+    },
+    "sort.L1.body": {
+     "parts": [
+      "sort.L1.body.self",
+      "max(sort.L1.body.if1)"
+     ],
+     "model": "comono"
+    },
+    "sort.L1": {
+     "parts": [
+      "sort.L1.self",
+      "sort.L1.body (x1998)"
+     ],
+     "model": "comono"
+    },
+    "sort": {
+     "parts": [
+      "sort.self",
+      "sort.L1"
+     ],
+     "model": "comono"
+    }
+   }
+  },
+  "CHB-IND": {
+   "estimate_ticks": {
+    "0.0001": 48641251.69654747,
+    "1e-05": 56783829.686990045,
+    "1e-06": 80667090.01375522
+   },
+   "vs_killer_median": {
+    "0.0001": 68.87734752081556,
+    "1e-05": 80.40746145501075,
+    "1e-06": 114.22681363203283
+   },
+   "seconds": 999.7,
+   "tree": {
+    "sort.L1.body.if1.then": {
+     "parts": [
+      "sort.L1.body.if1.then.self",
+      "max(sort.L1.body.if1.then.if1)"
+     ],
+     "model": "indep",
+     "composition": "exact"
+    },
+    "sort.L1.body.if1.else": {
+     "parts": [
+      "sort.L1.body.if1.else.self",
+      "sort.L1.body.if1.else.L1",
+      "max(sort.L1.body.if1.else.if1)",
+      "max(sort.L1.body.if1.else.if2)",
+      "max(sort.L1.body.if1.else.if3)"
+     ],
+     "model": "indep",
+     "composition": "mc n=10000000 (body n=1000000)"
+    },
+    "sort.L1.body": {
+     "parts": [
+      "sort.L1.body.self",
+      "max(sort.L1.body.if1)"
+     ],
+     "model": "indep",
+     "composition": "exact"
+    },
+    "sort.L1": {
+     "parts": [
+      "sort.L1.self",
+      "sort.L1.body (x1998)"
+     ],
+     "model": "indep",
+     "composition": "exact"
+    },
+    "sort": {
+     "parts": [
+      "sort.self",
+      "sort.L1"
+     ],
+     "model": "indep",
+     "composition": "exact"
+    }
+   }
+  },
+  "CHB-COP": {
+   "estimate_ticks": {
+    "0.0001": 48961227.85097984,
+    "1e-05": 63161037.566331625,
+    "1e-06": 90843410.20466559
+   },
+   "vs_killer_median": {
+    "0.0001": 69.33044253828562,
+    "1e-05": 89.43776285552077,
+    "1e-06": 128.63676234480775
+   },
+   "seconds": 1774.5,
+   "tree": {
+    "sort.L1.body.if1.then": {
+     "parts": [
+      "sort.L1.body.if1.then.self",
+      "max(sort.L1.body.if1.then.if1)"
+     ],
+     "model": "indep",
+     "composition": "exact"
+    },
+    "sort.L1.body.if1.else": {
+     "parts": [
+      "sort.L1.body.if1.else.self",
+      "sort.L1.body.if1.else.L1",
+      "max(sort.L1.body.if1.else.if1)",
+      "max(sort.L1.body.if1.else.if2)",
+      "max(sort.L1.body.if1.else.if3)"
+     ],
+     "model": "rvine",
+     "composition": "mc n=10000000 (body n=1000000)"
+    },
+    "sort.L1.body": {
+     "parts": [
+      "sort.L1.body.self",
+      "max(sort.L1.body.if1)"
+     ],
+     "model": "student",
+     "composition": "exact"
+    },
+    "sort.L1": {
+     "parts": [
+      "sort.L1.self",
+      "sort.L1.body (x1998)"
+     ],
+     "model": "student",
+     "composition": "exact"
+    },
+    "sort": {
+     "parts": [
+      "sort.self",
+      "sort.L1"
+     ],
+     "model": "clayton270",
+     "composition": "exact"
+    }
+   }
+  }
+ }
+}

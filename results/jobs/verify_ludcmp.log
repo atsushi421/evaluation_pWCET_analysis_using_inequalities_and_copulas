@@ -1,0 +1,9 @@
+ludcmp     CHB-COP    p=0.0001 new 1.025928 old 1.025928
+ludcmp     CHB-COP    p=1e-05 new 0.957186 old 0.957186
+ludcmp     CHB-COP    p=1e-06 new 0.937722 old 0.937722
+  [1397 s]
+ludcmp     CHB-IND    p=0.0001 new 1.027005 old 1.027005
+ludcmp     CHB-IND    p=1e-05 new 0.956724 old 0.956724
+ludcmp     CHB-IND    p=1e-06 new 0.934803 old 0.934803
+  [41 s]
+WORST relative deviation 0.0

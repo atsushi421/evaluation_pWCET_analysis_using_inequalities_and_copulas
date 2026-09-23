@@ -1,0 +1,25 @@
+# E2-5 rerun for the three kernels with residual dependence, monotone unit curves (2026-09-23); table via estimates_table.py --dirs results/estimates,results/jobs/e25m/*
+ipoint/traces lms 0 CHB-FAM-gaussian 10000 results/jobs/e25m/lms_gaussian 1e7
+ipoint/traces lms 0 CHB-FAM-student 10000 results/jobs/e25m/lms_student 1e7
+ipoint/traces lms 0 CHB-FAM-clayton 10000 results/jobs/e25m/lms_clayton 1e7
+ipoint/traces lms 0 CHB-FAM-gumbel 10000 results/jobs/e25m/lms_gumbel 1e7
+ipoint/traces lms 0 CHB-FAM-frank 10000 results/jobs/e25m/lms_frank 1e7
+ipoint/traces lms 0 CHB-FAM-joe 10000 results/jobs/e25m/lms_joe 1e7
+ipoint/traces lms 0 CHB-FAM-bb1 10000 results/jobs/e25m/lms_bb1 1e7
+ipoint/traces lms 0 CHB-FAM-tawn 10000 results/jobs/e25m/lms_tawn 1e7
+ipoint/traces ludcmp 0 CHB-FAM-gaussian 10000 results/jobs/e25m/ludcmp_gaussian 1e7
+ipoint/traces ludcmp 0 CHB-FAM-student 10000 results/jobs/e25m/ludcmp_student 1e7
+ipoint/traces ludcmp 0 CHB-FAM-clayton 10000 results/jobs/e25m/ludcmp_clayton 1e7
+ipoint/traces ludcmp 0 CHB-FAM-gumbel 10000 results/jobs/e25m/ludcmp_gumbel 1e7
+ipoint/traces ludcmp 0 CHB-FAM-frank 10000 results/jobs/e25m/ludcmp_frank 1e7
+ipoint/traces ludcmp 0 CHB-FAM-joe 10000 results/jobs/e25m/ludcmp_joe 1e7
+ipoint/traces ludcmp 0 CHB-FAM-bb1 10000 results/jobs/e25m/ludcmp_bb1 1e7
+ipoint/traces ludcmp 0 CHB-FAM-tawn 10000 results/jobs/e25m/ludcmp_tawn 1e7
+ipoint/traces ndes 0 CHB-FAM-gaussian 10000 results/jobs/e25m/ndes_gaussian 1e7
+ipoint/traces ndes 0 CHB-FAM-student 10000 results/jobs/e25m/ndes_student 1e7
+ipoint/traces ndes 0 CHB-FAM-clayton 10000 results/jobs/e25m/ndes_clayton 1e7
+ipoint/traces ndes 0 CHB-FAM-gumbel 10000 results/jobs/e25m/ndes_gumbel 1e7
+ipoint/traces ndes 0 CHB-FAM-frank 10000 results/jobs/e25m/ndes_frank 1e7
+ipoint/traces ndes 0 CHB-FAM-joe 10000 results/jobs/e25m/ndes_joe 1e7
+ipoint/traces ndes 0 CHB-FAM-bb1 10000 results/jobs/e25m/ndes_bb1 1e7
+ipoint/traces ndes 0 CHB-FAM-tawn 10000 results/jobs/e25m/ndes_tawn 1e7

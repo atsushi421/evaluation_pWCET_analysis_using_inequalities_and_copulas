@@ -1,0 +1,10 @@
+# E2-5 rerun of the nine kernels whose pair copula is independence (all families in one job), hybrid rule (2026-09-23)
+ipoint/traces bsort100 0 CHB-FAM-gaussian,CHB-FAM-student,CHB-FAM-clayton,CHB-FAM-gumbel,CHB-FAM-frank,CHB-FAM-joe,CHB-FAM-bb1,CHB-FAM-tawn 10000 results/jobs/e25m/bsort100_all
+ipoint/traces fir 0 CHB-FAM-gaussian,CHB-FAM-student,CHB-FAM-clayton,CHB-FAM-gumbel,CHB-FAM-frank,CHB-FAM-joe,CHB-FAM-bb1,CHB-FAM-tawn 10000 results/jobs/e25m/fir_all
+ipoint/traces matmult 0 CHB-FAM-gaussian,CHB-FAM-student,CHB-FAM-clayton,CHB-FAM-gumbel,CHB-FAM-frank,CHB-FAM-joe,CHB-FAM-bb1,CHB-FAM-tawn 10000 results/jobs/e25m/matmult_all
+ipoint/traces edn 0 CHB-FAM-gaussian,CHB-FAM-student,CHB-FAM-clayton,CHB-FAM-gumbel,CHB-FAM-frank,CHB-FAM-joe,CHB-FAM-bb1,CHB-FAM-tawn 10000 results/jobs/e25m/edn_all
+ipoint/traces st 0 CHB-FAM-gaussian,CHB-FAM-student,CHB-FAM-clayton,CHB-FAM-gumbel,CHB-FAM-frank,CHB-FAM-joe,CHB-FAM-bb1,CHB-FAM-tawn 10000 results/jobs/e25m/st_all
+ipoint/traces prime 0 CHB-FAM-gaussian,CHB-FAM-student,CHB-FAM-clayton,CHB-FAM-gumbel,CHB-FAM-frank,CHB-FAM-joe,CHB-FAM-bb1,CHB-FAM-tawn 10000 results/jobs/e25m/prime_all
+ipoint/traces cnt 0 CHB-FAM-gaussian,CHB-FAM-student,CHB-FAM-clayton,CHB-FAM-gumbel,CHB-FAM-frank,CHB-FAM-joe,CHB-FAM-bb1,CHB-FAM-tawn 10000 results/jobs/e25m/cnt_all
+ipoint/traces select 0 CHB-FAM-gaussian,CHB-FAM-student,CHB-FAM-clayton,CHB-FAM-gumbel,CHB-FAM-frank,CHB-FAM-joe,CHB-FAM-bb1,CHB-FAM-tawn 10000 results/jobs/e25m/select_all
+ipoint/traces qsort-exam 0 CHB-FAM-gaussian,CHB-FAM-student,CHB-FAM-clayton,CHB-FAM-gumbel,CHB-FAM-frank,CHB-FAM-joe,CHB-FAM-bb1,CHB-FAM-tawn 10000 results/jobs/e25m/qsort-exam_all

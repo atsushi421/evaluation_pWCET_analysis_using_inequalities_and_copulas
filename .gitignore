@@ -2,3 +2,10 @@
 __pycache__/
 .pytest_cache/
 *.pyc
+
+# large or intermediate outputs of the estimation pipeline
+results/backup_pre_monotone/
+results/estimates_multiwindow_e2e_only_backup/
+results/e214/killer/
+results/e214/rand/
+results/jobs/*/

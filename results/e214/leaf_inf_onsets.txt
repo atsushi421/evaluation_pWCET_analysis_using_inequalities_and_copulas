@@ -1,0 +1,16 @@
+sort                                     vals  n=   10000 med=  304251 max=  341146 inf from p=None
+sort                                     self  n=   10000 med=     138 max=     228 inf from p=None
+sort.L1                                  vals  n=   10000 med=  304104 max=  341010 inf from p=None
+sort.L1                                  self  n=   10000 med=   26100 max=   35878 inf from p=None
+sort.L1.body                             vals  n= 3799602 med=     530 max=   32636 inf from p=None
+sort.L1.body                             self  n= 3799602 med=     138 max=   15520 inf from p=None
+sort.L1.body.if1.then                    vals  n= 1904801 med=     222 max=   24742 inf from p=2e-07
+sort.L1.body.if1.then                    self  n= 1904801 med=     222 max=   24742 inf from p=5e-07
+sort.L1.body.if1.then.if1.else           vals  n= 1894801 med=       0 max=       0 inf from p=None
+sort.L1.body.if1.else                    vals  n= 1894801 med=     602 max=   32500 inf from p=None
+sort.L1.body.if1.else                    self  n= 1894801 med=     302 max=   14566 inf from p=None
+sort.L1.body.if1.else.if1.else           vals  n=  947009 med=       0 max=       0 inf from p=None
+sort.L1.body.if1.else.if2.else           vals  n= 1263197 med=       0 max=       0 inf from p=None
+sort.L1.body.if1.else.if3.else           vals  n= 1262489 med=       0 max=       0 inf from p=None
+sort.L1.body.if1.else.L1                 vals  n= 1894801 med=     296 max=   32134 inf from p=None
+sort.L1.body.if1.else.L1                 self  n= 1894801 med=     296 max=   32134 inf from p=None

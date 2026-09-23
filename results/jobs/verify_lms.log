@@ -1,0 +1,9 @@
+lms        CHB-COP    p=0.0001 new 1.017594 old 1.017594
+lms        CHB-COP    p=1e-05 new 0.962885 old 0.962885
+lms        CHB-COP    p=1e-06 new 0.945554 old 0.945554
+  [2282 s]
+lms        CHB-IND    p=0.0001 new 1.017442 old 1.017442
+lms        CHB-IND    p=1e-05 new 0.962883 old 0.962883
+lms        CHB-IND    p=1e-06 new 0.945227 old 0.945227
+  [25 s]
+WORST relative deviation 0.0

@@ -1,0 +1,17 @@
+# Recompute the stored CHB-COP/CHB-IND entries whose leaves have an +inf grid point, under the step convention (merge back with merge_estimates.py)
+ipoint/traces bsort100 0 CHB-COP,CHB-IND 10000 results/jobs/e_fix/bsort100_w0
+ipoint/traces ndes 0 CHB-COP,CHB-IND 10000 results/jobs/e_fix/ndes_w0
+ipoint/traces fir 2 CHB-COP,CHB-IND 10000 results/jobs/e_fix/fir_w2
+ipoint/traces fir 3 CHB-COP,CHB-IND 10000 results/jobs/e_fix/fir_w3
+ipoint/traces lms 1 CHB-COP,CHB-IND 10000 results/jobs/e_fix/lms_w1
+ipoint/traces lms 5 CHB-COP,CHB-IND 10000 results/jobs/e_fix/lms_w5
+ipoint/traces lms 6 CHB-COP,CHB-IND 10000 results/jobs/e_fix/lms_w6
+ipoint/traces lms 9 CHB-COP,CHB-IND 10000 results/jobs/e_fix/lms_w9
+ipoint/traces ludcmp 6 CHB-COP,CHB-IND 10000 results/jobs/e_fix/ludcmp_w6
+ipoint/traces ludcmp 8 CHB-COP,CHB-IND 10000 results/jobs/e_fix/ludcmp_w8
+ipoint/traces ndes 9 CHB-COP,CHB-IND 10000 results/jobs/e_fix/ndes_w9
+ipoint/traces qsort-exam 1 CHB-COP,CHB-IND 10000 results/jobs/e_fix/qsort-exam_w1
+ipoint/traces qsort-exam 5 CHB-COP,CHB-IND 10000 results/jobs/e_fix/qsort-exam_w5
+ipoint/traces qsort-exam 8 CHB-COP,CHB-IND 10000 results/jobs/e_fix/qsort-exam_w8
+ipoint/traces lms 0 CHB-COP,CHB-IND 100000 results/jobs/e_fix/lms_n1e5
+ipoint/traces select 0 CHB-COP,CHB-IND 100000 results/jobs/e_fix/select_n1e5

@@ -1,0 +1,3 @@
+adversary comparisons 250982 (random input ~12000)
+random   median   141284  p99   146548  max   293946 ticks
+killer   median   272258  p99   279382  max   298174 ticks

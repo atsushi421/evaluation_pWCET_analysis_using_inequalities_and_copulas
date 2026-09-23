@@ -1,0 +1,12 @@
+paused 11 processes
+random                 median   43602  p99   48022  max   58876 ticks
+desc(sorted rnd)       median   18202  p99   18432  max   26680 ticks
+desc(consts)           median   18138  p99   18342  max   26528 ticks
+random+min last        median   44026  p99   48348  max   54314 ticks
+ascending              median     310  p99     348  max    4922 ticks
+desc+half adj swaps    median   19022  p99   19482  max   27906 ticks
+adversary comparisons 250982 (random input ~12000)
+random   median   141284  p99   146548  max   293946 ticks
+killer   median   272258  p99   279382  max   298174 ticks
+measurement done
+resumed 11 processes

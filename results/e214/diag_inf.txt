@@ -1,0 +1,41 @@
+node sort
+node sort.L1
+node sort.L1.body
+node sort.L1.body.if1.then
+node sort.L1.body.if1.then.if1.else
+  part0 sort.L1.body.if1.then.self                         onset=5e-07 icdf(1)=inf cdf(1e15)=0.9999995000
+  part1 sort.L1.body.if1.then.if1                          onset=None icdf(1)=0.1659 cdf(1e15)=0.9999999999
+  tail_indep(t=1e+09) = 5.0022e-07
+  tail_indep(t=1e+12) = 5.0022e-07
+  tail_indep(t=1e+15) = 5.0022e-07
+  => onset=5e-07 q(1e-6)=18206.699729427302 q(2e-6)=17893.94533574396 exact
+node sort.L1.body.if1.else
+node sort.L1.body.if1.else.L1
+node sort.L1.body.if1.else.if1.else
+node sort.L1.body.if1.else.if2.else
+node sort.L1.body.if1.else.if3.else
+  part0 sort.L1.body.if1.else.self                         onset=None icdf(1)=1.221e+04 cdf(1e15)=0.9999999999
+  part1 sort.L1.body.if1.else.L1                           onset=None icdf(1)=5.241e+04 cdf(1e15)=0.9999999999
+  part2 sort.L1.body.if1.else.if1                          onset=None icdf(1)=0.1659 cdf(1e15)=0.9999999999
+  part3 sort.L1.body.if1.else.if2                          onset=None icdf(1)=0.1659 cdf(1e15)=0.9999999999
+  part4 sort.L1.body.if1.else.if3                          onset=None icdf(1)=0.1659 cdf(1e15)=0.9999999999
+  => onset=None q(1e-6)=38291.65960909738 q(2e-6)=34755.757884868006 mc n=10000000 (body n=1000000)
+  part0 sort.L1.body.self                                  onset=None icdf(1)=1.637e+04 cdf(1e15)=0.9999999999
+  part1 sort.L1.body.if1                                   onset=5e-07 icdf(1)=inf cdf(1e15)=0.9999995000
+  tail_indep(t=1e+09) = 5.0010e-07
+  tail_indep(t=1e+12) = 5.0010e-07
+  tail_indep(t=1e+15) = 5.0010e-07
+  => onset=5e-07 q(1e-6)=38444.80127175388 q(2e-6)=34916.46112309063 exact
+  part0 sort.L1.self                                       onset=None icdf(1)=4.097e+04 cdf(1e15)=0.9999990000
+  part1 {'scaled_by': 1998, 'inner': {'uid': 'sort.L1.body onset=5e-07 icdf(1)=inf cdf(1e15)=0.9999995000
+  tail_indep(t=1e+09) = 1.5000e-06
+  tail_indep(t=1e+12) = 1.5000e-06
+  tail_indep(t=1e+15) = 1.5000e-06
+  => onset=1e-06 q(1e-6)=inf q(2e-6)=76840461.39953601 exact
+  part0 sort.self                                          onset=None icdf(1)=288 cdf(1e15)=0.9999999999
+  part1 sort.L1                                            onset=1e-06 icdf(1)=inf cdf(1e15)=0.9999990000
+  tail_indep(t=1e+09) = 1.0001e-06
+  tail_indep(t=1e+12) = 1.0001e-06
+  tail_indep(t=1e+15) = 1.0001e-06
+  => onset=1e-06 q(1e-6)=inf q(2e-6)=76840705.00467207 exact
+ROOT {0.0001: 48685790.679432966, 1e-05: 57958002.37267621, 1e-06: inf}

@@ -1,0 +1,9 @@
+ndes       CHB-COP    p=0.0001 new 1.080026 old 1.080026
+ndes       CHB-COP    p=1e-05 new 1.002175 old 1.002175
+ndes       CHB-COP    p=1e-06 new 0.731965 old 0.731965
+  [889 s]
+ndes       CHB-IND    p=0.0001 new 1.078712 old 1.078712
+ndes       CHB-IND    p=1e-05 new 0.999217 old 0.999217
+ndes       CHB-IND    p=1e-06 new 0.722777 old 0.722777
+  [35 s]
+WORST relative deviation 0.0

@@ -1,0 +1,49 @@
+ludcmp w0 E2E-CHB       [    3.3s] tightness 0.0001:1.006 1e-05:0.938 1e-06:0.918
+matmult w0 E2E-CHB       [    3.6s] tightness 0.0001:1.100 1e-05:1.009 1e-06:0.766
+fir w0 E2E-CHB       [    3.7s] tightness 0.0001:1.010 1e-05:0.912 1e-06:0.866
+ludcmp w0 E2E-MEMIK     [    0.7s] tightness 0.0001:1.093 1e-05:1.043 1e-06:1.046
+ndes w0 E2E-CHB       [    3.6s] tightness 0.0001:1.008 1e-05:0.864 1e-06:0.541
+ludcmp w0 E2E-CANTELLI  [    0.1s] tightness 0.0001:1.410 1e-05:2.243 1e-06:5.050
+matmult w0 E2E-MEMIK     [    0.9s] tightness 0.0001:1.115 1e-05:1.093 1e-06:0.786
+matmult w0 E2E-CANTELLI  [    0.2s] tightness 0.0001:1.933 1e-05:4.124 1e-06:7.952
+fir w0 E2E-MEMIK     [    0.9s] tightness 0.0001:1.041 1e-05:0.961 1e-06:0.932
+fir w0 E2E-CANTELLI  [    0.1s] tightness 0.0001:1.511 1e-05:2.541 1e-06:5.918
+ndes w0 E2E-MEMIK     [    0.9s] tightness 0.0001:1.062 1e-05:0.981 1e-06:0.644
+ndes w0 E2E-CANTELLI  [    0.1s] tightness 0.0001:1.844 1e-05:3.881 1e-06:6.915
+ludcmp w0 E2E-EVT-PoT   [    4.7s] tightness 0.0001:0.993 1e-05:0.913 1e-06:0.881
+ludcmp w0 E2E-EVT-BM    [    0.0s] tightness 0.0001:nan 1e-05:nan 1e-06:nan
+matmult w0 E2E-EVT-PoT   [    5.3s] tightness 0.0001:4.000 1e-05:66.233 1e-06:989.835
+matmult w0 E2E-EVT-BM    [    0.0s] tightness 0.0001:nan 1e-05:nan 1e-06:nan
+fir w0 E2E-EVT-PoT   [    8.0s] tightness 0.0001:1.004 1e-05:0.896 1e-06:0.839
+fir w0 E2E-EVT-BM    [    0.0s] tightness 0.0001:nan 1e-05:nan 1e-06:nan
+ndes w0 E2E-EVT-PoT   [   10.0s] tightness 0.0001:0.960 1e-05:0.851 1e-06:0.524
+ndes w0 E2E-EVT-BM    [    0.0s] tightness 0.0001:nan 1e-05:nan 1e-06:nan
+matmult w0 CHB-COP       [   15.0s] tightness 0.0001:1.101 1e-05:1.010 1e-06:0.700
+fir w0 CHB-COP       [   15.2s] tightness 0.0001:1.011 1e-05:0.913 1e-06:0.867
+matmult w0 CHB-IND       [    7.6s] tightness 0.0001:1.101 1e-05:1.010 1e-06:0.700
+fir w0 CHB-IND       [    8.4s] tightness 0.0001:1.011 1e-05:0.913 1e-06:0.867
+matmult w0 CHB-COMONO    [    7.2s] tightness 0.0001:1.107 1e-05:1.015 1e-06:0.704
+fir w0 CHB-COMONO    [    8.0s] tightness 0.0001:1.013 1e-05:0.914 1e-06:0.869
+matmult w0 MEMIK-COP     [    6.8s] tightness 0.0001:1.567 1e-05:1.415 1e-06:0.966
+fir w0 MEMIK-COP     [    7.1s] tightness 0.0001:1.305 1e-05:1.160 1e-06:1.085
+/home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/tools/../estimation/evt.py:66: RuntimeWarning: overflow encountered in power
+  out[tail] = self.threshold + self.sigma / self.xi * ((pt / self.zeta) ** (-self.xi) - 1.0)
+matmult w0 EVT-COP       [   13.9s] tightness 0.0001:4.195 1e-05:74.692 1e-06:1190.875
+wrote results/estimates/matmult.json
+/home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/tools/../estimation/evt.py:66: RuntimeWarning: overflow encountered in power
+  out[tail] = self.threshold + self.sigma / self.xi * ((pt / self.zeta) ** (-self.xi) - 1.0)
+fir w0 EVT-COP       [   15.7s] tightness 0.0001:1.004 1e-05:0.897 1e-06:1.569
+wrote results/estimates/fir.json
+ndes w0 CHB-COP       [  842.3s] tightness 0.0001:1.080 1e-05:1.002 1e-06:0.732
+ndes w0 CHB-IND       [   30.0s] tightness 0.0001:1.079 1e-05:0.999 1e-06:0.723
+ndes w0 CHB-COMONO    [   13.5s] tightness 0.0001:1.640 1e-05:1.478 1e-06:1.092
+ludcmp w0 CHB-COP       [ 1347.2s] tightness 0.0001:1.026 1e-05:0.957 1e-06:0.938
+ludcmp w0 CHB-IND       [   37.3s] tightness 0.0001:1.027 1e-05:0.957 1e-06:0.935
+ludcmp w0 CHB-COMONO    [   17.2s] tightness 0.0001:1.096 1e-05:1.022 1e-06:1.003
+ndes w0 MEMIK-COP     [  831.1s] tightness 0.0001:1.137 1e-05:1.082 1e-06:0.960
+ndes w0 EVT-COP       [  842.4s] tightness 0.0001:0.994 1e-05:0.845 1e-06:0.525
+wrote results/estimates/ndes.json
+ludcmp w0 MEMIK-COP     [ 1333.4s] tightness 0.0001:1.209 1e-05:1.142 1e-06:1.134
+ludcmp w0 EVT-COP       [ 1329.5s] tightness 0.0001:1.000 1e-05:4.825 1e-06:380.338
+wrote results/estimates/ludcmp.json
+exit=0

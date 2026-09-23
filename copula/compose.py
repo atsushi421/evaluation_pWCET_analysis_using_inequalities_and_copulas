@@ -19,15 +19,47 @@ import pyvinecopulib as pv
 ICDF = Callable[[np.ndarray], np.ndarray]
 
 
-def icdf_from_pwcet_dict(pwcet: dict) -> ICDF:
-    """Inverse CDF from a pWCET dictionary {exceedance probability: value}."""
+P_TOP = 1e-4        # largest RESTK test probability (estimation.chb.P_TEST): validated in-sample
+
+
+def monotone_curve(pwcet: dict) -> tuple[np.ndarray, np.ndarray]:
+    """(alphas ascending, values) of a pWCET dictionary made non-increasing in the exceedance
+    probability. A plug-in bound curve is not monotone by itself: RESTK's k ceiling is extrapolated
+    per p, so the bound can dip at a smaller p, and above the largest test probability the
+    extrapolated ceiling can be so small (Markov's k = 1) that a body bound exceeds the tail.
+    Rule: at p >= P_TOP the running minimum from P_TOP upward (a bound at a smaller p also bounds
+    the quantile at a larger p, and the bound at P_TOP is validated in-sample); below P_TOP the
+    running maximum from P_TOP downward (an extrapolated ceiling never tightens a validated value,
+    and the result never goes below the per-p bound there). The CDF/inverse CDF of a non-monotone
+    curve would place the mass above its largest value at the wrong p."""
     alphas = np.array(sorted(pwcet.keys()), dtype=float)
     values = np.array([pwcet[a] for a in alphas], dtype=float)
+    out = values.copy()
+    body = alphas >= P_TOP * (1 - 1e-9)
+    out[body] = np.minimum.accumulate(values[body])
+    tail = ~body
+    if tail.any():
+        seed = values[body][0] if body.any() else -np.inf
+        out[tail] = np.maximum.accumulate(np.concatenate([[seed], values[tail][::-1]]))[1:][::-1]
+    return alphas, out
+
+
+def icdf_from_pwcet_dict(pwcet: dict) -> ICDF:
+    """Inverse CDF from a pWCET dictionary {exceedance probability: value}."""
+    alphas, values = monotone_curve(pwcet)
     ps = 1.0 - alphas[::-1]
     xs = values[::-1]
+    # A bound that is +inf at a grid point p_inf (no admissible k) is treated as +inf
+    # for u >= 1 - p_inf only, and as its last finite value on the grid interval above
+    # p_inf (a step, not a linear interpolation toward +inf): interpolating toward +inf
+    # would move the +inf onset up by one grid step at every level of the composition.
+    finite = np.isfinite(xs)
+    u_inf = float(ps[~finite].min()) if not finite.all() else np.inf
+    ps, xs = ps[finite], xs[finite]
 
     def icdf(u):
-        return np.interp(np.asarray(u, dtype=float), ps, xs)
+        u = np.asarray(u, dtype=float)
+        return np.where(u >= u_inf, np.inf, np.interp(u, ps, xs))
     return icdf
 
 
@@ -154,7 +186,9 @@ def exact_sum_tail(model, cdf1, icdf1, cdf2, t: float, u_grid: np.ndarray | None
         return 1.0
     us = np.append(us, f1t)
     x = icdf1(us)
-    v = np.clip(cdf2(np.maximum(t - x, 0.0)), 0.0, 1.0)
+    with np.errstate(invalid="ignore"):      # t = x = +inf (both parts +inf) gives NaN, masked below
+        v = np.clip(cdf2(np.maximum(t - x, 0.0)), 0.0, 1.0)
+    v = np.where(np.isnan(v), 0.0, v)        # X = +inf leaves nothing for Y: counts as X + Y > t
     uv = np.asfortranarray(np.column_stack([np.clip(us, 1e-300, 1.0 - 1e-16), np.clip(v, 1e-300, 1.0 - 1e-16)]))
     g = 1.0 - model.hfunc1(uv)
     g[v >= 1.0 - 1e-16] = 0.0
@@ -166,13 +200,25 @@ def exact_sum_quantiles(model, cdf1, icdf1, cdf2, icdf2, exceed_probs: Iterable[
                         u_grid: np.ndarray | None = None, rel_tol: float = 1e-5) -> dict:
     """Quantiles at 1 - p of X + Y by bisection on :func:`exact_sum_tail` (no Monte-Carlo noise)."""
     grid = default_u_grid() if u_grid is None else u_grid
+    # X <= icdf1(1) and Y <= icdf2(1), so their sum caps the quantile; without the
+    # cap the doubling loop cannot terminate when the h-function's numerical error
+    # at v -> 1 keeps the computed tail above p.
+    cap = float(icdf1(np.array([1.0]))[0] + icdf2(np.array([1.0]))[0])
     out = {}
+    prev = 1e-12
     for p in sorted(set(float(q) for q in exceed_probs), reverse=True):
         lo = 0.0
         hi = float(icdf1(np.array([1.0 - p]))[0] + icdf2(np.array([1.0 - p]))[0])
-        hi = max(hi, 1e-12)
+        hi = max(hi if np.isfinite(hi) else prev, prev)
+        hi = min(hi, cap)
         while exact_sum_tail(model, cdf1, icdf1, cdf2, hi, grid) > p:
-            hi *= 2.0
+            if hi >= cap:
+                break
+            hi = min(hi * 2.0, cap)
+        if not np.isfinite(hi):
+            # the parts carry at least p of +inf mass: the quantile is +inf
+            out[p] = np.inf
+            continue
         for _ in range(200):
             mid = 0.5 * (lo + hi)
             if exact_sum_tail(model, cdf1, icdf1, cdf2, mid, grid) > p:
@@ -182,4 +228,5 @@ def exact_sum_quantiles(model, cdf1, icdf1, cdf2, icdf2, exceed_probs: Iterable[
             if hi - lo <= rel_tol * hi:
                 break
         out[p] = hi
+        prev = hi
     return out

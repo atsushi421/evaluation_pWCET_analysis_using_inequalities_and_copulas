@@ -3,3 +3,6 @@ traces/
 __pycache__/
 *.pyc
 .pytest_cache/
+traces_fine/
+e214/killer_qsort
+e214/probe_bsort100

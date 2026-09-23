@@ -1,0 +1,5 @@
+Terminated
+FAILED: ipoint/traces_fine bsort100 0 CHB-IND 10000 results/jobs/e29/CHB-IND
+Terminated
+FAILED: ipoint/traces_fine bsort100 0 CHB-COP 10000 results/jobs/e29/CHB-COP
+tools/run_jobs.sh: line 20: -I{}: command not found

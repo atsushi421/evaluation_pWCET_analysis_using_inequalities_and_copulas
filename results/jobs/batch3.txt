@@ -1,0 +1,7 @@
+# E2-9 rerun with the infinite-bound handling (fine bsort100, window 0, n_mc 1e8)
+ipoint/traces_fine bsort100 0 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM 10000 results/jobs/e29b/e2e
+ipoint/traces_fine bsort100 0 CHB-COMONO 10000 results/jobs/e29b/CHB-COMONO
+ipoint/traces_fine bsort100 0 CHB-IND 10000 results/jobs/e29b/CHB-IND
+ipoint/traces_fine bsort100 0 CHB-COP 10000 results/jobs/e29b/CHB-COP
+ipoint/traces_fine bsort100 0 MEMIK-COP 10000 results/jobs/e29b/MEMIK-COP
+ipoint/traces_fine bsort100 0 EVT-COP 10000 results/jobs/e29b/EVT-COP

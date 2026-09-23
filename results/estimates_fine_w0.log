@@ -1,0 +1,11 @@
+bsort100 w0 E2E-CHB       [    3.5s] tightness 0.0001:1.017 1e-05:0.942 1e-06:0.894
+bsort100 w0 E2E-MEMIK     [    0.6s] tightness 0.0001:1.044 1e-05:0.987 1e-06:0.950
+bsort100 w0 E2E-CANTELLI  [    0.1s] tightness 0.0001:4.532 1e-05:11.384 1e-06:31.724
+bsort100 w0 E2E-EVT-PoT   [    3.8s] tightness 0.0001:0.999 1e-05:0.925 1e-06:0.855
+bsort100 w0 E2E-EVT-BM    [    0.0s] tightness 0.0001:nan 1e-05:nan 1e-06:nan
+bsort100 w0 CHB-COP       [ 1499.2s] tightness 0.0001:6.650 1e-05:14.690 1e-06:23.672
+bsort100 w0 CHB-IND       [  111.1s] tightness 0.0001:6.583 1e-05:12.148 1e-06:18.362
+bsort100 w0 CHB-COMONO    [   99.7s] tightness 0.0001:4.223 1e-05:20.305 1e-06:30.949
+bsort100 w0 MEMIK-COP     [ 1368.4s] tightness 0.0001:11.739 1e-05:19.528 1e-06:658103.970
+bsort100 w0 EVT-COP       [ 3382.3s] tightness 0.0001:2.082 1e-05:9.995 1e-06:11.894
+wrote results/estimates_fine/bsort100.json
