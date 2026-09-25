@@ -1,0 +1,5 @@
+# resub_aw.txt in reverse order, part 1 of 9
+ipoint/autoware/traces/autoware/bench_warm1 cb6 1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/resub_aw_warm1_mw/cb6 1e7
+ipoint/autoware/traces/autoware/bench cb2 0 all 10000 results/jobs/resub_aw_all/cb2 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 0 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/resub_aw_warm1_cb7/rest 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-COP 10000 results/jobs/resub_aw_warm1_cb4/CHB-COP 1e7

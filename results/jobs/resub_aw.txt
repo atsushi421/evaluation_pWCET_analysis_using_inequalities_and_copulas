@@ -1,0 +1,36 @@
+# Autoware recompute for the resubmission (J8, J9, J12): window 0 of both variants with every method (cb4 and cb7
+# split per copula method, merged with tools/merge_estimates.py), and windows 1-9 of the steady-state variant with the
+# end-to-end methods, CHB-IND and CHB-COMONO (J12: copula methods window 0 only).
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 EVT-COP 10000 results/jobs/resub_aw_warm1_cb4/EVT-COP 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-COP 10000 results/jobs/resub_aw_warm1_cb4/CHB-COP 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 MEMIK-COP 10000 results/jobs/resub_aw_warm1_cb4/MEMIK-COP 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 0 EVT-COP 10000 results/jobs/resub_aw_warm1_cb7/EVT-COP 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 0 CHB-COP 10000 results/jobs/resub_aw_warm1_cb7/CHB-COP 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 0 MEMIK-COP 10000 results/jobs/resub_aw_warm1_cb7/MEMIK-COP 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 EVT-COP 10000 results/jobs/resub_aw_all_cb4/EVT-COP 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 CHB-COP 10000 results/jobs/resub_aw_all_cb4/CHB-COP 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 MEMIK-COP 10000 results/jobs/resub_aw_all_cb4/MEMIK-COP 1e7
+ipoint/autoware/traces/autoware/bench cb7 0 EVT-COP 10000 results/jobs/resub_aw_all_cb7/EVT-COP 1e7
+ipoint/autoware/traces/autoware/bench cb7 0 CHB-COP 10000 results/jobs/resub_aw_all_cb7/CHB-COP 1e7
+ipoint/autoware/traces/autoware/bench cb7 0 MEMIK-COP 10000 results/jobs/resub_aw_all_cb7/MEMIK-COP 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/resub_aw_warm1_cb4/rest 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 0 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/resub_aw_warm1_cb7/rest 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 all 10000 results/jobs/resub_aw_warm1/cb1 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb2 0 all 10000 results/jobs/resub_aw_warm1/cb2 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb3 0 all 10000 results/jobs/resub_aw_warm1/cb3 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb5 0 all 10000 results/jobs/resub_aw_warm1/cb5 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb6 0 all 10000 results/jobs/resub_aw_warm1/cb6 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/resub_aw_all_cb4/rest 1e7
+ipoint/autoware/traces/autoware/bench cb7 0 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/resub_aw_all_cb7/rest 1e7
+ipoint/autoware/traces/autoware/bench cb1 0 all 10000 results/jobs/resub_aw_all/cb1 1e7
+ipoint/autoware/traces/autoware/bench cb2 0 all 10000 results/jobs/resub_aw_all/cb2 1e7
+ipoint/autoware/traces/autoware/bench cb3 0 all 10000 results/jobs/resub_aw_all/cb3 1e7
+ipoint/autoware/traces/autoware/bench cb5 0 all 10000 results/jobs/resub_aw_all/cb5 1e7
+ipoint/autoware/traces/autoware/bench cb6 0 all 10000 results/jobs/resub_aw_all/cb6 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/resub_aw_warm1_mw/cb1 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb2 1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/resub_aw_warm1_mw/cb2 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb3 1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/resub_aw_warm1_mw/cb3 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/resub_aw_warm1_mw/cb4 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb5 1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/resub_aw_warm1_mw/cb5 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb6 1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/resub_aw_warm1_mw/cb6 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 1,2,3,4,5,6,7,8,9 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/resub_aw_warm1_mw/cb7 1e7

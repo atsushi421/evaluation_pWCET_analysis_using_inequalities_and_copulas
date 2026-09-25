@@ -1,27 +1,27 @@
-ludcmp all: n_main 8999875 floor 1.25e-06 [883.6 s]
-ludcmp window0: n_main 9000 floor 0.00125 [5.3 s]
-  p= 1.00e-01 emp     125244  plugin/emp   1.055  cert/emp   1.114  w0 cert/emp   1.270
-  p= 5.62e-02 emp     125304  plugin/emp   1.068  cert/emp   1.140  w0 cert/emp   1.336
-  p= 3.16e-02 emp     125372  plugin/emp   1.081  cert/emp   1.168  w0 cert/emp   1.411
-  p= 1.78e-02 emp     125498  plugin/emp   1.094  cert/emp   1.196  w0 cert/emp   1.498
-  p= 1.00e-02 emp     129302  plugin/emp   1.076  cert/emp   1.191  w0 cert/emp   1.558
-  p= 5.62e-03 emp     129632  plugin/emp   1.088  cert/emp   1.219  w0 cert/emp   1.690
-  p= 3.16e-03 emp     129916  plugin/emp   1.100  cert/emp   1.249  w0 cert/emp   1.885
-  p= 1.78e-03 emp     130448  plugin/emp   1.110  cert/emp   1.279  w0 cert/emp   2.266
-  p= 1.00e-03 emp     131250  plugin/emp   1.119  cert/emp   1.309  w0 cert/emp     inf
-  p= 5.62e-04 emp     131998  plugin/emp   1.128  cert/emp   1.342  w0 cert/emp     inf
-  p= 3.16e-04 emp     132564  plugin/emp   1.140  cert/emp   1.380  w0 cert/emp     inf
-  p= 1.78e-04 emp     133196  plugin/emp   1.151  cert/emp   1.422  w0 cert/emp     inf
-  p= 1.00e-04 emp     133978  plugin/emp   1.161  cert/emp   1.467  w0 cert/emp     inf
-  p= 5.62e-05 emp     134782  plugin/emp   1.172  cert/emp   1.519  w0 cert/emp     inf
-  p= 3.16e-05 emp     135958  plugin/emp   1.180  cert/emp   1.575  w0 cert/emp     inf
-  p= 1.78e-05 emp     143686  plugin/emp   1.134  cert/emp   1.569  w0 cert/emp     inf
-  p= 1.00e-05 emp     145900  plugin/emp   1.135  cert/emp   1.641  w0 cert/emp     inf
-  p= 5.62e-06 emp     147756  plugin/emp   1.139  cert/emp   1.745  w0 cert/emp     inf
-  p= 3.16e-06 emp     148800  plugin/emp   1.151  cert/emp   1.916  w0 cert/emp     inf
-  p= 1.78e-06 emp     150352  plugin/emp   1.159  cert/emp   2.260  w0 cert/emp     inf
+ludcmp all: n_main 8999875 floor 1.17e-06 [363.1 s]
+ludcmp window0: n_main 9000 floor 0.00117 [1.8 s]
+  p= 1.00e-01 emp     125244  plugin/emp   1.055  cert/emp   1.113  w0 cert/emp   1.266
+  p= 5.62e-02 emp     125304  plugin/emp   1.068  cert/emp   1.140  w0 cert/emp   1.332
+  p= 3.16e-02 emp     125372  plugin/emp   1.081  cert/emp   1.167  w0 cert/emp   1.405
+  p= 1.78e-02 emp     125498  plugin/emp   1.094  cert/emp   1.195  w0 cert/emp   1.490
+  p= 1.00e-02 emp     129302  plugin/emp   1.076  cert/emp   1.189  w0 cert/emp   1.548
+  p= 5.62e-03 emp     129632  plugin/emp   1.088  cert/emp   1.217  w0 cert/emp   1.675
+  p= 3.16e-03 emp     129916  plugin/emp   1.100  cert/emp   1.247  w0 cert/emp   1.860
+  p= 1.78e-03 emp     130448  plugin/emp   1.110  cert/emp   1.277  w0 cert/emp   2.202
+  p= 1.00e-03 emp     131250  plugin/emp   1.119  cert/emp   1.307  w0 cert/emp     inf
+  p= 5.62e-04 emp     131998  plugin/emp   1.128  cert/emp   1.339  w0 cert/emp     inf
+  p= 3.16e-04 emp     132564  plugin/emp   1.140  cert/emp   1.377  w0 cert/emp     inf
+  p= 1.78e-04 emp     133196  plugin/emp   1.151  cert/emp   1.418  w0 cert/emp     inf
+  p= 1.00e-04 emp     133978  plugin/emp   1.161  cert/emp   1.463  w0 cert/emp     inf
+  p= 5.62e-05 emp     134782  plugin/emp   1.172  cert/emp   1.514  w0 cert/emp     inf
+  p= 3.16e-05 emp     135958  plugin/emp   1.180  cert/emp   1.569  w0 cert/emp     inf
+  p= 1.78e-05 emp     143686  plugin/emp   1.134  cert/emp   1.561  w0 cert/emp     inf
+  p= 1.00e-05 emp     145900  plugin/emp   1.135  cert/emp   1.630  w0 cert/emp     inf
+  p= 5.62e-06 emp     147756  plugin/emp   1.139  cert/emp   1.730  w0 cert/emp     inf
+  p= 3.16e-06 emp     148800  plugin/emp   1.151  cert/emp   1.892  w0 cert/emp     inf
+  p= 1.78e-06 emp     150352  plugin/emp   1.159  cert/emp   2.199  w0 cert/emp     inf
   p= 1.00e-06 emp     151344  plugin/emp   1.172  cert/emp     inf  w0 cert/emp     inf
   p= 5.62e-07 emp     152860  plugin/emp   1.182  cert/emp     inf  w0 cert/emp     inf
   p= 3.16e-07 emp     153138  plugin/emp   1.202  cert/emp     inf  w0 cert/emp     inf
   p= 1.78e-07 emp     154730  plugin/emp   1.212  cert/emp     inf  w0 cert/emp     inf
-  p= 1.00e-07 emp     190370  plugin/emp   1.001  cert/emp     inf  w0 cert/emp     inf
+  p= 1.00e-07 emp     190370  plugin/emp   1.002  cert/emp     inf  w0 cert/emp     inf

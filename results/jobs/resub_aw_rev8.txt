@@ -1,0 +1,4 @@
+# resub_aw.txt in reverse order, part 8 of 9
+ipoint/autoware/traces/autoware/bench cb5 0 all 10000 results/jobs/resub_aw_all/cb5 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb2 0 all 10000 results/jobs/resub_aw_warm1/cb2 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 EVT-COP 10000 results/jobs/resub_aw_all_cb4/EVT-COP 1e7
