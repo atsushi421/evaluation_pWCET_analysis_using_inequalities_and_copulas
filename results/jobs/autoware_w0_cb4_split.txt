@@ -1,0 +1,9 @@
+# cb4 split per method group (the copula methods each refit the same R-vines; run in parallel, merged with tools/merge_estimates.py into autoware_w0{,_warm1}/cb4/cb4.json)
+ipoint/autoware/traces/autoware/bench cb4 0 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/autoware_w0_cb4/rest 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 CHB-COP 10000 results/jobs/autoware_w0_cb4/CHB-COP 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 MEMIK-COP 10000 results/jobs/autoware_w0_cb4/MEMIK-COP 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 EVT-COP 10000 results/jobs/autoware_w0_cb4/EVT-COP 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/autoware_w0_warm1_cb4/rest 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-COP 10000 results/jobs/autoware_w0_warm1_cb4/CHB-COP 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 MEMIK-COP 10000 results/jobs/autoware_w0_warm1_cb4/MEMIK-COP 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 EVT-COP 10000 results/jobs/autoware_w0_warm1_cb4/EVT-COP 1e7

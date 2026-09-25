@@ -1,3 +1,16 @@
+diff --git a/autoware_launch/config/localization/ndt_scan_matcher/ndt_scan_matcher.param.yaml b/autoware_launch/config/localization/ndt_scan_matcher/ndt_scan_matcher.param.yaml
+index 9187b394..219a5c15 100644
+--- a/autoware_launch/config/localization/ndt_scan_matcher/ndt_scan_matcher.param.yaml
++++ b/autoware_launch/config/localization/ndt_scan_matcher/ndt_scan_matcher.param.yaml
+@@ -59,7 +59,7 @@
+ 
+     initial_pose_estimation:
+       # The number of particles to estimate initial pose
+-      particles_num: 200
++      particles_num: 100  # ipoint: 200 in the default configuration; halved to shorten the initial pose estimation (initialization phase, excluded from the samples)
+ 
+       # The number of initial random trials in the TPE (Tree-Structured Parzen Estimator).
+       # This value should be equal to or less than 'initial_estimate_particles_num' and more than 0.
 diff --git a/tier4_universe_launch/tier4_control_launch/launch/control.launch.xml b/tier4_universe_launch/tier4_control_launch/launch/control.launch.xml
 index 8a2cf993..a3028ce8 100644
 --- a/tier4_universe_launch/tier4_control_launch/launch/control.launch.xml

@@ -642,6 +642,9 @@ def git_head(path):
 
 
 def main(argv=None) -> int:
+    # a runner started with `nohup ... &` from a non-interactive shell inherits SIGINT ignored, and so
+    # would `ros2 launch`, which then never shuts the stack down; restore the default handler here
+    signal.signal(signal.SIGINT, signal.default_int_handler)
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--out", required=True)
     ap.add_argument("--rate", type=float, default=1.0)

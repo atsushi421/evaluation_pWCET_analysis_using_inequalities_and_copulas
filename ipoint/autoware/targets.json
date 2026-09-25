@@ -73,8 +73,8 @@
    "cores": [
     7
    ],
-   "pin_after_init": false,
-   "_note": "NDT: on its own isolated core 7 once the localization initialized (single core -> no balancing needed; the whole process time-shares it, num_threads stays 4). During initialization it runs unpinned on the non-isolated cores; pinning it to a set of isolated cores made the particle search pile on one core and never finish (smoke #9).",
+   "pin_after_init": true,
+   "_note": "NDT: pinned to its own isolated core 7 only AFTER the localization initialized (single core -> no balancing needed; the whole process time-shares it, num_threads stays 4). During initialization it runs unpinned on the non-isolated rest cores; pinning it before the initialization (verify3, 2026-09-23) made the initial pose estimation take 32 s on one core, and pinning it to a set of isolated cores made the particle search pile on one core and never finish (smoke #9). pin_after_init must be true: the runner pins a process with pin_after_init=false and init_cores=[] immediately at launch_ready.",
    "init_cores": []
   }
  },

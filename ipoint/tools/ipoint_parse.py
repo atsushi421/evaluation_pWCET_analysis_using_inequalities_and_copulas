@@ -22,6 +22,9 @@ Outputs (times in TSC ticks unless --ns):
   units/<uid>.run.npy        run index of every sample
   units/<uid>.self.npy       self time of container units
   units/<uid>.iters.npy      iterations per loop instance (loop units)
+  units/<uid>.caller.npy     function units: index into <uid>.callers.json of the
+                             unit on top of the stack when the instance ran (its
+                             dynamic call site; "" for a top-level instance)
   units/<uid>.gap<k>.npy     k-th gap between consecutive children (functions)
   branches/<uid>.alt.npy     index of the alternative taken per branch instance
   sample/<uid>.pkl           pickled list of samples (copulas.ipynb format)
@@ -87,6 +90,7 @@ class RunParser:
         self.sample_run: Dict[str, List[int]] = defaultdict(list)
         self.selfs: Dict[str, List[int]] = defaultdict(list)
         self.iters: Dict[str, List[int]] = defaultdict(list)
+        self.callers: Dict[str, List[str]] = defaultdict(list)
         self.gaps: Dict[str, List[List[int]]] = defaultdict(list)
         self.alts: Dict[str, List[int]] = defaultdict(list)
         self.implicit: Dict[str, int] = defaultdict(int)
@@ -119,6 +123,8 @@ class RunParser:
                 sig[u.uid] = sig.get(u.uid, 0) + n_body
             if implicit:
                 self.implicit[u.uid] += 1
+            if u.kind == "function":
+                self.callers[u.uid].append(stack[-1][0].uid if stack else "")
             if stack:
                 p = stack[-1]
                 p[2] += dur
@@ -253,6 +259,13 @@ def main(argv=None) -> int:
             np.save(os.path.join(a.out, "units", f"{uid}.self.npy"), s_arr)
             st["self_median"] = float(np.median(s_arr))
             st["self_min"] = float(s_arr.min())
+        if uid in rp.callers:
+            names = sorted(set(rp.callers[uid]))
+            code = {n: i for i, n in enumerate(names)}
+            np.save(os.path.join(a.out, "units", f"{uid}.caller.npy"),
+                    np.asarray([code[c] for c in rp.callers[uid]], dtype=np.uint16))
+            with open(os.path.join(a.out, "units", f"{uid}.callers.json"), "w") as f:
+                json.dump(names, f)
         if uid in rp.iters:
             it = np.asarray(rp.iters[uid], dtype=np.uint32)
             np.save(os.path.join(a.out, "units", f"{uid}.iters.npy"), it)

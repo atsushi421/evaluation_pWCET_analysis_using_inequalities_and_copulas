@@ -1,0 +1,46 @@
+{
+ "_comment": "Rules of tools/make_bench.py (design note sec. 3.1, D6). 'exclude': a run whose path signature (paths.csv) matches one of these patterns left the callback through an early return of the initialization phase (input missing, node not activated) and is not a sample; 'require': patterns every nominal run must contain. 'bounds': static loop bounds (uid of the loop -> [bound, source]) for the timed loop bodies, in addition to the bounds already in targets.json; 'demote': timed loop bodies whose loop has no sound static bound, the loop is then a leaf of the composition (its samples are the whole loop duration, the probes of the body stay in the trace as overhead).",
+ "cb1": {
+  "exclude": ["EKFLocalizer::timer_callback\\.if1\\.then=1", "EKFLocalizer::timer_callback\\.if2\\.then=1"],
+  "_exclude_note": "if1: !is_activated_ (ekf_localizer.cpp:159), if2: !is_set_initialpose_ (:170); both warn, update the diagnostics and return"
+ },
+ "cb2": {
+  "_note": "all invocations are samples; AccelEstimator::estimate.if1.then (first invocation without a previous twist) is recorded as an alternative"
+ },
+ "cb3": {
+  "_note": "all invocations are samples; the empty signature is the vehicle-stopped path (StopFilter::create_filtered_msg.if1.then is below the timing floor and carries no probe)"
+ },
+ "cb4": {
+  "exclude": ["Controller::callbackTimerControl\\.if1\\.then=1", "Controller::callbackTimerControl\\.if2\\.then=1"],
+  "_exclude_note": "if1: createInputData failed (controller_node.cpp:241), if2: lateral or longitudinal controller not ready (:250); the isTimeOut return (if3, :271) comes after both controllers ran and is kept",
+  "bounds": {
+   "MPC::generateMPCMatrix.L1": [50, "parameter mpc_prediction_horizon (N, mpc.param.yaml)"],
+   "MPC::calcSteerRateLimitOnTrajectory.L1": [50, "parameter mpc_prediction_horizon (mpc.param.yaml)"],
+   "MPC::updateStateForDelayCompensation.L1": [8, "m_input_buffer holds round(input_delay / ctrl_period) = round(0.24 / 0.03) entries (fixed-size deque)"]
+  },
+  "demote": {
+   "MpcLateralController::setTrajectory.L1.body": "the trajectory buffer is trimmed by the stamps of the planner (new_traj_duration_time = 1.0 s), so its length is bounded by ctrl_period only while the stamps advance in real time; 76 entries were observed in nominal runs (> 35 = 1.0 / 0.03 + 1). The while loop is a leaf.",
+   "MpcLateralController::isTrajectoryShapeChanged.L1.body": "iterates over the same trajectory buffer; leaf for the same reason"
+  }
+ },
+ "cb5": {
+  "_note": "all invocations are samples"
+ },
+ "cb6": {
+  "exclude": ["LaneDepartureCheckerNode::isDataReady\\.if[1-7]\\.then=1", "LaneDepartureCheckerNode::onTimer\\.if3\\.then=1", "LaneDepartureCheckerNode::onTimer\\.if4\\.then=1"],
+  "_exclude_note": "isDataReady.ifN.then: one of the seven inputs is missing (lane_departure_checker_node.cpp:173-207), onTimer returns; onTimer.if3: isDataTimeout (:277), if4: !isDataValid (:281)",
+  "bounds": {
+   "LaneDepartureCheckerNode::onTimer.L1": [7, "output_.processing_time_map has a fixed set of 7 keys (one per timed section of the checker's update); 7 iterations in every observed instance"]
+  },
+  "demote": {
+   "LaneDepartureCheckerNode::onTimer.if5.then.L1.body": "iterates over the lanelets of the route once per route update (3 lanelets of the sample route, once per replay); route-length dependent, the loop is a leaf"
+  }
+ },
+ "cb7": {
+  "require": ["NDTScanMatcher::publish_pose"],
+  "_require_note": "the alignment runs inside the lambda of ndt_ptr_.with (ndt_scan_matcher_core.cpp:386, opaque to the scope tree); invocations that return before it (not activated, initial pose not interpolated, map not set) publish nothing, so a sample is an invocation that reached publish_pose",
+  "bounds": {
+   "NDTScanMatcher::publish_marker.L1": [31, "one pose per NDT iteration plus the initial transformation (ndt_omp transformation_array_), iterations <= parameter max_iterations = 30 (ndt_scan_matcher.param.yaml)"]
+  }
+ }
+}

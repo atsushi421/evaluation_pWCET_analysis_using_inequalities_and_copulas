@@ -1,0 +1,4 @@
+Terminated
+FAILED: ipoint/autoware/traces/autoware/bench cb4 0 all 10000 results/jobs/autoware_w0/cb4 1e7
+Terminated
+FAILED: ipoint/autoware/traces/autoware/bench_warm1 cb4 0 all 10000 results/jobs/autoware_w0_warm1/cb4 1e7

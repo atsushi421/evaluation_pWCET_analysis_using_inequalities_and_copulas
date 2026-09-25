@@ -1,0 +1,14 @@
+ipoint/autoware/traces/autoware/bench cb4 0 all 10000 results/jobs/autoware_w0/cb4 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 all 10000 results/jobs/autoware_w0_warm1/cb4 1e7
+ipoint/autoware/traces/autoware/bench cb1 0 all 10000 results/jobs/autoware_w0/cb1 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 all 10000 results/jobs/autoware_w0_warm1/cb1 1e7
+ipoint/autoware/traces/autoware/bench cb6 0 all 10000 results/jobs/autoware_w0/cb6 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb6 0 all 10000 results/jobs/autoware_w0_warm1/cb6 1e7
+ipoint/autoware/traces/autoware/bench cb7 0 all 10000 results/jobs/autoware_w0/cb7 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 0 all 10000 results/jobs/autoware_w0_warm1/cb7 1e7
+ipoint/autoware/traces/autoware/bench cb5 0 all 10000 results/jobs/autoware_w0/cb5 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb5 0 all 10000 results/jobs/autoware_w0_warm1/cb5 1e7
+ipoint/autoware/traces/autoware/bench cb2 0 all 10000 results/jobs/autoware_w0/cb2 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb2 0 all 10000 results/jobs/autoware_w0_warm1/cb2 1e7
+ipoint/autoware/traces/autoware/bench cb3 0 all 10000 results/jobs/autoware_w0/cb3 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb3 0 all 10000 results/jobs/autoware_w0_warm1/cb3 1e7

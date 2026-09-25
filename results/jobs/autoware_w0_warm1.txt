@@ -1,0 +1,8 @@
+# Autoware steady-state variant: as autoware_w0.txt, and the first nominal invocation of every replay (cold start after the per-replay process start) dropped (make_bench.py --warmup 1)
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 all 10000 results/jobs/autoware_w0_warm1/cb1 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb2 0 all 10000 results/jobs/autoware_w0_warm1/cb2 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb3 0 all 10000 results/jobs/autoware_w0_warm1/cb3 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 all 10000 results/jobs/autoware_w0_warm1/cb4 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb5 0 all 10000 results/jobs/autoware_w0_warm1/cb5 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb6 0 all 10000 results/jobs/autoware_w0_warm1/cb6 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 0 all 10000 results/jobs/autoware_w0_warm1/cb7 1e7
