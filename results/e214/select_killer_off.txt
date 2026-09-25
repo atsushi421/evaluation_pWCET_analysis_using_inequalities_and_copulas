@@ -1,0 +1,4 @@
+random     median    32056 p99    39900 max   521592 ticks | iters 10.9 cmps 2735 | avg/iter mean 2991 max 43466 ticks
+killer     median   198882 p99   203666 max   220802 ticks | iters 252.0 cmps 188752 | avg/iter mean 789 max 876 ticks
+subnormal  median    31986 p99    40056 max    45054 ticks | iters 10.9 cmps 2735 | avg/iter mean 2983 max 7589 ticks
+killer-sub median   198638 p99   203350 max   207282 ticks | iters 252.0 cmps 188752 | avg/iter mean 789 max 823 ticks

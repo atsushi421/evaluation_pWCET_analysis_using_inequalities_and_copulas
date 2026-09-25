@@ -4,11 +4,13 @@
 IPOINT_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST)))/..)
 CC ?= gcc
 CFLAGS := -O2 -std=gnu11 -Wall -I$(IPOINT_DIR)/bench/common
-all: probe_bsort100 killer_qsort
+all: probe_bsort100 killer_qsort probe_select
 probe_bsort100: probe_bsort100.c $(IPOINT_DIR)/bench/build/bsort100/off/kernel.o
 	$(CC) $(CFLAGS) $^ -o $@
 killer_qsort: killer_qsort.c $(IPOINT_DIR)/bench/build/qsort-exam/off/kernel.o
 	$(CC) $(CFLAGS) $^ -o $@ -lm
+probe_select: probe_select.c $(IPOINT_DIR)/bench/build/select/off/kernel.o
+	$(CC) $(CFLAGS) $^ -o $@
 clean:
-	rm -f probe_bsort100 killer_qsort
+	rm -f probe_bsort100 killer_qsort probe_select
 .PHONY: all clean

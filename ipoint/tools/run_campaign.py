@@ -77,6 +77,9 @@ class Campaign:
         r = subprocess.run(cmd, cwd=cwd, check=True, capture_output=capture, text=True)
         return r.stdout if capture else ""
 
+    def param(self, b):
+        return BENCHES[b]["param"] if self.a.param is None else self.a.param
+
     # paths
     def build_dir(self, b):
         return os.path.join(BENCH_DIR, "build", b)
@@ -134,7 +137,7 @@ class Campaign:
         e, x, m = (0, 0, 0) if self.a.dry_run and not os.path.exists(schema) else self.ids(schema)
         cmd = ["taskset", "-c", str(self.a.core), exe, "--out", out, "--runs", str(int(runs)),
                "--full-trace-runs", str(int(full)), "--seed0", str(self.a.seed0), "--core", str(self.a.core),
-               "--warmup", str(self.a.warmup), "--param", str(BENCHES[b]["param"]), "--entry-id", str(e),
+               "--warmup", str(self.a.warmup), "--param", str(self.param(b)), "--entry-id", str(e),
                "--exit-id", str(x), "--max-id", str(m), "--calib", "1"] + list(extra)
         self.sh(cmd)
 
@@ -241,7 +244,7 @@ class Campaign:
         rdtscp = subprocess.run(["grep", "-c", "rdtscp", os.path.join(d, "timing", "kernel.objdump")],
                                 capture_output=True, text=True).stdout.strip()
         with open(self.out_dir(b, "campaign.json"), "w") as f:
-            json.dump({"bench": b, "config": BENCHES[b], "args": vars(self.a), "sysinfo": sysinfo,
+            json.dump({"bench": b, "config": {**BENCHES[b], "param": self.param(b)}, "args": vars(self.a), "sysinfo": sysinfo,
                        "kernel_cflags": "-O2 -fno-builtin", "rdtscp_in_kernel_objdump": int(rdtscp or 0),
                        "commands": self.log}, f, indent=1)
 
@@ -285,6 +288,8 @@ def main(argv=None) -> int:
     ap.add_argument("--seed0", type=int, default=20260829)
     ap.add_argument("--core", type=int, default=3)
     ap.add_argument("--warmup", type=int, default=1000)
+    ap.add_argument("--param", type=float, default=None,
+                    help="override the benchmark's --param (qsort-exam: probability of the adversarial input, E2-14)")
     ap.add_argument("--probe-bench", action="store_true", help="only measure the probe cost of every timestamp implementation")
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args(argv)
