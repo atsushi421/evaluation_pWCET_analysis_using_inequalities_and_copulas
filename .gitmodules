@@ -1,0 +1,3 @@
+[submodule "external/TailID"]
+	path = external/TailID
+	url = https://github.com/atsushi421/TailID
