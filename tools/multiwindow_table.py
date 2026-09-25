@@ -20,9 +20,9 @@ BENCHES = ["bsort100", "fir", "matmult", "edn", "ndes", "st", "lms", "prime", "c
 PS = ("0.0001", "1e-05", "1e-06")
 
 
-def load(w0_dir, mw_dir):
+def load(w0_dir, mw_dir, benches=BENCHES):
     out = {}
-    for b in BENCHES:
+    for b in benches:
         wins = {}
         for d in (w0_dir, mw_dir):
             path = os.path.join(d, f"{b}.json")
@@ -39,9 +39,11 @@ def main():
     ap.add_argument("--mw", default="results/estimates_multiwindow")
     ap.add_argument("--p", default="0.0001")
     ap.add_argument("--out", default="results/tables/multiwindow.md")
+    ap.add_argument("--benches", default=",".join(BENCHES), help="comma separated (e.g. cb1,...,cb7 for Autoware)")
     a = ap.parse_args()
-    data = load(a.w0, a.mw)
-    lines = ["Unsafe windows (tightness < 1) / windows with an estimate, 12 benchmarks x 10 windows.\n",
+    benches = a.benches.split(",")
+    data = load(a.w0, a.mw, benches)
+    lines = [f"Unsafe windows (tightness < 1) / windows with an estimate, {len(benches)} benchmarks x 10 windows.\n",
              "| method | " + " | ".join(f"p={p}" for p in PS) + " |", "|---|" + "---|" * len(PS)]
     for m in METHODS:
         cells = []

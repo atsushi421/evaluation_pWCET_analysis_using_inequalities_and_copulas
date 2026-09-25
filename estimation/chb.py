@@ -4,7 +4,9 @@ Vectorized reimplementation of the RESTK + envelope pipeline of ``memik/``,
 ``atan/`` and ``tanh/`` (same algorithm and settings as ``chb_main.ipynb``:
 k in [1, 150], n_sims 1000/500/100 for memik/atan/tanh, n_boot 1e3,
 p_test {1e-4, 1e-5, 1e-6}, 13-point log d grids), plus the finite-sample
-KL certificate of CC-C. The d grid is derived from a calibration subsample
+KL certificate of CC-C. The CHB leaf uses the hyperbolic tangent only
+(``CHB_FAMILIES``); passing ``families=("atan", "tanh")`` gives the former
+envelope over both grids, kept for the ablation. The d grid is derived from a calibration subsample
 (the first ``calib_frac`` of the window) and the moments are estimated on
 the remaining main sample, so the union bound over the fixed grid applies
 to the main sample.
@@ -20,6 +22,7 @@ P_TEST = (1e-4, 1e-5, 1e-6)
 K_MAX = 150
 N_BOOT = 1000
 N_SIMS = {"memik": 1000, "atan": 500, "tanh": 100}
+CHB_FAMILIES = ("tanh",)
 
 
 @dataclass(frozen=True)
@@ -151,13 +154,13 @@ def _shift(samples):
 
 
 def chb_leaf(samples, p_all, rng: np.random.Generator, calib_frac: float = 0.1,
-             alpha: float = 0.05, certificate: bool = True) -> LeafResult:
-    """Envelope over the atan and tanh grids (plug-in), plus the KL certificate."""
+             alpha: float = 0.05, certificate: bool = True, families=CHB_FAMILIES) -> LeafResult:
+    """Min over the (d, k) grids of `families` (plug-in), plus the KL certificate over the same grids."""
     samples, shift = _shift(samples)
     n_cal = max(int(len(samples) * calib_frac), 2)
     calib, main = samples[:n_cal], samples[n_cal:]
     per_family, pwcet, detail = {}, {}, {}
-    for name in ("atan", "tanh"):
+    for name in families:
         fam = FAMILIES[name]
         per_family[name] = family_pwcet(main, name, p_all, rng, d_list=fam.d_grid(calib))
     for p in p_all:
@@ -167,7 +170,7 @@ def chb_leaf(samples, p_all, rng: np.random.Generator, calib_frac: float = 0.1,
         detail[p] = {"family": name, "d": d, "k": k}
     out = LeafResult(pwcet, {"choice": detail, "n_main": len(main), "n_calib": n_cal})
     if certificate:
-        out.detail["certificate"] = kl_certificate(main, calib, p_all, alpha, shift)
+        out.detail["certificate"] = kl_certificate(main, calib, p_all, alpha, shift, families)
     return out
 
 
@@ -178,12 +181,12 @@ def memik_leaf(samples, p_all, rng: np.random.Generator) -> LeafResult:
                       {"choice": {p: {"k": k} for p, (v, _, k) in env.items()}})
 
 
-def kl_certificate(main, calib, p_all, alpha: float, shift: float = 0.0) -> dict:
+def kl_certificate(main, calib, p_all, alpha: float, shift: float = 0.0, families=CHB_FAMILIES) -> dict:
     """Certified envelope: with probability >= 1 - alpha, simultaneously over the
     whole grid, P(X >= b) <= mu+/f(b), where mu+ is the KL upper confidence bound
     of E[(g(X,d)/sup)^k]. Entries are +inf below the certification floor."""
     n = len(main)
-    grid = {name: FAMILIES[name].d_grid(calib) for name in ("atan", "tanh")}
+    grid = {name: FAMILIES[name].d_grid(calib) for name in families}
     g_size = sum(len(d) for d in grid.values()) * K_MAX
     tau = np.log(g_size / alpha) / n
     mu_all = {}

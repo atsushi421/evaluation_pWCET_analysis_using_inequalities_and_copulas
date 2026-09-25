@@ -3,6 +3,7 @@
 
     .venv/bin/python tools/merge_monotone.py --diff [--out results/tables/monotone_diff.md]
     .venv/bin/python tools/merge_monotone.py --apply
+    .venv/bin/python tools/merge_monotone.py --jobs results/jobs/resub_bench.txt --tag resub --diff --apply
 
 The job files are the source of truth: every (job, window, method) whose JSON exists is compared
 with (--diff) or written over (--apply) the stored entry. Stored file per job:
@@ -11,7 +12,8 @@ with (--diff) or written over (--apply) the stored entry. Stored file per job:
   window 0                         -> results/estimates/<bench>.json
   windows 1..9                     -> results/estimates_multiwindow/<bench>.json
 --apply keeps the stored `seconds` (measured in the original run) and records the recompute time
-in `seconds_monotone`.
+in `seconds_<tag>` (default tag monotone); an entry the stored file does not have yet (a new
+method such as CHB-COP@inst) is added as computed.
 """
 import argparse
 import json
@@ -22,11 +24,11 @@ import numpy as np
 
 JOB_FILES = ("results/jobs/batch6.txt", "results/jobs/batch7.txt")
 P_EVAL = ("0.0001", "1e-05", "1e-06")
-METHOD_ORDER = ["E2E-CHB", "E2E-MEMIK", "CHB-COP", "CHB-IND", "CHB-COMONO", "MEMIK-COP"]
+METHOD_ORDER = ["E2E-CHB", "E2E-MEMIK", "CHB-COP", "CHB-IND", "CHB-COMONO", "MEMIK-COP", "EVT-COP"]
 
 
-def jobs():
-    for jf in JOB_FILES:
+def jobs(job_files=JOB_FILES):
+    for jf in job_files:
         for line in open(jf):
             line = line.strip()
             if not line or line.startswith("#"):
@@ -44,10 +46,10 @@ def target_dir(job, w):
     return "results/estimates" if w == "0" else "results/estimates_multiwindow"
 
 
-def collect():
+def collect(job_files=JOB_FILES):
     """{(stored_file, window, method): new_entry}; also the list of jobs without a JSON."""
     new, missing = {}, []
-    for job in jobs():
+    for job in jobs(job_files):
         path = os.path.join(job["out"], job["bench"] + ".json")
         if not os.path.exists(path):
             missing.append(job["out"])
@@ -70,6 +72,8 @@ def diff(new, missing, out):
     for (f, w, m), e in new.items():
         if f not in stored:
             stored[f] = json.load(open(f))
+        if m not in stored[f]["windows"][w]:
+            continue                                   # new method: nothing to compare with
         o = stored[f]["windows"][w][m]
         for p in P_EVAL:
             a, b = o["tightness"][p], e["tightness"][p]
@@ -158,7 +162,7 @@ def diff(new, missing, out):
     print(text)
 
 
-def apply(new, missing):
+def apply(new, missing, tag="monotone"):
     if missing:
         raise SystemExit(f"{len(missing)} jobs have no JSON; finish the recompute first")
     by_file = defaultdict(dict)
@@ -167,10 +171,10 @@ def apply(new, missing):
     for f, entries in by_file.items():
         d = json.load(open(f))
         for (w, m), e in entries.items():
-            old = d["windows"][w][m]
             e = dict(e)
-            e["seconds_monotone"] = e["seconds"]
-            e["seconds"] = old["seconds"]
+            if m in d["windows"][w]:
+                e[f"seconds_{tag}"] = e["seconds"]
+                e["seconds"] = d["windows"][w][m]["seconds"]
             d["windows"][w][m] = e
         with open(f, "w") as fh:
             json.dump(d, fh, indent=1)
@@ -182,12 +186,14 @@ def main():
     ap.add_argument("--diff", action="store_true")
     ap.add_argument("--apply", action="store_true")
     ap.add_argument("--out", default="results/tables/monotone_diff.md")
+    ap.add_argument("--jobs", nargs="+", default=JOB_FILES, help="job files (default: the monotone recompute)")
+    ap.add_argument("--tag", default="monotone", help="suffix of the recompute-time key written by --apply")
     a = ap.parse_args()
-    new, missing = collect()
+    new, missing = collect(a.jobs)
     if a.diff:
         diff(new, missing, a.out)
     if a.apply:
-        apply(new, missing)
+        apply(new, missing, a.tag)
 
 
 if __name__ == "__main__":
