@@ -1,0 +1,76 @@
+=== bsort100: instrument
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_instrument.py /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/benchmarks/malardalen/bsort100.c --entry BubbleSort --out /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/bsort100.ipoint_full.c --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/schema_full.json --all
+wrote /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/bsort100.ipoint_full.c and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/schema_full.json (14 instrumented units, ids 1..25)
+=== bsort100: pilot
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_instrument.py /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/benchmarks/malardalen/bsort100.c --entry BubbleSort --out /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/bsort100.ipoint.c --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/schema_timing.json --all
+wrote /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/bsort100.ipoint.c and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/schema_timing.json (14 instrumented units, ids 1..25)
++ make -s BENCH=bsort100 MODE=timing SRC=/home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/bsort100.ipoint.c KERNEL_DEFS=
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/timing/bench_bsort100 --out traces_fine/bsort100/pilot/round0 --runs 1000 --full-trace-runs 1000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 7 --exit-id 8 --max-id 25 --calib 1
+bsort100 [timing]: 1000 runs in 1.8 s; e2e ticks min/mean/max = 1380376/1528070.9/1581416; migrations=0 overflow=0
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_parse.py --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/schema_timing.json --trace-dir traces_fine/bsort100/pilot/round0 --out traces_fine/bsort100/pilot/round0/parsed --min-unit-ns 100.0
+parsed 1000 runs, 11 units; implicit closes: 0, unmatched exits: 0, suggested exclusions: ['BubbleSort.L1.body.L1.body.if2.then', 'BubbleSort.L1.body.L1.body.if1.then', 'BubbleSort.L1.body.if1.then']
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_instrument.py /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/benchmarks/malardalen/bsort100.c --entry BubbleSort --out /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/bsort100.ipoint.c --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/schema_timing.json --all --exclude-unit BubbleSort.L1.body.L1.body.if1.then --exclude-unit BubbleSort.L1.body.L1.body.if2.then --exclude-unit BubbleSort.L1.body.if1.then
+wrote /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/bsort100.ipoint.c and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/schema_timing.json (11 instrumented units, ids 1..25)
++ make -s BENCH=bsort100 MODE=timing SRC=/home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/bsort100.ipoint.c KERNEL_DEFS=
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/timing/bench_bsort100 --out traces_fine/bsort100/pilot/round1 --runs 1000 --full-trace-runs 1000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 7 --exit-id 8 --max-id 25 --calib 1
+bsort100 [timing]: 1000 runs in 1.4 s; e2e ticks min/mean/max = 1079576/1189117.8/1235742; migrations=0 overflow=0
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_parse.py --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/schema_timing.json --trace-dir traces_fine/bsort100/pilot/round1 --out traces_fine/bsort100/pilot/round1/parsed --min-unit-ns 100.0
+parsed 1000 runs, 8 units; implicit closes: 0, unmatched exits: 0, suggested exclusions: ['BubbleSort.L1.body.L1.body']
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_instrument.py /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/benchmarks/malardalen/bsort100.c --entry BubbleSort --out /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/bsort100.ipoint.c --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/schema_timing.json --all --exclude-unit BubbleSort.L1.body.L1.body --exclude-unit BubbleSort.L1.body.L1.body.if1.then --exclude-unit BubbleSort.L1.body.L1.body.if2.then --exclude-unit BubbleSort.L1.body.if1.then
+wrote /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/bsort100.ipoint.c and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/schema_timing.json (8 instrumented units, ids 1..25)
++ make -s BENCH=bsort100 MODE=timing SRC=/home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/bsort100.ipoint.c KERNEL_DEFS=
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/timing/bench_bsort100 --out traces_fine/bsort100/pilot/round2 --runs 1000 --full-trace-runs 1000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 7 --exit-id 8 --max-id 25 --calib 1
+bsort100 [timing]: 1000 runs in 0.1 s; e2e ticks min/mean/max = 59046/71747.1/84420; migrations=0 overflow=0
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_parse.py --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/schema_timing.json --trace-dir traces_fine/bsort100/pilot/round2 --out traces_fine/bsort100/pilot/round2/parsed --min-unit-ns 100.0
+parsed 1000 runs, 5 units; implicit closes: 0, unmatched exits: 0, suggested exclusions: []
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_instrument.py /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/benchmarks/malardalen/bsort100.c --entry BubbleSort --out /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/bsort100.ipoint.c --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/schema_timing.json --all --exclude-unit BubbleSort.L1.body.L1.body --exclude-unit BubbleSort.L1.body.L1.body.if1.then --exclude-unit BubbleSort.L1.body.L1.body.if2.then --exclude-unit BubbleSort.L1.body.if1.then
+wrote /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/bsort100.ipoint.c and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/schema_timing.json (8 instrumented units, ids 1..25)
+=== bsort100: build
++ make -s BENCH=bsort100 MODE=off SRC=/home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/bsort100.ipoint.c KERNEL_DEFS=
++ make -s BENCH=bsort100 MODE=timing SRC=/home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/bsort100.ipoint.c KERNEL_DEFS=
++ make -s BENCH=bsort100 MODE=coverage SRC=/home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/bsort100.ipoint_full.c KERNEL_DEFS=
+=== bsort100: run
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/timing/bench_bsort100 --out traces_fine/bsort100/timing --runs 10000000 --full-trace-runs 100000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 7 --exit-id 8 --max-id 25 --calib 1
+bsort100: 1000000/10000000 runs, 37.0 s elapsed
+bsort100: 2000000/10000000 runs, 73.3 s elapsed
+bsort100: 3000000/10000000 runs, 109.6 s elapsed
+bsort100: 4000000/10000000 runs, 146.0 s elapsed
+bsort100: 5000000/10000000 runs, 182.3 s elapsed
+bsort100: 6000000/10000000 runs, 218.6 s elapsed
+bsort100: 7000000/10000000 runs, 254.9 s elapsed
+bsort100: 8000000/10000000 runs, 291.3 s elapsed
+bsort100: 9000000/10000000 runs, 327.6 s elapsed
+bsort100: 10000000/10000000 runs, 363.9 s elapsed
+bsort100 [timing]: 10000000 runs in 363.9 s; e2e ticks min/mean/max = 51772/71707.8/579628; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/off/bench_bsort100 --out traces_fine/bsort100/off --runs 100000 --full-trace-runs 0 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 7 --exit-id 8 --max-id 25 --calib 1
+bsort100 [off]: 100000 runs in 2.2 s; e2e ticks min/mean/max = 34966/43721.3/56032; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/coverage/bench_bsort100 --out traces_fine/bsort100/coverage --runs 10000000 --full-trace-runs 0 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 7 --exit-id 8 --max-id 25 --calib 1
+bsort100: 1000000/10000000 runs, 46.8 s elapsed
+bsort100: 2000000/10000000 runs, 93.6 s elapsed
+bsort100: 3000000/10000000 runs, 140.4 s elapsed
+bsort100: 4000000/10000000 runs, 187.1 s elapsed
+bsort100: 5000000/10000000 runs, 233.9 s elapsed
+bsort100: 6000000/10000000 runs, 280.7 s elapsed
+bsort100: 7000000/10000000 runs, 327.4 s elapsed
+bsort100: 8000000/10000000 runs, 374.2 s elapsed
+bsort100: 9000000/10000000 runs, 421.0 s elapsed
+bsort100: 10000000/10000000 runs, 467.7 s elapsed
+bsort100 [coverage]: 10000000 runs in 467.7 s; e2e ticks min/mean/max = 77596/96287.8/2165332; migrations=0 overflow=0
+=== bsort100: parse
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_parse.py --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/schema_timing.json --trace-dir traces_fine/bsort100/timing --out traces_fine/bsort100/parsed --min-unit-ns 100.0
+parsed 10000/100000 runs
+parsed 20000/100000 runs
+parsed 30000/100000 runs
+parsed 40000/100000 runs
+parsed 50000/100000 runs
+parsed 60000/100000 runs
+parsed 70000/100000 runs
+parsed 80000/100000 runs
+parsed 90000/100000 runs
+parsed 100000/100000 runs
+parsed 100000 runs, 5 units; implicit closes: 0, unmatched exits: 0, suggested exclusions: []
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_check.py --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/schema_timing.json --trace-dir traces_fine/bsort100/timing --parsed traces_fine/bsort100/parsed
+bsort100: 0 failures over 100000 runs, 6 units
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_overhead.py --off traces_fine/bsort100/off --timing traces_fine/bsort100/timing --coverage traces_fine/bsort100/coverage --out traces_fine/bsort100/overhead.json
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_coverage.py --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/bsort100/schema_full.json --dir traces_fine/bsort100/coverage --train 10000 --out traces_fine/bsort100/coverage.json
+exit=0

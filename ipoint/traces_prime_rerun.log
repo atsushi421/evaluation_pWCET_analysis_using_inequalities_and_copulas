@@ -1,0 +1,83 @@
+=== prime: instrument
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_instrument.py /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/benchmarks/malardalen/prime.c --entry prime --out /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/prime.ipoint_full.c --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/schema_full.json --bounds /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/bounds/prime.bounds.json --all
+wrote /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/prime.ipoint_full.c and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/schema_full.json (10 instrumented units, ids 1..18)
+=== prime: pilot
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_instrument.py /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/benchmarks/malardalen/prime.c --entry prime --out /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/prime.ipoint.c --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/schema_timing.json --bounds /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/bounds/prime.bounds.json --all
+wrote /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/prime.ipoint.c and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/schema_timing.json (10 instrumented units, ids 1..18)
++ make -s BENCH=prime MODE=timing SRC=/home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/prime.ipoint.c KERNEL_DEFS=
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/timing/bench_prime --out traces/prime/pilot/round0 --runs 1000 --full-trace-runs 1000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 5 --exit-id 6 --max-id 18 --calib 1
+prime [timing]: 1000 runs in 0.4 s; e2e ticks min/mean/max = 480/322518.7/11056726; migrations=0 overflow=0
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_parse.py --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/schema_timing.json --trace-dir traces/prime/pilot/round0 --out traces/prime/pilot/round0/parsed --min-unit-ns 300.0
+parsed 1000 runs, 9 units; implicit closes: 0, unmatched exits: 0, suggested exclusions: ['divides', 'even', 'prime.L1.body', 'prime.L1.body.if1.then', 'prime.if1.then']
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_instrument.py /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/benchmarks/malardalen/prime.c --entry prime --out /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/prime.ipoint.c --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/schema_timing.json --bounds /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/bounds/prime.bounds.json --all --exclude-unit divides --exclude-unit even --exclude-unit prime.L1.body --exclude-unit prime.L1.body.if1.then --exclude-unit prime.if1.then
+wrote /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/prime.ipoint.c and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/schema_timing.json (4 instrumented units, ids 1..18)
++ make -s BENCH=prime MODE=timing SRC=/home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/prime.ipoint.c KERNEL_DEFS=
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/timing/bench_prime --out traces/prime/pilot/round1 --runs 1000 --full-trace-runs 1000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 5 --exit-id 6 --max-id 18 --calib 1
+prime [timing]: 1000 runs in 0.0 s; e2e ticks min/mean/max = 66/7636.8/256280; migrations=0 overflow=0
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_parse.py --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/schema_timing.json --trace-dir traces/prime/pilot/round1 --out traces/prime/pilot/round1/parsed --min-unit-ns 300.0
+parsed 1000 runs, 3 units; implicit closes: 0, unmatched exits: 0, suggested exclusions: ['prime.L1']
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_instrument.py /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/benchmarks/malardalen/prime.c --entry prime --out /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/prime.ipoint.c --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/schema_timing.json --bounds /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/bounds/prime.bounds.json --all --exclude-unit divides --exclude-unit even --exclude-unit prime.L1 --exclude-unit prime.L1.body --exclude-unit prime.L1.body.if1.then --exclude-unit prime.if1.then
+wrote /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/prime.ipoint.c and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/schema_timing.json (3 instrumented units, ids 1..18)
++ make -s BENCH=prime MODE=timing SRC=/home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/prime.ipoint.c KERNEL_DEFS=
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/timing/bench_prime --out traces/prime/pilot/round2 --runs 1000 --full-trace-runs 1000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 5 --exit-id 6 --max-id 18 --calib 1
+prime [timing]: 1000 runs in 0.0 s; e2e ticks min/mean/max = 66/7569.4/256152; migrations=0 overflow=0
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_parse.py --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/schema_timing.json --trace-dir traces/prime/pilot/round2 --out traces/prime/pilot/round2/parsed --min-unit-ns 300.0
+parsed 1000 runs, 2 units; implicit closes: 0, unmatched exits: 0, suggested exclusions: []
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_instrument.py /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/benchmarks/malardalen/prime.c --entry prime --out /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/prime.ipoint.c --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/schema_timing.json --bounds /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/bounds/prime.bounds.json --all --exclude-unit divides --exclude-unit even --exclude-unit prime.L1 --exclude-unit prime.L1.body --exclude-unit prime.L1.body.if1.then --exclude-unit prime.if1.else --exclude-unit prime.if1.then --exclude-unit swap
+wrote /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/prime.ipoint.c and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/schema_timing.json (1 instrumented units, ids 1..18)
++ make -s BENCH=prime MODE=timing SRC=/home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/prime.ipoint.c KERNEL_DEFS=
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/timing/bench_prime --out traces/prime/pilot/round3 --runs 1000 --full-trace-runs 1000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 5 --exit-id 6 --max-id 18 --calib 1
+prime [timing]: 1000 runs in 0.0 s; e2e ticks min/mean/max = 66/7542.4/261024; migrations=0 overflow=0
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_parse.py --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/schema_timing.json --trace-dir traces/prime/pilot/round3 --out traces/prime/pilot/round3/parsed --min-unit-ns 300.0
+parsed 1000 runs, 1 units; implicit closes: 0, unmatched exits: 0, suggested exclusions: []
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_instrument.py /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/benchmarks/malardalen/prime.c --entry prime --out /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/prime.ipoint.c --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/schema_timing.json --bounds /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/bounds/prime.bounds.json --all --exclude-unit divides --exclude-unit even --exclude-unit prime.L1 --exclude-unit prime.L1.body --exclude-unit prime.L1.body.if1.then --exclude-unit prime.if1.else --exclude-unit prime.if1.then --exclude-unit swap
+wrote /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/prime.ipoint.c and /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/schema_timing.json (1 instrumented units, ids 1..18)
+=== prime: build
++ make -s BENCH=prime MODE=off SRC=/home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/prime.ipoint.c KERNEL_DEFS=
++ make -s BENCH=prime MODE=timing SRC=/home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/prime.ipoint.c KERNEL_DEFS=
++ make -s BENCH=prime MODE=coverage SRC=/home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/prime.ipoint_full.c KERNEL_DEFS=
+=== prime: run
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/timing/bench_prime --out traces/prime/timing --runs 10000000 --full-trace-runs 100000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 5 --exit-id 6 --max-id 18 --calib 1
+prime: 1000000/10000000 runs, 5.1 s elapsed
+prime: 2000000/10000000 runs, 10.2 s elapsed
+prime: 3000000/10000000 runs, 15.2 s elapsed
+prime: 4000000/10000000 runs, 20.2 s elapsed
+prime: 5000000/10000000 runs, 25.3 s elapsed
+prime: 6000000/10000000 runs, 30.3 s elapsed
+prime: 7000000/10000000 runs, 35.4 s elapsed
+prime: 8000000/10000000 runs, 40.4 s elapsed
+prime: 9000000/10000000 runs, 45.5 s elapsed
+prime: 10000000/10000000 runs, 50.5 s elapsed
+prime [timing]: 10000000 runs in 50.5 s; e2e ticks min/mean/max = 64/9779.5/736608; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/off/bench_prime --out traces/prime/off --runs 100000 --full-trace-runs 0 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 5 --exit-id 6 --max-id 18 --calib 1
+prime [off]: 100000 runs in 0.5 s; e2e ticks min/mean/max = 56/10058.7/266430; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/coverage/bench_prime --out traces/prime/coverage --runs 10000000 --full-trace-runs 0 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 5 --exit-id 6 --max-id 18 --calib 1
+prime: 1000000/10000000 runs, 11.6 s elapsed
+prime: 2000000/10000000 runs, 23.1 s elapsed
+prime: 3000000/10000000 runs, 34.5 s elapsed
+prime: 4000000/10000000 runs, 45.9 s elapsed
+prime: 5000000/10000000 runs, 57.4 s elapsed
+prime: 6000000/10000000 runs, 68.9 s elapsed
+prime: 7000000/10000000 runs, 80.4 s elapsed
+prime: 8000000/10000000 runs, 91.9 s elapsed
+prime: 9000000/10000000 runs, 103.3 s elapsed
+prime: 10000000/10000000 runs, 114.7 s elapsed
+prime [coverage]: 10000000 runs in 114.7 s; e2e ticks min/mean/max = 76/23146.9/1107464; migrations=0 overflow=0
+=== prime: parse
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_parse.py --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/schema_timing.json --trace-dir traces/prime/timing --out traces/prime/parsed --min-unit-ns 300.0
+parsed 10000/100000 runs
+parsed 20000/100000 runs
+parsed 30000/100000 runs
+parsed 40000/100000 runs
+parsed 50000/100000 runs
+parsed 60000/100000 runs
+parsed 70000/100000 runs
+parsed 80000/100000 runs
+parsed 90000/100000 runs
+parsed 100000/100000 runs
+parsed 100000 runs, 1 units; implicit closes: 0, unmatched exits: 0, suggested exclusions: []
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_check.py --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/schema_timing.json --trace-dir traces/prime/timing --parsed traces/prime/parsed
+prime: 0 failures over 100000 runs, 1 units
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_overhead.py --off traces/prime/off --timing traces/prime/timing --coverage traces/prime/coverage --out traces/prime/overhead.json
++ /usr/bin/python3 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/tools/ipoint_coverage.py --schema /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/prime/schema_full.json --dir traces/prime/coverage --train 10000 --out traces/prime/coverage.json
+exit=0
