@@ -60,6 +60,44 @@ class Bench:
             sp = os.path.join(udir, u.uid + ".self.npy")
             self_vals = np.load(sp).astype(np.float64) if os.path.exists(sp) else None
             self.units[u.uid] = UnitData(vals, runs, self_vals)
+        self.attached_callees = self._attach_entry_callees(udir)
+
+    def _attach_entry_callees(self, udir: str) -> list[str]:
+        """Move every timed function called from the entry function below the entry.
+
+        The schema lists only structural children, so a timed callee of the entry (fir in edn,
+        Initialize and the Calc_* functions in st) would stay inside the entry's leaf sample.
+        The parser records the caller of every function instance (<uid>.callers.json and
+        <uid>.caller.npy, "" for an empty stack); a timed function called only from the entry
+        becomes its child, and the entry's self time becomes its interval minus the callee
+        intervals (the parser writes self samples only for units with structural children).
+        Autoware traces are converted by ipoint/autoware/tools/make_bench.py, which attaches
+        callees at any depth and keeps no caller records, so nothing changes there."""
+        entry = self.schema.entry_function
+        moved = []
+        for uid in self.units:
+            u = self.by_uid[uid]
+            names_path = os.path.join(udir, uid + ".callers.json")
+            if u.kind != "function" or uid == entry or u.parent is not None or not os.path.exists(names_path):
+                continue
+            names = json.load(open(names_path))
+            callers = {names[c] for c in np.unique(np.load(os.path.join(udir, uid + ".caller.npy")))}
+            if callers == {""}:
+                continue                      # runs outside every timed unit
+            if callers != {entry}:
+                raise NotImplementedError(f"{self.bench}: {uid} is called from {sorted(callers)}; "
+                                          f"only callees of the entry function {entry} are attached")
+            u.parent = entry
+            self.by_uid[entry].children.append(uid)
+            moved.append(uid)
+        e = self.units.get(entry)
+        if moved and e.self_vals is None:
+            if len(np.unique(e.runs)) != len(e.runs):
+                raise ValueError(f"{self.bench}: entry {entry} has several instances in one run")
+            n = 1 + max(int(e.runs.max()), *(int(self.units[c].runs.max()) for c in moved))
+            callee = sum(np.bincount(self.units[c].runs, weights=self.units[c].vals, minlength=n) for c in moved)
+            e.self_vals = e.vals - callee[e.runs]
+        return moved
 
     # ---------------- windows and censoring
 
