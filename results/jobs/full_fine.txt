@@ -1,0 +1,12 @@
+# Fine-granularity bsort100 of the second campaign (2e6 runs, all traced), 10 windows every 2e5 runs.
+# Merge: tools/merge_estimates.py --into results/estimates_full_fine/bsort100.json results/jobs/full_fine/bsort100_w*/bsort100.json
+ipoint/traces_fine_full bsort100 0 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP,EVT-COP,CHB-COP@inst,CHB-IND@inst 10000 results/jobs/full_fine/bsort100_w0 1e8 200000
+ipoint/traces_fine_full bsort100 1 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP,EVT-COP,CHB-COP@inst,CHB-IND@inst 10000 results/jobs/full_fine/bsort100_w1 1e8 200000
+ipoint/traces_fine_full bsort100 2 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP,EVT-COP,CHB-COP@inst,CHB-IND@inst 10000 results/jobs/full_fine/bsort100_w2 1e8 200000
+ipoint/traces_fine_full bsort100 3 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP,EVT-COP,CHB-COP@inst,CHB-IND@inst 10000 results/jobs/full_fine/bsort100_w3 1e8 200000
+ipoint/traces_fine_full bsort100 4 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP,EVT-COP,CHB-COP@inst,CHB-IND@inst 10000 results/jobs/full_fine/bsort100_w4 1e8 200000
+ipoint/traces_fine_full bsort100 5 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP,EVT-COP,CHB-COP@inst,CHB-IND@inst 10000 results/jobs/full_fine/bsort100_w5 1e8 200000
+ipoint/traces_fine_full bsort100 6 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP,EVT-COP,CHB-COP@inst,CHB-IND@inst 10000 results/jobs/full_fine/bsort100_w6 1e8 200000
+ipoint/traces_fine_full bsort100 7 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP,EVT-COP,CHB-COP@inst,CHB-IND@inst 10000 results/jobs/full_fine/bsort100_w7 1e8 200000
+ipoint/traces_fine_full bsort100 8 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP,EVT-COP,CHB-COP@inst,CHB-IND@inst 10000 results/jobs/full_fine/bsort100_w8 1e8 200000
+ipoint/traces_fine_full bsort100 9 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP,EVT-COP,CHB-COP@inst,CHB-IND@inst 10000 results/jobs/full_fine/bsort100_w9 1e8 200000

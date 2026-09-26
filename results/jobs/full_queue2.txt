@@ -1,0 +1,6 @@
+# Remaining command tasks of results/jobs/full_queue.txt (lines 16-20), restarted with MAXPROC 17 at 01:15.
+7 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 taskset -c 0-5,10-15 .venv/bin/python tools/copula_finite_sample.py synthetic --reps 40 --workers 6
+5 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 taskset -c 0-5,10-15 .venv/bin/python tools/synthetic_study.py grid --reps 20 --workers 4 --out results/synthetic
+5 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 taskset -c 0-5,10-15 .venv/bin/python -m copula.study_scaling --workers 4
+5 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 taskset -c 0-5,10-15 .venv/bin/python tools/copula_finite_sample.py bootstrap --traces ipoint/traces_full --bench ndes,ludcmp --reps 20 --workers 4
+5 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 taskset -c 0-5,10-15 .venv/bin/python tools/copula_finite_sample.py bootstrap --traces ipoint/autoware/traces/autoware/bench_warm1 --bench cb5,cb7 --reps 10 --workers 4

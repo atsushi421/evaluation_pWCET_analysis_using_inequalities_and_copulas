@@ -1,0 +1,6 @@
+01:15:44 line 2 start (10 running): OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 taskset -c 0-5,10-15 .venv/bin/python tools/copula_finite_sample.py synthetic --reps 40 --workers 6
+03:10:51 line 3 start (10 running): OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 taskset -c 0-5,10-15 .venv/bin/python tools/synthetic_study.py grid --reps 20 --workers 4 --out results/synthetic
+04:37:54 line 4 start (10 running): OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 taskset -c 0-5,10-15 .venv/bin/python -m copula.study_scaling --workers 4
+05:30:56 line 5 start (10 running): OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 taskset -c 0-5,10-15 .venv/bin/python tools/copula_finite_sample.py bootstrap --traces ipoint/traces_full --bench ndes,ludcmp --reps 20 --workers 4
+06:16:57 line 6 start (10 running): OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 taskset -c 0-5,10-15 .venv/bin/python tools/copula_finite_sample.py bootstrap --traces ipoint/autoware/traces/autoware/bench_warm1 --bench cb5,cb7 --reps 10 --workers 4
+08:16:46 queue done
