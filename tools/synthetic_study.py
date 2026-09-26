@@ -3,9 +3,9 @@
 
 families (E1-1): plug-in bound of each envelope family (x^k = MEMIK, arctan, tanh,
     softsign x/(x+d), Hill x^2/(x^2+d^2), 1-exp(-x/d)) under identical settings
-    (13-point d grid from a 10% calibration subsample, k <= 150, RESTK n_sims 200).
-grid (E1-2): the CHB envelope (min over arctan and tanh, pipeline settings) under
-    changes of the d grid size, its range, k_max, and without the calibration split.
+    (13-point d grid from a 10% calibration subsample, k <= 150, RESTK n_sims as the pipeline).
+grid (E1-2): the CHB leaf (tanh, pipeline settings) under changes of the d grid size,
+    its range, k_max, and without the calibration split.
 
 Every configuration sees the same samples (common random numbers): n = 1e4 per
 replication, R replications per distribution. The bounds are computed on the
@@ -81,14 +81,14 @@ def task(mode, cfg, dist, rep):
     if mode == "families":
         fam = chb.FAMILIES[cfg]
         calib, main = x[:N // 10], x[N // 10:]
-        env = chb.family_pwcet(main, cfg, grid, rng, d_list=fam.d_grid(calib), n_sims=200)
+        env = chb.family_pwcet(main, cfg, grid, rng, d_list=fam.d_grid(calib))
         raw = {p: env[p][0] for p in grid}
     else:
         o = GRID_CONFIGS[cfg]
         calib, main = (x, x) if o.get("no_split") else (x[:N // 10], x[N // 10:])
         k_max = o.get("k_max", chb.K_MAX)
         raw = {p: np.inf for p in grid}
-        for name in ("atan", "tanh"):
+        for name in chb.CHB_FAMILIES:
             d_list = chb.FAMILIES[name].d_grid(calib, o.get("n_d", 13), o.get("widen", 1.0))
             env = chb.family_pwcet(main, name, grid, rng, d_list=d_list, k_max=k_max)
             raw = {p: min(raw[p], env[p][0]) for p in grid}

@@ -110,10 +110,23 @@ def constant_marginal(value: float, probs, note: str) -> Marginal:
 
 # ------------------------------------------------------------ leaves
 
+# The leaf of a unit depends on the method only through its family prefix (the seed is keyed on it),
+# so CHB-COP, CHB-IND and CHB-COMONO of one window share their leaves within a process.
+_LEAF_CACHE: dict = {}
+
+
 def make_leaf(method: str, bench: str, window: int):
     """Leaf estimator by decomposed-method name: CHB-*, MEMIK-COP, EVT-COP."""
+    family = method.split("-")[0]
+
     def leaf(samples, uid: str) -> Marginal:
-        rng = _seed(bench, window, uid, method.split("-")[0])
+        key = (bench, window, uid, family, hashlib.sha1(np.ascontiguousarray(samples).tobytes()).hexdigest())
+        if key not in _LEAF_CACHE:
+            _LEAF_CACHE[key] = _leaf(samples, uid)
+        return _LEAF_CACHE[key]
+
+    def _leaf(samples, uid: str) -> Marginal:
+        rng = _seed(bench, window, uid, family)
         if len(samples) == 0:
             return constant_marginal(0.0, P_GRID_FULL, f"{uid}: no instance in window")
         if method.startswith("CHB"):
@@ -266,7 +279,8 @@ def node_marginal(bench: Bench, uid: str, method: str, mode: str, lo: int, hi: i
 
 
 def decomposed_estimate(bench: Bench, method: str, window: int, n_mc: int = int(1e8),
-                        probs=P_GRID_TAIL, window_size: int = WINDOW) -> tuple[dict, dict]:
+                        probs=P_GRID_TAIL, window_size: int = WINDOW,
+                        window_stride: int | None = None) -> tuple[dict, dict]:
     """`method` is a decomposed-method name, optionally suffixed with a loop rule (CHB-COP@inst)."""
     method, _, loop_rule = method.partition("@")
     loop_rule = loop_rule or "avg"
@@ -277,7 +291,7 @@ def decomposed_estimate(bench: Bench, method: str, window: int, n_mc: int = int(
     else:
         mode = {"CHB-COP": "cop", "CHB-IND": "indep", "CHB-COMONO": "comono",
                 "MEMIK-COP": "cop", "EVT-COP": "cop"}[method]
-    lo, hi = bench.window_bounds(window, window_size)
+    lo, hi = bench.window_bounds(window, window_size, window_stride)
     leaf = make_leaf(method, bench.bench, window)
     meta: dict = {}
     root = node_marginal(bench, bench.schema.entry_function, method, mode, lo, hi,

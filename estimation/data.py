@@ -18,7 +18,6 @@ _IPOINT_TOOLS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "
 sys.path.insert(0, _IPOINT_TOOLS)
 from ipoint_schema import Schema, Unit  # noqa: E402
 
-FULL_TRACE_RUNS = 100_000     # unit samples exist only for the first fully traced runs
 WINDOW = 10_000
 
 
@@ -42,6 +41,14 @@ class Bench:
         self.smi_runs = np.load(smi_path) if os.path.exists(smi_path) else np.empty(0, dtype=np.uint64)
         self._clean_e2e_mask = np.ones(len(self.e2e_all), dtype=bool)
         self._clean_e2e_mask[self.smi_runs.astype(np.int64)] = False
+        # unit samples exist only for the fully traced runs: the first 1e5 in the first benchmark
+        # campaign, every run in traces_full/ and in the merged job-mode traces of Autoware
+        meta_path = os.path.join(self.dir, "timing", "meta.json")
+        if os.path.exists(meta_path):
+            meta = json.load(open(meta_path))
+            self.n_traced = int(min(meta["full_trace_runs"], meta["runs"]))
+        else:
+            self.n_traced = len(self.e2e_all)
         self.units: dict[str, UnitData] = {}
         udir = os.path.join(parsed, "units")
         for u in self.schema.units:
@@ -56,10 +63,12 @@ class Bench:
 
     # ---------------- windows and censoring
 
-    def window_bounds(self, w: int, size: int = WINDOW) -> tuple[int, int]:
-        lo, hi = w * size, (w + 1) * size
-        if hi > FULL_TRACE_RUNS:
-            raise ValueError(f"window {w} exceeds the fully traced runs")
+    def window_bounds(self, w: int, size: int = WINDOW, stride: int | None = None) -> tuple[int, int]:
+        """Runs [lo, hi) of window w: consecutive windows by default, w * stride with a stride."""
+        lo = w * (stride or size)
+        hi = lo + size
+        if hi > self.n_traced:
+            raise ValueError(f"window {w} exceeds the {self.n_traced} fully traced runs")
         return lo, hi
 
     def clean_run_mask(self, runs: np.ndarray) -> np.ndarray:

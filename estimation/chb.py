@@ -2,8 +2,10 @@
 
 Vectorized reimplementation of the RESTK + envelope pipeline of ``memik/``,
 ``atan/`` and ``tanh/`` (same algorithm and settings as ``chb_main.ipynb``:
-k in [1, 150], n_sims 1000/500/100 for memik/atan/tanh, n_boot 1e3,
-p_test {1e-4, 1e-5, 1e-6}, 13-point log d grids), plus the finite-sample
+k in [1, 150], n_boot 1e3, p_test {1e-4, 1e-5, 1e-6}, 13-point log d grids;
+n_sims is 1000 for every family, where the notebooks used 1000/500/100 for
+memik/atan/tanh, because fewer simulations raise the k ceiling and so lower
+the bound), plus the finite-sample
 KL certificate of CC-C. The CHB leaf uses the hyperbolic tangent only
 (``CHB_FAMILIES``); passing ``families=("atan", "tanh")`` gives the former
 envelope over both grids, kept for the ablation. The d grid is derived from a calibration subsample
@@ -21,7 +23,7 @@ from .kl import kl_inv_upper
 P_TEST = (1e-4, 1e-5, 1e-6)
 K_MAX = 150
 N_BOOT = 1000
-N_SIMS = {"memik": 1000, "atan": 500, "tanh": 100}
+N_SIMS = 1000
 CHB_FAMILIES = ("tanh",)
 
 
@@ -130,7 +132,7 @@ def family_pwcet(samples: np.ndarray, fam_name: str, p_all, rng: np.random.Gener
     fam = FAMILIES[fam_name]
     if d_list is None:
         d_list = fam.d_grid(samples)
-    n_sims = N_SIMS[fam_name] if n_sims is None else n_sims
+    n_sims = N_SIMS if n_sims is None else n_sims
     max_k_by_d = {}
     for d in d_list:
         mk = {p: _restk_min_k(samples, fam, d, p, float(np.quantile(samples, 1 - p)),
