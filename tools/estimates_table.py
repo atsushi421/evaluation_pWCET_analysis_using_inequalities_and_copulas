@@ -37,16 +37,18 @@ def main():
     benches = [b for b in BENCH_ORDER if b in rows] + sorted(set(rows) - set(BENCH_ORDER))
     print(f"tightness at p={p} ({'SMI-inclusive' if a.uncensored else 'SMI-censored'} reference), "
           f"window {a.window}")
-    print(f"{'bench':<11}" + "".join(f"{m.replace('E2E-', 'E~').replace('CHB-FAM-', 'F~'):>12}" for m in methods))
+    names = [m.replace('E2E-', 'E~').replace('CHB-FAM-', 'F~') for m in methods]
+    width = [max(12, len(n) + 1) for n in names]
+    print(f"{'bench':<11}" + "".join(f"{n:>{w}}" for n, w in zip(names, width)))
     for b in benches:
         cells = []
-        for m in methods:
+        for m, w in zip(methods, width):
             v = rows[b][m]
-            cells.append(f"{v:>12.3f}" if isinstance(v, float) and v == v else f"{'-':>12}")
+            cells.append(f"{v:>{w}.3f}" if isinstance(v, float) and v == v else f"{'-':>{w}}")
         print(f"{b:<11}" + "".join(cells))
     unsafe = {m: sum(1 for b in benches if isinstance(rows[b][m], float) and rows[b][m] == rows[b][m]
                      and rows[b][m] < 1.0) for m in methods}
-    print(f"{'#unsafe':<11}" + "".join(f"{unsafe[m]:>12}" for m in methods))
+    print(f"{'#unsafe':<11}" + "".join(f"{unsafe[m]:>{w}}" for m, w in zip(methods, width)))
 
 
 if __name__ == "__main__":

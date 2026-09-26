@@ -7,8 +7,9 @@ coverage.md  (E2-4)  branch alternatives, loop iterations and path signatures se
                      training window (first 1e4 runs) and in all 1e7 COVERAGE runs
 overhead.md  (E2-6)  OFF / TIMING / COVERAGE end-to-end statistics and probes per run
 tails.md     (E2-7)  tail shape of the SMI-censored end-to-end time (all 1e7 runs) and of every
-                     timed unit (first 1e5 runs): quantile / median, excess kurtosis, GPD shape
-cost.md      (E2-10) analysis time per method (window 0, and mean over windows 1..9)
+                     timed unit (every traced run): quantile / median, excess kurtosis, GPD shape
+cost.md      (E2-10) analysis time per method (window 0, and mean over the other windows)
+refci.md     (R3-11) distribution-free 95 % confidence interval of every reference quantile (order statistics)
 """
 import argparse
 import glob
@@ -83,9 +84,11 @@ def tail_stats(x):
 
 def tails(traces):
     rows = []
+    n_traced = set()
     fmt = lambda v, d=3: "-" if v is None else f"{v:.{d}f}"  # noqa: E731
     for b in BENCHES:
         bench = Bench(traces, b)
+        n_traced.add(bench.n_traced)
         items = [("E2E (1e7, SMI-censored)", bench.e2e_all[bench._clean_e2e_mask])]
         for uid, u in bench.units.items():
             m = bench.clean_run_mask(u.runs)
@@ -96,7 +99,7 @@ def tails(traces):
             rows.append([b, name, n] + [fmt(q[p]) for p in QP] + [fmt(kurt, 1), fmt(xi, 2)])
     return ("Quantile at 1-p divided by the median (shown when p*n >= 9, i.e. at least about ten exceedances), excess kurtosis, and GPD shape "
             "xi of the exceedances above the 0.99 quantile (MLE, location 0). Units: all instances in the "
-            "first 1e5 runs, SMI runs removed.\n\n"
+            f"first {'/'.join(f'{n:.0e}' for n in sorted(n_traced))} (fully traced) runs, SMI runs removed.\n\n"
             + md(["bench", "series", "n", "q1e-3/med", "q1e-4/med", "q1e-5/med", "q1e-6/med", "ex. kurtosis", "xi(0.99)"], rows))
 
 
@@ -113,7 +116,31 @@ def cost(res_w0, res_mw):
             cells.append("-" if s0 is None else (f"{s0:.1f}" + (f" ({np.mean(ss):.1f})" if ss else "")))
         rows.append([b] + cells)
     return ("Analysis time in seconds on one core of the Xeon Silver 4216 (window 0; in parentheses the mean "
-            "over windows 1..9 where available).\n\n" + md(["bench"] + METHODS, rows))
+            "over the other windows where available). The CHB methods of one job share the unit-level bounds, so a "
+            "CHB method that runs after another one in the same job (CHB-IND and CHB-COMONO after CHB-COP on the "
+            "two-part kernels, CHB-COMONO after CHB-IND on ndes, lms, ludcmp) shows the composition time only.\n\n"
+            + md(["bench"] + METHODS, rows))
+
+
+def refci(traces):
+    """The reference is the order statistic X_(r) with r = ceil((1 - p) n) (method "higher"); the number of runs
+    below the true (1 - p) quantile is Binomial(n, 1 - p), so [X_(l), X_(u)] with l, u the 2.5 % and 97.5 %
+    binomial quantiles covers it with probability >= 95 %."""
+    rows = []
+    for b in BENCHES:
+        bench = Bench(traces, b)
+        xs = np.sort(bench.e2e_all[bench._clean_e2e_mask])
+        n = len(xs)
+        cells = []
+        for p in (1e-4, 1e-5, 1e-6):
+            r = int(np.ceil((1 - p) * n))
+            lo, hi = sps.binom.ppf([0.025, 0.975], n, 1 - p).astype(int)
+            ref = xs[min(r, n) - 1]
+            cells.append(f"{xs[max(lo, 1) - 1] / ref:.3f}-{xs[min(hi + 1, n) - 1] / ref:.3f} ({n - hi - 1}-{n - lo})")
+        rows.append([b, n] + cells)
+    return ("Reference quantile (SMI-censored runs): 95 % distribution-free confidence interval relative to the reference "
+            "value, and in brackets the number of runs above its ends.\n\n"
+            + md(["bench", "runs", "p=1e-4", "p=1e-5", "p=1e-6"], rows))
 
 
 def main():
@@ -122,11 +149,12 @@ def main():
     ap.add_argument("--results", default="results/estimates")
     ap.add_argument("--multiwindow", default="results/estimates_multiwindow")
     ap.add_argument("--out", default="results/tables")
-    ap.add_argument("--only", default="coverage,overhead,tails,cost")
+    ap.add_argument("--only", default="coverage,overhead,tails,cost,refci")
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
     jobs = {"coverage": lambda: coverage(a.traces), "overhead": lambda: overhead(a.traces),
-            "tails": lambda: tails(a.traces), "cost": lambda: cost(a.results, a.multiwindow)}
+            "tails": lambda: tails(a.traces), "cost": lambda: cost(a.results, a.multiwindow),
+            "refci": lambda: refci(a.traces)}
     for name in a.only.split(","):
         text = jobs[name]()
         with open(os.path.join(a.out, f"{name}.md"), "w") as f:
