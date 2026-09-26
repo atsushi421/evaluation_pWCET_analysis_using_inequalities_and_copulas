@@ -8,6 +8,8 @@ MODE ?= timing
 TS_IMPL ?= IPOINT_TS_RDTSCP_LFENCE
 SRC ?= build/$(BENCH)/$(BENCH).ipoint.c
 BUILD ?= build/$(BENCH)/$(MODE)
+# harness adapter (override to rebuild a campaign with an earlier adapter revision)
+ADAPTER ?= $(IPOINT_DIR)/bench/$(BENCH)/bench_$(BENCH).c
 CC ?= gcc
 KERNEL_CFLAGS ?= -O2 -fno-builtin
 # extra flags for the kernel object only (e.g. -std=c11 -Dselect=mrtc_select for
@@ -35,7 +37,7 @@ $(BUILD)/kernel.objdump: $(BUILD)/kernel.o
 $(BUILD)/harness.o: $(IPOINT_DIR)/bench/common/bench_main.c $(IPOINT_DIR)/include/ipoint.h | $(BUILD)
 	$(CC) $(HARNESS_CFLAGS) $(CFLAGS_COMMON) -c $< -o $@
 
-$(BUILD)/adapter.o: $(IPOINT_DIR)/bench/$(BENCH)/bench_$(BENCH).c | $(BUILD)
+$(BUILD)/adapter.o: $(ADAPTER) | $(BUILD)
 	$(CC) $(HARNESS_CFLAGS) $(CFLAGS_COMMON) -c $< -o $@
 
 $(EXE): $(BUILD)/kernel.o $(BUILD)/harness.o $(BUILD)/adapter.o

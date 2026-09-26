@@ -178,8 +178,13 @@ def main(argv=None) -> int:
     ap.add_argument("--entry", help="uid of the function whose outermost IPoint pair is the end-to-end time")
     ap.add_argument("--ns", action="store_true", help="convert ticks to nanoseconds with tsc_hz_start")
     ap.add_argument("--max-runs", type=int, default=None)
+    ap.add_argument("--skip-runs", type=int, default=0,
+                    help="start at the K-th traced run (chunked parsing; merge the chunks with merge_parsed.py)")
     ap.add_argument("--min-unit-ns", type=float, default=300.0, help="units with median below this are suggested for exclusion")
     ap.add_argument("--legacy-names", help="json {uid: name} for sample/<name>.pkl aliases")
+    ap.add_argument("--lean", action="store_true",
+                    help="skip sample/*.pkl, hits_all.npy and paths.csv (copies of units/ and summary.bin, and the "
+                         "path signatures), which campaigns with every run traced cannot afford")
     a = ap.parse_args(argv)
 
     schema = merge_schemas([Schema.from_json(p) for p in a.schema], a.entry)
@@ -195,7 +200,8 @@ def main(argv=None) -> int:
         summary = load_summary(a.trace_dir, meta)
         np.save(os.path.join(a.out, "e2e_all.npy"), summary["e2e"].astype(np.float64) * scale)
         np.save(os.path.join(a.out, "harness_all.npy"), summary["harness"].astype(np.float64) * scale)
-        np.save(os.path.join(a.out, "hits_all.npy"), summary["hits"])
+        if not a.lean:
+            np.save(os.path.join(a.out, "hits_all.npy"), summary["hits"])
         np.save(os.path.join(a.out, "runs_all.npy"), summary["run"])
 
     trace_path = os.path.join(a.trace_dir, "trace.bin")
@@ -207,13 +213,13 @@ def main(argv=None) -> int:
         print(f"warning: {len(begins)} run_begin but {len(ends)} run_end sentinels", file=sys.stderr)
     n_runs = min(len(begins), len(ends))
     if a.max_runs is not None:
-        n_runs = min(n_runs, a.max_runs)
+        n_runs = min(n_runs, a.skip_runs + a.max_runs)
 
     rp = RunParser(schema)
     entry_unit = schema.entry_unit()
     e2e: List[int] = []
     paths = []
-    for k in range(n_runs):
+    for k in range(a.skip_runs, n_runs):
         b, e = int(begins[k]), int(ends[k])
         run = int(recs["ts"][b])
         seed = int(recs["ts"][b + 1]) if recs["id"][b + 1] == sent["run_seed"] else 0
@@ -225,30 +231,33 @@ def main(argv=None) -> int:
             ie = np.flatnonzero(ids == entry_unit.entry)
             ix = np.flatnonzero(ids == entry_unit.exit)
             e2e.append(int(body["ts"][ix[-1]] - body["ts"][ie[0]]) if len(ie) and len(ix) else 0)
-        sig_str = ";".join(f"{u}={sig[u]}" for u in sorted(sig))
-        paths.append((run, seed, sig_str, hashlib.sha1(sig_str.encode()).hexdigest()[:12]))
+        if not a.lean:
+            sig_str = ";".join(f"{u}={sig[u]}" for u in sorted(sig))
+            paths.append((run, seed, sig_str, hashlib.sha1(sig_str.encode()).hexdigest()[:12]))
         if (k + 1) % 10000 == 0:
             print(f"parsed {k + 1}/{n_runs} runs", file=sys.stderr)
 
     np.save(os.path.join(a.out, "e2e.npy"), np.asarray(e2e, dtype=np.float64) * scale)
-    with open(os.path.join(a.out, "paths.csv"), "w", newline="") as f:
-        w = csv.writer(f)
-        w.writerow(["run", "seed", "signature", "hash"])
-        w.writerows(paths)
+    if not a.lean:
+        with open(os.path.join(a.out, "paths.csv"), "w", newline="") as f:
+            w = csv.writer(f)
+            w.writerow(["run", "seed", "signature", "hash"])
+            w.writerows(paths)
 
     legacy = {}
     if a.legacy_names:
         with open(a.legacy_names) as f:
             legacy = json.load(f)
-    stats = {"tick_ns": tick_ns, "unit": "ns" if a.ns else "ticks", "runs_parsed": n_runs,
+    stats = {"tick_ns": tick_ns, "unit": "ns" if a.ns else "ticks", "runs_parsed": n_runs - a.skip_runs,
              "aux_changes": rp.aux_changes, "implicit_closes": dict(rp.implicit),
              "unmatched_exits": dict(rp.unmatched_exit), "units": {}, "suggested_exclusions": []}
     for uid, vals in rp.samples.items():
         arr = np.asarray(vals, dtype=np.float64) * scale
         np.save(os.path.join(a.out, "units", f"{uid}.npy"), arr)
         np.save(os.path.join(a.out, "units", f"{uid}.run.npy"), np.asarray(rp.sample_run[uid], dtype=np.uint64))
-        with open(os.path.join(a.out, "sample", f"{legacy.get(uid, uid)}.pkl"), "wb") as f:
-            pickle.dump(arr.tolist(), f)
+        if not a.lean:
+            with open(os.path.join(a.out, "sample", f"{legacy.get(uid, uid)}.pkl"), "wb") as f:
+                pickle.dump(arr.tolist(), f)
         u = schema.by_uid()[uid]
         med_ns = float(np.median(arr)) * (1.0 if a.ns else tick_ns) if len(arr) else 0.0
         st = {"kind": u.kind, "n": int(len(arr)), "min": float(arr.min()), "median": float(np.median(arr)),
@@ -289,7 +298,7 @@ def main(argv=None) -> int:
         stats["units"].setdefault(b, {"kind": "branch"})["alt_counts"] = np.bincount(np.asarray(alts), minlength=2).tolist()
     with open(os.path.join(a.out, "stats.json"), "w") as f:
         json.dump(stats, f, indent=1)
-    print(f"parsed {n_runs} runs, {len(rp.samples)} units; implicit closes: {sum(rp.implicit.values())}, "
+    print(f"parsed {n_runs - a.skip_runs} runs, {len(rp.samples)} units; implicit closes: {sum(rp.implicit.values())}, "
           f"unmatched exits: {sum(rp.unmatched_exit.values())}, suggested exclusions: {stats['suggested_exclusions']}",
           file=sys.stderr)
     return 0

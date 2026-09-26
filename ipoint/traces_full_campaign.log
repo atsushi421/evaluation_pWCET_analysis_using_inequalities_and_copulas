@@ -1,0 +1,204 @@
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/bsort100/timing/bench_bsort100 --out traces_full/bsort100/timing --runs 10000000 --full-trace-runs 10000000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 7 --exit-id 8 --max-id 25 --calib 1
+bsort100: 1000000/10000000 runs, 20.7 s elapsed
+bsort100: 2000000/10000000 runs, 41.4 s elapsed
+bsort100: 3000000/10000000 runs, 62.1 s elapsed
+bsort100: 4000000/10000000 runs, 82.8 s elapsed
+bsort100: 5000000/10000000 runs, 103.5 s elapsed
+bsort100: 6000000/10000000 runs, 124.3 s elapsed
+bsort100: 7000000/10000000 runs, 145.0 s elapsed
+bsort100: 8000000/10000000 runs, 165.7 s elapsed
+bsort100: 9000000/10000000 runs, 186.4 s elapsed
+bsort100: 10000000/10000000 runs, 207.1 s elapsed
+bsort100 [timing]: 10000000 runs in 207.1 s; e2e ticks min/mean/max = 32468/41273.4/581818; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/bsort100/off/bench_bsort100 --out traces_full/bsort100/off --runs 100000 --full-trace-runs 0 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 7 --exit-id 8 --max-id 25 --calib 1
+bsort100 [off]: 100000 runs in 2.2 s; e2e ticks min/mean/max = 35794/43691.3/61612; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/fir/timing/bench_fir --out traces_full/fir/timing --runs 10000000 --full-trace-runs 10000000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 1 --exit-id 2 --max-id 17 --calib 1
+fir: 1000000/10000000 runs, 36.2 s elapsed
+fir: 2000000/10000000 runs, 72.3 s elapsed
+fir: 3000000/10000000 runs, 108.4 s elapsed
+fir: 4000000/10000000 runs, 144.6 s elapsed
+fir: 5000000/10000000 runs, 180.7 s elapsed
+fir: 6000000/10000000 runs, 216.8 s elapsed
+fir: 7000000/10000000 runs, 253.0 s elapsed
+fir: 8000000/10000000 runs, 289.1 s elapsed
+fir: 9000000/10000000 runs, 325.2 s elapsed
+fir: 10000000/10000000 runs, 361.4 s elapsed
+fir [timing]: 10000000 runs in 361.4 s; e2e ticks min/mean/max = 67748/69510.0/568970; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/fir/off/bench_fir --out traces_full/fir/off --runs 100000 --full-trace-runs 0 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 1 --exit-id 2 --max-id 17 --calib 1
+fir [off]: 100000 runs in 4.6 s; e2e ticks min/mean/max = 90110/90304.1/571918; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/matmult/timing/bench_matmult --out traces_full/matmult/timing --runs 10000000 --full-trace-runs 10000000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 17 --exit-id 18 --max-id 30 --calib 1
+matmult: 1000000/10000000 runs, 11.5 s elapsed
+matmult: 2000000/10000000 runs, 23.0 s elapsed
+matmult: 3000000/10000000 runs, 34.5 s elapsed
+matmult: 4000000/10000000 runs, 46.0 s elapsed
+matmult: 5000000/10000000 runs, 57.4 s elapsed
+matmult: 6000000/10000000 runs, 68.9 s elapsed
+matmult: 7000000/10000000 runs, 80.4 s elapsed
+matmult: 8000000/10000000 runs, 91.9 s elapsed
+matmult: 9000000/10000000 runs, 103.4 s elapsed
+matmult: 10000000/10000000 runs, 114.9 s elapsed
+matmult [timing]: 10000000 runs in 114.9 s; e2e ticks min/mean/max = 17428/17583.9/574082; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/matmult/off/bench_matmult --out traces_full/matmult/off --runs 100000 --full-trace-runs 0 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 17 --exit-id 18 --max-id 30 --calib 1
+matmult [off]: 100000 runs in 1.1 s; e2e ticks min/mean/max = 16502/16560.8/26680; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/edn/timing/bench_edn --out traces_full/edn/timing --runs 10000000 --full-trace-runs 10000000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 65 --exit-id 66 --max-id 66 --calib 1
+edn: 1000000/10000000 runs, 9.0 s elapsed
+edn: 2000000/10000000 runs, 18.0 s elapsed
+edn: 3000000/10000000 runs, 27.0 s elapsed
+edn: 4000000/10000000 runs, 36.0 s elapsed
+edn: 5000000/10000000 runs, 45.0 s elapsed
+edn: 6000000/10000000 runs, 54.0 s elapsed
+edn: 7000000/10000000 runs, 63.0 s elapsed
+edn: 8000000/10000000 runs, 72.0 s elapsed
+edn: 9000000/10000000 runs, 81.0 s elapsed
+edn: 10000000/10000000 runs, 90.0 s elapsed
+edn [timing]: 10000000 runs in 90.0 s; e2e ticks min/mean/max = 16974/17241.5/588994; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/edn/off/bench_edn --out traces_full/edn/off --runs 100000 --full-trace-runs 0 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 65 --exit-id 66 --max-id 66 --calib 1
+edn [off]: 100000 runs in 0.6 s; e2e ticks min/mean/max = 11712/11961.0/25362; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/ndes/timing/bench_ndes --out traces_full/ndes/timing --runs 10000000 --full-trace-runs 10000000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 1 --exit-id 2 --max-id 70 --calib 1
+ndes: 1000000/10000000 runs, 5.3 s elapsed
+ndes: 2000000/10000000 runs, 10.5 s elapsed
+ndes: 3000000/10000000 runs, 15.8 s elapsed
+ndes: 4000000/10000000 runs, 21.1 s elapsed
+ndes: 5000000/10000000 runs, 26.4 s elapsed
+ndes: 6000000/10000000 runs, 31.6 s elapsed
+ndes: 7000000/10000000 runs, 36.9 s elapsed
+ndes: 8000000/10000000 runs, 42.2 s elapsed
+ndes: 9000000/10000000 runs, 47.5 s elapsed
+ndes: 10000000/10000000 runs, 52.8 s elapsed
+ndes [timing]: 10000000 runs in 52.8 s; e2e ticks min/mean/max = 9272/9403.4/514890; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/ndes/off/bench_ndes --out traces_full/ndes/off --runs 100000 --full-trace-runs 0 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 1 --exit-id 2 --max-id 70 --calib 1
+ndes [off]: 100000 runs in 0.4 s; e2e ticks min/mean/max = 8234/8304.8/20566; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/st/timing/bench_st --out traces_full/st/timing --runs 10000000 --full-trace-runs 10000000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 1 --exit-id 2 --max-id 32 --calib 1
+st: 1000000/10000000 runs, 25.1 s elapsed
+st: 2000000/10000000 runs, 50.2 s elapsed
+st: 3000000/10000000 runs, 75.3 s elapsed
+st: 4000000/10000000 runs, 100.4 s elapsed
+st: 5000000/10000000 runs, 125.5 s elapsed
+st: 6000000/10000000 runs, 150.7 s elapsed
+st: 7000000/10000000 runs, 175.8 s elapsed
+st: 8000000/10000000 runs, 200.9 s elapsed
+st: 9000000/10000000 runs, 226.0 s elapsed
+st: 10000000/10000000 runs, 251.2 s elapsed
+st [timing]: 10000000 runs in 251.2 s; e2e ticks min/mean/max = 50020/50467.4/679674; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/st/off/bench_st --out traces_full/st/off --runs 100000 --full-trace-runs 0 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 1 --exit-id 2 --max-id 32 --calib 1
+st [off]: 100000 runs in 2.3 s; e2e ticks min/mean/max = 46252/46646.8/531454; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/lms/timing/bench_lms --out traces_full/lms/timing --runs 10000000 --full-trace-runs 10000000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 51 --exit-id 52 --max-id 74 --calib 1
+lms: 1000000/10000000 runs, 75.9 s elapsed
+lms: 2000000/10000000 runs, 151.7 s elapsed
+lms: 3000000/10000000 runs, 227.4 s elapsed
+lms: 4000000/10000000 runs, 303.3 s elapsed
+lms: 5000000/10000000 runs, 379.1 s elapsed
+lms: 6000000/10000000 runs, 454.9 s elapsed
+lms: 7000000/10000000 runs, 530.7 s elapsed
+lms: 8000000/10000000 runs, 606.5 s elapsed
+lms: 9000000/10000000 runs, 682.3 s elapsed
+lms: 10000000/10000000 runs, 758.1 s elapsed
+lms [timing]: 10000000 runs in 758.1 s; e2e ticks min/mean/max = 151740/157106.6/2219610; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/lms/off/bench_lms --out traces_full/lms/off --runs 100000 --full-trace-runs 0 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 51 --exit-id 52 --max-id 74 --calib 1
+lms [off]: 100000 runs in 7.4 s; e2e ticks min/mean/max = 147326/152078.7/657360; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/prime/timing/bench_prime --out traces_full/prime/timing --runs 10000000 --full-trace-runs 10000000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 5 --exit-id 6 --max-id 18 --calib 1
+prime: 1000000/10000000 runs, 5.2 s elapsed
+prime: 2000000/10000000 runs, 10.3 s elapsed
+prime: 3000000/10000000 runs, 15.5 s elapsed
+prime: 4000000/10000000 runs, 20.6 s elapsed
+prime: 5000000/10000000 runs, 25.7 s elapsed
+prime: 6000000/10000000 runs, 30.9 s elapsed
+prime: 7000000/10000000 runs, 36.0 s elapsed
+prime: 8000000/10000000 runs, 41.2 s elapsed
+prime: 9000000/10000000 runs, 46.3 s elapsed
+prime: 10000000/10000000 runs, 51.4 s elapsed
+prime [timing]: 10000000 runs in 51.4 s; e2e ticks min/mean/max = 64/9781.0/761864; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/prime/off/bench_prime --out traces_full/prime/off --runs 100000 --full-trace-runs 0 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 5 --exit-id 6 --max-id 18 --calib 1
+prime [off]: 100000 runs in 0.5 s; e2e ticks min/mean/max = 56/10058.2/267216; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/cnt/timing/bench_cnt --out traces_full/cnt/timing --runs 10000000 --full-trace-runs 10000000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 15 --exit-id 16 --max-id 30 --calib 1
+cnt: 1000000/10000000 runs, 87.7 s elapsed
+cnt: 2000000/10000000 runs, 175.2 s elapsed
+cnt: 3000000/10000000 runs, 262.8 s elapsed
+cnt: 4000000/10000000 runs, 350.4 s elapsed
+cnt: 5000000/10000000 runs, 438.0 s elapsed
+cnt: 6000000/10000000 runs, 525.5 s elapsed
+cnt: 7000000/10000000 runs, 613.1 s elapsed
+cnt: 8000000/10000000 runs, 700.7 s elapsed
+cnt: 9000000/10000000 runs, 788.3 s elapsed
+cnt: 10000000/10000000 runs, 875.9 s elapsed
+cnt [timing]: 10000000 runs in 875.9 s; e2e ticks min/mean/max = 125938/132436.9/653770; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/cnt/off/bench_cnt --out traces_full/cnt/off --runs 100000 --full-trace-runs 0 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 15 --exit-id 16 --max-id 30 --calib 1
+cnt [off]: 100000 runs in 8.8 s; e2e ticks min/mean/max = 126878/132560.5/610598; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/ludcmp/timing/bench_ludcmp --out traces_full/ludcmp/timing --runs 10000000 --full-trace-runs 10000000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 7 --exit-id 8 --max-id 53 --calib 1
+ludcmp: 1000000/10000000 runs, 68.5 s elapsed
+ludcmp: 2000000/10000000 runs, 136.9 s elapsed
+ludcmp: 3000000/10000000 runs, 205.3 s elapsed
+ludcmp: 4000000/10000000 runs, 273.8 s elapsed
+ludcmp: 5000000/10000000 runs, 342.2 s elapsed
+ludcmp: 6000000/10000000 runs, 410.6 s elapsed
+ludcmp: 7000000/10000000 runs, 479.1 s elapsed
+ludcmp: 8000000/10000000 runs, 547.5 s elapsed
+ludcmp: 9000000/10000000 runs, 616.0 s elapsed
+ludcmp: 10000000/10000000 runs, 684.4 s elapsed
+ludcmp [timing]: 10000000 runs in 684.4 s; e2e ticks min/mean/max = 122838/125085.6/680732; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/ludcmp/off/bench_ludcmp --out traces_full/ludcmp/off --runs 100000 --full-trace-runs 0 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 7 --exit-id 8 --max-id 53 --calib 1
+ludcmp [off]: 100000 runs in 7.1 s; e2e ticks min/mean/max = 128602/130115.1/614550; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/select/timing/bench_select --out traces_full/select/timing --runs 10000000 --full-trace-runs 10000000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 1 --exit-id 2 --max-id 52 --calib 1
+select: 1000000/10000000 runs, 18.5 s elapsed
+select: 2000000/10000000 runs, 37.1 s elapsed
+select: 3000000/10000000 runs, 55.6 s elapsed
+select: 4000000/10000000 runs, 74.1 s elapsed
+select: 5000000/10000000 runs, 92.7 s elapsed
+select: 6000000/10000000 runs, 111.2 s elapsed
+select: 7000000/10000000 runs, 129.7 s elapsed
+select: 8000000/10000000 runs, 148.3 s elapsed
+select: 9000000/10000000 runs, 166.8 s elapsed
+select: 10000000/10000000 runs, 185.4 s elapsed
+select [timing]: 10000000 runs in 185.4 s; e2e ticks min/mean/max = 13164/31811.2/543284; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/select/off/bench_select --out traces_full/select/off --runs 100000 --full-trace-runs 0 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 1 --exit-id 2 --max-id 52 --calib 1
+select [off]: 100000 runs in 1.8 s; e2e ticks min/mean/max = 13356/31518.7/49066; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/qsort-exam/timing/bench_qsort-exam --out traces_full/qsort-exam/timing --runs 10000000 --full-trace-runs 10000000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 1 --exit-id 2 --max-id 52 --calib 1
+qsort-exam: 1000000/10000000 runs, 71.7 s elapsed
+qsort-exam: 2000000/10000000 runs, 143.4 s elapsed
+qsort-exam: 3000000/10000000 runs, 215.0 s elapsed
+qsort-exam: 4000000/10000000 runs, 286.7 s elapsed
+qsort-exam: 5000000/10000000 runs, 358.3 s elapsed
+qsort-exam: 6000000/10000000 runs, 430.0 s elapsed
+qsort-exam: 7000000/10000000 runs, 501.7 s elapsed
+qsort-exam: 8000000/10000000 runs, 573.3 s elapsed
+qsort-exam: 9000000/10000000 runs, 645.0 s elapsed
+qsort-exam: 10000000/10000000 runs, 716.7 s elapsed
+qsort-exam [timing]: 10000000 runs in 716.7 s; e2e ticks min/mean/max = 128114/140064.4/2218692; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/qsort-exam/off/bench_qsort-exam --out traces_full/qsort-exam/off --runs 100000 --full-trace-runs 0 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 1 --exit-id 2 --max-id 52 --calib 1
+qsort-exam [off]: 100000 runs in 7.7 s; e2e ticks min/mean/max = 139502/150517.0/645914; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/bsort100_fine/timing/bench_bsort100 --out traces_fine_full/bsort100/timing --runs 2000000 --full-trace-runs 2000000 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 7 --exit-id 8 --max-id 25 --calib 1
+bsort100: 1000000/2000000 runs, 42.5 s elapsed
+bsort100: 2000000/2000000 runs, 85.2 s elapsed
+bsort100 [timing]: 2000000 runs in 85.2 s; e2e ticks min/mean/max = 53854/71817.5/564208; migrations=0 overflow=0
++ taskset -c 6 /home/atsushi/evaluation_pWCET_analysis_using_inequalities_and_copulas/ipoint/bench/build/full/bsort100_fine/off/bench_bsort100 --out traces_fine_full/bsort100/off --runs 100000 --full-trace-runs 0 --seed0 20260829 --core 6 --warmup 1000 --param 0.0 --entry-id 7 --exit-id 8 --max-id 25 --calib 1
+bsort100 [off]: 100000 runs in 2.2 s; e2e ticks min/mean/max = 35104/43598.8/55760; migrations=0 overflow=0
+scripts/full_trace_campaign.sh: line 103: /smi_censor.py: No such file or directory
+parsed traces_full/fir: fir: 0 failures over 10000000 runs, 2 units
+parsed traces_full/matmult: matmult: 0 failures over 10000000 runs, 2 units
+parsed traces_full/bsort100: bsort100: 0 failures over 10000000 runs, 2 units
+parsed traces_full/edn: edn: 0 failures over 10000000 runs, 4 units
+parsed traces_full/prime: prime: 0 failures over 10000000 runs, 1 units
+parsed traces_full/ndes: ndes: 0 failures over 10000000 runs, 6 units
+parsed traces_full/lms: lms: 0 failures over 10000000 runs, 3 units
+parsed traces_full/cnt: cnt: 0 failures over 10000000 runs, 2 units
+parsed traces_full/select: select: 0 failures over 10000000 runs, 2 units
+parsed traces_full/st: st: 0 failures over 10000000 runs, 9 units
+parsed traces_full/ludcmp: ludcmp: 0 failures over 10000000 runs, 6 units
+parsed traces_full/qsort-exam: qsort-exam: 0 failures over 10000000 runs, 2 units
+parsed traces_fine_full/bsort100: bsort100: 0 failures over 2000000 runs, 6 units
+bench        nCens  expect  q1e-6_unc  q1e-6_cen  q1e-5_unc  q1e-5_cen max_cen_us
+bsort100        51    47.3     253.81      32.21      29.95      27.70      42.53
+fir             81    79.6     265.09      45.13      44.61      42.88      63.99
+matmult         17    20.1     215.54      19.73      14.07      13.96      21.80
+edn             21    19.8     236.75      19.31      14.34      14.15      22.91
+ndes            12    10.8     211.50      15.35      10.68      10.61      17.03
+st              62    57.8     259.71      36.18      35.05      33.53      52.93
+lms            183   180.0     313.29      87.74     288.01      85.67      91.07
+prime           12    11.2     298.74     128.81     127.46     127.38     133.14
+            prime fit: a=72 ticks, b=3.82 ns/iter over 742043 runs, max |resid| of kept runs 12.1 us
+cnt            157   151.7     297.92      75.57     265.83      73.69     112.15
+ludcmp         148   143.3     297.05      71.52     262.86      69.85      72.77
+select          43    36.4     247.06      28.20      24.48      23.62      30.55
+qsort-exam     165   160.4     302.40      80.11     269.52      77.88      81.87
+bench        nCens  expect  q1e-6_unc  q1e-6_cen  q1e-5_unc  q1e-5_cen max_cen_us
+bsort100        18    16.5     269.01      48.02      48.02      44.52      48.33

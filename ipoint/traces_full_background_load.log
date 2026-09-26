@@ -1,0 +1,1416 @@
+16:18:24 load=1.63 journalctl=6 top= 102 journalctl
+16:19:24 load=2.32 journalctl=5 top= 100 journalctl
+16:20:24 load=2.49 journalctl=5 top= 100 journalctl
+16:21:24 load=3.15 journalctl=5 top=99.6 journalctl
+16:22:24 load=2.66 journalctl=5 top=98.8 journalctl
+16:23:24 load=2.60 journalctl=5 top=99.4 journalctl
+16:24:24 load=2.33 journalctl=5 top=99.6 bench_fir
+16:25:25 load=2.51 journalctl=5 top=99.7 bench_fir
+16:26:25 load=2.40 journalctl=5 top=99.8 bench_fir
+16:27:25 load=2.33 journalctl=5 top=99.9 bench_fir
+16:28:25 load=2.36 journalctl=5 top= 104 journalctl
+16:29:25 load=2.35 journalctl=5 top= 100 journalctl
+16:30:25 load=2.62 journalctl=5 top= 103 bench_edn
+16:31:25 load=2.56 journalctl=5 top= 100 bench_edn
+16:32:25 load=2.50 journalctl=5 top= 100 bench_ndes
+16:33:25 load=2.45 journalctl=5 top= 101 bench_st
+16:34:25 load=2.34 journalctl=5 top=99.6 bench_st
+16:35:25 load=2.38 journalctl=5 top=99.8 bench_st
+16:36:25 load=2.44 journalctl=5 top=99.8 bench_st
+16:37:25 load=2.51 journalctl=5 top=99.5 journalctl
+16:38:26 load=2.38 journalctl=5 top=99.6 bench_lms
+16:39:26 load=2.54 journalctl=5 top=99.8 bench_lms
+16:40:26 load=2.60 journalctl=5 top=99.9 bench_lms
+16:41:26 load=2.72 journalctl=5 top=99.9 bench_lms
+16:42:26 load=2.46 journalctl=5 top= 100 journalctl
+16:43:26 load=2.35 journalctl=5 top= 100 journalctl
+16:44:26 load=2.41 journalctl=5 top= 100 journalctl
+16:45:26 load=2.15 journalctl=5 top= 102 journalctl
+16:46:26 load=2.08 journalctl=5 top= 100 journalctl
+16:47:26 load=2.06 journalctl=5 top=99.9 bench_lms
+16:48:26 load=2.05 journalctl=5 top=99.9 bench_lms
+16:49:26 load=2.11 journalctl=5 top=99.9 bench_lms
+16:50:26 load=2.26 journalctl=5 top=99.4 journalctl
+16:51:26 load=2.89 journalctl=5 top=99.7 bench_cnt
+16:52:27 load=2.47 journalctl=5 top=99.9 bench_cnt
+16:53:27 load=2.22 journalctl=5 top= 100 bench_cnt
+16:54:27 load=2.84 journalctl=5 top= 100 bench_cnt
+16:55:27 load=3.42 journalctl=5 top= 103 journalctl
+16:56:27 load=3.33 journalctl=5 top= 100 journalctl
+16:57:27 load=2.91 journalctl=5 top= 100 journalctl
+16:58:27 load=4.17 journalctl=5 top= 100 journalctl
+16:59:27 load=2.95 journalctl=5 top= 100 journalctl
+17:00:27 load=2.52 journalctl=5 top=99.9 bench_cnt
+17:01:27 load=2.19 journalctl=5 top=99.9 bench_cnt
+17:02:27 load=2.20 journalctl=5 top=99.9 bench_cnt
+17:03:27 load=2.13 journalctl=5 top=99.9 bench_cnt
+17:04:28 load=2.15 journalctl=5 top=99.9 bench_cnt
+17:05:28 load=2.09 journalctl=5 top= 103 bench_cnt
+17:06:28 load=2.10 journalctl=5 top=99.4 bench_ludcmp
+17:07:28 load=2.03 journalctl=5 top=99.7 bench_ludcmp
+17:08:28 load=2.25 journalctl=5 top=99.9 bench_ludcmp
+17:09:28 load=2.15 journalctl=5 top= 101 journalctl
+17:10:28 load=2.16 journalctl=5 top= 100 journalctl
+17:11:28 load=2.11 journalctl=5 top= 100 journalctl
+17:12:28 load=2.19 journalctl=5 top= 102 journalctl
+17:13:28 load=2.21 journalctl=5 top=99.8 bench_ludcmp
+17:14:28 load=2.14 journalctl=5 top=99.8 bench_ludcmp
+17:15:28 load=2.23 journalctl=5 top=99.8 bench_ludcmp
+17:16:28 load=2.22 journalctl=5 top=99.9 bench_ludcmp
+17:17:29 load=2.49 journalctl=5 top= 101 bench_select
+17:18:29 load=2.26 journalctl=5 top= 100 bench_select
+17:19:29 load=2.13 journalctl=5 top= 100 bench_select
+17:20:29 load=2.26 journalctl=5 top=99.4 journalctl
+17:21:29 load=2.30 journalctl=5 top=99.6 journalctl
+17:22:29 load=2.11 journalctl=5 top= 103 journalctl
+17:23:29 load=2.04 journalctl=5 top= 100 journalctl
+17:24:29 load=2.01 journalctl=5 top= 100 journalctl
+17:25:29 load=2.14 journalctl=5 top= 100 journalctl
+17:26:29 load=2.20 journalctl=5 top=99.7 bench_qsort-exa
+17:27:29 load=2.16 journalctl=5 top=99.8 bench_qsort-exa
+17:28:29 load=2.15 journalctl=5 top=99.8 bench_qsort-exa
+17:29:29 load=2.10 journalctl=5 top=99.8 bench_qsort-exa
+17:30:30 load=2.14 journalctl=5 top=99.9 bench_qsort-exa
+17:31:30 load=2.11 journalctl=5 top=99.9 bench_qsort-exa
+17:32:30 load=2.11 journalctl=5 top=99.1 bench_qsort-exa
+17:33:30 load=2.15 journalctl=5 top=99.3 journalctl
+17:34:30 load=1.85 journalctl=4 top=99.6 journalctl
+17:35:30 load=4.89 journalctl=4 top= 113 python
+17:36:30 load=8.26 journalctl=4 top= 101 journalctl
+17:37:30 load=11.59 journalctl=4 top=99.5 journalctl
+17:38:30 load=15.64 journalctl=4 top=99.7 journalctl
+17:39:31 load=17.82 journalctl=4 top= 105 python3
+17:40:31 load=18.12 journalctl=4 top= 100 python
+17:41:31 load=17.79 journalctl=4 top= 100 python
+17:42:31 load=17.54 journalctl=4 top= 103 journalctl
+17:43:32 load=17.67 journalctl=4 top= 100 python
+17:44:32 load=17.33 journalctl=4 top= 100 python
+17:45:32 load=17.49 journalctl=4 top= 100 python
+17:46:33 load=17.25 journalctl=4 top= 100 python
+17:47:33 load=17.44 journalctl=4 top= 100 python
+17:48:33 load=18.18 journalctl=4 top= 100 python
+17:49:33 load=17.92 journalctl=4 top= 100 python
+17:50:34 load=18.58 journalctl=4 top= 100 python
+17:51:34 load=18.00 journalctl=4 top= 100 python
+17:52:34 load=17.90 journalctl=4 top=99.9 python
+17:53:34 load=17.57 journalctl=4 top= 100 python
+17:54:35 load=17.74 journalctl=4 top= 100 python
+17:55:35 load=17.79 journalctl=4 top= 100 python
+17:56:35 load=17.52 journalctl=4 top=99.9 python
+17:57:35 load=18.18 journalctl=4 top= 100 python
+17:58:36 load=17.76 journalctl=4 top= 100 python
+17:59:36 load=17.88 journalctl=4 top= 100 journalctl
+18:00:36 load=17.46 journalctl=4 top= 100 python
+18:01:37 load=18.19 journalctl=4 top= 100 python
+18:02:37 load=17.88 journalctl=4 top= 100 python
+18:03:37 load=18.04 journalctl=4 top= 100 python
+18:04:37 load=18.05 journalctl=4 top= 108 python3
+18:05:38 load=18.12 journalctl=4 top= 100 python
+18:06:38 load=17.82 journalctl=4 top= 101 journalctl
+18:07:38 load=17.65 journalctl=4 top= 100 journalctl
+18:08:38 load=16.69 journalctl=4 top=99.9 python
+18:09:38 load=13.93 journalctl=4 top=99.9 python
+18:10:38 load=12.49 journalctl=4 top= 100 python
+18:11:38 load=14.90 journalctl=4 top= 106 python3
+18:12:39 load=12.13 journalctl=4 top= 100 python
+18:13:39 load=10.52 journalctl=4 top=99.9 python
+18:14:39 load=15.46 journalctl=4 top= 100 python
+18:15:39 load=16.87 journalctl=4 top= 100 python
+18:16:39 load=17.05 journalctl=4 top=99.9 python
+18:17:39 load=17.26 journalctl=4 top=99.9 python
+18:18:40 load=17.26 journalctl=4 top= 100 python
+18:19:40 load=18.10 journalctl=4 top= 117 journalctl
+18:20:40 load=17.90 journalctl=4 top=99.9 python
+18:21:41 load=17.63 journalctl=4 top= 100 journalctl
+18:22:41 load=17.43 journalctl=4 top= 100 python
+18:23:41 load=17.37 journalctl=4 top= 100 python
+18:24:42 load=17.68 journalctl=4 top= 100 python
+18:25:42 load=17.48 journalctl=4 top= 100 python
+18:26:42 load=17.30 journalctl=4 top=99.9 python
+18:27:42 load=17.23 journalctl=4 top=99.9 python
+18:28:43 load=17.23 journalctl=4 top= 100 python
+18:29:43 load=17.06 journalctl=4 top= 100 python
+18:30:43 load=17.81 journalctl=4 top=99.9 python
+18:31:44 load=18.10 journalctl=4 top=99.9 python
+18:32:44 load=17.58 journalctl=4 top= 100 python
+18:33:44 load=17.51 journalctl=4 top= 112 python
+18:34:44 load=17.56 journalctl=4 top=99.9 python
+18:35:45 load=17.55 journalctl=4 top= 100 python
+18:36:45 load=17.52 journalctl=4 top= 100 python
+18:37:45 load=17.71 journalctl=4 top=99.9 python
+18:38:46 load=17.46 journalctl=4 top=99.9 python
+18:39:46 load=17.28 journalctl=4 top= 100 python
+18:40:46 load=17.23 journalctl=4 top=99.9 python
+18:41:46 load=17.47 journalctl=4 top=99.9 python
+18:42:47 load=17.22 journalctl=4 top= 108 python
+18:43:47 load=17.55 journalctl=4 top= 104 python
+18:44:47 load=17.55 journalctl=4 top=99.9 python
+18:45:48 load=17.34 journalctl=4 top=99.9 python
+18:46:48 load=17.60 journalctl=4 top= 105 journalctl
+18:47:48 load=17.40 journalctl=4 top=99.9 python
+18:48:48 load=17.41 journalctl=4 top=99.9 python
+18:49:49 load=17.56 journalctl=4 top=99.9 python
+18:50:49 load=17.45 journalctl=4 top= 100 python
+18:51:49 load=17.28 journalctl=4 top=99.9 python
+18:52:50 load=17.52 journalctl=4 top=99.9 python
+18:53:50 load=17.25 journalctl=4 top= 101 python
+18:54:50 load=17.46 journalctl=4 top=99.9 python
+18:55:50 load=17.62 journalctl=4 top= 100 python
+18:56:51 load=17.64 journalctl=4 top= 104 journalctl
+18:57:51 load=17.52 journalctl=4 top= 103 python
+18:58:51 load=17.33 journalctl=4 top= 100 python
+18:59:52 load=17.65 journalctl=4 top= 100 python
+19:00:52 load=17.78 journalctl=4 top= 101 python
+19:01:52 load=17.72 journalctl=4 top= 100 python
+19:02:52 load=17.72 journalctl=4 top= 100 python
+19:03:53 load=17.41 journalctl=4 top= 100 python
+19:04:53 load=17.23 journalctl=4 top= 103 python
+19:05:53 load=17.33 journalctl=4 top=99.9 python
+19:06:54 load=17.50 journalctl=4 top= 100 python
+19:07:54 load=17.60 journalctl=4 top= 101 python
+19:08:54 load=17.31 journalctl=4 top= 100 python
+19:09:54 load=17.49 journalctl=4 top= 100 python
+19:10:55 load=17.35 journalctl=4 top= 100 python
+19:11:55 load=17.24 journalctl=4 top= 100 python
+19:12:55 load=17.49 journalctl=4 top= 100 python
+19:13:56 load=17.56 journalctl=4 top= 101 journalctl
+19:14:56 load=17.30 journalctl=4 top= 100 journalctl
+19:15:56 load=17.30 journalctl=4 top=99.9 python
+19:16:57 load=17.26 journalctl=4 top=99.9 python
+19:17:57 load=17.35 journalctl=4 top= 100 python
+19:18:57 load=17.40 journalctl=4 top=99.9 python
+19:19:57 load=17.49 journalctl=4 top= 101 python
+19:20:58 load=17.47 journalctl=4 top= 100 python
+19:21:58 load=17.47 journalctl=4 top= 100 python
+19:22:58 load=17.41 journalctl=4 top= 100 python
+19:23:59 load=17.28 journalctl=4 top= 102 journalctl
+19:24:59 load=17.49 journalctl=4 top= 100 journalctl
+19:25:59 load=17.18 journalctl=4 top= 100 python
+19:27:00 load=17.31 journalctl=4 top= 100 python
+19:28:00 load=17.62 journalctl=4 top= 100 journalctl
+19:29:00 load=17.23 journalctl=4 top=99.9 python
+19:30:00 load=17.54 journalctl=4 top= 100 python
+19:31:01 load=17.26 journalctl=4 top= 100 python
+19:32:01 load=17.34 journalctl=4 top= 102 python
+19:33:01 load=17.56 journalctl=4 top= 100 python
+19:34:02 load=17.50 journalctl=4 top= 101 journalctl
+19:35:02 load=17.45 journalctl=4 top= 100 python
+19:36:02 load=17.13 journalctl=4 top= 100 python
+19:37:03 load=17.26 journalctl=4 top= 108 python
+19:38:03 load=17.21 journalctl=4 top= 100 python
+19:39:03 load=17.48 journalctl=4 top= 100 python
+19:40:03 load=17.24 journalctl=4 top= 100 python
+19:41:04 load=17.20 journalctl=4 top= 100 python
+19:42:04 load=17.12 journalctl=4 top= 100 python
+19:43:04 load=17.47 journalctl=4 top= 100 python
+19:44:05 load=17.49 journalctl=4 top= 100 python
+19:45:05 load=17.31 journalctl=4 top= 100 python
+19:46:05 load=17.33 journalctl=4 top= 100 python
+19:47:06 load=17.18 journalctl=4 top= 100 python
+19:48:06 load=17.29 journalctl=4 top= 100 journalctl
+19:49:06 load=17.39 journalctl=4 top=99.9 python
+19:50:07 load=17.19 journalctl=4 top= 100 python
+19:51:07 load=17.19 journalctl=4 top= 102 journalctl
+19:52:07 load=17.33 journalctl=4 top= 100 journalctl
+19:53:07 load=17.40 journalctl=4 top= 100 python
+19:54:08 load=17.65 journalctl=4 top= 100 python
+19:55:08 load=17.56 journalctl=4 top= 100 python
+19:56:08 load=17.67 journalctl=4 top=99.9 python
+19:57:09 load=17.63 journalctl=4 top= 104 python
+19:58:09 load=17.48 journalctl=4 top= 107 python
+19:59:09 load=17.34 journalctl=4 top=99.9 python
+20:00:09 load=17.38 journalctl=4 top= 100 python
+20:01:10 load=17.28 journalctl=4 top= 101 journalctl
+20:02:10 load=17.34 journalctl=4 top= 115 python
+20:03:10 load=17.85 journalctl=4 top= 100 python
+20:04:10 load=17.70 journalctl=4 top= 100 python
+20:05:11 load=17.29 journalctl=4 top= 100 journalctl
+20:06:11 load=17.23 journalctl=4 top=99.9 python
+20:07:11 load=17.36 journalctl=4 top= 101 python
+20:08:12 load=17.32 journalctl=4 top= 100 python
+20:09:12 load=17.29 journalctl=4 top= 100 python
+20:10:13 load=17.39 journalctl=4 top= 100 python
+20:11:13 load=17.95 journalctl=4 top= 101 python
+20:12:13 load=17.41 journalctl=4 top= 100 python
+20:13:13 load=17.56 journalctl=4 top= 100 python
+20:14:14 load=17.35 journalctl=4 top= 100 python
+20:15:14 load=17.40 journalctl=4 top= 100 journalctl
+20:16:14 load=17.40 journalctl=4 top= 100 python
+20:17:15 load=17.46 journalctl=4 top= 100 python
+20:18:15 load=17.55 journalctl=4 top= 102 journalctl
+20:19:15 load=17.54 journalctl=4 top= 100 python
+20:20:16 load=17.52 journalctl=4 top= 100 python
+20:21:16 load=17.59 journalctl=4 top= 100 python
+20:22:16 load=17.65 journalctl=4 top= 100 python
+20:23:16 load=17.71 journalctl=4 top= 100 python
+20:24:17 load=17.85 journalctl=4 top= 100 python
+20:25:17 load=17.78 journalctl=4 top= 100 python
+20:26:17 load=17.65 journalctl=4 top= 100 python
+20:27:18 load=17.38 journalctl=4 top= 100 python
+20:28:18 load=17.59 journalctl=4 top= 103 python
+20:29:18 load=17.26 journalctl=4 top= 100 python
+20:30:19 load=17.53 journalctl=4 top= 101 python
+20:31:19 load=17.56 journalctl=4 top= 103 python
+20:32:19 load=17.29 journalctl=4 top= 100 python
+20:33:20 load=17.48 journalctl=4 top= 101 python
+20:34:20 load=17.38 journalctl=4 top= 101 python
+20:35:20 load=17.51 journalctl=4 top= 100 python
+20:36:20 load=17.54 journalctl=4 top= 100 python
+20:37:21 load=17.37 journalctl=4 top= 100 python
+20:38:21 load=17.73 journalctl=4 top= 137 python
+20:39:21 load=17.62 journalctl=4 top= 100 python
+20:40:22 load=17.26 journalctl=4 top= 100 python
+20:41:22 load=17.38 journalctl=4 top= 114 python
+20:42:22 load=17.26 journalctl=4 top=99.5 python
+20:43:22 load=17.43 journalctl=4 top= 100 python
+20:44:23 load=17.55 journalctl=4 top= 101 python
+20:45:23 load=17.43 journalctl=4 top= 102 python
+20:46:23 load=17.96 journalctl=4 top= 100 python
+20:47:24 load=17.78 journalctl=4 top= 107 python
+20:48:24 load=18.02 journalctl=4 top= 104 python
+20:49:24 load=18.07 journalctl=4 top=99.5 python
+20:50:24 load=17.72 journalctl=4 top= 100 python
+20:51:25 load=18.01 journalctl=4 top= 110 python
+20:52:25 load=17.76 journalctl=4 top= 101 python
+20:53:25 load=17.37 journalctl=4 top= 102 python
+20:54:25 load=17.20 journalctl=4 top= 101 python
+20:55:26 load=17.26 journalctl=4 top= 102 python
+20:56:26 load=17.27 journalctl=4 top=99.3 journalctl
+20:57:26 load=17.32 journalctl=4 top= 100 python
+20:58:27 load=17.62 journalctl=4 top= 113 journalctl
+20:59:27 load=17.64 journalctl=4 top= 108 python
+21:00:27 load=17.31 journalctl=4 top= 100 python
+21:01:28 load=17.64 journalctl=4 top= 103 python
+21:02:28 load=17.37 journalctl=4 top= 106 python
+21:03:28 load=17.29 journalctl=4 top= 100 python
+21:04:29 load=17.10 journalctl=4 top= 100 python
+21:05:29 load=17.48 journalctl=4 top= 101 python
+21:06:29 load=17.54 journalctl=4 top= 101 python
+21:07:29 load=17.05 journalctl=4 top= 100 python
+21:08:30 load=17.21 journalctl=2 top= 100 python
+21:09:30 load=17.58 journalctl=4 top= 100 python
+21:10:30 load=16.82 journalctl=4 top=99.9 python
+21:11:30 load=17.50 journalctl=4 top= 100 python
+21:12:31 load=17.45 journalctl=4 top= 100 journalctl
+21:13:31 load=17.45 journalctl=4 top= 100 journalctl
+21:14:31 load=16.91 journalctl=4 top=99.9 python
+21:15:31 load=17.73 journalctl=4 top= 100 python
+21:16:32 load=17.85 journalctl=4 top= 100 python
+21:17:32 load=17.96 journalctl=4 top= 101 python
+21:18:32 load=18.24 journalctl=4 top= 100 python
+21:19:33 load=18.41 journalctl=4 top= 100 python
+21:20:33 load=18.27 journalctl=4 top= 102 python
+21:21:33 load=18.25 journalctl=4 top=99.9 python
+21:22:33 load=18.19 journalctl=4 top= 101 python
+21:23:34 load=18.30 journalctl=4 top= 103 python
+21:24:34 load=18.38 journalctl=4 top= 114 python
+21:25:34 load=18.41 journalctl=4 top= 100 python
+21:26:35 load=18.22 journalctl=4 top= 100 python
+21:27:35 load=18.28 journalctl=4 top= 100 python
+21:28:35 load=18.24 journalctl=4 top=99.9 python
+21:29:36 load=18.58 journalctl=4 top= 100 python
+21:30:36 load=18.28 journalctl=4 top= 100 python
+21:31:36 load=18.15 journalctl=4 top=99.9 python
+21:32:36 load=18.27 journalctl=4 top=99.9 python
+21:33:37 load=18.07 journalctl=4 top= 100 python
+21:34:37 load=18.15 journalctl=4 top= 103 python
+21:35:37 load=18.25 journalctl=4 top= 102 python
+21:36:38 load=18.21 journalctl=4 top= 100 python
+21:37:38 load=18.07 journalctl=4 top= 101 python
+21:38:38 load=18.11 journalctl=4 top= 103 python
+21:39:38 load=18.15 journalctl=4 top= 100 python
+21:40:39 load=17.35 journalctl=4 top= 105 python
+21:41:39 load=17.61 journalctl=4 top= 100 python
+21:42:39 load=16.47 journalctl=4 top=99.2 python
+21:43:39 load=15.81 journalctl=4 top=99.9 python
+21:44:40 load=15.63 journalctl=4 top= 100 python
+21:45:40 load=15.69 journalctl=2 top= 100 python
+21:46:40 load=15.51 journalctl=4 top= 103 python
+21:47:40 load=16.20 journalctl=4 top=99.7 python
+21:48:40 load=16.52 journalctl=4 top= 100 python
+21:49:41 load=16.76 journalctl=4 top= 100 python
+21:50:41 load=16.52 journalctl=4 top= 102 python
+21:51:41 load=16.55 journalctl=4 top=99.6 python
+21:52:41 load=16.75 journalctl=4 top= 100 python
+21:53:41 load=15.39 journalctl=4 top= 100 python
+21:54:42 load=14.95 journalctl=4 top= 100 python
+21:55:42 load=14.14 journalctl=4 top= 102 python
+21:56:42 load=13.58 journalctl=4 top= 102 python
+21:57:42 load=13.45 journalctl=4 top= 101 python
+21:58:42 load=13.24 journalctl=4 top= 106 python
+21:59:42 load=13.17 journalctl=4 top= 100 python
+22:00:42 load=13.11 journalctl=4 top=99.8 python
+22:01:42 load=13.04 journalctl=4 top=99.9 python
+22:02:43 load=13.08 journalctl=4 top= 100 python
+22:03:43 load=13.10 journalctl=4 top= 100 python
+22:04:43 load=13.58 journalctl=4 top= 100 python
+22:05:43 load=13.32 journalctl=4 top= 100 python
+22:06:43 load=13.25 journalctl=4 top= 108 python
+22:07:43 load=13.31 journalctl=4 top= 101 python
+22:08:43 load=13.71 journalctl=4 top= 100 python
+22:09:43 load=13.43 journalctl=4 top=99.9 python
+22:10:43 load=13.16 journalctl=4 top=99.9 python
+22:11:43 load=13.06 journalctl=4 top=99.9 python
+22:12:43 load=13.02 journalctl=4 top= 100 python
+22:13:44 load=13.06 journalctl=4 top= 100 python
+22:14:44 load=13.09 journalctl=4 top= 100 python
+22:15:44 load=13.18 journalctl=4 top= 100 python
+22:16:44 load=13.16 journalctl=4 top= 100 journalctl
+22:17:44 load=13.10 journalctl=4 top= 100 journalctl
+22:18:44 load=13.27 journalctl=4 top= 103 python
+22:19:44 load=13.17 journalctl=4 top= 137 python
+22:20:44 load=13.53 journalctl=4 top=99.9 python
+22:21:44 load=13.25 journalctl=4 top= 100 python
+22:22:44 load=13.16 journalctl=4 top= 100 python
+22:23:44 load=13.11 journalctl=4 top= 100 python
+22:24:45 load=13.38 journalctl=4 top= 100 python
+22:25:45 load=15.29 journalctl=4 top= 104 python
+22:26:45 load=15.93 journalctl=4 top= 102 python
+22:27:45 load=16.49 journalctl=4 top= 100 python
+22:28:46 load=16.33 journalctl=4 top= 100 python
+22:29:46 load=16.17 journalctl=4 top= 101 journalctl
+22:30:46 load=16.18 journalctl=4 top= 100 python
+22:31:46 load=16.29 journalctl=4 top= 100 python
+22:32:46 load=15.89 journalctl=4 top= 100 python
+22:33:46 load=15.44 journalctl=4 top= 100 python
+22:34:46 load=15.21 journalctl=4 top= 100 python
+22:35:47 load=15.19 journalctl=4 top= 100 python
+22:36:47 load=15.13 journalctl=4 top= 100 journalctl
+22:37:47 load=15.14 journalctl=4 top= 100 python
+22:38:47 load=15.21 journalctl=4 top= 100 python
+22:39:47 load=15.08 journalctl=4 top= 100 python
+22:40:47 load=15.07 journalctl=4 top= 107 python
+22:41:47 load=15.07 journalctl=4 top= 101 python
+22:42:47 load=15.27 journalctl=4 top= 100 python
+22:43:47 load=15.15 journalctl=4 top= 100 python
+22:44:47 load=15.16 journalctl=4 top= 100 python
+22:45:48 load=15.13 journalctl=4 top= 100 python
+22:46:48 load=15.16 journalctl=4 top= 103 python
+22:47:48 load=15.21 journalctl=4 top= 100 python
+22:48:48 load=15.16 journalctl=4 top= 100 python
+22:49:48 load=15.12 journalctl=2 top= 100 python
+22:50:48 load=15.30 journalctl=4 top=99.9 python
+22:51:48 load=15.47 journalctl=4 top= 100 python
+22:52:48 load=15.58 journalctl=4 top= 100 python
+22:53:49 load=15.32 journalctl=4 top= 100 python
+22:54:49 load=15.21 journalctl=4 top= 100 python
+22:55:49 load=15.25 journalctl=4 top= 100 python
+22:56:49 load=15.20 journalctl=4 top= 102 journalctl
+22:57:49 load=15.07 journalctl=4 top= 100 journalctl
+22:58:49 load=15.08 journalctl=4 top= 100 journalctl
+22:59:49 load=15.03 journalctl=4 top= 100 python
+23:00:49 load=15.01 journalctl=4 top=99.9 python
+23:01:49 load=15.15 journalctl=4 top= 100 python
+23:02:49 load=15.08 journalctl=4 top= 100 python
+23:03:50 load=15.30 journalctl=4 top= 100 python
+23:04:50 load=15.27 journalctl=4 top= 100 python
+23:05:50 load=15.23 journalctl=4 top= 100 python
+23:06:50 load=15.14 journalctl=4 top= 100 python
+23:07:50 load=15.46 journalctl=4 top= 100 python
+23:08:50 load=15.50 journalctl=4 top=99.9 python
+23:09:50 load=15.53 journalctl=4 top= 100 python
+23:10:50 load=15.37 journalctl=4 top= 100 python
+23:11:51 load=15.50 journalctl=4 top= 100 python
+23:12:51 load=15.03 journalctl=4 top= 100 python
+23:13:51 load=14.02 journalctl=4 top= 100 python
+23:14:51 load=13.37 journalctl=4 top= 100 python
+23:15:51 load=13.13 journalctl=4 top= 100 python
+23:16:51 load=13.43 journalctl=4 top= 132 journalctl
+23:17:51 load=13.27 journalctl=4 top= 102 python
+23:18:51 load=14.44 journalctl=4 top=99.9 python
+23:19:51 load=15.00 journalctl=4 top= 100 python
+23:20:52 load=15.27 journalctl=4 top= 100 python
+23:21:52 load=15.22 journalctl=4 top= 100 python
+23:22:52 load=15.08 journalctl=4 top= 100 python
+23:23:52 load=15.03 journalctl=4 top= 101 journalctl
+23:24:52 load=15.01 journalctl=4 top= 100 journalctl
+23:25:52 load=15.05 journalctl=4 top= 100 journalctl
+23:26:52 load=15.29 journalctl=4 top= 100 python
+23:27:52 load=15.25 journalctl=4 top=99.9 python
+23:28:52 load=15.23 journalctl=4 top= 100 python
+23:29:52 load=15.08 journalctl=4 top= 100 python
+23:30:53 load=15.14 journalctl=4 top= 100 python
+23:31:53 load=15.20 journalctl=4 top= 100 python
+23:32:53 load=15.07 journalctl=4 top= 100 python
+23:33:53 load=14.96 journalctl=4 top= 100 python
+23:34:53 load=15.07 journalctl=4 top= 100 python
+23:35:53 load=15.10 journalctl=4 top= 100 python
+23:36:53 load=15.18 journalctl=4 top=99.9 python
+23:37:53 load=15.14 journalctl=4 top=99.9 python
+23:38:53 load=15.05 journalctl=4 top=99.9 python
+23:39:54 load=15.11 journalctl=4 top= 100 python
+23:40:54 load=15.53 journalctl=4 top= 100 python
+23:41:54 load=15.30 journalctl=4 top= 100 python
+23:42:54 load=15.48 journalctl=4 top= 100 python
+23:43:54 load=15.26 journalctl=4 top= 112 journalctl
+23:44:54 load=15.09 journalctl=4 top= 103 python
+23:45:54 load=15.18 journalctl=4 top=99.9 python
+23:46:54 load=15.31 journalctl=4 top=99.9 python
+23:47:54 load=15.21 journalctl=4 top=99.9 python
+23:48:55 load=15.17 journalctl=4 top=99.9 python
+23:49:55 load=15.17 journalctl=4 top= 100 python
+23:50:55 load=15.26 journalctl=4 top= 101 journalctl
+23:51:55 load=15.30 journalctl=4 top= 100 python
+23:52:55 load=15.95 journalctl=4 top= 101 python
+23:53:55 load=15.54 journalctl=2 top= 101 python
+23:54:55 load=15.64 journalctl=4 top=99.9 python
+23:55:55 load=15.45 journalctl=4 top= 100 python
+23:56:55 load=15.16 journalctl=4 top= 100 python
+23:57:56 load=15.17 journalctl=4 top= 100 python
+23:58:56 load=15.06 journalctl=4 top= 100 python
+23:59:56 load=15.06 journalctl=4 top= 100 python
+00:00:56 load=13.65 journalctl=4 top= 103 python
+00:01:56 load=14.50 journalctl=4 top= 100 python
+00:02:56 load=14.82 journalctl=4 top= 101 python
+00:03:56 load=14.94 journalctl=4 top=99.9 python
+00:04:56 load=15.19 journalctl=4 top=99.9 python
+00:05:56 load=15.07 journalctl=4 top=99.9 python
+00:06:57 load=15.02 journalctl=4 top=99.9 python
+00:07:57 load=15.01 journalctl=4 top= 100 python
+00:08:57 load=15.00 journalctl=4 top= 101 python
+00:09:57 load=15.23 journalctl=4 top= 100 python
+00:10:57 load=15.23 journalctl=4 top= 108 journalctl
+00:11:57 load=15.16 journalctl=4 top= 100 journalctl
+00:12:57 load=15.12 journalctl=4 top=99.9 python
+00:13:57 load=15.10 journalctl=4 top= 100 python
+00:14:57 load=15.08 journalctl=4 top= 100 python
+00:15:58 load=15.09 journalctl=4 top=99.9 python
+00:16:58 load=15.11 journalctl=4 top= 100 python
+00:17:58 load=15.24 journalctl=4 top= 101 journalctl
+00:18:58 load=15.09 journalctl=4 top= 103 python
+00:19:58 load=15.26 journalctl=4 top= 101 python
+00:20:58 load=15.28 journalctl=4 top=99.9 python
+00:21:58 load=15.10 journalctl=4 top= 100 python
+00:22:58 load=15.11 journalctl=4 top= 100 python
+00:23:59 load=15.44 journalctl=4 top= 100 python
+00:24:59 load=15.25 journalctl=4 top= 100 journalctl
+00:25:59 load=15.36 journalctl=4 top= 100 python
+00:26:59 load=15.44 journalctl=4 top= 100 python
+00:27:59 load=15.30 journalctl=4 top= 100 python
+00:28:59 load=15.27 journalctl=4 top= 101 python
+00:29:59 load=15.21 journalctl=4 top=99.9 python
+00:30:59 load=15.23 journalctl=4 top= 100 python
+00:31:59 load=15.20 journalctl=4 top= 100 python
+00:33:00 load=15.25 journalctl=4 top= 100 python
+00:34:00 load=15.24 journalctl=4 top= 100 python
+00:35:00 load=15.09 journalctl=4 top= 100 python
+00:36:00 load=15.16 journalctl=4 top= 100 python
+00:37:00 load=15.16 journalctl=4 top= 100 python
+00:38:00 load=15.40 journalctl=4 top= 105 journalctl
+00:39:00 load=15.15 journalctl=4 top=99.9 python
+00:40:00 load=15.29 journalctl=4 top= 100 python
+00:41:00 load=15.21 journalctl=4 top= 100 python
+00:42:01 load=14.46 journalctl=4 top= 100 python
+00:43:01 load=13.47 journalctl=4 top= 100 python
+00:44:01 load=14.47 journalctl=4 top= 100 python
+00:45:01 load=14.88 journalctl=4 top= 104 python
+00:46:01 load=14.96 journalctl=4 top= 100 journalctl
+00:47:01 load=15.07 journalctl=4 top= 107 python
+00:48:01 load=15.02 journalctl=4 top= 104 journalctl
+00:49:01 load=15.33 journalctl=4 top=99.9 python
+00:50:01 load=15.32 journalctl=4 top= 100 python
+00:51:01 load=15.25 journalctl=4 top= 100 python
+00:52:02 load=15.13 journalctl=4 top= 100 python
+00:53:02 load=15.05 journalctl=4 top= 100 python
+00:54:02 load=15.05 journalctl=4 top= 101 python
+00:55:02 load=15.22 journalctl=4 top= 100 python
+00:56:02 load=15.08 journalctl=4 top= 100 python
+00:57:02 load=15.14 journalctl=4 top= 100 python
+00:58:02 load=15.26 journalctl=2 top=99.9 python
+00:59:02 load=15.20 journalctl=4 top= 100 python
+01:00:02 load=15.29 journalctl=4 top= 100 python
+01:01:03 load=15.53 journalctl=4 top= 100 python
+01:02:03 load=14.77 journalctl=2 top= 100 python
+01:03:03 load=14.31 journalctl=2 top= 101 python
+01:04:03 load=14.30 journalctl=2 top= 100 python
+01:05:03 load=14.44 journalctl=4 top= 111 journalctl
+01:06:03 load=14.90 journalctl=4 top=99.8 python
+01:07:03 load=15.02 journalctl=4 top= 101 python
+01:08:03 load=15.05 journalctl=4 top= 100 python
+01:09:04 load=15.02 journalctl=4 top= 100 python
+01:10:04 load=15.04 journalctl=4 top= 100 python
+01:11:04 load=15.14 journalctl=4 top= 100 python
+01:12:04 load=15.15 journalctl=4 top= 100 python
+01:13:04 load=15.35 journalctl=4 top= 100 python
+01:14:04 load=16.20 journalctl=4 top= 100 python
+01:15:04 load=14.08 journalctl=4 top= 100 python
+01:16:05 load=13.41 journalctl=4 top= 100 python
+01:17:05 load=15.05 journalctl=4 top= 100 python
+01:18:05 load=15.28 journalctl=4 top= 100 python
+01:19:05 load=15.21 journalctl=4 top= 100 python
+01:20:05 load=15.25 journalctl=4 top= 101 python
+01:21:05 load=14.92 journalctl=4 top= 100 python
+01:22:05 load=13.97 journalctl=4 top= 100 python
+01:23:05 load=13.64 journalctl=4 top= 100 python
+01:24:06 load=13.35 journalctl=4 top= 100 python
+01:25:06 load=13.27 journalctl=4 top= 100 python
+01:26:06 load=13.63 journalctl=4 top= 100 python
+01:27:06 load=12.85 journalctl=4 top= 104 python
+01:28:06 load=12.48 journalctl=4 top= 125 journalctl
+01:29:06 load=12.16 journalctl=4 top= 100 journalctl
+01:30:06 load=12.10 journalctl=4 top= 100 python
+01:31:06 load=12.16 journalctl=4 top= 100 python
+01:32:06 load=12.21 journalctl=4 top= 100 python
+01:33:06 load=12.17 journalctl=4 top= 100 python
+01:34:06 load=12.59 journalctl=4 top= 100 python
+01:35:07 load=12.51 journalctl=4 top= 100 journalctl
+01:36:07 load=12.39 journalctl=4 top= 112 python
+01:37:07 load=12.31 journalctl=4 top= 100 python
+01:38:07 load=12.22 journalctl=4 top= 100 python
+01:39:07 load=12.19 journalctl=4 top= 100 python
+01:40:07 load=12.21 journalctl=4 top= 100 python
+01:41:07 load=12.34 journalctl=4 top= 100 python
+01:42:07 load=12.36 journalctl=4 top= 102 journalctl
+01:43:07 load=12.40 journalctl=4 top= 100 python
+01:44:07 load=12.37 journalctl=4 top= 100 python
+01:45:07 load=12.31 journalctl=4 top= 100 python
+01:46:08 load=12.28 journalctl=4 top= 100 python
+01:47:08 load=12.20 journalctl=4 top= 100 python
+01:48:08 load=12.17 journalctl=4 top= 100 python
+01:49:08 load=12.15 journalctl=4 top= 100 journalctl
+01:50:08 load=12.10 journalctl=4 top= 100 journalctl
+01:51:08 load=12.13 journalctl=4 top= 101 python
+01:52:08 load=12.36 journalctl=4 top= 100 python
+01:53:08 load=12.17 journalctl=4 top= 100 python
+01:54:08 load=12.14 journalctl=4 top=99.9 python
+01:55:08 load=12.02 journalctl=4 top= 100 python
+01:56:08 load=12.01 journalctl=4 top=99.9 python
+01:57:08 load=12.43 journalctl=4 top= 100 python
+01:58:09 load=12.19 journalctl=4 top= 100 python
+01:59:09 load=12.47 journalctl=4 top= 100 python
+02:00:09 load=15.51 journalctl=4 top= 100 python
+02:01:09 load=16.66 journalctl=4 top=99.9 python
+02:02:10 load=17.09 journalctl=4 top= 100 python
+02:03:10 load=17.40 journalctl=4 top= 100 python
+02:04:10 load=17.18 journalctl=4 top=99.9 python
+02:05:10 load=17.34 journalctl=2 top=99.9 python
+02:06:11 load=17.16 journalctl=4 top= 100 python
+02:07:11 load=17.14 journalctl=4 top= 100 python
+02:08:11 load=17.19 journalctl=4 top=99.9 python
+02:09:11 load=17.16 journalctl=4 top= 100 journalctl
+02:10:12 load=17.14 journalctl=4 top= 100 journalctl
+02:11:12 load=17.42 journalctl=4 top= 100 journalctl
+02:12:12 load=17.24 journalctl=4 top=99.9 python
+02:13:13 load=17.25 journalctl=4 top= 100 python
+02:14:13 load=17.17 journalctl=4 top= 100 python
+02:15:13 load=17.29 journalctl=4 top= 100 python
+02:16:13 load=17.09 journalctl=4 top=99.9 python
+02:17:14 load=17.45 journalctl=4 top= 100 python
+02:18:14 load=17.20 journalctl=4 top= 100 python
+02:19:14 load=17.21 journalctl=4 top= 101 journalctl
+02:20:14 load=17.36 journalctl=4 top=99.9 python
+02:21:15 load=17.28 journalctl=4 top= 100 python
+02:22:15 load=17.67 journalctl=4 top= 106 journalctl
+02:23:15 load=17.25 journalctl=4 top=99.9 python
+02:24:15 load=17.25 journalctl=4 top=99.9 python
+02:25:16 load=17.25 journalctl=4 top= 100 python
+02:26:16 load=17.39 journalctl=4 top= 100 python
+02:27:16 load=17.34 journalctl=4 top=99.9 python
+02:28:16 load=17.33 journalctl=4 top= 100 python
+02:29:17 load=17.07 journalctl=4 top= 100 python
+02:30:17 load=17.02 journalctl=4 top= 100 python
+02:31:17 load=17.16 journalctl=4 top=99.9 python
+02:32:18 load=17.32 journalctl=4 top= 101 journalctl
+02:33:18 load=17.28 journalctl=4 top= 100 journalctl
+02:34:18 load=17.35 journalctl=4 top= 100 python
+02:35:18 load=17.16 journalctl=4 top=99.9 python
+02:36:18 load=17.14 journalctl=4 top=99.9 python
+02:37:19 load=17.43 journalctl=4 top= 100 python
+02:38:19 load=17.59 journalctl=4 top= 100 python
+02:39:19 load=17.47 journalctl=4 top=99.9 python
+02:40:19 load=17.50 journalctl=4 top=99.9 python
+02:41:20 load=17.25 journalctl=4 top= 100 python
+02:42:20 load=17.16 journalctl=2 top= 100 python
+02:43:20 load=17.25 journalctl=4 top=99.9 python
+02:44:20 load=17.97 journalctl=4 top= 100 python
+02:45:21 load=17.61 journalctl=4 top= 100 python
+02:46:21 load=17.34 journalctl=4 top= 100 journalctl
+02:47:21 load=17.12 journalctl=4 top=99.9 python
+02:48:22 load=17.04 journalctl=4 top= 100 python
+02:49:22 load=17.27 journalctl=4 top= 104 journalctl
+02:50:22 load=17.22 journalctl=4 top= 100 journalctl
+02:51:22 load=17.65 journalctl=4 top=99.9 python
+02:52:23 load=17.24 journalctl=4 top= 100 python
+02:53:23 load=17.40 journalctl=4 top= 100 python
+02:54:23 load=17.22 journalctl=4 top=99.9 python
+02:55:23 load=17.47 journalctl=4 top=99.9 python
+02:56:24 load=17.31 journalctl=4 top= 100 python
+02:57:24 load=17.22 journalctl=4 top= 100 python
+02:58:24 load=17.30 journalctl=4 top=99.9 python
+02:59:24 load=17.56 journalctl=4 top=99.9 python
+03:00:25 load=17.26 journalctl=4 top= 100 python
+03:01:25 load=17.16 journalctl=4 top= 100 python
+03:02:25 load=17.62 journalctl=4 top=99.9 python
+03:03:26 load=17.39 journalctl=4 top= 100 journalctl
+03:04:26 load=17.41 journalctl=4 top= 100 journalctl
+03:05:26 load=17.22 journalctl=4 top=99.9 python
+03:06:26 load=17.65 journalctl=4 top=99.9 python
+03:07:27 load=17.55 journalctl=4 top= 100 python
+03:08:27 load=16.34 journalctl=4 top= 100 python
+03:09:27 load=16.15 journalctl=4 top= 115 journalctl
+03:10:27 load=13.96 journalctl=4 top= 100 journalctl
+03:11:27 load=13.98 journalctl=4 top= 101 python
+03:12:27 load=14.70 journalctl=4 top= 102 python
+03:13:27 load=15.01 journalctl=4 top=99.9 python
+03:14:27 load=15.65 journalctl=4 top=99.9 python
+03:15:27 load=15.65 journalctl=4 top=99.9 python
+03:16:28 load=15.24 journalctl=4 top= 100 journalctl
+03:17:28 load=15.42 journalctl=4 top= 100 python
+03:18:28 load=15.20 journalctl=4 top= 100 python
+03:19:28 load=15.22 journalctl=4 top= 100 python
+03:20:28 load=15.21 journalctl=4 top= 100 python
+03:21:28 load=15.25 journalctl=4 top= 100 python
+03:22:28 load=15.34 journalctl=4 top=99.9 python
+03:23:28 load=15.56 journalctl=4 top=99.9 python
+03:24:28 load=15.33 journalctl=4 top=99.9 python
+03:25:29 load=15.57 journalctl=4 top= 100 python
+03:26:29 load=15.27 journalctl=4 top= 100 python
+03:27:29 load=15.32 journalctl=4 top= 100 python
+03:28:29 load=15.22 journalctl=4 top= 100 python
+03:29:29 load=15.08 journalctl=4 top= 100 python
+03:30:29 load=15.08 journalctl=4 top= 101 journalctl
+03:31:29 load=15.27 journalctl=4 top=99.9 python
+03:32:29 load=15.20 journalctl=4 top=99.9 python
+03:33:29 load=15.20 journalctl=4 top=99.9 python
+03:34:30 load=15.15 journalctl=4 top= 100 python
+03:35:30 load=15.18 journalctl=4 top= 100 python
+03:36:30 load=15.13 journalctl=4 top= 107 journalctl
+03:37:30 load=15.12 journalctl=4 top= 100 journalctl
+03:38:30 load=15.22 journalctl=4 top= 100 python
+03:39:30 load=15.32 journalctl=4 top= 100 python
+03:40:30 load=15.39 journalctl=4 top=99.9 python
+03:41:30 load=15.21 journalctl=4 top=99.9 python
+03:42:31 load=15.25 journalctl=4 top=99.9 python
+03:43:31 load=15.03 journalctl=4 top= 100 journalctl
+03:44:31 load=15.17 journalctl=4 top= 100 journalctl
+03:45:31 load=15.06 journalctl=4 top= 106 python
+03:46:31 load=15.11 journalctl=4 top= 100 python
+03:47:31 load=15.16 journalctl=4 top=99.9 python
+03:48:31 load=15.10 journalctl=4 top=99.9 python
+03:49:32 load=15.18 journalctl=4 top= 100 python
+03:50:32 load=15.02 journalctl=4 top= 100 journalctl
+03:51:32 load=15.24 journalctl=4 top= 100 python
+03:52:32 load=15.21 journalctl=4 top= 100 python
+03:53:32 load=15.38 journalctl=4 top= 100 journalctl
+03:54:32 load=15.14 journalctl=4 top= 100 python
+03:55:32 load=15.33 journalctl=4 top=99.9 python
+03:56:32 load=15.35 journalctl=4 top=99.9 python
+03:57:33 load=15.15 journalctl=4 top=99.9 python
+03:58:33 load=15.26 journalctl=4 top= 100 python
+03:59:33 load=15.09 journalctl=4 top= 100 python
+04:00:33 load=15.16 journalctl=4 top= 100 python
+04:01:33 load=15.13 journalctl=4 top= 100 python
+04:02:33 load=15.12 journalctl=4 top= 100 python
+04:03:33 load=15.47 journalctl=4 top=99.9 python
+04:04:33 load=15.17 journalctl=4 top=99.9 python
+04:05:33 load=15.17 journalctl=4 top=99.9 python
+04:06:34 load=15.23 journalctl=4 top=99.9 python
+04:07:34 load=15.83 journalctl=4 top= 100 python
+04:08:34 load=15.59 journalctl=4 top= 100 python
+04:09:34 load=15.21 journalctl=4 top= 100 python
+04:10:34 load=15.53 journalctl=4 top= 102 journalctl
+04:11:34 load=15.40 journalctl=4 top=99.9 python
+04:12:34 load=15.49 journalctl=4 top=99.9 python
+04:13:34 load=15.18 journalctl=4 top=99.9 python
+04:14:35 load=15.31 journalctl=4 top=99.9 python
+04:15:35 load=15.15 journalctl=4 top= 100 python
+04:16:35 load=15.72 journalctl=4 top= 100 python
+04:17:35 load=15.36 journalctl=4 top= 102 python
+04:18:35 load=15.35 journalctl=4 top= 101 python
+04:19:35 load=15.33 journalctl=4 top= 100 journalctl
+04:20:35 load=15.12 journalctl=4 top=99.9 python
+04:21:35 load=15.30 journalctl=4 top=99.9 python
+04:22:35 load=15.26 journalctl=4 top=99.9 python
+04:23:36 load=15.15 journalctl=4 top=99.9 python
+04:24:36 load=15.11 journalctl=4 top= 100 journalctl
+04:25:36 load=15.31 journalctl=4 top= 100 python
+04:26:36 load=15.36 journalctl=4 top= 100 python
+04:27:36 load=15.46 journalctl=4 top= 100 python
+04:28:36 load=15.42 journalctl=4 top= 100 python
+04:29:36 load=15.40 journalctl=4 top=99.9 python
+04:30:36 load=15.30 journalctl=4 top=99.9 python
+04:31:36 load=15.38 journalctl=4 top=99.9 python
+04:32:37 load=15.18 journalctl=4 top=99.9 python
+04:33:37 load=15.23 journalctl=4 top= 100 python
+04:34:37 load=15.42 journalctl=4 top= 102 python
+04:35:37 load=15.20 journalctl=4 top= 100 python
+04:36:37 load=15.10 journalctl=4 top= 100 python
+04:37:37 load=13.47 journalctl=4 top= 102 journalctl
+04:38:37 load=13.95 journalctl=4 top=99.9 python
+04:39:37 load=14.93 journalctl=4 top=99.9 python
+04:40:37 load=15.01 journalctl=4 top= 100 python
+04:41:38 load=15.00 journalctl=4 top= 100 python
+04:42:38 load=15.36 journalctl=4 top= 100 python
+04:43:38 load=15.25 journalctl=4 top= 100 python
+04:44:38 load=15.20 journalctl=4 top= 100 journalctl
+04:45:38 load=14.69 journalctl=4 top= 100 journalctl
+04:46:38 load=14.33 journalctl=4 top= 100 python
+04:47:38 load=14.27 journalctl=4 top= 101 journalctl
+04:48:38 load=14.15 journalctl=4 top=99.9 python
+04:49:38 load=14.19 journalctl=4 top=99.9 python
+04:50:38 load=14.11 journalctl=4 top=99.9 python
+04:51:39 load=13.87 journalctl=4 top= 100 journalctl
+04:52:39 load=13.32 journalctl=4 top=99.9 python
+04:53:39 load=13.18 journalctl=4 top=99.9 python
+04:54:39 load=13.24 journalctl=4 top= 100 python
+04:55:39 load=13.24 journalctl=4 top= 100 python
+04:56:39 load=13.13 journalctl=4 top= 100 python
+04:57:39 load=13.33 journalctl=4 top= 104 journalctl
+04:58:39 load=13.12 journalctl=4 top= 106 python
+04:59:39 load=13.48 journalctl=4 top=99.9 python
+05:00:39 load=13.27 journalctl=4 top= 100 python
+05:01:39 load=13.25 journalctl=4 top= 100 python
+05:02:40 load=13.21 journalctl=4 top= 100 python
+05:03:40 load=13.22 journalctl=4 top= 100 python
+05:04:40 load=13.28 journalctl=4 top= 100 journalctl
+05:05:40 load=13.32 journalctl=4 top= 100 python
+05:06:40 load=13.34 journalctl=4 top= 100 python
+05:07:40 load=13.33 journalctl=4 top= 100 journalctl
+05:08:40 load=12.59 journalctl=4 top= 102 python
+05:09:40 load=12.40 journalctl=4 top= 100 python
+05:10:40 load=12.29 journalctl=4 top=99.9 python
+05:11:40 load=12.40 journalctl=4 top=99.9 python
+05:12:40 load=12.45 journalctl=4 top=99.9 python
+05:13:41 load=12.58 journalctl=4 top=99.9 python
+05:14:41 load=12.28 journalctl=4 top= 113 apt-check
+05:15:41 load=12.25 journalctl=4 top= 100 python
+05:16:41 load=12.12 journalctl=4 top= 101 python
+05:17:41 load=12.00 journalctl=4 top= 125 journalctl
+05:18:41 load=12.00 journalctl=4 top= 101 python
+05:19:41 load=12.00 journalctl=4 top= 100 python
+05:20:41 load=12.03 journalctl=4 top= 115 python
+05:21:41 load=12.27 journalctl=4 top= 103 python
+05:22:41 load=12.13 journalctl=4 top= 100 python
+05:23:41 load=12.10 journalctl=4 top= 100 python
+05:24:41 load=12.03 journalctl=4 top= 100 journalctl
+05:25:42 load=12.08 journalctl=4 top= 100 python
+05:26:42 load=12.07 journalctl=4 top=99.9 python
+05:27:42 load=12.08 journalctl=4 top=99.9 python
+05:28:42 load=12.09 journalctl=4 top= 100 python
+05:29:42 load=12.03 journalctl=4 top= 100 python
+05:30:42 load=11.91 journalctl=4 top= 101 python
+05:31:42 load=13.40 journalctl=4 top= 133 python
+05:32:42 load=14.66 journalctl=4 top=99.9 python
+05:33:42 load=15.35 journalctl=4 top=99.9 python
+05:34:42 load=15.28 journalctl=4 top= 100 python
+05:35:43 load=15.10 journalctl=4 top= 100 python
+05:36:43 load=15.24 journalctl=4 top= 100 python
+05:37:43 load=15.25 journalctl=4 top= 100 python
+05:38:43 load=15.14 journalctl=4 top= 100 journalctl
+05:39:43 load=15.10 journalctl=4 top= 100 python
+05:40:43 load=15.89 journalctl=4 top=99.9 python
+05:41:43 load=17.60 journalctl=4 top=99.9 python
+05:42:43 load=16.71 journalctl=4 top=99.9 python
+05:43:44 load=15.63 journalctl=4 top=99.9 python
+05:44:44 load=15.73 journalctl=4 top= 105 journalctl
+05:45:44 load=15.84 journalctl=4 top= 100 journalctl
+05:46:44 load=15.30 journalctl=4 top= 100 python
+05:47:44 load=15.70 journalctl=4 top= 100 journalctl
+05:48:44 load=15.26 journalctl=4 top= 103 python
+05:49:44 load=15.09 journalctl=4 top= 103 python
+05:50:44 load=15.07 journalctl=4 top=99.9 python
+05:51:44 load=15.22 journalctl=4 top= 100 python
+05:52:44 load=15.61 journalctl=4 top= 100 python
+05:53:45 load=15.30 journalctl=4 top= 100 python
+05:54:45 load=15.11 journalctl=2 top= 100 python
+05:55:45 load=15.04 journalctl=4 top= 100 python
+05:56:45 load=15.01 journalctl=4 top= 100 python
+05:57:45 load=15.00 journalctl=4 top= 100 python
+05:58:45 load=15.00 journalctl=4 top= 101 journalctl
+05:59:45 load=15.15 journalctl=4 top= 100 journalctl
+06:00:45 load=15.28 journalctl=4 top=99.9 python
+06:01:45 load=15.10 journalctl=4 top= 100 python
+06:02:45 load=15.04 journalctl=4 top= 100 python
+06:03:46 load=15.18 journalctl=4 top= 100 python
+06:04:46 load=15.07 journalctl=4 top= 100 python
+06:05:46 load=15.06 journalctl=4 top= 100 journalctl
+06:06:46 load=15.02 journalctl=4 top= 101 python
+06:07:46 load=15.00 journalctl=4 top= 100 python
+06:08:46 load=14.95 journalctl=4 top= 100 python
+06:09:46 load=15.10 journalctl=4 top=99.9 python
+06:10:46 load=15.04 journalctl=4 top=99.9 python
+06:11:46 load=15.11 journalctl=4 top= 100 python
+06:12:47 load=15.42 journalctl=4 top= 100 python
+06:13:47 load=15.15 journalctl=4 top= 100 python
+06:14:47 load=14.00 journalctl=4 top= 100 python
+06:15:47 load=12.81 journalctl=4 top= 100 python
+06:16:47 load=11.78 journalctl=4 top= 100 python
+06:17:47 load=13.97 journalctl=4 top= 100 python
+06:18:47 load=14.70 journalctl=4 top= 102 journalctl
+06:19:47 load=14.94 journalctl=4 top=99.9 python
+06:20:47 load=16.08 journalctl=4 top= 100 python
+06:21:48 load=15.38 journalctl=4 top= 100 python
+06:22:48 load=15.24 journalctl=4 top= 101 python
+06:23:48 load=15.23 journalctl=4 top= 100 python
+06:24:48 load=15.13 journalctl=4 top= 100 python
+06:25:48 load=15.34 journalctl=4 top= 100 journalctl
+06:26:48 load=15.41 journalctl=4 top= 103 unattended-upgr
+06:27:48 load=15.83 journalctl=4 top=99.9 python
+06:28:48 load=15.38 journalctl=4 top=99.9 python
+06:29:49 load=15.42 journalctl=4 top= 100 python
+06:30:49 load=15.15 journalctl=4 top= 100 python
+06:31:49 load=15.05 journalctl=4 top= 102 python
+06:32:49 load=15.02 journalctl=4 top= 102 python
+06:33:49 load=15.08 journalctl=4 top= 102 python
+06:34:49 load=15.03 journalctl=4 top= 101 python
+06:35:49 load=15.09 journalctl=4 top= 100 python
+06:36:49 load=15.10 journalctl=4 top=99.9 python
+06:37:49 load=15.08 journalctl=4 top= 100 python
+06:38:50 load=15.03 journalctl=4 top= 100 journalctl
+06:39:50 load=15.21 journalctl=4 top= 100 python
+06:40:50 load=15.15 journalctl=4 top= 118 python
+06:41:50 load=15.06 journalctl=4 top= 100 python
+06:42:50 load=15.42 journalctl=4 top= 100 python
+06:43:50 load=15.15 journalctl=4 top= 101 python
+06:44:50 load=15.19 journalctl=4 top=99.9 python
+06:45:50 load=15.21 journalctl=4 top= 100 python
+06:46:51 load=15.31 journalctl=4 top= 101 python
+06:47:51 load=15.11 journalctl=4 top=99.9 python
+06:48:51 load=15.04 journalctl=4 top=99.9 python
+06:49:51 load=15.22 journalctl=4 top=99.9 python
+06:50:51 load=15.35 journalctl=4 top= 101 python
+06:51:51 load=16.02 journalctl=4 top=99.9 python
+06:52:51 load=15.57 journalctl=4 top=99.9 python
+06:53:51 load=15.48 journalctl=4 top=99.9 python
+06:54:51 load=15.30 journalctl=4 top=99.9 python
+06:55:52 load=15.62 journalctl=4 top= 100 python
+06:56:52 load=15.38 journalctl=4 top= 106 python
+06:57:52 load=15.37 journalctl=4 top= 100 python
+06:58:52 load=15.25 journalctl=2 top= 100 python
+06:59:52 load=15.28 journalctl=4 top= 100 journalctl
+07:00:52 load=15.26 journalctl=4 top= 100 journalctl
+07:01:52 load=15.15 journalctl=4 top=99.9 python
+07:02:52 load=15.35 journalctl=4 top=99.9 python
+07:03:53 load=15.29 journalctl=4 top=99.9 python
+07:04:53 load=15.32 journalctl=4 top= 100 python
+07:05:53 load=15.05 journalctl=4 top= 103 journalctl
+07:06:53 load=15.02 journalctl=4 top= 100 journalctl
+07:07:53 load=15.08 journalctl=4 top= 100 journalctl
+07:08:53 load=15.03 journalctl=4 top= 100 journalctl
+07:09:53 load=15.01 journalctl=4 top=99.9 python
+07:10:53 load=15.06 journalctl=4 top=99.9 python
+07:11:53 load=15.02 journalctl=4 top=99.9 python
+07:12:54 load=14.99 journalctl=4 top= 101 python
+07:13:54 load=15.21 journalctl=4 top= 100 python
+07:14:54 load=15.17 journalctl=4 top= 100 python
+07:15:54 load=15.22 journalctl=4 top= 100 python
+07:16:54 load=15.14 journalctl=4 top= 100 python
+07:17:54 load=15.15 journalctl=4 top= 100 python
+07:18:54 load=15.11 journalctl=4 top= 100 python
+07:19:54 load=15.00 journalctl=4 top=99.9 python
+07:20:54 load=15.13 journalctl=4 top=99.9 python
+07:21:54 load=14.97 journalctl=4 top=99.9 python
+07:22:55 load=14.58 journalctl=4 top=99.9 python
+07:23:55 load=14.42 journalctl=4 top=99.9 python
+07:24:55 load=14.18 journalctl=4 top= 100 python
+07:25:55 load=14.05 journalctl=4 top= 143 journalctl
+07:26:55 load=14.11 journalctl=4 top= 100 journalctl
+07:27:55 load=14.10 journalctl=4 top= 100 journalctl
+07:28:55 load=14.12 journalctl=4 top= 100 journalctl
+07:29:55 load=13.47 journalctl=4 top=99.9 python
+07:30:55 load=13.21 journalctl=4 top=99.9 python
+07:31:55 load=13.37 journalctl=4 top=99.9 python
+07:32:55 load=13.36 journalctl=4 top= 100 journalctl
+07:33:56 load=13.13 journalctl=4 top=99.9 python
+07:34:56 load=13.05 journalctl=4 top=99.9 python
+07:35:56 load=13.05 journalctl=4 top= 100 python
+07:36:56 load=13.13 journalctl=4 top= 100 python
+07:37:56 load=12.97 journalctl=4 top=99.9 python
+07:38:56 load=12.03 journalctl=4 top=99.9 python
+07:39:56 load=11.49 journalctl=4 top= 101 journalctl
+07:40:56 load=11.29 journalctl=4 top= 100 journalctl
+07:41:56 load=10.73 journalctl=4 top=99.9 python
+07:42:56 load=10.32 journalctl=4 top=99.9 python
+07:43:56 load=10.29 journalctl=4 top=99.9 python
+07:44:56 load=10.20 journalctl=4 top=99.9 python
+07:45:57 load=10.17 journalctl=4 top=99.9 python
+07:46:57 load=10.05 journalctl=4 top= 100 journalctl
+07:47:57 load=8.99 journalctl=4 top= 100 journalctl
+07:48:57 load=8.47 journalctl=4 top= 100 journalctl
+07:49:57 load=8.17 journalctl=4 top=99.9 python
+07:50:57 load=7.69 journalctl=4 top=99.9 python
+07:51:57 load=7.32 journalctl=4 top=99.9 python
+07:52:57 load=7.26 journalctl=4 top= 126 journalctl
+07:53:57 load=7.23 journalctl=4 top=99.9 python
+07:54:57 load=7.14 journalctl=4 top=99.9 python
+07:55:57 load=7.02 journalctl=4 top=99.9 python
+07:56:57 load=6.38 journalctl=4 top=99.9 python
+07:57:58 load=6.17 journalctl=4 top=99.9 python
+07:58:58 load=6.10 journalctl=4 top=99.9 python
+07:59:58 load=6.08 journalctl=4 top=99.9 python
+08:00:58 load=6.16 journalctl=4 top=99.9 python
+08:01:58 load=6.06 journalctl=4 top=99.9 python
+08:02:58 load=6.08 journalctl=4 top=99.9 python
+08:03:58 load=6.26 journalctl=4 top= 100 journalctl
+08:04:58 load=6.35 journalctl=4 top= 100 journalctl
+08:05:58 load=6.12 journalctl=4 top= 100 journalctl
+08:06:58 load=6.15 journalctl=4 top=99.9 python
+08:07:58 load=6.05 journalctl=4 top=99.9 python
+08:08:58 load=6.02 journalctl=4 top=99.9 python
+08:09:58 load=6.08 journalctl=4 top=99.9 python
+08:10:59 load=6.03 journalctl=4 top=99.9 python
+08:11:59 load=6.11 journalctl=4 top=99.9 python
+08:12:59 load=6.04 journalctl=4 top=99.9 python
+08:13:59 load=6.01 journalctl=4 top=99.9 python
+08:14:59 load=6.09 journalctl=4 top=99.9 python
+08:15:59 load=6.17 journalctl=4 top=99.9 python
+08:16:59 load=5.28 journalctl=4 top= 102 journalctl
+08:17:59 load=4.56 journalctl=4 top= 100 journalctl
+08:18:59 load=4.20 journalctl=4 top= 100 journalctl
+08:19:59 load=4.08 journalctl=4 top=99.9 python
+08:20:59 load=4.13 journalctl=4 top=99.9 python
+08:21:59 load=4.05 journalctl=4 top=99.9 python
+08:22:59 load=4.09 journalctl=4 top=99.9 python
+08:24:00 load=4.03 journalctl=4 top=99.9 python
+08:25:00 load=4.12 journalctl=4 top=99.9 python
+08:26:00 load=4.14 journalctl=4 top=99.9 python
+08:27:00 load=4.86 journalctl=4 top=99.9 python
+08:28:00 load=4.37 journalctl=4 top=99.9 python
+08:29:00 load=4.37 journalctl=4 top=99.9 python
+08:30:00 load=4.28 journalctl=4 top= 172 journalctl
+08:31:00 load=4.27 journalctl=4 top= 101 journalctl
+08:32:00 load=4.26 journalctl=4 top= 100 journalctl
+08:33:00 load=4.14 journalctl=4 top=99.9 python
+08:34:00 load=4.05 journalctl=4 top=99.9 python
+08:35:00 load=4.24 journalctl=4 top=99.9 python
+08:36:01 load=4.23 journalctl=4 top=99.9 python
+08:37:01 load=4.22 journalctl=4 top=99.9 python
+08:38:01 load=4.38 journalctl=4 top=99.9 python
+08:39:01 load=4.19 journalctl=4 top=99.9 python
+08:40:01 load=4.19 journalctl=4 top=99.9 python
+08:41:01 load=4.20 journalctl=4 top=99.9 python
+08:42:01 load=4.07 journalctl=4 top=99.9 python
+08:43:01 load=4.06 journalctl=4 top=99.9 python
+08:44:01 load=4.08 journalctl=4 top= 102 journalctl
+08:45:01 load=4.10 journalctl=4 top=99.9 python
+08:46:01 load=4.11 journalctl=4 top=99.9 python
+08:47:01 load=4.04 journalctl=4 top=99.9 python
+08:48:01 load=4.01 journalctl=4 top=99.9 python
+08:49:02 load=4.00 journalctl=4 top=99.9 python
+08:50:02 load=4.04 journalctl=4 top=99.9 python
+08:51:02 load=4.11 journalctl=4 top=99.9 python
+08:52:02 load=4.04 journalctl=4 top=99.9 python
+08:53:02 load=4.18 journalctl=4 top=99.9 python
+08:54:02 load=4.13 journalctl=4 top=99.9 python
+08:55:02 load=4.32 journalctl=4 top=99.9 python
+08:56:02 load=4.17 journalctl=4 top=99.9 python
+08:57:02 load=4.30 journalctl=4 top= 116 journalctl
+08:58:02 load=4.16 journalctl=4 top=99.9 python
+08:59:02 load=4.30 journalctl=4 top=99.9 python
+09:00:02 load=4.30 journalctl=4 top=99.9 python
+09:01:02 load=4.29 journalctl=4 top=99.9 python
+09:02:03 load=4.35 journalctl=4 top=99.9 python
+09:03:03 load=4.16 journalctl=4 top=99.9 python
+09:04:03 load=4.58 journalctl=4 top=99.9 python
+09:05:03 load=4.42 journalctl=4 top=99.9 python
+09:06:03 load=4.51 journalctl=4 top=99.9 python
+09:07:03 load=4.31 journalctl=2 top=99.9 python
+09:08:03 load=4.25 journalctl=4 top=99.9 python
+09:09:03 load=4.19 journalctl=4 top=99.9 python
+09:10:03 load=4.07 journalctl=4 top= 100 python
+09:11:03 load=4.10 journalctl=4 top=99.9 python
+09:12:03 load=4.29 journalctl=4 top=99.9 python
+09:13:03 load=4.14 journalctl=4 top=99.9 python
+09:14:03 load=4.19 journalctl=4 top=99.9 python
+09:15:04 load=4.07 journalctl=4 top=99.9 python
+09:16:04 load=4.13 journalctl=4 top=99.9 python
+09:17:04 load=4.20 journalctl=4 top=99.9 python
+09:18:04 load=4.07 journalctl=4 top=99.9 python
+09:19:04 load=4.13 journalctl=4 top=99.9 python
+09:20:04 load=4.08 journalctl=4 top=99.9 python
+09:21:04 load=4.23 journalctl=4 top=99.9 python
+09:22:04 load=4.20 journalctl=4 top=99.9 python
+09:23:04 load=4.30 journalctl=4 top=99.9 python
+09:24:04 load=4.47 journalctl=4 top=99.9 python
+09:25:04 load=4.66 journalctl=4 top=99.9 python
+09:26:04 load=4.27 journalctl=4 top=99.9 python
+09:27:05 load=4.18 journalctl=4 top=99.9 python
+09:28:05 load=4.38 journalctl=4 top=99.9 python
+09:29:05 load=4.41 journalctl=4 top=99.9 python
+09:30:05 load=4.38 journalctl=4 top=99.9 python
+09:31:05 load=4.25 journalctl=4 top=99.9 python
+09:32:05 load=4.15 journalctl=4 top=99.9 python
+09:33:05 load=4.30 journalctl=4 top=99.9 python
+09:34:05 load=4.14 journalctl=4 top=99.9 python
+09:35:05 load=4.13 journalctl=4 top= 100 python
+09:36:05 load=4.15 journalctl=4 top=99.9 python
+09:37:05 load=4.60 journalctl=4 top=99.9 python
+09:38:05 load=4.43 journalctl=4 top=99.9 python
+09:39:05 load=4.22 journalctl=4 top=99.9 python
+09:40:06 load=4.19 journalctl=4 top=99.9 python
+09:41:06 load=4.17 journalctl=4 top= 100 journalctl
+09:42:06 load=4.20 journalctl=4 top=99.9 python
+09:43:06 load=4.29 journalctl=4 top=99.9 python
+09:44:06 load=4.43 journalctl=4 top=99.9 python
+09:45:06 load=4.45 journalctl=4 top= 100 journalctl
+09:46:06 load=3.71 journalctl=4 top=99.9 python
+09:47:06 load=3.43 journalctl=4 top=99.9 python
+09:48:06 load=3.22 journalctl=4 top= 100 journalctl
+09:49:06 load=3.75 journalctl=4 top=99.9 python
+09:50:06 load=3.27 journalctl=4 top=99.9 python
+09:51:06 load=3.15 journalctl=4 top= 100 journalctl
+09:52:06 load=3.12 journalctl=4 top= 100 journalctl
+09:53:07 load=3.62 journalctl=4 top=99.9 python
+09:54:07 load=3.60 journalctl=4 top=99.9 python
+09:55:07 load=3.86 journalctl=4 top= 100 journalctl
+09:56:07 load=3.64 journalctl=4 top= 100 journalctl
+09:57:07 load=3.63 journalctl=4 top=99.9 python
+09:58:07 load=3.55 journalctl=4 top= 100 journalctl
+09:59:07 load=3.50 journalctl=4 top= 100 journalctl
+10:00:07 load=3.22 journalctl=4 top= 100 python
+10:01:07 load=3.17 journalctl=4 top=99.9 python
+10:02:07 load=3.12 journalctl=4 top=99.9 python
+10:03:07 load=3.16 journalctl=4 top=99.9 python
+10:04:07 load=3.17 journalctl=4 top=99.9 python
+10:05:08 load=3.20 journalctl=4 top= 100 journalctl
+10:06:08 load=3.20 journalctl=4 top= 100 journalctl
+10:07:08 load=3.15 journalctl=4 top= 100 journalctl
+10:08:08 load=3.11 journalctl=4 top= 100 journalctl
+10:09:08 load=3.09 journalctl=4 top= 100 journalctl
+10:10:08 load=3.08 journalctl=4 top= 100 journalctl
+10:11:08 load=3.20 journalctl=4 top= 108 journalctl
+10:12:08 load=3.21 journalctl=4 top= 100 journalctl
+10:13:08 load=3.17 journalctl=4 top= 100 python
+10:14:08 load=3.32 journalctl=4 top=99.9 python
+10:15:08 load=3.29 journalctl=4 top=99.9 python
+10:16:08 load=3.10 journalctl=4 top=99.9 python
+10:17:08 load=3.04 journalctl=4 top=99.9 python
+10:18:09 load=3.01 journalctl=4 top= 101 journalctl
+10:19:09 load=3.14 journalctl=4 top= 100 journalctl
+10:20:09 load=3.31 journalctl=4 top= 100 journalctl
+10:21:09 load=3.25 journalctl=4 top= 100 journalctl
+10:22:09 load=3.23 journalctl=4 top= 100 journalctl
+10:23:09 load=3.49 journalctl=4 top= 100 journalctl
+10:24:09 load=3.39 journalctl=4 top= 100 journalctl
+10:25:09 load=3.63 journalctl=4 top= 100 journalctl
+10:26:09 load=4.05 journalctl=4 top= 100 journalctl
+10:27:09 load=3.77 journalctl=4 top=99.9 python
+10:28:09 load=3.79 journalctl=4 top=99.9 python
+10:29:09 load=3.38 journalctl=4 top=99.9 python
+10:30:09 load=3.21 journalctl=4 top=99.9 python
+10:31:10 load=3.08 journalctl=4 top=99.9 python
+10:32:10 load=3.11 journalctl=4 top= 100 journalctl
+10:33:10 load=3.21 journalctl=4 top= 100 journalctl
+10:34:10 load=3.23 journalctl=4 top= 100 journalctl
+10:35:10 load=3.17 journalctl=4 top= 100 journalctl
+10:36:10 load=3.16 journalctl=4 top= 100 journalctl
+10:37:10 load=3.06 journalctl=4 top= 100 journalctl
+10:38:10 load=3.10 journalctl=4 top= 105 journalctl
+10:39:10 load=3.16 journalctl=4 top=99.9 python
+10:40:10 load=3.17 journalctl=4 top=99.9 python
+10:41:10 load=3.06 journalctl=4 top=99.9 python
+10:42:10 load=3.08 journalctl=4 top=99.9 python
+10:43:11 load=3.07 journalctl=4 top=99.9 python
+10:44:11 load=3.38 journalctl=4 top=99.9 python
+10:45:11 load=3.30 journalctl=4 top= 101 journalctl
+10:46:11 load=3.29 journalctl=4 top= 100 journalctl
+10:47:11 load=3.11 journalctl=4 top= 100 journalctl
+10:48:11 load=3.20 journalctl=4 top=99.9 python
+10:49:11 load=3.12 journalctl=4 top= 100 journalctl
+10:50:11 load=3.08 journalctl=4 top= 100 journalctl
+10:51:11 load=3.26 journalctl=4 top= 100 journalctl
+10:52:11 load=3.53 journalctl=4 top=99.9 python
+10:53:11 load=3.26 journalctl=4 top=99.9 python
+10:54:11 load=3.32 journalctl=4 top=99.9 python
+10:55:11 load=3.11 journalctl=4 top=99.9 python
+10:56:12 load=3.04 journalctl=4 top=99.9 python
+10:57:12 load=3.58 journalctl=4 top=99.9 python
+10:58:12 load=3.27 journalctl=4 top=99.9 python
+10:59:12 load=3.10 journalctl=4 top= 100 journalctl
+11:00:12 load=3.19 journalctl=4 top= 100 journalctl
+11:01:12 load=3.12 journalctl=4 top= 100 journalctl
+11:02:12 load=3.09 journalctl=4 top= 101 journalctl
+11:03:12 load=3.18 journalctl=4 top= 100 journalctl
+11:04:12 load=3.29 journalctl=4 top= 100 journalctl
+11:05:12 load=3.25 journalctl=4 top=99.9 python
+11:06:12 load=3.25 journalctl=4 top=99.9 python
+11:07:12 load=3.13 journalctl=4 top=99.9 python
+11:08:12 load=3.05 journalctl=4 top=99.9 python
+11:09:13 load=3.05 journalctl=4 top=99.9 python
+11:10:13 load=3.69 journalctl=4 top=99.9 python
+11:11:13 load=3.52 journalctl=4 top=99.9 python
+11:12:13 load=3.28 journalctl=4 top= 101 journalctl
+11:13:13 load=3.22 journalctl=4 top= 100 journalctl
+11:14:13 load=3.12 journalctl=4 top= 100 journalctl
+11:15:13 load=3.08 journalctl=4 top= 111 journalctl
+11:16:13 load=3.23 journalctl=4 top= 100 journalctl
+11:17:13 load=3.14 journalctl=4 top= 100 journalctl
+11:18:13 load=3.16 journalctl=4 top=99.9 python
+11:19:13 load=3.30 journalctl=4 top=99.9 python
+11:20:13 load=3.44 journalctl=4 top=99.9 python
+11:21:13 load=3.22 journalctl=4 top=99.9 python
+11:22:14 load=3.21 journalctl=4 top=99.9 python
+11:23:14 load=3.08 journalctl=4 top=99.9 python
+11:24:14 load=3.08 journalctl=4 top=99.9 python
+11:25:14 load=3.03 journalctl=4 top=99.9 python
+11:26:14 load=3.03 journalctl=4 top= 100 journalctl
+11:27:14 load=3.08 journalctl=4 top= 100 journalctl
+11:28:14 load=3.03 journalctl=4 top= 100 journalctl
+11:29:14 load=3.28 journalctl=4 top= 101 journalctl
+11:30:14 load=3.46 journalctl=4 top=99.9 python
+11:31:14 load=3.17 journalctl=4 top=99.9 python
+11:32:14 load=3.29 journalctl=4 top=99.9 python
+11:33:14 load=3.23 journalctl=4 top=99.9 python
+11:34:15 load=3.22 journalctl=4 top=99.9 python
+11:35:15 load=3.08 journalctl=4 top=99.9 python
+11:36:15 load=3.46 journalctl=4 top=99.9 python
+11:37:15 load=3.24 journalctl=4 top=99.9 python
+11:38:15 load=3.25 journalctl=4 top=99.9 python
+11:39:15 load=3.25 journalctl=4 top= 101 journalctl
+11:40:15 load=3.29 journalctl=4 top= 100 journalctl
+11:41:15 load=3.48 journalctl=4 top= 100 journalctl
+11:42:15 load=3.31 journalctl=4 top= 107 journalctl
+11:43:15 load=3.44 journalctl=4 top=99.9 python
+11:44:15 load=3.24 journalctl=4 top=99.9 python
+11:45:15 load=3.08 journalctl=4 top=99.9 python
+11:46:15 load=3.30 journalctl=4 top=99.9 python
+11:47:16 load=3.24 journalctl=4 top=99.9 python
+11:48:16 load=3.42 journalctl=4 top=99.9 python
+11:49:16 load=3.16 journalctl=4 top=99.9 python
+11:50:16 load=3.09 journalctl=4 top=99.9 python
+11:51:16 load=3.53 journalctl=4 top=99.9 python
+11:52:16 load=3.23 journalctl=4 top= 130 journalctl
+11:53:16 load=3.20 journalctl=4 top= 100 journalctl
+11:54:16 load=3.12 journalctl=4 top= 100 journalctl
+11:55:16 load=3.17 journalctl=4 top= 100 journalctl
+11:56:16 load=3.10 journalctl=4 top=99.9 python
+11:57:16 load=3.09 journalctl=4 top=99.9 python
+11:58:16 load=3.06 journalctl=4 top=99.9 python
+11:59:16 load=3.37 journalctl=4 top=99.9 python
+12:00:17 load=3.37 journalctl=4 top=99.9 python
+12:01:17 load=3.25 journalctl=4 top=99.9 python
+12:02:17 load=3.20 journalctl=4 top=99.9 python
+12:03:17 load=3.33 journalctl=4 top=99.9 python
+12:04:17 load=3.16 journalctl=4 top=99.9 python
+12:05:17 load=3.33 journalctl=4 top=99.9 python
+12:06:17 load=3.11 journalctl=4 top= 101 journalctl
+12:07:17 load=3.16 journalctl=4 top= 100 journalctl
+12:08:17 load=3.29 journalctl=4 top= 100 journalctl
+12:09:17 load=3.26 journalctl=4 top=99.9 python
+12:10:17 load=3.18 journalctl=4 top=99.9 python
+12:11:17 load=3.30 journalctl=4 top=99.9 python
+12:12:17 load=3.22 journalctl=4 top=99.9 python
+12:13:18 load=3.18 journalctl=4 top=99.9 python
+12:14:18 load=3.07 journalctl=4 top=99.9 python
+12:15:18 load=3.15 journalctl=4 top=99.9 python
+12:16:18 load=3.16 journalctl=4 top=99.9 python
+12:17:18 load=3.22 journalctl=4 top=99.9 python
+12:18:18 load=3.08 journalctl=4 top=99.9 python
+12:19:18 load=3.32 journalctl=4 top= 112 journalctl
+12:20:18 load=3.27 journalctl=4 top= 101 journalctl
+12:21:18 load=3.22 journalctl=4 top=99.9 python
+12:22:18 load=3.15 journalctl=4 top=99.9 python
+12:23:18 load=3.02 journalctl=4 top=99.9 python
+12:24:18 load=3.49 journalctl=4 top=99.9 python
+12:25:19 load=3.18 journalctl=4 top=99.9 python
+12:26:19 load=3.11 journalctl=4 top=99.9 python
+12:27:19 load=3.04 journalctl=4 top=99.9 python
+12:28:19 load=3.16 journalctl=4 top=99.9 python
+12:29:19 load=3.39 journalctl=4 top=99.9 python
+12:30:19 load=3.14 journalctl=4 top=99.9 python
+12:31:19 load=3.35 journalctl=4 top=99.9 python
+12:32:19 load=3.37 journalctl=4 top=99.9 python
+12:33:19 load=3.20 journalctl=4 top= 101 journalctl
+12:34:19 load=3.07 journalctl=4 top=99.9 python
+12:35:19 load=3.13 journalctl=4 top=99.9 python
+12:36:19 load=3.09 journalctl=4 top=99.9 python
+12:37:19 load=3.22 journalctl=4 top=99.9 python
+12:38:20 load=3.12 journalctl=4 top=99.9 python
+12:39:20 load=3.10 journalctl=4 top=99.9 python
+12:40:20 load=3.09 journalctl=4 top=99.9 python
+12:41:20 load=3.12 journalctl=4 top=99.9 python
+12:42:20 load=3.15 journalctl=4 top=99.9 python
+12:43:20 load=3.56 journalctl=4 top=99.9 python
+12:44:20 load=3.25 journalctl=4 top=99.9 python
+12:45:20 load=3.26 journalctl=4 top=99.9 python
+12:46:20 load=3.03 journalctl=4 top= 108 journalctl
+12:47:20 load=3.01 journalctl=4 top=99.9 python
+12:48:20 load=3.05 journalctl=4 top=99.9 python
+12:49:20 load=3.14 journalctl=4 top=99.9 python
+12:50:20 load=3.11 journalctl=4 top=99.9 python
+12:51:21 load=3.08 journalctl=4 top=99.9 python
+12:52:21 load=3.13 journalctl=4 top=99.9 python
+12:53:21 load=3.14 journalctl=4 top=99.9 python
+12:54:21 load=3.12 journalctl=4 top=99.9 python
+12:55:21 load=3.08 journalctl=4 top=99.9 python
+12:56:21 load=3.12 journalctl=4 top=99.9 python
+12:57:21 load=3.15 journalctl=4 top=99.9 python
+12:58:21 load=3.20 journalctl=4 top=99.9 python
+12:59:21 load=3.56 journalctl=4 top=99.9 python
+13:00:21 load=3.43 journalctl=4 top=99.9 python
+13:01:21 load=3.32 journalctl=4 top=99.9 python
+13:02:21 load=3.19 journalctl=4 top=99.9 python
+13:03:21 load=3.01 journalctl=4 top=99.9 python
+13:04:22 load=3.05 journalctl=4 top=99.9 python
+13:05:22 load=3.02 journalctl=4 top=99.9 python
+13:06:22 load=3.11 journalctl=2 top=99.9 python
+13:07:22 load=3.15 journalctl=4 top=99.9 python
+13:08:22 load=3.20 journalctl=4 top=99.9 python
+13:09:22 load=3.11 journalctl=4 top=99.9 python
+13:10:22 load=3.10 journalctl=4 top=99.9 python
+13:11:22 load=3.09 journalctl=4 top=99.9 python
+13:12:22 load=3.03 journalctl=4 top=99.9 python
+13:13:22 load=3.06 journalctl=4 top=99.9 python
+13:14:22 load=3.16 journalctl=4 top=99.9 python
+13:15:22 load=3.06 journalctl=4 top=99.9 python
+13:16:23 load=3.06 journalctl=4 top=99.9 python
+13:17:23 load=3.02 journalctl=4 top=99.9 python
+13:18:23 load=3.21 journalctl=4 top=99.9 python
+13:19:23 load=3.11 journalctl=4 top=99.9 python
+13:20:23 load=3.11 journalctl=4 top=99.9 python
+13:21:23 load=3.16 journalctl=4 top=99.9 python
+13:22:23 load=3.06 journalctl=4 top=99.9 python
+13:23:23 load=4.12 journalctl=4 top=99.9 python
+13:24:23 load=3.94 journalctl=4 top=99.9 python
+13:25:23 load=3.85 journalctl=4 top=99.9 python
+13:26:23 load=3.40 journalctl=4 top=99.9 python
+13:27:23 load=3.22 journalctl=4 top=99.9 python
+13:28:23 load=3.22 journalctl=4 top=99.9 python
+13:29:24 load=3.14 journalctl=4 top=99.9 python
+13:30:24 load=3.13 journalctl=4 top=99.9 python
+13:31:24 load=3.04 journalctl=4 top=99.9 python
+13:32:24 load=3.24 journalctl=4 top=99.9 python
+13:33:24 load=3.09 journalctl=4 top= 102 journalctl
+13:34:24 load=3.20 journalctl=4 top= 100 journalctl
+13:35:24 load=3.35 journalctl=4 top=99.9 python
+13:36:24 load=3.18 journalctl=4 top=99.9 python
+13:37:24 load=3.27 journalctl=4 top= 100 journalctl
+13:38:24 load=3.25 journalctl=4 top=99.9 python
+13:39:24 load=3.13 journalctl=4 top=99.9 python
+13:40:24 load=3.05 journalctl=4 top=99.9 python
+13:41:24 load=3.25 journalctl=4 top=99.9 python
+13:42:25 load=3.16 journalctl=4 top=99.9 python
+13:43:25 load=3.84 journalctl=4 top=99.9 python
+13:44:25 load=3.66 journalctl=4 top= 100 journalctl
+13:45:25 load=3.72 journalctl=4 top=99.9 python
+13:46:25 load=3.51 journalctl=4 top=99.9 python
+13:47:25 load=3.48 journalctl=4 top= 100 journalctl
+13:48:25 load=3.52 journalctl=4 top= 100 journalctl
+13:49:25 load=3.34 journalctl=4 top=99.9 python
+13:50:25 load=3.06 journalctl=4 top=99.9 python
+13:51:25 load=3.05 journalctl=4 top=99.9 python
+13:52:25 load=3.11 journalctl=4 top=99.9 python
+13:53:25 load=3.19 journalctl=4 top=99.9 python
+13:54:26 load=3.20 journalctl=4 top= 100 journalctl
+13:55:26 load=3.17 journalctl=4 top= 100 journalctl
+13:56:26 load=3.20 journalctl=4 top= 100 journalctl
+13:57:26 load=3.15 journalctl=4 top= 100 journalctl
+13:58:26 load=3.46 journalctl=4 top= 100 journalctl
+13:59:26 load=3.17 journalctl=4 top= 100 journalctl
+14:00:26 load=3.23 journalctl=4 top= 102 journalctl
+14:01:26 load=3.22 journalctl=4 top= 100 journalctl
+14:02:26 load=3.32 journalctl=4 top= 100 journalctl
+14:03:26 load=3.29 journalctl=4 top=99.9 python
+14:04:26 load=3.45 journalctl=4 top=99.9 python
+14:05:26 load=3.37 journalctl=4 top=99.9 python
+14:06:26 load=3.17 journalctl=4 top=99.9 python
+14:07:27 load=3.38 journalctl=4 top= 100 journalctl
+14:08:27 load=3.28 journalctl=4 top= 100 journalctl
+14:09:27 load=3.39 journalctl=4 top= 100 journalctl
+14:10:27 load=3.34 journalctl=4 top= 122 journalctl
+14:11:27 load=3.20 journalctl=4 top= 100 journalctl
+14:12:27 load=3.18 journalctl=4 top= 100 journalctl
+14:13:27 load=2.79 journalctl=4 top= 100 journalctl
+14:14:27 load=2.52 journalctl=4 top= 100 journalctl
+14:15:27 load=2.22 journalctl=4 top= 100 journalctl
+14:16:27 load=2.19 journalctl=4 top=99.4 journalctl
+14:17:27 load=2.07 journalctl=4 top=99.0 python
+14:18:27 load=2.08 journalctl=4 top=99.0 python
+14:19:27 load=2.14 journalctl=4 top=99.3 journalctl
+14:20:28 load=2.09 journalctl=4 top=99.5 journalctl
+14:21:28 load=2.27 journalctl=4 top= 100 journalctl
+14:22:28 load=2.50 journalctl=4 top= 100 journalctl
+14:23:28 load=2.43 journalctl=4 top= 100 journalctl
+14:24:28 load=2.40 journalctl=4 top= 100 journalctl
+14:25:28 load=2.44 journalctl=4 top= 100 journalctl
+14:26:28 load=2.16 journalctl=4 top= 100 journalctl
+14:27:28 load=2.11 journalctl=4 top= 102 journalctl
+14:28:28 load=2.04 journalctl=4 top=99.0 python
+14:29:28 load=2.01 journalctl=4 top=99.3 journalctl
+14:30:28 load=2.07 journalctl=4 top=99.5 journalctl
+14:31:28 load=2.10 journalctl=4 top=99.0 python
+14:32:29 load=2.21 journalctl=4 top=99.3 journalctl
+14:33:29 load=2.07 journalctl=4 top=99.5 journalctl
+14:34:29 load=2.43 journalctl=4 top= 101 journalctl
+14:35:29 load=2.16 journalctl=4 top= 100 journalctl
+14:36:29 load=2.14 journalctl=4 top= 100 journalctl
+14:37:29 load=2.39 journalctl=4 top= 106 journalctl
+14:38:29 load=2.36 journalctl=4 top= 100 journalctl
+14:39:29 load=2.37 journalctl=4 top= 100 journalctl
+14:40:29 load=2.77 journalctl=4 top= 100 journalctl
+14:41:29 load=2.64 journalctl=4 top=99.0 python
+14:42:29 load=3.08 journalctl=4 top= 101 grep
+14:43:29 load=2.60 journalctl=4 top=99.5 journalctl
+14:44:29 load=2.46 journalctl=4 top= 113 2.1.283
+14:45:30 load=2.16 journalctl=4 top=99.1 journalctl
+14:46:30 load=2.60 journalctl=4 top=99.4 journalctl
+14:47:30 load=2.34 journalctl=2 top=99.0 python
+14:48:30 load=2.28 journalctl=4 top= 100 journalctl
+14:49:30 load=2.24 journalctl=4 top= 100 journalctl
+14:50:30 load=2.14 journalctl=4 top= 100 journalctl
+14:51:30 load=2.38 journalctl=4 top= 101 journalctl
+14:52:30 load=2.39 journalctl=4 top= 100 journalctl
+14:53:30 load=2.44 journalctl=4 top= 100 journalctl
+14:54:30 load=2.35 journalctl=4 top=99.0 python
+14:55:30 load=2.36 journalctl=4 top=99.1 journalctl
+14:56:30 load=2.21 journalctl=4 top=99.4 journalctl
+14:57:30 load=2.07 journalctl=4 top=99.6 journalctl
+14:58:31 load=2.17 journalctl=4 top=99.0 python
+14:59:31 load=2.13 journalctl=4 top=99.4 journalctl
+15:00:31 load=2.26 journalctl=4 top=99.5 journalctl
+15:01:31 load=2.38 journalctl=4 top= 101 journalctl
+15:02:31 load=2.20 journalctl=4 top= 100 journalctl
+15:03:31 load=2.07 journalctl=4 top= 100 journalctl
+15:04:31 load=2.18 journalctl=4 top= 105 journalctl
+15:05:31 load=2.30 journalctl=4 top= 100 journalctl
+15:06:31 load=2.18 journalctl=4 top= 100 journalctl
+15:07:31 load=2.16 journalctl=4 top=99.6 journalctl
+15:08:31 load=2.12 journalctl=4 top=99.1 python
+15:09:31 load=2.35 journalctl=4 top=99.4 journalctl
+15:10:31 load=2.31 journalctl=4 top=99.6 journalctl
+15:11:32 load=2.10 journalctl=4 top=99.1 python
+15:12:32 load=2.20 journalctl=4 top=99.3 journalctl
+15:13:32 load=2.69 journalctl=4 top=99.5 journalctl
+15:14:32 load=3.31 journalctl=4 top= 116 journalctl
+15:15:32 load=3.02 journalctl=4 top= 100 journalctl
+15:16:32 load=2.65 journalctl=4 top= 100 journalctl
+15:17:32 load=3.78 journalctl=4 top= 100 journalctl
+15:18:32 load=4.01 journalctl=4 top= 101 journalctl
+15:19:32 load=4.42 journalctl=4 top=99.4 journalctl
+15:20:32 load=4.43 journalctl=4 top=99.6 journalctl
+15:21:32 load=4.82 journalctl=4 top=99.1 python
+15:22:32 load=4.71 journalctl=4 top=99.3 journalctl
+15:23:33 load=4.77 journalctl=4 top=99.5 journalctl
+15:24:33 load=5.03 journalctl=4 top=99.6 journalctl
+15:25:33 load=5.56 journalctl=4 top=99.2 journalctl
+15:26:33 load=5.65 journalctl=4 top=99.5 journalctl
+15:27:33 load=5.77 journalctl=4 top=99.6 journalctl
+15:28:33 load=4.58 journalctl=4 top= 101 journalctl
+15:29:33 load=3.72 journalctl=4 top= 102 python3
+15:30:33 load=3.30 journalctl=4 top= 101 python3
+15:31:33 load=3.11 journalctl=4 top=99.9 python3
+15:32:33 load=2.71 journalctl=4 top=99.4 journalctl
+15:33:33 load=2.52 journalctl=4 top=99.6 journalctl
+15:34:33 load=2.36 journalctl=4 top=99.7 journalctl
+15:35:34 load=2.91 journalctl=4 top=99.3 journalctl
+15:36:34 load=2.74 journalctl=4 top=99.6 journalctl
+15:37:34 load=2.48 journalctl=4 top=99.7 journalctl
+15:38:34 load=2.41 journalctl=4 top=99.1 python
+15:39:34 load=2.34 journalctl=4 top=99.5 journalctl
+15:40:34 load=2.25 journalctl=4 top=99.7 journalctl
+15:41:34 load=2.17 journalctl=4 top= 110 journalctl
+15:42:34 load=2.17 journalctl=4 top= 100 journalctl
+15:43:34 load=2.12 journalctl=4 top=99.7 journalctl
+15:44:34 load=2.50 journalctl=4 top=99.7 journalctl
+15:45:34 load=2.33 journalctl=4 top=99.4 journalctl
+15:46:34 load=2.29 journalctl=4 top=99.6 journalctl
+15:47:35 load=2.11 journalctl=4 top=99.7 journalctl
+15:48:35 load=2.19 journalctl=4 top=99.1 python
+15:49:35 load=2.24 journalctl=4 top=99.6 journalctl
+15:50:35 load=2.19 journalctl=4 top=99.7 journalctl
+15:51:35 load=2.21 journalctl=4 top=99.1 python
+15:52:35 load=2.08 journalctl=4 top=99.6 journalctl
+15:53:35 load=2.06 journalctl=4 top=99.7 journalctl
+15:54:35 load=2.13 journalctl=4 top=99.8 journalctl
+15:55:35 load=2.70 journalctl=4 top=99.4 journalctl
+15:56:35 load=2.66 journalctl=4 top=99.6 journalctl
