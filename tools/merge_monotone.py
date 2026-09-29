@@ -13,7 +13,7 @@ with (--diff) or written over (--apply) the stored entry. Stored file per job:
   windows 1..9                     -> results/estimates_multiwindow/<bench>.json
 --apply keeps the stored `seconds` (measured in the original run) and records the recompute time
 in `seconds_<tag>` (default tag monotone); an entry the stored file does not have yet (a new
-method such as CHB-COP@inst) is added as computed.
+method such as CHB-COP@max) is added as computed.
 """
 import argparse
 import json

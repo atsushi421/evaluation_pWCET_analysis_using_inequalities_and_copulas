@@ -1,0 +1,55 @@
+{
+ "bench": "edn",
+ "traces": "ipoint/traces_full",
+ "n_mc": 100000000,
+ "total_s": 111.34528068394866,
+ "estimate_ticks": {
+  "0.0001": 32218.01504749679,
+  "1e-05": 35946.98087248797,
+  "1e-06": 39853.099470462344
+ },
+ "leaves": [
+  {
+   "uid": "main.self",
+   "n": 10000,
+   "s": 10.498207431985065
+  },
+  {
+   "uid": "fir.self",
+   "n": 10000,
+   "s": 10.239527613040991
+  },
+  {
+   "uid": "fir.L1",
+   "n": 10000,
+   "s": 9.745402820059098
+  },
+  {
+   "uid": "fir_no_red_ld",
+   "n": 10000,
+   "s": 9.95871452591382
+  }
+ ],
+ "scopes": [
+  {
+   "uid": "fir",
+   "parts": 2,
+   "total_s": 12.839470057049766,
+   "selection_s": 5.668037223978899,
+   "exact_s": 7.171010096091777,
+   "model": "tawn90",
+   "composition": "exact",
+   "dependent_pairs": 1
+  },
+  {
+   "uid": "main",
+   "parts": 3,
+   "total_s": 57.643632957013324,
+   "selection_s": 6.04930064000655,
+   "mc_s": 51.59405973996036,
+   "model": "rvine",
+   "composition": "mc n=100000000",
+   "dependent_pairs": 1
+  }
+ ]
+}

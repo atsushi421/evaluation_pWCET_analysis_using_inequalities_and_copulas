@@ -1,0 +1,165 @@
+{
+ "bench": "cb7",
+ "traces": "ipoint/autoware/traces/autoware/bench_warm1",
+ "n_mc": 10000000,
+ "total_s": 1772.0690017220331,
+ "estimate_ticks": {
+  "0.0001": 122154650.47567484,
+  "1e-05": 155821850.62655774,
+  "1e-06": 189954587.8035155
+ },
+ "leaves": [
+  {
+   "uid": "NDTScanMatcher::callback_sensor_points.self",
+   "n": 10000,
+   "s": 12.417528740945272
+  },
+  {
+   "uid": "NDTScanMatcher::callback_sensor_points_main.self",
+   "n": 10000,
+   "s": 12.194902071962133
+  },
+  {
+   "uid": "NDTScanMatcher::count_oscillation",
+   "n": 10000,
+   "s": 12.74434710398782
+  },
+  {
+   "uid": "NDTScanMatcher::publish_initial_to_result",
+   "n": 10000,
+   "s": 11.964540451997891
+  },
+  {
+   "uid": "NDTScanMatcher::publish_marker.self",
+   "n": 10000,
+   "s": 11.33493819704745
+  },
+  {
+   "uid": "NDTScanMatcher::publish_marker.L1.self",
+   "n": 10000,
+   "s": 12.7724259380484
+  },
+  {
+   "uid": "NDTScanMatcher::publish_marker.L1.body.avg",
+   "n": 10000,
+   "s": 12.368179308017716
+  },
+  {
+   "uid": "NDTScanMatcher::publish_marker.L2",
+   "n": 10000,
+   "s": 12.283549656975083
+  },
+  {
+   "uid": "NDTScanMatcher::publish_point_cloud",
+   "n": 10000,
+   "s": 12.35413210093975
+  },
+  {
+   "uid": "NDTScanMatcher::publish_pose.self",
+   "n": 10000,
+   "s": 12.802231390029192
+  },
+  {
+   "uid": "NDTScanMatcher::publish_pose.if1.then",
+   "n": 10000,
+   "s": 12.224958818987943
+  },
+  {
+   "uid": "NDTScanMatcher::publish_tf",
+   "n": 10000,
+   "s": 11.772203066037036
+  },
+  {
+   "uid": "NDTScanMatcher::transform_sensor_measurement.self",
+   "n": 10000,
+   "s": 11.201497755013406
+  },
+  {
+   "uid": "NDTScanMatcher::transform_sensor_measurement.if1.then",
+   "n": 10000,
+   "s": 11.749879691982642
+  },
+  {
+   "uid": "NDTScanMatcher::callback_sensor_points_main.if1.else",
+   "n": 10000,
+   "s": 9.823479063925333
+  },
+  {
+   "uid": "NDTScanMatcher::callback_sensor_points_main.if2.else",
+   "n": 10000,
+   "s": 9.82822773407679
+  },
+  {
+   "uid": "NDTScanMatcher::callback_sensor_points_main.if3.else",
+   "n": 10000,
+   "s": 9.826022317050956
+  },
+  {
+   "uid": "NDTScanMatcher::callback_sensor_points.if1.else",
+   "n": 10000,
+   "s": 9.695701846969314
+  }
+ ],
+ "scopes": [
+  {
+   "uid": "NDTScanMatcher::publish_marker.L1",
+   "parts": 2,
+   "total_s": 9.969802248990163,
+   "selection_s": 3.7183936539804563,
+   "exact_s": 6.251160078914836,
+   "model": "tawn90",
+   "composition": "exact",
+   "dependent_pairs": 1
+  },
+  {
+   "uid": "NDTScanMatcher::publish_marker",
+   "parts": 3,
+   "total_s": 139.91574277495965,
+   "selection_s": 13.461755139986053,
+   "mc_s": 126.45370997104328,
+   "model": "rvine",
+   "composition": "mc n=10000000 (body n=1000000)",
+   "dependent_pairs": 3
+  },
+  {
+   "uid": "NDTScanMatcher::publish_pose",
+   "parts": 2,
+   "total_s": 12.31471387296915,
+   "selection_s": 4.836718117003329,
+   "exact_s": 7.4777500740019605,
+   "model": "bb8180",
+   "composition": "exact",
+   "dependent_pairs": 1
+  },
+  {
+   "uid": "NDTScanMatcher::transform_sensor_measurement",
+   "parts": 2,
+   "total_s": 24.176280969986692,
+   "selection_s": 5.017728228005581,
+   "exact_s": 19.15828483190853,
+   "model": "gumbel180",
+   "composition": "exact",
+   "dependent_pairs": 1
+  },
+  {
+   "uid": "NDTScanMatcher::callback_sensor_points_main",
+   "parts": 11,
+   "total_s": 1366.8658846908947,
+   "selection_s": 91.75702615804039,
+   "mc_s": 1275.1083274548873,
+   "model": "rvine",
+   "composition": "mc n=10000000 (body n=1000000)",
+   "dependent_pairs": 21
+  },
+  {
+   "uid": "NDTScanMatcher::callback_sensor_points",
+   "parts": 3,
+   "total_s": 9.436731870984659,
+   "selection_s": 2.964968870044686,
+   "mc_s": 6.471547362045385,
+   "model": "rvine",
+   "composition": "mc n=10000000",
+   "dependent_pairs": 1
+  }
+ ]
+}

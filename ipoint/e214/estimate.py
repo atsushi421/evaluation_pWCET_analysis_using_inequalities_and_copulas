@@ -3,9 +3,10 @@
 (fine granularity), reported relative to the median and maximum of the killer runs (the reference that
 the adversarial input decides) and to the uniform-input reference. Kernels: qsort-exam (results/e214/
 {rand,killer}, output estimates.json) and select (results/e214/select_{rand,killer}, output
-estimates_select.json). A decomposed method suffixed @inst uses the per-instance loop rule.
+estimates_select.json). A decomposed method suffixed @max uses the per-run slowest-iteration loop rule.
 
     .venv/bin/python ipoint/e214/estimate.py [--bench select] [--windows 0,1] [--n-mc 1e7] [--methods ...]
+        [--bound select.L1=500 --out results/e214/estimates_select_b500.json]
 """
 import argparse
 import json
@@ -23,7 +24,7 @@ from estimation import tree  # noqa: E402
 from estimation.data import Bench  # noqa: E402
 
 METHODS = ("E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-COMONO,CHB-IND,CHB-COP,MEMIK-COP,EVT-COP,"
-           "CHB-COMONO@inst,CHB-IND@inst,CHB-COP@inst")
+           "CHB-COMONO@max,CHB-IND@max,CHB-COP@max")
 
 
 def main():
@@ -34,15 +35,23 @@ def main():
     ap.add_argument("--n-mc", type=float, default=1e7)
     ap.add_argument("--methods", default=METHODS)
     ap.add_argument("--out", default=None, help="output JSON (default <dir>/estimates.json, estimates_select.json)")
+    ap.add_argument("--bound", action="append", default=[], metavar="UID=N",
+                    help="replace the static iteration bound of loop UID (e.g. select.L1=500)")
     a = ap.parse_args()
     pre = "" if a.bench == "qsort-exam" else a.bench + "_"
     out_path = a.out or os.path.join(a.dir, "estimates.json" if not pre else f"estimates_{a.bench}.json")
     b = Bench(os.path.join(a.dir, pre + "rand"), a.bench)
+    bounds = {uid: int(n) for uid, n in (s.split("=") for s in a.bound)}
+    for uid, n in bounds.items():
+        if b.by_uid[uid].kind != "loop":
+            raise SystemExit(f"{uid} is not a loop")
+        b.by_uid[uid].bound = n
     kb = Bench(os.path.join(a.dir, pre + "killer"), a.bench)
     k = kb.e2e_all[kb._clean_e2e_mask]
     kmed, kmax = float(np.median(k)), float(k.max())
     refs = b.references(tree.P_EVAL)["censored"]
-    out = {"bench": a.bench, "tick_ns": b.tick_ns, "n_mc": int(a.n_mc), "killer_runs": int(len(k)), "killer_median": kmed,
+    out = {"bench": a.bench, "tick_ns": b.tick_ns, "n_mc": int(a.n_mc), "bounds_replaced": bounds,
+           "killer_runs": int(len(k)), "killer_median": kmed,
            "killer_max": kmax, "rand_ref": {str(p): v for p, v in refs.items()}, "windows": {}}
     us = b.tick_ns / 1e3
     print(f"{a.bench}: killer median {kmed * us:.1f} us, max {kmax * us:.1f} us", flush=True)

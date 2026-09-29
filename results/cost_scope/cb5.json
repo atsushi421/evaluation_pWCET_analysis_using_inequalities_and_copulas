@@ -1,0 +1,75 @@
+{
+ "bench": "cb5",
+ "traces": "ipoint/autoware/traces/autoware/bench_warm1",
+ "n_mc": 10000000,
+ "total_s": 1077.1756882170448,
+ "estimate_ticks": {
+  "0.0001": 125819664.91208197,
+  "1e-05": 153312963.56436354,
+  "1e-06": 388097891.3204893
+ },
+ "leaves": [
+  {
+   "uid": "ScanGroundFilterComponent::faster_filter.self",
+   "n": 10000,
+   "s": 12.988920882926323
+  },
+  {
+   "uid": "ScanGroundFilterComponent::extractObjectPoints.self",
+   "n": 10000,
+   "s": 12.418041425058618
+  },
+  {
+   "uid": "ScanGroundFilterComponent::extractObjectPoints.if1.else",
+   "n": 10000,
+   "s": 11.005260480917059
+  },
+  {
+   "uid": "ScanGroundFilterComponent::faster_filter.if1.else",
+   "n": 10000,
+   "s": 10.121069091954269
+  },
+  {
+   "uid": "ScanGroundFilterComponent::faster_filter.if2.then",
+   "n": 10000,
+   "s": 12.538337718113326
+  },
+  {
+   "uid": "ScanGroundFilterComponent::faster_filter.if3.else",
+   "n": 10000,
+   "s": 10.765796913998201
+  },
+  {
+   "uid": "ScanGroundFilterComponent::faster_filter.if4.then",
+   "n": 10000,
+   "s": 12.262101035914384
+  },
+  {
+   "uid": "ScanGroundFilterComponent::faster_filter.if5.then",
+   "n": 10000,
+   "s": 13.668308636988513
+  }
+ ],
+ "scopes": [
+  {
+   "uid": "ScanGroundFilterComponent::extractObjectPoints",
+   "parts": 2,
+   "total_s": 0.5556296270806342,
+   "selection_s": 0.006278701010160148,
+   "exact_s": 0.5491311140358448,
+   "model": "indep",
+   "composition": "exact",
+   "dependent_pairs": 0
+  },
+  {
+   "uid": "ScanGroundFilterComponent::faster_filter",
+   "parts": 7,
+   "total_s": 980.8400790890446,
+   "selection_s": 43.258793538901955,
+   "mc_s": 937.5810505120317,
+   "model": "rvine",
+   "composition": "mc n=10000000",
+   "dependent_pairs": 9
+  }
+ ]
+}

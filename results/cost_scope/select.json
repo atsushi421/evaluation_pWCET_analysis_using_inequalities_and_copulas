@@ -1,0 +1,35 @@
+{
+ "bench": "select",
+ "traces": "ipoint/traces_full",
+ "n_mc": 100000000,
+ "total_s": 28.11700785998255,
+ "estimate_ticks": {
+  "0.0001": 45633.510574168904,
+  "1e-05": 46356.49119361832,
+  "1e-06": 46824.48191043014
+ },
+ "leaves": [
+  {
+   "uid": "select.self",
+   "n": 10000,
+   "s": 10.450787565903738
+  },
+  {
+   "uid": "select.L1",
+   "n": 10000,
+   "s": 10.660584087017924
+  }
+ ],
+ "scopes": [
+  {
+   "uid": "select",
+   "parts": 2,
+   "total_s": 6.812640435993671,
+   "selection_s": 4.723211023025215,
+   "exact_s": 2.0890226430492476,
+   "model": "frank",
+   "composition": "exact",
+   "dependent_pairs": 1
+  }
+ ]
+}

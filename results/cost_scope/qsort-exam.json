@@ -1,0 +1,35 @@
+{
+ "bench": "qsort-exam",
+ "traces": "ipoint/traces_full",
+ "n_mc": 100000000,
+ "total_s": 21.288853722973727,
+ "estimate_ticks": {
+  "0.0001": 152751.18978219017,
+  "1e-05": 155318.9073859657,
+  "1e-06": 168010.4488197972
+ },
+ "leaves": [
+  {
+   "uid": "sort.self",
+   "n": 10000,
+   "s": 10.411762584000826
+  },
+  {
+   "uid": "sort.L1",
+   "n": 10000,
+   "s": 10.245822929078713
+  }
+ ],
+ "scopes": [
+  {
+   "uid": "sort",
+   "parts": 2,
+   "total_s": 0.4313623559428379,
+   "selection_s": 0.07355706801172346,
+   "exact_s": 0.3573953229933977,
+   "model": "indep",
+   "composition": "exact",
+   "dependent_pairs": 0
+  }
+ ]
+}

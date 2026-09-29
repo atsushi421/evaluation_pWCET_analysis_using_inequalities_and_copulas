@@ -129,6 +129,14 @@ class Bench:
         m = (u.runs >= lo) & (u.runs < hi)
         return np.bincount(u.runs[m] - lo, minlength=hi - lo)
 
+    def per_run_max(self, uid: str, lo: int, hi: int) -> np.ndarray:
+        """Largest instance per run over [lo, hi), 0 for runs without an instance."""
+        u = self.units[uid]
+        m = (u.runs >= lo) & (u.runs < hi)
+        out = np.zeros(hi - lo)
+        np.maximum.at(out, u.runs[m] - lo, u.vals[m])
+        return out
+
     def window_clean_runs(self, lo: int, hi: int) -> np.ndarray:
         """Offsets in [0, hi-lo) of the non-censored runs of the window."""
         return np.flatnonzero(self._clean_e2e_mask[lo:hi])

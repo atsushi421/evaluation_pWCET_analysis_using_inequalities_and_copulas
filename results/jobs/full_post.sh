@@ -45,12 +45,12 @@ n1e5)
     --pairs E2E-CHB:E2E-MEMIK,CHB-COP:MEMIK-COP --out $T/n1e5_multiwindow.md > /dev/null ;;
 fine)
   merge_into results/estimates_fine bsort100 results/jobs/full_fine/bsort100_w*/bsort100.json
-  M=E2E-CHB,E2E-MEMIK,E2E-EVT-PoT,EVT-COP,MEMIK-COP,CHB-IND,CHB-COMONO,CHB-COP,CHB-IND@inst,CHB-COP@inst
-  { echo "Fine-granularity bsort100 (100 ns floor), second campaign (2e6 runs, all traced), window 0; @inst = per-instance loop rule."
+  M=E2E-CHB,E2E-MEMIK,E2E-EVT-PoT,EVT-COP,MEMIK-COP,CHB-IND,CHB-COMONO,CHB-COP,CHB-IND@max,CHB-COP@max
+  { echo "Fine-granularity bsort100 (100 ns floor), second campaign (2e6 runs, all traced), window 0; @max = per-run slowest-iteration loop rule."
     echo; echo '```'; for p in 1e-4 1e-5 1e-6; do $PY tools/estimates_table.py --dir results/estimates_fine --p $p --methods $M; done
     echo '```'; } > $T/fine_bsort100.md
   $PY tools/multiwindow_table.py --w0 results/estimates_fine --mw results/estimates_fine --benches bsort100 \
-    --pairs CHB-COP:E2E-CHB,CHB-COP:CHB-COP@inst --out $T/fine_multiwindow.md > /dev/null ;;
+    --pairs CHB-COP:E2E-CHB,CHB-COP:CHB-COP@max --out $T/fine_multiwindow.md > /dev/null ;;
 aw)
   for v in warm1 all; do
     for cb in $CBS; do
@@ -79,14 +79,16 @@ e25)
 e214)
   $PY - <<'EOF'
 import json
-a = json.load(open("results/e214/estimates_qsort_w0.json"))
-b = json.load(open("results/e214/estimates_qsort_w1.json"))
-a["windows"].update(b["windows"])
-json.dump(a, open("results/e214/estimates.json", "w"), indent=1)
+for pre, out in (("qsort", "estimates.json"), ("select", "estimates_select.json")):
+    a = json.load(open(f"results/e214/estimates_{pre}_w0.json"))
+    b = json.load(open(f"results/e214/estimates_{pre}_w1.json"))
+    a["windows"].update(b["windows"])
+    json.dump(a, open(f"results/e214/{out}", "w"), indent=1)
 L = ["E2-14: estimates relative to the killer median (killer max, uniform-input reference in brackets at 1e-4), windows 0 and 1; RESTK n_sims 1000.", ""]
-for f in ("results/e214/estimates.json", "results/e214/estimates_select.json"):
+for f in ("results/e214/estimates.json", "results/e214/estimates_select.json", "results/e214/estimates_select_b500.json"):
     d = json.load(open(f))
-    L += [f"## {d['bench']} (killer median / uniform reference(1e-4) = {d['killer_median'] / d['rand_ref']['0.0001']:.2f})", "",
+    rb = "".join(f", bound of {u} replaced by {n}" for u, n in d.get("bounds_replaced", {}).items())
+    L += [f"## {d['bench']}{rb} (killer median / uniform reference(1e-4) = {d['killer_median'] / d['rand_ref']['0.0001']:.2f})", "",
           "| method | window | 1e-4 | 1e-5 | 1e-6 | vs killer max (1e-4) | vs uniform ref (1e-4) |", "|---|---|---|---|---|---|---|"]
     methods = list(next(iter(d["windows"].values()))["methods"])
     for m in methods:

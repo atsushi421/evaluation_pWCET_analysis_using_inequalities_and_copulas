@@ -1,0 +1,19 @@
+{
+ "bench": "cb3",
+ "traces": "ipoint/autoware/traces/autoware/bench_warm1",
+ "n_mc": 10000000,
+ "total_s": 11.99811138107907,
+ "estimate_ticks": {
+  "0.0001": 1124697.7762871804,
+  "1e-05": 1131945.5542547316,
+  "1e-06": 1165369.9560673707
+ },
+ "leaves": [
+  {
+   "uid": "StopFilterNode::callback_odometry",
+   "n": 10000,
+   "s": 11.995698070037179
+  }
+ ],
+ "scopes": []
+}

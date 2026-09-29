@@ -1,0 +1,151 @@
+ipoint/traces_full st 0 CHB-COP 100000 results/jobs/full_n1e5/st_w0_CHB-COP 1e8 1000000
+ipoint/traces_full st 0 MEMIK-COP 100000 results/jobs/full_n1e5/st_w0_MEMIK-COP 1e8 1000000
+ipoint/traces_full st 0 EVT-COP 100000 results/jobs/full_n1e5/st_w0_EVT-COP 1e8 1000000
+ipoint/traces_full st 0 CHB-COP 10000 results/jobs/full/st_w0_CHB-COP 1e8 200000
+ipoint/traces_full st 0 MEMIK-COP 10000 results/jobs/full/st_w0_MEMIK-COP 1e8 200000
+ipoint/traces_full st 0 EVT-COP 10000 results/jobs/full/st_w0_EVT-COP 1e8 200000
+ipoint/traces_full st 1 CHB-COP 10000 results/jobs/full/st_w1_CHB-COP 1e8 200000
+ipoint/traces_full st 1 MEMIK-COP 10000 results/jobs/full/st_w1_MEMIK-COP 1e8 200000
+ipoint/traces_full st 1 EVT-COP 10000 results/jobs/full/st_w1_EVT-COP 1e8 200000
+ipoint/traces_full st 2 CHB-COP 10000 results/jobs/full/st_w2_CHB-COP 1e8 200000
+ipoint/traces_full st 2 MEMIK-COP 10000 results/jobs/full/st_w2_MEMIK-COP 1e8 200000
+ipoint/traces_full st 2 EVT-COP 10000 results/jobs/full/st_w2_EVT-COP 1e8 200000
+ipoint/traces_full st 3 CHB-COP 10000 results/jobs/full/st_w3_CHB-COP 1e8 200000
+ipoint/traces_full st 3 MEMIK-COP 10000 results/jobs/full/st_w3_MEMIK-COP 1e8 200000
+ipoint/traces_full st 3 EVT-COP 10000 results/jobs/full/st_w3_EVT-COP 1e8 200000
+ipoint/traces_full st 4 CHB-COP 10000 results/jobs/full/st_w4_CHB-COP 1e8 200000
+ipoint/traces_full st 4 MEMIK-COP 10000 results/jobs/full/st_w4_MEMIK-COP 1e8 200000
+ipoint/traces_full st 4 EVT-COP 10000 results/jobs/full/st_w4_EVT-COP 1e8 200000
+ipoint/traces_full st 5 CHB-COP 10000 results/jobs/full/st_w5_CHB-COP 1e8 200000
+ipoint/traces_full st 5 MEMIK-COP 10000 results/jobs/full/st_w5_MEMIK-COP 1e8 200000
+ipoint/traces_full st 5 EVT-COP 10000 results/jobs/full/st_w5_EVT-COP 1e8 200000
+ipoint/traces_full st 6 CHB-COP 10000 results/jobs/full/st_w6_CHB-COP 1e8 200000
+ipoint/traces_full st 6 MEMIK-COP 10000 results/jobs/full/st_w6_MEMIK-COP 1e8 200000
+ipoint/traces_full st 6 EVT-COP 10000 results/jobs/full/st_w6_EVT-COP 1e8 200000
+ipoint/traces_full st 7 CHB-COP 10000 results/jobs/full/st_w7_CHB-COP 1e8 200000
+ipoint/traces_full st 7 MEMIK-COP 10000 results/jobs/full/st_w7_MEMIK-COP 1e8 200000
+ipoint/traces_full st 7 EVT-COP 10000 results/jobs/full/st_w7_EVT-COP 1e8 200000
+ipoint/traces_full st 8 CHB-COP 10000 results/jobs/full/st_w8_CHB-COP 1e8 200000
+ipoint/traces_full st 8 MEMIK-COP 10000 results/jobs/full/st_w8_MEMIK-COP 1e8 200000
+ipoint/traces_full st 8 EVT-COP 10000 results/jobs/full/st_w8_EVT-COP 1e8 200000
+ipoint/traces_full st 9 CHB-COP 10000 results/jobs/full/st_w9_CHB-COP 1e8 200000
+ipoint/traces_full st 9 MEMIK-COP 10000 results/jobs/full/st_w9_MEMIK-COP 1e8 200000
+ipoint/traces_full st 9 EVT-COP 10000 results/jobs/full/st_w9_EVT-COP 1e8 200000
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-COP 10000 results/jobs/full_aw/warm1_cb1_w0_CHB-COP 1e7
+ipoint/autoware/traces/autoware/bench cb1 0 CHB-COP 10000 results/jobs/full_aw/all_cb1_w0_CHB-COP 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-COP 10000 results/jobs/full_aw/warm1_cb4_w0_CHB-COP 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 CHB-COP 10000 results/jobs/full_aw/all_cb4_w0_CHB-COP 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 MEMIK-COP 10000 results/jobs/full_aw/warm1_cb1_w0_MEMIK-COP 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 EVT-COP 10000 results/jobs/full_aw/warm1_cb1_w0_EVT-COP 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 MEMIK-COP 10000 results/jobs/full_aw/warm1_cb4_w0_MEMIK-COP 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 EVT-COP 10000 results/jobs/full_aw/warm1_cb4_w0_EVT-COP 1e7
+ipoint/autoware/traces/autoware/bench cb1 0 MEMIK-COP 10000 results/jobs/full_aw/all_cb1_w0_MEMIK-COP 1e7
+ipoint/autoware/traces/autoware/bench cb1 0 EVT-COP 10000 results/jobs/full_aw/all_cb1_w0_EVT-COP 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 MEMIK-COP 10000 results/jobs/full_aw/all_cb4_w0_MEMIK-COP 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 EVT-COP 10000 results/jobs/full_aw/all_cb4_w0_EVT-COP 1e7
+ipoint/traces_full st 0 CHB-FAM-gaussian 10000 results/jobs/full_e25/st_gaussian 1e7
+ipoint/traces_full st 0 CHB-FAM-student 10000 results/jobs/full_e25/st_student 1e7
+ipoint/traces_full st 0 CHB-FAM-clayton 10000 results/jobs/full_e25/st_clayton 1e7
+ipoint/traces_full st 0 CHB-FAM-gumbel 10000 results/jobs/full_e25/st_gumbel 1e7
+ipoint/traces_full st 0 CHB-FAM-frank 10000 results/jobs/full_e25/st_frank 1e7
+ipoint/traces_full st 0 CHB-FAM-joe 10000 results/jobs/full_e25/st_joe 1e7
+ipoint/traces_full st 0 CHB-FAM-bb1 10000 results/jobs/full_e25/st_bb1 1e7
+ipoint/traces_full st 0 CHB-FAM-tawn 10000 results/jobs/full_e25/st_tawn 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-gaussian 10000 results/jobs/full_e25/cb1_gaussian 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-student 10000 results/jobs/full_e25/cb1_student 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-clayton 10000 results/jobs/full_e25/cb1_clayton 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-gumbel 10000 results/jobs/full_e25/cb1_gumbel 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-frank 10000 results/jobs/full_e25/cb1_frank 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-joe 10000 results/jobs/full_e25/cb1_joe 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-bb1 10000 results/jobs/full_e25/cb1_bb1 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-tawn 10000 results/jobs/full_e25/cb1_tawn 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-gaussian 10000 results/jobs/full_e25/cb4_gaussian 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-student 10000 results/jobs/full_e25/cb4_student 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-clayton 10000 results/jobs/full_e25/cb4_clayton 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-gumbel 10000 results/jobs/full_e25/cb4_gumbel 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-frank 10000 results/jobs/full_e25/cb4_frank 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-joe 10000 results/jobs/full_e25/cb4_joe 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-bb1 10000 results/jobs/full_e25/cb4_bb1 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-tawn 10000 results/jobs/full_e25/cb4_tawn 1e7
+ipoint/traces_full st 0 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 100000 results/jobs/full_n1e5/st_w0 1e8 1000000
+ipoint/traces_full st 1 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 100000 results/jobs/full_n1e5/st_w1 1e8 1000000
+ipoint/traces_full st 2 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 100000 results/jobs/full_n1e5/st_w2 1e8 1000000
+ipoint/traces_full st 3 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 100000 results/jobs/full_n1e5/st_w3 1e8 1000000
+ipoint/traces_full st 4 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 100000 results/jobs/full_n1e5/st_w4 1e8 1000000
+ipoint/traces_full st 5 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 100000 results/jobs/full_n1e5/st_w5 1e8 1000000
+ipoint/traces_full st 6 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 100000 results/jobs/full_n1e5/st_w6 1e8 1000000
+ipoint/traces_full st 7 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 100000 results/jobs/full_n1e5/st_w7 1e8 1000000
+ipoint/traces_full st 8 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 100000 results/jobs/full_n1e5/st_w8 1e8 1000000
+ipoint/traces_full st 9 E2E-CHB,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 100000 results/jobs/full_n1e5/st_w9 1e8 1000000
+ipoint/traces_full st 0 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w0 1e8 200000
+ipoint/traces_full st 1 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w1 1e8 200000
+ipoint/traces_full st 2 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w2 1e8 200000
+ipoint/traces_full st 3 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w3 1e8 200000
+ipoint/traces_full st 4 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w4 1e8 200000
+ipoint/traces_full st 5 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w5 1e8 200000
+ipoint/traces_full st 6 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w6 1e8 200000
+ipoint/traces_full st 7 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w7 1e8 200000
+ipoint/traces_full st 8 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w8 1e8 200000
+ipoint/traces_full st 9 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w9 1e8 200000
+ipoint/traces_full st 10 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w10 1e8 200000
+ipoint/traces_full st 11 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w11 1e8 200000
+ipoint/traces_full st 12 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w12 1e8 200000
+ipoint/traces_full st 13 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w13 1e8 200000
+ipoint/traces_full st 14 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w14 1e8 200000
+ipoint/traces_full st 15 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w15 1e8 200000
+ipoint/traces_full st 16 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w16 1e8 200000
+ipoint/traces_full st 17 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w17 1e8 200000
+ipoint/traces_full st 18 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w18 1e8 200000
+ipoint/traces_full st 19 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w19 1e8 200000
+ipoint/traces_full st 20 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w20 1e8 200000
+ipoint/traces_full st 21 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w21 1e8 200000
+ipoint/traces_full st 22 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w22 1e8 200000
+ipoint/traces_full st 23 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w23 1e8 200000
+ipoint/traces_full st 24 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w24 1e8 200000
+ipoint/traces_full st 25 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w25 1e8 200000
+ipoint/traces_full st 26 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w26 1e8 200000
+ipoint/traces_full st 27 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w27 1e8 200000
+ipoint/traces_full st 28 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w28 1e8 200000
+ipoint/traces_full st 29 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w29 1e8 200000
+ipoint/traces_full st 30 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w30 1e8 200000
+ipoint/traces_full st 31 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w31 1e8 200000
+ipoint/traces_full st 32 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w32 1e8 200000
+ipoint/traces_full st 33 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w33 1e8 200000
+ipoint/traces_full st 34 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w34 1e8 200000
+ipoint/traces_full st 35 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w35 1e8 200000
+ipoint/traces_full st 36 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w36 1e8 200000
+ipoint/traces_full st 37 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w37 1e8 200000
+ipoint/traces_full st 38 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w38 1e8 200000
+ipoint/traces_full st 39 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w39 1e8 200000
+ipoint/traces_full st 40 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w40 1e8 200000
+ipoint/traces_full st 41 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w41 1e8 200000
+ipoint/traces_full st 42 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w42 1e8 200000
+ipoint/traces_full st 43 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w43 1e8 200000
+ipoint/traces_full st 44 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w44 1e8 200000
+ipoint/traces_full st 45 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w45 1e8 200000
+ipoint/traces_full st 46 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w46 1e8 200000
+ipoint/traces_full st 47 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w47 1e8 200000
+ipoint/traces_full st 48 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w48 1e8 200000
+ipoint/traces_full st 49 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full/st_w49 1e8 200000
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb1_w0 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb4_w0 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 1 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb1_w1 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 1 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb4_w1 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 2 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb1_w2 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 2 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb4_w2 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 3 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb1_w3 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 3 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb4_w3 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 4 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb1_w4 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 4 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb4_w4 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 5 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb1_w5 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 5 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb4_w5 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 6 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb1_w6 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 6 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb4_w6 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 7 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb1_w7 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 7 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb4_w7 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 8 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb1_w8 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 8 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb4_w8 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 9 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb1_w9 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 9 E2E-CHB,E2E-CHB-ATAN,E2E-CHB-ENV,E2E-MEMIK,E2E-CANTELLI,E2E-EVT-PoT,E2E-EVT-BM,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb4_w9 1e7
+ipoint/autoware/traces/autoware/bench cb1 0 E2E-CHB,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/all_cb1_w0 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 E2E-CHB,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/all_cb4_w0 1e7

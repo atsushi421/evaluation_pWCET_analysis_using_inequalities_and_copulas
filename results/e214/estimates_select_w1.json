@@ -35,7 +35,7 @@
       "1e-05": 1.050943271548278,
       "1e-06": 1.0701523172933773
      },
-     "seconds": 22.4
+     "seconds": 21.5
     },
     "E2E-MEMIK": {
      "estimate_ticks": {
@@ -58,7 +58,7 @@
       "1e-05": 1.0487287349068455,
       "1e-06": 1.079382679226911
      },
-     "seconds": 1.9
+     "seconds": 1.0
     },
     "E2E-CANTELLI": {
      "estimate_ticks": {
@@ -81,7 +81,7 @@
       "1e-05": 32.313953694114524,
       "1e-06": 100.71730437421901
      },
-     "seconds": 0.2
+     "seconds": 0.8
     },
     "E2E-EVT-PoT": {
      "estimate_ticks": {
@@ -104,7 +104,7 @@
       "1e-05": 1.0,
       "1e-06": 1.0
      },
-     "seconds": 5.1
+     "seconds": 5.9
     },
     "E2E-EVT-BM": {
      "estimate_ticks": {
@@ -150,7 +150,7 @@
       "1e-05": 169.79577856711637,
       "1e-06": 174.04322820045317
      },
-     "seconds": 73.1,
+     "seconds": 58.9,
      "tree": {
       "select.L1": {
        "parts": [
@@ -189,7 +189,7 @@
       "1e-05": 169.70640222442293,
       "1e-06": 173.96223348754006
      },
-     "seconds": 1.7,
+     "seconds": 1.5,
      "tree": {
       "select.L1": {
        "parts": [
@@ -230,7 +230,7 @@
       "1e-05": 169.70640342357223,
       "1e-06": 173.9556005965168
      },
-     "seconds": 17.8,
+     "seconds": 19.0,
      "tree": {
       "select.L1": {
        "parts": [
@@ -271,7 +271,7 @@
       "1e-05": 176.31705102593622,
       "1e-06": 187.85908690235448
      },
-     "seconds": 22.3,
+     "seconds": 19.9,
      "tree": {
       "select.L1": {
        "parts": [
@@ -312,7 +312,7 @@
       "1e-05": 142.40393314348594,
       "1e-06": 142.87607719047003
      },
-     "seconds": 32.1,
+     "seconds": 34.5,
      "tree": {
       "select.L1": {
        "parts": [
@@ -332,59 +332,33 @@
       }
      }
     },
-    "CHB-COMONO@inst": {
+    "CHB-COMONO@max": {
      "estimate_ticks": {
-      "0.0001": 25619022.187612657,
-      "1e-05": 40747303.57791261,
-      "1e-06": 43204753.56179709
+      "0.0001": 29104656.3424285,
+      "1e-05": 31449557.169306632,
+      "1e-06": 33244370.513879005
      },
      "vs_killer_median": {
-      "0.0001": 70.91967165212229,
-      "1e-05": 112.79842646969496,
-      "1e-06": 119.60124449617177
+      "0.0001": 80.56875302410725,
+      "1e-05": 87.06000766611292,
+      "1e-06": 92.02848664012569
      },
      "vs_killer_max": {
-      "0.0001": 65.00145177381233,
-      "1e-05": 103.38544028090378,
-      "1e-06": 109.62056570623167
+      "0.0001": 73.84532094087865,
+      "1e-05": 79.79488282877891,
+      "1e-06": 84.34874410443003
      },
      "vs_rand_ref": {
-      "0.0001": 427.0264057674544,
-      "1e-05": 653.8399162052729,
-      "1e-06": 693.2726823138172
+      "0.0001": 485.12611831897357,
+      "1e-05": 504.64629604150565,
+      "1e-06": 533.4462534319481
      },
-     "seconds": 233.0,
+     "seconds": 13.9,
      "tree": {
-      "select.L1.body.if1.else.if1.then": {
-       "parts": [
-        "select.L1.body.if1.else.if1.then.self",
-        "select.L1.body.if1.else.if1.then.L1",
-        "max(select.L1.body.if1.else.if1.then.if1)",
-        "max(select.L1.body.if1.else.if1.then.if2)",
-        "max(select.L1.body.if1.else.if1.then.if3)",
-        "max(select.L1.body.if1.else.if1.then.if4)",
-        "max(select.L1.body.if1.else.if1.then.if5)"
-       ],
-       "model": "comono"
-      },
-      "select.L1.body.if1.else": {
-       "parts": [
-        "select.L1.body.if1.else.self",
-        "max(select.L1.body.if1.else.if1)"
-       ],
-       "model": "comono"
-      },
-      "select.L1.body": {
-       "parts": [
-        "select.L1.body.self",
-        "max(select.L1.body.if1)"
-       ],
-       "model": "comono"
-      },
       "select.L1": {
        "parts": [
         "select.L1.self",
-        "select.L1.body (x1000)"
+        "select.L1.body (max x1000)"
        ],
        "model": "comono"
       },
@@ -397,62 +371,33 @@
       }
      }
     },
-    "CHB-IND@inst": {
+    "CHB-IND@max": {
      "estimate_ticks": {
-      "0.0001": 25037688.70040659,
-      "1e-05": 29736539.17285365,
-      "1e-06": 31875587.20144639
+      "0.0001": 29099327.27627624,
+      "1e-05": 31444038.684326008,
+      "1e-06": 33239044.34923622
      },
      "vs_killer_median": {
-      "0.0001": 69.31039945854997,
-      "1e-05": 82.3179580690224,
-      "1e-06": 88.23936220088139
+      "0.0001": 80.5540008755294,
+      "1e-05": 87.04473116024252,
+      "1e-06": 92.01374252363033
      },
      "vs_killer_max": {
-      "0.0001": 63.52647273845327,
-      "1e-05": 75.44855548385976,
-      "1e-06": 80.87582067197725
+      "0.0001": 73.83179985354131,
+      "1e-05": 79.78088114156752,
+      "1e-06": 84.33523037890092
      },
      "vs_rand_ref": {
-      "0.0001": 417.33654532797595,
-      "1e-05": 477.1588442370611,
-      "1e-06": 511.4824647215403
+      "0.0001": 485.037291667104,
+      "1e-05": 504.5577452555521,
+      "1e-06": 533.3607886591178
      },
-     "seconds": 33.8,
+     "seconds": 1.5,
      "tree": {
-      "select.L1.body.if1.else.if1.then": {
-       "parts": [
-        "select.L1.body.if1.else.if1.then.self",
-        "select.L1.body.if1.else.if1.then.L1",
-        "max(select.L1.body.if1.else.if1.then.if1)",
-        "max(select.L1.body.if1.else.if1.then.if2)",
-        "max(select.L1.body.if1.else.if1.then.if3)",
-        "max(select.L1.body.if1.else.if1.then.if4)",
-        "max(select.L1.body.if1.else.if1.then.if5)"
-       ],
-       "model": "indep",
-       "composition": "mc n=10000000 (body n=1000000)"
-      },
-      "select.L1.body.if1.else": {
-       "parts": [
-        "select.L1.body.if1.else.self",
-        "max(select.L1.body.if1.else.if1)"
-       ],
-       "model": "indep",
-       "composition": "exact"
-      },
-      "select.L1.body": {
-       "parts": [
-        "select.L1.body.self",
-        "max(select.L1.body.if1)"
-       ],
-       "model": "indep",
-       "composition": "exact"
-      },
       "select.L1": {
        "parts": [
         "select.L1.self",
-        "select.L1.body (x1000)"
+        "select.L1.body (max x1000)"
        ],
        "model": "indep",
        "composition": "exact"
@@ -467,64 +412,35 @@
       }
      }
     },
-    "CHB-COP@inst": {
+    "CHB-COP@max": {
      "estimate_ticks": {
-      "0.0001": 25849537.60454929,
-      "1e-05": 35484159.95154059,
-      "1e-06": 42119545.22732572
+      "0.0001": 29099327.27627624,
+      "1e-05": 31444038.684326008,
+      "1e-06": 33239044.34923622
      },
      "vs_killer_median": {
-      "0.0001": 71.55779427679462,
-      "1e-05": 98.22876744419386,
-      "1e-06": 116.5971244251072
+      "0.0001": 80.5540008755294,
+      "1e-05": 87.04473116024252,
+      "1e-06": 92.01374252363033
      },
      "vs_killer_max": {
-      "0.0001": 65.58632330588712,
-      "1e-05": 90.03161381153576,
-      "1e-06": 106.86713832320737
+      "0.0001": 73.83179985354131,
+      "1e-05": 79.78088114156752,
+      "1e-06": 84.33523037890092
      },
      "vs_rand_ref": {
-      "0.0001": 430.86871361384954,
-      "1e-05": 569.3863920337066,
-      "1e-06": 675.8591981278197
+      "0.0001": 485.037291667104,
+      "1e-05": 504.5577452555521,
+      "1e-06": 533.3607886591178
      },
-     "seconds": 371.6,
+     "seconds": 17.7,
      "tree": {
-      "select.L1.body.if1.else.if1.then": {
+      "select.L1": {
        "parts": [
-        "select.L1.body.if1.else.if1.then.self",
-        "select.L1.body.if1.else.if1.then.L1",
-        "max(select.L1.body.if1.else.if1.then.if1)",
-        "max(select.L1.body.if1.else.if1.then.if2)",
-        "max(select.L1.body.if1.else.if1.then.if3)",
-        "max(select.L1.body.if1.else.if1.then.if4)",
-        "max(select.L1.body.if1.else.if1.then.if5)"
-       ],
-       "model": "rvine",
-       "composition": "mc n=10000000 (body n=1000000)"
-      },
-      "select.L1.body.if1.else": {
-       "parts": [
-        "select.L1.body.if1.else.self",
-        "max(select.L1.body.if1.else.if1)"
+        "select.L1.self",
+        "select.L1.body (max x1000)"
        ],
        "model": "gaussian",
-       "composition": "exact"
-      },
-      "select.L1.body": {
-       "parts": [
-        "select.L1.body.self",
-        "max(select.L1.body.if1)"
-       ],
-       "model": "bb1",
-       "composition": "exact"
-      },
-      "select.L1": {
-       "parts": [
-        "select.L1.self",
-        "select.L1.body (x1000)"
-       ],
-       "model": "bb1",
        "composition": "exact"
       },
       "select": {

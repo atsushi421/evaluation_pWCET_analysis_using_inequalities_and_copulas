@@ -10,7 +10,7 @@ Backend: [pyvinecopulib](https://github.com/vinecopulib/pyvinecopulib) 0.7.6
 (Python bindings of vinecopulib, the C++ engine behind the R package
 `rvinecopulib`). The earlier implementation used `vinecopulas` 2.0.3, whose
 family set is only Gaussian, Student-t, Frank and the four rotations of
-Gumbel, Clayton and Joe (15 families, AIC, no independence, no BB families);
+Gumbel, Clayton and Joe (15 candidates, AIC, no independence, no BB families);
 that set is kept here as the pool `vc15` for comparison.
 
 ## Layout
@@ -64,8 +64,8 @@ compose.compose("indep", icdfs, [1e-5])                    # independence (lower
 | pool | families | rotations |
 |---|---|---|
 | `vc15` | Gaussian, Student-t, Frank, Gumbel, Clayton, Joe | 0/90/180/270 for Gumbel, Clayton, Joe (15 candidates, as in `vinecopulas` 2.0.3) |
-| `par` | independence, Gaussian, Student-t, Clayton, Gumbel, Frank, Joe, BB1, BB6, BB7, BB8, Tawn | 0/90/180/270 for the Archimedean, BB and Tawn families (37 candidates) |
-| `all` | `par` + TLL (transformation local-likelihood, nonparametric) | as `par` (38 candidates) |
+| `par` | independence, Gaussian, Student-t, Clayton, Gumbel, Frank, Joe, BB1, BB6, BB7, BB8, Tawn | 0/90/180/270 for Clayton, Gumbel, Joe, BB1, BB6, BB7, BB8 and Tawn, none for independence, Gaussian, Student-t and Frank (36 candidates) |
+| `all` | `par` + TLL (transformation local-likelihood, nonparametric) | as `par` (37 candidates) |
 
 Rotation preselection: with Kendall's tau >= 0 only rotations 0 and 180 are
 fitted, otherwise 90 and 270 (Dissmann et al. 2013), which halves the cost.
@@ -140,12 +140,12 @@ independence pretest on, 240 data sets whose generating family is in the pool
 | tcf | 46.3 % | 0.026 | -10.5 % | -11.0 % | 0.4 % |
 | hybrid | 68.3 % | 0.023 | -8.0 % | -10.7 % | 0.4 % |
 
-Pool `vc15` (the old 15 families) underestimates the quantile by 2 to 3 %
+Pool `vc15` (the old 15 candidates) underestimates the quantile by 2 to 3 %
 when the true dependence is BB1-like; pool `all` never selects TLL under BIC,
 but the likelihood-based criteria select it and then underestimate by 5 to
 12 %. For the two misspecified mixtures every parametric selection
 overestimates by 5 to 8 %. Decision: pool `par`, criterion `bic`
-(`mbicv` in vines), Kendall's tau pretest at 0.05; TLL excluded.
+(per pair, also inside vines), Kendall's tau pretest at 0.05; TLL excluded.
 
 ## Notes
 

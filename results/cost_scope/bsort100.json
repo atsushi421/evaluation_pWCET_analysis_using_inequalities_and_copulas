@@ -1,0 +1,35 @@
+{
+ "bench": "bsort100",
+ "traces": "ipoint/traces_full",
+ "n_mc": 100000000,
+ "total_s": 21.16895615705289,
+ "estimate_ticks": {
+  "0.0001": 56723.94803946639,
+  "1e-05": 58629.062281865044,
+  "1e-06": 60185.703171653615
+ },
+ "leaves": [
+  {
+   "uid": "BubbleSort.self",
+   "n": 10000,
+   "s": 10.32074734091293
+  },
+  {
+   "uid": "BubbleSort.L1",
+   "n": 10000,
+   "s": 10.202122812042944
+  }
+ ],
+ "scopes": [
+  {
+   "uid": "BubbleSort",
+   "parts": 2,
+   "total_s": 0.4445692200679332,
+   "selection_s": 0.08322676096577197,
+   "exact_s": 0.3609201629878953,
+   "model": "indep",
+   "composition": "exact",
+   "dependent_pairs": 0
+  }
+ ]
+}

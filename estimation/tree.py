@@ -7,10 +7,12 @@ Kendall-tau independence pre-test), by the independence coupling, or by the
 comonotonic coupling. A loop body enters its loop's sum as the static
 iteration bound times a bound on the per-run average iteration time (loop
 rule ``avg``: T = N * A <= N_max * A, the leaf estimator runs on the per-run
-averages A; the body's internals are not composed). Loop rule ``inst`` (the
-method name suffixed ``@inst``) instead scales the body's per-instance
-marginal by the bound, i.e. every iteration as slow as the tail
-(comonotonic across iterations). The alternatives of a branch enter as their
+averages A; the body's internals are not composed). Loop rule ``max`` (the
+method name suffixed ``@max``) instead bounds the per-run slowest iteration M,
+i.e. every iteration as slow as the slowest one of its run; T <= N_max * A <=
+N_max * M in every run, so it never falls below rule ``avg``. A function called
+c > 1 times per parent run enters the same way, as a loop with bound c whose
+iterations are the calls. The alternatives of a branch enter as their
 pointwise max envelope. Bivariate nodes are composed
 exactly (numerical integration, no MC noise); higher-dimensional nodes by
 chunked Monte-Carlo through the fitted R-vine: the tail (p <= 1e-3) from
@@ -37,7 +39,7 @@ P_GRID_FULL = (0.5, 0.3, 0.2, 0.1, 0.05, 0.02, 0.01, 5e-3, 2e-3, 1e-3,
                5e-7, 2e-7, 1e-7, 1e-8, 1e-9, 1e-10)
 P_GRID_TAIL = (1e-3, 5e-4, 2e-4, 1e-4, 5e-5, 2e-5, 1e-5, 5e-6, 2e-6, 1e-6)
 P_EVAL = (1e-4, 1e-5, 1e-6)
-LOOP_RULES = ("avg", "inst")
+LOOP_RULES = ("avg", "max")
 P_MC_SPLIT = 1e-3        # compose() keeps the top max(p) * n samples, so the body gets its own run
 assert ccompose.P_TOP == max(chb.P_TEST)     # the monotonization rule pivots on the validated p
 N_MC_BODY = 1_000_000
@@ -209,20 +211,23 @@ def _multiplicity(bench: Bench, parent_uid: str, child_uid: str, lo: int, hi: in
     return int(np.ceil((cc[present] / pc[present]).max())) or 1
 
 
-def loop_avg_marginal(bench: Bench, body_uid: str, bound: int, lo: int, hi: int, leaf,
-                      meta_sink: dict) -> tuple[Marginal, np.ndarray]:
-    """Loop rule avg: the leaf bound on the per-run average iteration time, scaled by the static
-    bound; returns the part and its per-run column for the copula fit (the average, 0 when the
-    loop did not iterate). Runs without an iteration are left out of the marginal, which can only
-    raise it."""
+def loop_marginal(bench: Bench, body_uid: str, bound: int, lo: int, hi: int, leaf, meta_sink: dict,
+                  rule: str) -> tuple[Marginal, np.ndarray]:
+    """Loop rule avg (max): the leaf bound on the per-run average (slowest) iteration time, scaled by
+    the static bound; returns the part and its per-run column for the copula fit (the same statistic,
+    0 when the loop did not iterate). Runs without an iteration are left out of the marginal, which
+    can only raise it."""
     clean = bench.window_clean_runs(lo, hi)
     c = bench.per_run_counts(body_uid, lo, hi)[clean]
-    t = bench.per_run_totals(body_uid, lo, hi)[clean]
+    if rule == "avg":
+        v = bench.per_run_totals(body_uid, lo, hi)[clean] / np.maximum(c, 1)
+    else:
+        v = bench.per_run_max(body_uid, lo, hi)[clean]
     has = c > 0
-    m = leaf(t[has] / c[has], body_uid + ".avg")
-    meta_sink[body_uid + ".avg"] = {**m.meta, "n_runs": int(has.sum()), "count_max": int(c.max(initial=0)),
-                                    "bound": int(bound)}
-    return scale_marginal(m, bound), np.where(has, t / np.maximum(c, 1), 0.0)
+    m = leaf(v[has], f"{body_uid}.{rule}")
+    meta_sink[f"{body_uid}.{rule}"] = {**m.meta, "n_runs": int(has.sum()), "count_max": int(c.max(initial=0)),
+                                       "bound": int(bound)}
+    return scale_marginal(m, bound), np.where(has, v, 0.0)
 
 
 def node_marginal(bench: Bench, uid: str, method: str, mode: str, lo: int, hi: int,
@@ -250,18 +255,19 @@ def node_marginal(bench: Bench, uid: str, method: str, mode: str, lo: int, hi: i
             mult = unit.bound if unit.kind == "loop" else bench.loop_of_body(child.uid).bound
             if mult is None:
                 raise ValueError(f"{child.uid}: loop body without a static bound")
-            if loop_rule == "avg":
-                part, col = loop_avg_marginal(bench, child.uid, mult, lo, hi, leaf, meta_sink)
-                parts.append(part)
-                cols.append(col)
-                labels.append(f"{child.uid} (avg x{mult})")
-                continue
-        m = node_marginal(bench, child.uid, method, mode, lo, hi, P_GRID_FULL, leaf, n_mc, meta_sink, loop_rule)
-        if child.kind != "loop_body":
+        else:
             mult = _multiplicity(bench, uid, child.uid, lo, hi)
-        parts.append(scale_marginal(m, mult))
+        if child.kind == "loop_body" or mult > 1:
+            # a function called mult times per parent run enters like a loop whose iterations are the calls
+            part, col = loop_marginal(bench, child.uid, mult, lo, hi, leaf, meta_sink, loop_rule)
+            parts.append(part)
+            cols.append(col)
+            labels.append(f"{child.uid} ({loop_rule} x{mult})")
+            continue
+        parts.append(node_marginal(bench, child.uid, method, mode, lo, hi, P_GRID_FULL, leaf, n_mc, meta_sink,
+                                   loop_rule))
         cols.append(bench.per_run_totals(child.uid, lo, hi)[clean])
-        labels.append(f"{child.uid} (x{mult})" if mult > 1 else child.uid)
+        labels.append(child.uid)
     for branch, alts in branches.items():
         ms = [node_marginal(bench, a.uid, method, mode, lo, hi, P_GRID_FULL, leaf, n_mc, meta_sink, loop_rule)
               for a in alts]
@@ -281,7 +287,7 @@ def node_marginal(bench: Bench, uid: str, method: str, mode: str, lo: int, hi: i
 def decomposed_estimate(bench: Bench, method: str, window: int, n_mc: int = int(1e8),
                         probs=P_GRID_TAIL, window_size: int = WINDOW,
                         window_stride: int | None = None) -> tuple[dict, dict]:
-    """`method` is a decomposed-method name, optionally suffixed with a loop rule (CHB-COP@inst)."""
+    """`method` is a decomposed-method name, optionally suffixed with a loop rule (CHB-COP@max)."""
     method, _, loop_rule = method.partition("@")
     loop_rule = loop_rule or "avg"
     if loop_rule not in LOOP_RULES:

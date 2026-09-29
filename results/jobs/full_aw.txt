@@ -246,3 +246,11 @@ ipoint/autoware/traces/autoware/bench cb4 0 E2E-CHB,CHB-IND,CHB-COMONO 10000 res
 ipoint/autoware/traces/autoware/bench cb5 0 E2E-CHB,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/all_cb5_w0 1e7
 ipoint/autoware/traces/autoware/bench cb6 0 E2E-CHB,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/all_cb6_w0 1e7
 ipoint/autoware/traces/autoware/bench cb7 0 E2E-CHB,CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/all_cb7_w0 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 MEMIK-COP 10000 results/jobs/full_aw/warm1_cb1_w0_MEMIK-COP 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 EVT-COP 10000 results/jobs/full_aw/warm1_cb1_w0_EVT-COP 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 MEMIK-COP 10000 results/jobs/full_aw/warm1_cb4_w0_MEMIK-COP 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 EVT-COP 10000 results/jobs/full_aw/warm1_cb4_w0_EVT-COP 1e7
+ipoint/autoware/traces/autoware/bench cb1 0 MEMIK-COP 10000 results/jobs/full_aw/all_cb1_w0_MEMIK-COP 1e7
+ipoint/autoware/traces/autoware/bench cb1 0 EVT-COP 10000 results/jobs/full_aw/all_cb1_w0_EVT-COP 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 MEMIK-COP 10000 results/jobs/full_aw/all_cb4_w0_MEMIK-COP 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 EVT-COP 10000 results/jobs/full_aw/all_cb4_w0_EVT-COP 1e7

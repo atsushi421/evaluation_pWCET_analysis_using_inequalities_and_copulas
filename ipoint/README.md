@@ -5,7 +5,7 @@ in this repository consume. It implements the *Instrumentation Points*
 (IPoints) of the paper: a C program is decomposed by static analysis into basic
 units (function bodies, the alternatives of every `if`, loops and loop bodies),
 an IPoint is placed at every entry and exit of a unit, and each IPoint records
-a serialized timestamp. The end-to-end time of a run is the interval between
+a fenced timestamp. The end-to-end time of a run is the interval between
 the outermost IPoint pair, so the end-to-end baseline and the decomposed
 methods share exactly the same measurements.
 
@@ -61,16 +61,17 @@ coverage runs. Results go to `traces/<bench>/`:
 `IPOINT(id)` expands, in the `TIMING` build, to
 
 ```c
-rdtscp ; lfence            /* serialized read of the invariant TSC, IA32_TSC_AUX = core */
+rdtscp ; lfence            /* fenced read of the invariant TSC, IA32_TSC_AUX = core */
 buf[pos++] = {tsc, id, aux} /* thread-local buffer, 16 bytes per record */
 ```
 
 as `asm volatile` with a `"memory"` clobber. `rdtscp` waits until every
-preceding instruction has retired and the `lfence` behind it keeps subsequent
-instructions from issuing before the timestamp has been read, so consecutive
-IPoints partition the instruction stream of the thread: the sum of the unit
-intervals of a run equals the outermost interval exactly (checked by
-`ipoint_check.py`). The compiler cannot move memory accesses across a probe.
+preceding instruction has executed and every preceding load is globally
+visible (it is not a serializing instruction), and the `lfence` behind it keeps
+subsequent instructions from beginning execution before the timestamp has been
+read. No instruction therefore executes across a probe, and because consecutive
+IPoints delimit the units, the sum of the unit intervals of a run equals the
+outermost interval exactly (checked by `ipoint_check.py`). The compiler cannot move memory accesses across a probe.
 No `noinline` attribute is used; a probe stays at its source position when
 the function is inlined, so the measured binary is the `-O2` binary plus the
 probes. The TSC is invariant (`constant_tsc`, `nonstop_tsc`) and its frequency
@@ -80,15 +81,16 @@ campaign (`meta.json: tsc_hz_start/end`).
 Alternative implementations for comparison (`-DIPOINT_TS_IMPL=...`):
 `lfence; rdtsc; lfence` (Linux `rdtsc_ordered()`), `cpuid; rdtsc` (Intel's
 benchmarking white paper, Paoloni 2010) and `clock_gettime(CLOCK_MONOTONIC_RAW)`.
-Measured on the Xeon Silver 4216 (TSC 2095.077 MHz), distance between two
+Measured on the Xeon Silver 4216 at the fixed 2.1 GHz clock (TSC 2095.077 MHz,
+`ipoint/traces/probe_cost.json`), distance between two
 back-to-back IPoints, `10^6` pairs:
 
 | implementation | min | median | p99 | notes |
 |---|---|---|---|---|
-| `rdtscp; lfence` (default) | 20.0 ns | 22.0 ns | 23.9 ns | serializing, carries the core id |
-| `lfence; rdtsc; lfence` | 20.0 ns | 22.0 ns | 23.9 ns | serializing |
-| `cpuid; rdtsc` | 36.3 ns | 41.0 ns | 44.9 ns | fully serializing, slow |
-| `clock_gettime(CLOCK_MONOTONIC_RAW)` | 20.0 ns | 22.0 ns | 24.0 ns | vDSO, not serializing |
+| `rdtscp; lfence` (default) | 29.6 ns | 31.5 ns | 33.4 ns | fenced, carries the core id |
+| `lfence; rdtsc; lfence` | 29.6 ns | 31.5 ns | 32.5 ns | fenced |
+| `cpuid; rdtsc` | 56.3 ns | 59.2 ns | 60.1 ns | fully serializing, slow |
+| `clock_gettime(CLOCK_MONOTONIC_RAW)` | 28.0 ns | 30.0 ns | 31.0 ns | vDSO, not serializing |
 
 Build modes: `-DIPOINT_MODE_TIMING` (records), `-DIPOINT_MODE_COVERAGE`
 (per-id hit counters, no timestamps) and `-DIPOINT_MODE_OFF` (the probe
@@ -117,13 +119,14 @@ uses to pair the records of a run and to attribute self time to parents.
 
 Granularity is decided by data (`pilot` stage): every unit is instrumented,
 a short pilot is measured, and units whose median duration is below
-`--min-unit-ns` (default 300 ns, about 14 probe costs) lose their probes
+`--min-unit-ns` (default 300 ns, about 10 probe costs) lose their probes
 (functions included; only the entry function is always kept);
 this is repeated until it converges, because a parent shrinks once its
 children lose their probes. Once the floor has converged, the units with the
 most probes per run are dropped until the probes of a run cost at most
 `--max-probe-share` (default 0.05) of the end-to-end median at `--probe-ns`
-(22 ns) per probe; a unit just above the floor that runs hundreds of times per
+per probe (default 22 ns, measured with turbo boost on; the campaigns pass the
+31.5 ns of the fixed 2.1 GHz clock); a unit just above the floor that runs hundreds of times per
 run would otherwise dominate the probe effect (`lms`: 1.57x with the floor
 alone, 1.01x with the budget). Both settings are recorded in `exclusions.json`. `--max-depth N` replaces the pilot by a fixed
 policy. Excluding a unit excludes its descendants. The `coverage` build always
@@ -145,7 +148,8 @@ integers (`bsort100.ann`, the only kernel with an upstream annotation),
 `fir` 7-bit samples with the kernel's coefficients, `sqrt` `val ~ U(0, 65536)`
 with `val = 0` with probability `--param` (default `10^-3`), `ndes` uniform
 64-bit block and key with a fresh key schedule and a random direction,
-`prime` `x ~ U(0, 2^32)`, `cnt` signed values in `[-8095, 8095)` over the
+`prime` `x ~ U(0, 65535^2)` (larger inputs make `i*i` wrap around and break the
+loop bound), `cnt` signed values in `[-8095, 8095)` over the
 100x100 matrix of the size patch, `ludcmp` a diagonally dominant random
 49x49 system (the largest order the upstream arrays admit), `select` and
 `qsort-exam` 1000 (999) values `U(0, 1000)` in the size-patched arrays.

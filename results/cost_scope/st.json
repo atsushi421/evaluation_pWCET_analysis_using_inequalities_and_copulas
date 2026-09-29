@@ -1,0 +1,65 @@
+{
+ "bench": "st",
+ "traces": "ipoint/traces_full",
+ "n_mc": 100000000,
+ "total_s": 7111.569709788077,
+ "estimate_ticks": {
+  "0.0001": 74327.13009363442,
+  "1e-05": 79156.91599510956,
+  "1e-06": 84328.19898464461
+ },
+ "leaves": [
+  {
+   "uid": "main.self",
+   "n": 10000,
+   "s": 14.009418750065379
+  },
+  {
+   "uid": "Calc_Sum_Mean.avg",
+   "n": 10000,
+   "s": 14.594838955090381
+  },
+  {
+   "uid": "Calc_Var_Stddev.avg",
+   "n": 10000,
+   "s": 13.77405418001581
+  },
+  {
+   "uid": "Calc_LinCorrCoef.self",
+   "n": 10000,
+   "s": 14.283663681941107
+  },
+  {
+   "uid": "Calc_LinCorrCoef.L1",
+   "n": 10000,
+   "s": 11.21916716103442
+  },
+  {
+   "uid": "Initialize.avg",
+   "n": 10000,
+   "s": 12.292721788980998
+  }
+ ],
+ "scopes": [
+  {
+   "uid": "Calc_LinCorrCoef",
+   "parts": 2,
+   "total_s": 13.122019173926674,
+   "selection_s": 5.126556432922371,
+   "exact_s": 7.995073245023377,
+   "model": "bb890",
+   "composition": "exact",
+   "dependent_pairs": 1
+  },
+  {
+   "uid": "main",
+   "parts": 5,
+   "total_s": 7017.25188927399,
+   "selection_s": 40.1124622450443,
+   "mc_s": 6977.139188112924,
+   "model": "rvine",
+   "composition": "mc n=100000000",
+   "dependent_pairs": 10
+  }
+ ]
+}

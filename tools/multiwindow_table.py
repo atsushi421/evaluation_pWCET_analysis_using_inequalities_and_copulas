@@ -18,7 +18,7 @@ import numpy as np
 from scipy import stats
 
 METHODS = ["E2E-CHB", "E2E-CHB-ATAN", "E2E-CHB-ENV", "E2E-MEMIK", "E2E-CANTELLI", "E2E-EVT-PoT", "E2E-EVT-BM",
-           "EVT-COP", "MEMIK-COP", "CHB-IND", "CHB-COMONO", "CHB-COP", "CHB-IND@inst", "CHB-COP@inst"]
+           "EVT-COP", "MEMIK-COP", "CHB-IND", "CHB-COMONO", "CHB-COP", "CHB-IND@max", "CHB-COP@max"]
 BENCHES = ["bsort100", "fir", "matmult", "edn", "ndes", "st", "lms", "prime", "cnt", "ludcmp",
            "select", "qsort-exam"]
 PS = ("0.0001", "1e-05", "1e-06")

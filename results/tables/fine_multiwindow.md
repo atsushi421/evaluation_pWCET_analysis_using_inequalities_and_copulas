@@ -12,18 +12,18 @@ Unsafe windows (tightness < 1) / windows with an estimate, 1 benchmarks, windows
 | CHB-IND | 0/10 [0.0, 30.8] med 1.191 | 0/10 [0.0, 30.8] med 1.135 | 0/10 [0.0, 30.8] med 1.080 |
 | CHB-COMONO | 0/10 [0.0, 30.8] med 1.328 | 0/10 [0.0, 30.8] med 1.288 | 0/10 [0.0, 30.8] med 1.231 |
 | CHB-COP | 0/10 [0.0, 30.8] med 1.170 | 0/10 [0.0, 30.8] med 1.111 | 0/10 [0.0, 30.8] med 1.055 |
-| CHB-IND@inst | 0/10 [0.0, 30.8] med 6.922 | 0/10 [0.0, 30.8] med 16.296 | 0/10 [0.0, 30.8] med 24.656 |
-| CHB-COP@inst | 0/10 [0.0, 30.8] med 6.778 | 0/10 [0.0, 30.8] med 16.481 | 0/10 [0.0, 30.8] med 35.024 |
+| CHB-IND@max | 0/10 [0.0, 30.8] med 25.729 | 0/10 [0.0, 30.8] med 25.682 | 0/10 [0.0, 30.8] med 25.194 |
+| CHB-COP@max | 0/10 [0.0, 30.8] med 25.729 | 0/10 [0.0, 30.8] med 25.681 | 0/10 [0.0, 30.8] med 25.194 |
 
 Tightness at p=0.0001: mean, SD, [min, max] over windows, unsafe windows.
 
-| bench | E2E-CHB | E2E-MEMIK | E2E-CANTELLI | E2E-EVT-PoT | E2E-EVT-BM | EVT-COP | MEMIK-COP | CHB-IND | CHB-COMONO | CHB-COP | CHB-IND@inst | CHB-COP@inst |
+| bench | E2E-CHB | E2E-MEMIK | E2E-CANTELLI | E2E-EVT-PoT | E2E-EVT-BM | EVT-COP | MEMIK-COP | CHB-IND | CHB-COMONO | CHB-COP | CHB-IND@max | CHB-COP@max |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| bsort100 | 1.037±0.036 [1.001,1.100] 0/10 | 1.048±0.028 [1.016,1.098] 0/10 | 4.445±0.034 [4.408,4.524] 0/10 | 0.995±0.018 [0.978,1.037] 7/10 | 1.008±0.030 [0.975,1.032] 1/3 | 1.130±0.041 [1.103,1.241] 0/10 | 1.289±0.072 [1.187,1.407] 0/10 | 1.210±0.048 [1.165,1.307] 0/10 | 1.341±0.081 [1.257,1.515] 0/10 | 1.193±0.049 [1.153,1.303] 0/10 | 6.961±0.390 [6.405,7.612] 0/10 | 6.768±0.422 [6.012,7.478] 0/10 |
+| bsort100 | 1.037±0.036 [1.001,1.100] 0/10 | 1.048±0.028 [1.016,1.098] 0/10 | 4.445±0.034 [4.408,4.524] 0/10 | 0.995±0.018 [0.978,1.037] 7/10 | 1.008±0.030 [0.975,1.032] 1/3 | 1.130±0.041 [1.103,1.241] 0/10 | 1.289±0.072 [1.187,1.407] 0/10 | 1.210±0.048 [1.165,1.307] 0/10 | 1.341±0.081 [1.257,1.515] 0/10 | 1.193±0.049 [1.153,1.303] 0/10 | 26.193±4.265 [20.723,34.187] 0/10 | 26.193±4.265 [20.728,34.187] 0/10 |
 
 Paired comparison at p=0.0001 over the windows where both methods have an estimate: windows unsafe for A only and for B only, exact McNemar p-value, median tightness ratio A/B and Wilcoxon signed-rank p-value of the log ratios.
 
 | A vs B | windows | A only | B only | McNemar p | median A/B | Wilcoxon p |
 |---|---|---|---|---|---|---|
 | CHB-COP vs E2E-CHB | 10 | 0 | 0 | 1 | 1.147 | 0.002 |
-| CHB-COP vs CHB-COP@inst | 10 | 0 | 0 | 1 | 0.179 | 0.002 |
+| CHB-COP vs CHB-COP@max | 10 | 0 | 0 | 1 | 0.048 | 0.002 |

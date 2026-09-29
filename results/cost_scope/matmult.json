@@ -1,0 +1,35 @@
+{
+ "bench": "matmult",
+ "traces": "ipoint/traces_full",
+ "n_mc": 100000000,
+ "total_s": 27.674974323017523,
+ "estimate_ticks": {
+  "0.0001": 29143.864827169808,
+  "1e-05": 31245.913783860167,
+  "1e-06": 32913.15110030382
+ },
+ "leaves": [
+  {
+   "uid": "Multiply.self",
+   "n": 10000,
+   "s": 10.214070589048788
+  },
+  {
+   "uid": "Multiply.L1",
+   "n": 10000,
+   "s": 9.896032599033788
+  }
+ ],
+ "scopes": [
+  {
+   "uid": "Multiply",
+   "parts": 2,
+   "total_s": 7.365173617959954,
+   "selection_s": 3.9899111600825563,
+   "exact_s": 3.374854277004488,
+   "model": "bb8180",
+   "composition": "exact",
+   "dependent_pairs": 1
+  }
+ ]
+}

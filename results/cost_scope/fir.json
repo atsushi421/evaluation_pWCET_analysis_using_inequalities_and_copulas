@@ -1,0 +1,35 @@
+{
+ "bench": "fir",
+ "traces": "ipoint/traces_full",
+ "n_mc": 100000000,
+ "total_s": 21.037208584020846,
+ "estimate_ticks": {
+  "0.0001": 82734.30680698516,
+  "1e-05": 85573.86230159621,
+  "1e-06": 87428.59290404923
+ },
+ "leaves": [
+  {
+   "uid": "fir_filter_int.self",
+   "n": 10000,
+   "s": 10.407216004910879
+  },
+  {
+   "uid": "fir_filter_int.L1",
+   "n": 10000,
+   "s": 10.002859578933567
+  }
+ ],
+ "scopes": [
+  {
+   "uid": "fir_filter_int",
+   "parts": 2,
+   "total_s": 0.43029453605413437,
+   "selection_s": 0.05799132399260998,
+   "exact_s": 0.3718896209029481,
+   "model": "indep",
+   "composition": "exact",
+   "dependent_pairs": 0
+  }
+ ]
+}

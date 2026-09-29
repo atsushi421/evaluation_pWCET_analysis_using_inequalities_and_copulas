@@ -1,5 +1,6 @@
-"""Loop rule avg: a loop that always runs its static bound gives exactly the bound on the measured
-loop total, and with fewer iterations the bound never falls below that total (T = N * A <= N_max * A)."""
+"""Loop rules: avg gives exactly the bound on the measured loop total for a loop that always runs its static
+bound and never falls below that total otherwise (T = N * A <= N_max * A); max never falls below avg
+(A <= M, the per-run slowest iteration)."""
 import numpy as np
 
 from estimation import tree
@@ -53,6 +54,28 @@ def test_variable_count_loop_never_falls_below_the_measured_total():
     got = loop_bound(b, "avg")
     totals = quantile_leaf(b.per_run_totals("f.L1.body", 0, RUNS), "f.L1").pwcet
     assert all(got[p] >= totals[p] for p in tree.P_GRID_FULL)
-    # the per-instance rule (every iteration as slow as the per-iteration tail) is larger still here
-    inst = loop_bound(b, "inst")
-    assert all(inst[p] >= got[p] for p in tree.P_GRID_FULL if p <= 0.1)
+    slowest = loop_bound(b, "max")
+    assert all(slowest[p] >= got[p] for p in tree.P_GRID_FULL)
+
+
+def test_function_called_twice_per_run_gives_the_bound_on_its_run_total():
+    """Two calls per run enter as a loop over the calls: with a rare slow call, twice the per-call quantile
+    falls below the quantile of the run total, whereas the loop rule gives that quantile exactly."""
+    g = np.random.default_rng(2)
+    calls = np.where(g.random(2 * RUNS) < 0.004, 50.0, 1.0) + g.random(2 * RUNS)
+    runs = np.repeat(np.arange(RUNS), 2)
+    totals = np.bincount(runs, weights=calls, minlength=RUNS)
+    units = [Unit("f", "function", None, 0, instrumented=True, children=["g"]),
+             Unit("g", "function", "f", 1, instrumented=True)]
+    b = Bench.__new__(Bench)
+    b.bench, b.schema = "synthetic", Schema("f.c", "", [], {}, "f", 0, units)
+    b.by_uid, b.tick_ns = b.schema.by_uid(), 1.0
+    b.e2e_all, b.smi_runs = totals + 10.0, np.empty(0, dtype=np.uint64)
+    b._clean_e2e_mask = np.ones(RUNS, dtype=bool)
+    b.units = {"f": UnitData(b.e2e_all, np.arange(RUNS)), "g": UnitData(calls, runs)}
+    got = tree.node_marginal(b, "f", "CHB-IND", "indep", 0, RUNS, tree.P_GRID_FULL, quantile_leaf,
+                             10_000, {}, "avg").pwcet
+    want = quantile_leaf(totals, "g").pwcet
+    assert 2 * quantile_leaf(calls, "g").pwcet[0.005] < want[0.005]
+    for p in tree.P_GRID_FULL:
+        assert abs(got[p] / want[p] - 1) < 1e-12, (p, got[p], want[p])

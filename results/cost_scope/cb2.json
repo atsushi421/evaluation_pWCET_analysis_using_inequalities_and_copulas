@@ -1,0 +1,40 @@
+{
+ "bench": "cb2",
+ "traces": "ipoint/autoware/traces/autoware/bench_warm1",
+ "n_mc": 10000000,
+ "total_s": 41.04059940308798,
+ "estimate_ticks": {
+  "0.0001": 736145.0802918945,
+  "1e-05": 1058504.2894868096,
+  "1e-06": 1232292.4517140384
+ },
+ "leaves": [
+  {
+   "uid": "Twist2Accel::callback_odometry.self",
+   "n": 10000,
+   "s": 12.207542216987349
+  },
+  {
+   "uid": "AccelEstimator::estimate#3",
+   "n": 10000,
+   "s": 11.482677716063336
+  },
+  {
+   "uid": "Twist2Accel::callback_odometry.if1.else",
+   "n": 10000,
+   "s": 10.007001286023296
+  }
+ ],
+ "scopes": [
+  {
+   "uid": "Twist2Accel::callback_odometry",
+   "parts": 3,
+   "total_s": 7.328986103995703,
+   "selection_s": 5.529095789999701,
+   "mc_s": 1.7996927310014144,
+   "model": "rvine",
+   "composition": "mc n=10000000",
+   "dependent_pairs": 1
+  }
+ ]
+}
