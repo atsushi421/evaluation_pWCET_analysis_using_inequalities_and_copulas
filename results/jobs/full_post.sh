@@ -2,7 +2,8 @@
 # Post-processing of the second benchmark campaign and the n_sims-1000 recompute (paper repo answers_draft/09,
 # J13-J15; 02_experiments_plan.md section 8.17). Each section merges finished job outputs into the stored result
 # sets and regenerates its tables; the first call backs up the stored results of the first campaign.
-#   results/jobs/full_post.sh bench|n1e5|fine|aw|e25|e214|cert|tables
+# The x2 and x3 sections regenerate the tables of the two stress tests from results/x2/ and results/x3/.
+#   results/jobs/full_post.sh bench|n1e5|fine|aw|e25|e214|cert|tables|x2|x3
 set -eo pipefail
 cd "$(dirname "$0")/../.."
 PY=.venv/bin/python
@@ -111,6 +112,10 @@ tables)
   $PY tools/neff_table.py --traces ipoint/traces_full --results results/estimates --out $T/neff.md > /dev/null
   $PY tools/neff_table.py --traces ipoint/autoware/traces/autoware/bench_warm1 --results results/estimates_autoware_warm1 \
     --benches ${CBS// /,} --out $T/neff_autoware.md > /dev/null ;;
-*) echo "usage: $0 bench|n1e5|fine|aw|e25|e214|cert|tables" >&2; exit 2 ;;
+x2)
+  $PY tools/x2_summary.py ipoint/autoware/traces/x2_queuefull/bench_warm1 results/x2/x2_cb1.json > $T/x2_queue_full.md ;;
+x3)
+  for b in qsort-exam select; do $PY tools/x3_summary.py $b results/x3/x3_$b.json > $T/x3_mixing_$b.md; done ;;
+*) echo "usage: $0 bench|n1e5|fine|aw|e25|e214|cert|tables|x2|x3" >&2; exit 2 ;;
 esac
 echo "full_post $1 done"

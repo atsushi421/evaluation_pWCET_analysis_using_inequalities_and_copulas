@@ -1,6 +1,10 @@
 # pWCET Analysis using Inequalities and Copulas
 
-Research code accompanying our work on probabilistic Worst-Case Execution Time (pWCET) estimation. This repository provides two complementary tools:
+Research code accompanying our work on probabilistic Worst-Case Execution Time (pWCET) estimation (A. Yano, H. Toba, T. Azumi, "pWCET Estimation Based on Probabilistic Inequalities and Copulas Utilizing Static Analysis Information", IEEE Access, under review).
+
+The evaluation of the revised paper runs on the pipeline in `estimation/`, `copula/`, `tools/`, and `results/` (see [Reproducing the evaluation](#reproducing-the-evaluation)). It compares ten estimators on the same instrumented runs. The five end-to-end estimators are E2E-EVT-BM, E2E-EVT-PoT, E2E-CANTELLI, E2E-MEMIK, and E2E-CHB (called E2E in the first submission). The five decomposed estimators are EVT-COP, MEMIK-COP, CHB-IND, CHB-COMONO, and CHB-COP, the proposed method.
+
+The notebooks of the first submission are kept for reference. They provide two tools:
 
 1. **Inequality-based pWCET estimation** of a single execution-time time series, using Markov's inequality with power-of-k under three different envelope functions ($f(x) = x^k$, $\arctan(x/d)^k$, $\tanh(x/d)^k$).
 2. **Copula-based composition** of the units' pWCET distributions into a joint / summed pWCET distribution (`copula/`, generalizing the two-unit example in `copulas.ipynb`).
@@ -9,9 +13,13 @@ Research code accompanying our work on probabilistic Worst-Case Execution Time (
 
 ```
 .
-├── memik/                # Inequality-based estimation with f(x) = x^k
-├── atan/                 # Inequality-based estimation with f(x) = arctan(x/d)^k
-├── tanh/                 # Inequality-based estimation with f(x) = tanh(x/d)^k
+├── estimation/           # Estimators of the revised evaluation (saturating Chebyshev and MEMIK bounds, EVT, KL certificate, composition tree)
+├── tools/                # Job runner, per-benchmark estimation (chb_cop_from_schema.py), tables, figures, timing
+├── results/              # Job files (results/jobs/), estimates, and the tables of the paper (results/tables/)
+├── external/TailID/      # TailID threshold selection used by the EVT estimators (git submodule)
+├── memik/                # First submission: inequality-based estimation with f(x) = x^k
+├── atan/                 # First submission: inequality-based estimation with f(x) = arctan(x/d)^k
+├── tanh/                 # First submission: inequality-based estimation with f(x) = tanh(x/d)^k
 ├── copula/               # Copula family pools, selection criteria, R-vines, MC composition (see copula/README.md)
 ├── benchmarks/
 │   └── malardalen/       # Unmodified Mälardalen WCET kernels evaluated in the paper
@@ -87,8 +95,26 @@ The original two-unit example is [`copulas.ipynb`](copulas.ipynb) (uses `vinecop
 
 ## Benchmark programs
 
-[`benchmarks/malardalen/`](benchmarks/malardalen/) contains byte-identical copies of the five Mälardalen WCET kernels used in the paper's benchmark evaluation (`bsort100`, `fdct`, `fir`, `matmult`, `sqrt`), the upstream SWEET annotation file for `bsort100`, and a README recording their provenance (URLs, upstream revision, SHA-256), the paper-to-upstream name mapping, the compile flags (`gcc -O2 -fno-builtin`), each kernel's fixed input configuration, and mirror locations. The execution-time traces are not included.
+[`benchmarks/malardalen/`](benchmarks/malardalen/) contains byte-identical copies of the twelve Mälardalen WCET kernels of the revised evaluation and of `fdct` and `sqrt` of the first submission, the upstream SWEET annotation file for `bsort100`, the size patches, and a README. The README records their provenance (URLs, upstream revision, SHA-256), the selection criteria, the compile flags (`gcc -O2 -fno-builtin`), the input configuration of each kernel, and mirror locations. The execution-time traces are not included.
 
 ## Collecting execution-time traces
 
 [`ipoint/`](ipoint/) contains the instrumentation toolkit used to collect the per-unit traces: a libclang-based tool that decomposes a C source into basic units and inserts IPoints, a header-only probe (`rdtscp; lfence`), the harness for the Mälardalen kernels, and the scripts that turn the raw traces into the sample files expected by the estimators above. `ipoint/README.md` documents the workflow (`tools/run_campaign.py`), the trace formats and the measured probe cost.
+
+## Reproducing the evaluation
+
+The execution-time traces are not part of this repository. They are collected with `ipoint/` (`ipoint/tools/run_campaign.py` for the kernels and `ipoint/autoware/` for the Autoware callbacks) and are archived separately. The paper gives the DOI.
+
+1. Estimate. `tools/run_jobs.sh <job file> [P]` runs the lines of a job file with `P` parallel processes. Each line is one call of `tools/chb_cop_from_schema.py`, and finished outputs are skipped, so a rerun resumes. The job files of the paper are `results/jobs/full_bench.txt` (12 kernels, 50 training windows each), `full_aw.txt` (Autoware callbacks), `full_fine.txt` (fine-grained `bsort100`), `full_n1e5.txt` (training windows of 10^5 runs), and `full_e25.txt` (fixed copula families).
+2. Post-process. `results/jobs/full_post.sh bench|n1e5|fine|aw|e25|e214|cert|tables` merges the outputs into `results/estimates*/` and regenerates the tables in `results/tables/`.
+   The two stress tests without new benchmark runs have their own scripts, and `full_post.sh x2|x3` regenerates their tables.
+   - `tools/x2_queue_full.py` trains on the steady-state windows of the EKF callback (cb1) and compares with the replays whose measurement queue is full (`results/x2/x2_cb1.json`).
+   - `tools/x3_mixing_sweep.py` mixes adversarial runs of `qsort-exam` and `select` into the training windows (`results/x3/x3_<kernel>.json`). With `--like <json>`, it recomputes the stored entries.
+3. Read the tables. The main ones are the following.
+   - `multiwindow.md` and `multiwindow_p1e-5.md` (benchmarks, all training windows) and `w0_p1e-4.md` to `w0_p1e-6.md` (window 0).
+   - `autoware_multiwindow.md` and `autoware_w0_warm1.md` (Autoware callbacks, steady state).
+   - `e214.md` (adversarial inputs), `x2_queue_full.md` (full measurement queue), `x3_mixing_qsort-exam.md` and `x3_mixing_select.md` (mixing-rate sweep), `e25_families.md` (fixed copula families), and `certification.md` (finite-sample certificate).
+   - `overhead.md` (probe effect), `coverage.md`, `tails.md`, `neff.md`, `neff_autoware.md`, and `refci.md` (intervals of the references).
+   - `cost.md`, `cost_scope.md`, and `static_analysis_time.md` (analysis time).
+
+Run the Python tools with `.venv/bin/python` (see Setup). The instrumenter in `ipoint/` and `tools/static_analysis_time.py` run with the system `python3`, because the instrumenter needs the libclang of llvm-14.
