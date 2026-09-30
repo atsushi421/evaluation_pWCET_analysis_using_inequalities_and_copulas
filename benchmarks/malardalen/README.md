@@ -48,11 +48,11 @@ The upstream directories also contain SWEET/ALF artefacts (`.alf`, `.aral`, `.ar
 
 ## Name mapping and characteristics
 
-The paper abbreviates `bsort100` as `bsort`; all other names are identical to upstream.
+The revised paper uses the upstream name `bsort100` (the first submission abbreviated it as `bsort`); all other names are identical to upstream.
 
 | Paper name | Upstream file | Description | Kernel origin (from the file header) | Entry function and input supplied by the harness |
 |------------|---------------|-------------|--------------------------------------|--------------------------------------------------|
-| `bsort` | `bsort100.c` | Bubble sort of `NUMELEMS = 100` integers | MRTC | `BubbleSort`; 100 unconstrained 32-bit integers (`bsort100.ann`). The stock `Initialize()` fills `Array[i] = i` (ascending; `-DWORSTCASE` descending) |
+| `bsort100` | `bsort100.c` | Bubble sort of `NUMELEMS = 100` integers | MRTC | `BubbleSort`; 100 unconstrained 32-bit integers (`bsort100.ann`). The stock `Initialize()` fills `Array[i] = i` (ascending; `-DWORSTCASE` descending) |
 | `fir` | `fir.c` | Integer FIR filter, 35 taps over 700 samples | "C Algorithms for DSP", adapted for WCET benchmarking in 2000 | `fir_filter_int`; 7-bit samples, the kernel's coefficients; values do not affect control flow |
 | `matmult` | `matmult.c` | Multiplication of two 20x20 integer matrices (`UPPERLIMIT = 20`) | Thomas Lundqvist (Chalmers), Uppsala WCET variant | `Multiply`; entries in `[0, 8095)`, the range of the built-in LCG |
 | `edn` | `edn.c` | Vector/FIR/IIR/lattice/DCT DSP kernels over 200-element arrays | MRTC (Uppsala) | `main` (constant arrays declared inside `main`); single path |
@@ -71,7 +71,7 @@ Feature flags used in the paper's table: S = single path, L = loops, N = nested 
 
 | Kernel | S | L | N | A | B | F |
 |--------|---|---|---|---|---|---|
-| `bsort` |   | x | x | x |   |   |
+| `bsort100` |   | x | x | x |   |   |
 | `fir` |   | x | x | x |   |   |
 | `matmult` | x | x | x | x |   |   |
 | `edn` | x | x | x | x | x |   |
