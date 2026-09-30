@@ -48,7 +48,7 @@ N_MC_BODY = 1_000_000
 def monotone_pwcet(pwcet: dict) -> dict:
     """The per-p bounds made non-increasing in p (copula.compose.monotone_curve: running minimum
     from the largest RESTK test probability upward, running maximum from it downward), the same
-    curve the composition uses; reported for the end-to-end estimators for consistency."""
+    curve the composition uses; reported for the end-to-end estimators and for programs of one unit."""
     alphas, values = ccompose.monotone_curve(pwcet)
     return dict(zip((float(a) for a in alphas), (float(v) for v in values)))
 
@@ -302,4 +302,7 @@ def decomposed_estimate(bench: Bench, method: str, window: int, n_mc: int = int(
     meta: dict = {}
     root = node_marginal(bench, bench.schema.entry_function, method, mode, lo, hi,
                          probs, leaf, n_mc, meta, loop_rule)
+    if not bench.effective_children(bench.schema.entry_function):
+        # a program of one unit reports its leaf, so it gets the monotone curve that a composition uses
+        return monotone_pwcet(root.pwcet), meta
     return root.pwcet, meta

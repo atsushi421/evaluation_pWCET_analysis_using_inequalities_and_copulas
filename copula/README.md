@@ -143,8 +143,8 @@ independence pretest on, 240 data sets whose generating family is in the pool
 Pool `vc15` (the old 15 candidates) underestimates the quantile by 2 to 3 %
 when the true dependence is BB1-like; pool `all` never selects TLL under BIC,
 but the likelihood-based criteria select it and then underestimate by 5 to
-12 %. For the two misspecified mixtures every parametric selection
-overestimates by 5 to 8 %. Decision: pool `par`, criterion `bic`
+12 %. For the two misspecified mixtures BIC overestimates the quantile at
+1e-5 by 5 to 8 % in every pool. Decision: pool `par`, criterion `bic`
 (per pair, also inside vines), Kendall's tau pretest at 0.05; TLL excluded.
 
 ## Notes

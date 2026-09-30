@@ -5,6 +5,7 @@
 # The x2 and x3 sections regenerate the tables of the two stress tests from results/x2/ and results/x3/.
 #   results/jobs/full_post.sh bench|n1e5|fine|aw|e25|e214|cert|tables|x2|x3
 set -eo pipefail
+export LC_ALL=C     # bytewise glob order, so a later part of a window (e.g. <b>_w0_mono) replaces an earlier one
 cd "$(dirname "$0")/../.."
 PY=.venv/bin/python
 T=results/tables

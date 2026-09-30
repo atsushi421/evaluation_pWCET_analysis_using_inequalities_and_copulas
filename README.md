@@ -113,7 +113,7 @@ The execution-time traces are not part of this repository. They are collected wi
 3. Read the tables. The main ones are the following.
    - `multiwindow.md` and `multiwindow_p1e-5.md` (benchmarks, all training windows) and `w0_p1e-4.md` to `w0_p1e-6.md` (window 0).
    - `autoware_multiwindow.md` and `autoware_w0_warm1.md` (Autoware callbacks, steady state).
-   - `e214.md` (adversarial inputs), `x2_queue_full.md` (full measurement queue), `x3_mixing_qsort-exam.md` and `x3_mixing_select.md` (mixing-rate sweep), `e25_families.md` (fixed copula families), and `certification.md` (finite-sample certificate).
+   - `e214.md` (adversarial inputs), `x2_queue_full.md` (full measurement queue), `x3_mixing_qsort-exam.md` and `x3_mixing_select.md` (mixing-rate sweep), `e25_families.md` (fixed copula families), `certification.md` (finite-sample certificate), and `orderstat.md` (upper order statistics of training window 0 for comparison, from `tools/orderstat.py`).
    - `overhead.md` (probe effect), `coverage.md`, `tails.md`, `neff.md`, `neff_autoware.md`, and `refci.md` (intervals of the references).
    - `cost.md`, `cost_scope.md`, and `static_analysis_time.md` (analysis time).
 

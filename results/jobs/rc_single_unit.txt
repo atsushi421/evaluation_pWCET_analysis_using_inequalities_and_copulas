@@ -1,0 +1,73 @@
+# Recompute of the single-unit programs (prime, cb3) after tree.decomposed_estimate monotonizes a single-unit root.
+# Only the decomposed methods whose reported curve can change; the parts are merged after the stored ones.
+ipoint/traces_full prime 0 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w0_mono 1e8 200000
+ipoint/traces_full prime 1 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w1_mono 1e8 200000
+ipoint/traces_full prime 2 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w2_mono 1e8 200000
+ipoint/traces_full prime 3 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w3_mono 1e8 200000
+ipoint/traces_full prime 4 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w4_mono 1e8 200000
+ipoint/traces_full prime 5 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w5_mono 1e8 200000
+ipoint/traces_full prime 6 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w6_mono 1e8 200000
+ipoint/traces_full prime 7 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w7_mono 1e8 200000
+ipoint/traces_full prime 8 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w8_mono 1e8 200000
+ipoint/traces_full prime 9 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w9_mono 1e8 200000
+ipoint/traces_full prime 10 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w10_mono 1e8 200000
+ipoint/traces_full prime 11 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w11_mono 1e8 200000
+ipoint/traces_full prime 12 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w12_mono 1e8 200000
+ipoint/traces_full prime 13 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w13_mono 1e8 200000
+ipoint/traces_full prime 14 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w14_mono 1e8 200000
+ipoint/traces_full prime 15 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w15_mono 1e8 200000
+ipoint/traces_full prime 16 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w16_mono 1e8 200000
+ipoint/traces_full prime 17 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w17_mono 1e8 200000
+ipoint/traces_full prime 18 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w18_mono 1e8 200000
+ipoint/traces_full prime 19 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w19_mono 1e8 200000
+ipoint/traces_full prime 20 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w20_mono 1e8 200000
+ipoint/traces_full prime 21 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w21_mono 1e8 200000
+ipoint/traces_full prime 22 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w22_mono 1e8 200000
+ipoint/traces_full prime 23 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w23_mono 1e8 200000
+ipoint/traces_full prime 24 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w24_mono 1e8 200000
+ipoint/traces_full prime 25 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w25_mono 1e8 200000
+ipoint/traces_full prime 26 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w26_mono 1e8 200000
+ipoint/traces_full prime 27 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w27_mono 1e8 200000
+ipoint/traces_full prime 28 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w28_mono 1e8 200000
+ipoint/traces_full prime 29 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w29_mono 1e8 200000
+ipoint/traces_full prime 30 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w30_mono 1e8 200000
+ipoint/traces_full prime 31 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w31_mono 1e8 200000
+ipoint/traces_full prime 32 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w32_mono 1e8 200000
+ipoint/traces_full prime 33 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w33_mono 1e8 200000
+ipoint/traces_full prime 34 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w34_mono 1e8 200000
+ipoint/traces_full prime 35 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w35_mono 1e8 200000
+ipoint/traces_full prime 36 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w36_mono 1e8 200000
+ipoint/traces_full prime 37 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w37_mono 1e8 200000
+ipoint/traces_full prime 38 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w38_mono 1e8 200000
+ipoint/traces_full prime 39 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w39_mono 1e8 200000
+ipoint/traces_full prime 40 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w40_mono 1e8 200000
+ipoint/traces_full prime 41 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w41_mono 1e8 200000
+ipoint/traces_full prime 42 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w42_mono 1e8 200000
+ipoint/traces_full prime 43 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w43_mono 1e8 200000
+ipoint/traces_full prime 44 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w44_mono 1e8 200000
+ipoint/traces_full prime 45 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w45_mono 1e8 200000
+ipoint/traces_full prime 46 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w46_mono 1e8 200000
+ipoint/traces_full prime 47 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w47_mono 1e8 200000
+ipoint/traces_full prime 48 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w48_mono 1e8 200000
+ipoint/traces_full prime 49 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full/prime_w49_mono 1e8 200000
+ipoint/traces_full prime 0 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 100000 results/jobs/full_n1e5/prime_w0_mono 1e8 1000000
+ipoint/traces_full prime 1 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 100000 results/jobs/full_n1e5/prime_w1_mono 1e8 1000000
+ipoint/traces_full prime 2 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 100000 results/jobs/full_n1e5/prime_w2_mono 1e8 1000000
+ipoint/traces_full prime 3 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 100000 results/jobs/full_n1e5/prime_w3_mono 1e8 1000000
+ipoint/traces_full prime 4 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 100000 results/jobs/full_n1e5/prime_w4_mono 1e8 1000000
+ipoint/traces_full prime 5 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 100000 results/jobs/full_n1e5/prime_w5_mono 1e8 1000000
+ipoint/traces_full prime 6 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 100000 results/jobs/full_n1e5/prime_w6_mono 1e8 1000000
+ipoint/traces_full prime 7 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 100000 results/jobs/full_n1e5/prime_w7_mono 1e8 1000000
+ipoint/traces_full prime 8 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 100000 results/jobs/full_n1e5/prime_w8_mono 1e8 1000000
+ipoint/traces_full prime 9 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 100000 results/jobs/full_n1e5/prime_w9_mono 1e8 1000000
+ipoint/autoware/traces/autoware/bench_warm1 cb3 0 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full_aw/warm1_cb3_w0_mono 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb3 1 CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb3_w1_mono 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb3 2 CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb3_w2_mono 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb3 3 CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb3_w3_mono 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb3 4 CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb3_w4_mono 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb3 5 CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb3_w5_mono 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb3 6 CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb3_w6_mono 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb3 7 CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb3_w7_mono 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb3 8 CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb3_w8_mono 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb3 9 CHB-IND,CHB-COMONO 10000 results/jobs/full_aw/warm1_cb3_w9_mono 1e7
+ipoint/autoware/traces/autoware/bench cb3 0 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP 10000 results/jobs/full_aw/all_cb3_w0_mono 1e7

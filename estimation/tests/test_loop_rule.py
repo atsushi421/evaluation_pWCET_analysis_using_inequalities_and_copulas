@@ -79,3 +79,20 @@ def test_function_called_twice_per_run_gives_the_bound_on_its_run_total():
     assert 2 * quantile_leaf(calls, "g").pwcet[0.005] < want[0.005]
     for p in tree.P_GRID_FULL:
         assert abs(got[p] / want[p] - 1) < 1e-12, (p, got[p], want[p])
+
+
+def test_single_unit_program_reports_a_monotone_curve(monkeypatch):
+    """A program of one unit reports its leaf through the monotone curve of the composition: the value at the
+    largest RESTK test probability is kept, and a dip below it is lifted to the running maximum."""
+    b = Bench.__new__(Bench)
+    b.bench, b.schema = "synthetic", Schema("f.c", "", [], {}, "f", 0, [Unit("f", "function", None, 0, instrumented=True)])
+    b.by_uid, b.tick_ns = b.schema.by_uid(), 1.0
+    b.e2e_all, b.smi_runs = np.arange(1.0, RUNS + 1), np.empty(0, dtype=np.uint64)
+    b._clean_e2e_mask, b.n_traced = np.ones(RUNS, dtype=bool), RUNS
+    b.units = {"f": UnitData(b.e2e_all, np.arange(RUNS))}
+    dip = {p: (5.0 if p == 1e-5 else 10.0 / p ** 0.1) for p in tree.P_GRID_FULL}       # 1e-5 below 1e-4
+    monkeypatch.setattr(tree, "make_leaf", lambda *a: lambda samples, uid: tree.Marginal(dict(dip)))
+    got, _ = tree.decomposed_estimate(b, "CHB-IND", 0, window_size=RUNS)
+    assert got[1e-4] == dip[1e-4] and got[1e-5] >= got[1e-4]
+    ps = sorted(got, reverse=True)
+    assert all(got[a] <= got[b] for a, b in zip(ps, ps[1:]))

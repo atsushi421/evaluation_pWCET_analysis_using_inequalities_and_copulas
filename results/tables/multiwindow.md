@@ -12,7 +12,7 @@ Unsafe windows (tightness < 1) / windows with an estimate, 12 benchmarks, window
 | EVT-COP | 135/400 [29.1, 38.6] med 1.009 | 274/400 [63.7, 73.0] med 0.945 | 278/400 [64.7, 74.0] med 0.926 |
 | MEMIK-COP | 9/400 [1.0, 4.2] med 1.087 | 116/400 [24.6, 33.7] med 1.054 | 133/400 [28.6, 38.1] med 1.071 |
 | CHB-IND | 16/600 [1.5, 4.3] med 1.057 | 306/600 [46.9, 55.1] med 0.997 | 431/600 [68.0, 75.4] med 0.946 |
-| CHB-COMONO | 10/600 [0.8, 3.0] med 1.083 | 198/600 [29.2, 36.9] med 1.051 | 270/600 [41.0, 49.1] med 1.025 |
+| CHB-COMONO | 10/600 [0.8, 3.0] med 1.083 | 198/600 [29.2, 36.9] med 1.054 | 270/600 [41.0, 49.1] med 1.028 |
 | CHB-COP | 16/400 [2.3, 6.4] med 1.042 | 225/400 [51.2, 61.2] med 0.980 | 292/400 [68.4, 77.3] med 0.937 |
 
 Tightness at p=0.0001: mean, SD, [min, max] over windows, unsafe windows.
