@@ -2,11 +2,11 @@
 """Unsafe-window probability at p = 1e-5 versus the mixing rate rho (X3 sweep), qsort-exam and select.
 
 The values are those of results/tables/x3_mixing_<kernel>.md, computed by tools/x3_summary.py, namely the share
-of the training windows (n = 1e4 runs, K ~ Binom(n, rho) of them adversarial) whose estimate lies below the
+of the training windows (n_w = 1e4 runs, K ~ Binom(n_w, rho) of them adversarial) whose estimate lies below the
 quantile of the mixture, among the windows with an estimate, at the eight rates of the table. rho = 0 sits at its
 own tick left of the log axis and is not joined to the line. E2E-EVT-BM is drawn where at least 1 % of the
 windows have an estimate, that is every rate except 1e-3. E2E-CANTELLI, CHB-IND and CHB-IND@max are 0 at every
-rate, so their lines overlap on the zero line. The dashed grey curve is (1 - rho)^n, the probability that a window
+rate, so their lines overlap on the zero line. The dashed grey curve is (1 - rho)^n_w, the probability that a window
 holds no adversarial run.
 
     .venv/bin/python tools/fig_mixing.py [--out results/figs/mixing.pdf]
@@ -55,7 +55,7 @@ def main():
         r, k, est = xs.load(b, [f"results/x3/x3_{b}.json"])
         refs = [xs.mixture_ref(r, k, rho, float(P)) for rho in rhos]
         ax.plot(grid, (1 - grid) ** xs.N, color=MUTED, lw=1.0, ls=(0, (4, 2)), zorder=1,
-                label=r"$(1-\rho)^{n}$, no adversarial run in the window")
+                label=r"$(1-\rho)^{n_{\mathrm{w}}}$, no adversarial run in the window")
         rows = []
         for m in METHODS:
             res = [xs.unsafe_prob(est[m], ref, rho, P) for ref, rho in zip(refs, rhos)]
