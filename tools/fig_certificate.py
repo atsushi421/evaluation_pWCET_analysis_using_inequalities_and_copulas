@@ -44,7 +44,8 @@ def main():
         for key in ("window0", "all"):
             ax.axvline(c[key]["floor"], color=MUTED, lw=0.7, ls=(0, (3, 2)), label="certification floor")
         ax.axhline(1.0, color=INK, lw=0.5, zorder=0)
-        ax.text(0.97, 0.94, b, transform=ax.transAxes, ha="right", va="top", fontsize=7.5)
+        ax.text(0.97, 0.94, b, transform=ax.transAxes, ha="right", va="top", fontsize=7.5,
+                bbox=dict(facecolor="white", edgecolor="none", pad=0.6))
         ax.grid(True, which="major", lw=0.3, color=GRID)
         for s in ("top", "right"):
             ax.spines[s].set_visible(False)

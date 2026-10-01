@@ -102,8 +102,9 @@ def common_windows(data, com):
         k = int((v < 1).sum())
         ci = cp(k, len(v))
         rows.append([p, f"{k}/{len(v)}", f"{100 * k / len(v):.1f} [{100 * ci.low:.1f}, {100 * ci.high:.1f}]",
-                     f"{100 * np.mean([(1 - float(p)) ** n for n in n_train]):.1f}"])
-    t2 = md(["p", "unsafe windows", "unsafe % [95 % Clopper-Pearson]", "IID expectation (1-p)^n %"], rows)
+                     f"{100 * np.mean([(1 - float(p)) ** n for n in n_train]):.1f}", f"{np.median(v):.3f}"])
+    t2 = md(["p", "unsafe windows", "unsafe % [95 % Clopper-Pearson]", "IID expectation (1-p)^n %",
+             "median tightness"], rows)
     rows = []
     for m in METHODS:
         v = vals(data, m, P4)

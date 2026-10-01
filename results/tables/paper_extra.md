@@ -26,11 +26,11 @@ CHB-COP vs E2E-MEMIK on these windows at p = 1e-4:
 
 Training-window maximum over all 600 windows (the IID expectation is the probability that none of the n training runs reaches the reference quantile, averaged over the windows):
 
-| p | unsafe windows | unsafe % [95 % Clopper-Pearson] | IID expectation (1-p)^n % |
-|---|---|---|---|
-| 0.0001 | 194/600 | 32.3 [28.6, 36.2] | 36.8 |
-| 1e-05 | 547/600 | 91.2 [88.6, 93.3] | 90.5 |
-| 1e-06 | 596/600 | 99.3 [98.3, 99.8] | 99.0 |
+| p | unsafe windows | unsafe % [95 % Clopper-Pearson] | IID expectation (1-p)^n % | median tightness |
+|---|---|---|---|---|
+| 0.0001 | 194/600 | 32.3 [28.6, 36.2] | 36.8 | 1.008 |
+| 1e-05 | 547/600 | 91.2 [88.6, 93.3] | 90.5 | 0.925 |
+| 1e-06 | 596/600 | 99.3 [98.3, 99.8] | 99.0 | 0.838 |
 
 10 % and 90 % points over all windows of each method (600, 400 for the copula-based methods):
 

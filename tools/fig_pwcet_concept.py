@@ -46,7 +46,8 @@ def main():
     plug = np.array(c["window0"]["plugin"]) * us
     cert = np.array(c["window0"]["certified"]) * us
 
-    plt.rcParams.update({"font.size": 8, "font.family": "serif", "axes.linewidth": 0.6})
+    plt.rcParams.update({"font.size": 8, "font.family": "serif", "mathtext.fontset": "dejavuserif",
+                         "axes.linewidth": 0.6, "pdf.fonttype": 42})
     fig, ax = plt.subplots(figsize=(3.45, 2.75))
     xa, ya = ccdf(allruns)
     xt, yt = ccdf(train)
@@ -58,22 +59,23 @@ def main():
     ax.plot(cert[fin], p[fin], color=AQUA, lw=1.4, ls=":", label=r"certified bound ($1-\alpha=0.95$)")
     floor = c["window0"]["floor"]
     ax.axhline(floor, color=AQUA, lw=0.6, ls=(0, (1, 2)))
-    ax.text(train.min(), floor * 1.3, f"certification floor {floor:.2g}",
-            color=INK, fontsize=6.5, va="bottom")
+    # right of the plug-in bound and above the floor line, where no curve passes
+    ax.text(29.0, floor * 1.25, f"certification floor {floor:.2g}",
+            color=INK, fontsize=6.5, va="bottom", ha="left")
     i = int(np.argmin(np.abs(np.log10(p / P_MARK))))
     ax.axhline(P_MARK, color=INK, lw=0.5, ls="-", alpha=0.4)
     ax.plot([plug[i]], [P_MARK], "o", ms=4, color=ORANGE, mec="white", mew=0.8, zorder=5)
-    ax.annotate(rf"pWCET$(10^{{{int(np.log10(P_MARK))}}})$ = {plug[i]:.1f} $\mu$s", (plug[i], P_MARK), xytext=(6, 6),
+    ax.annotate(f"pWCET$(10^{{{int(np.log10(P_MARK))}}})$ = {plug[i]:.1f} \u00b5s", (plug[i], P_MARK), xytext=(6, 6),
                 textcoords="offset points", fontsize=6.5, color=INK)
     ax.set_yscale("log")
     ax.set_ylim(1e-7, 1.5)
     ax.set_xlim(train.min() * 0.97, xa.max() * 1.03)
-    ax.set_xlabel(r"execution time $x$ [$\mu$s]")
-    ax.set_ylabel(r"$P(X \geq x)$")
+    ax.set_xlabel("Execution time $x$ (\u00b5s)")
+    ax.set_ylabel(r"Exceedance probability $P(X \geq x)$")
     ax.grid(True, which="major", lw=0.3, color="#d9d8d1")
     for s in ("top", "right"):
         ax.spines[s].set_visible(False)
-    ax.legend(loc="upper center", bbox_to_anchor=(0.42, -0.2), ncol=2, fontsize=5.8, frameon=False,
+    ax.legend(loc="upper center", bbox_to_anchor=(0.42, -0.2), ncol=2, fontsize=6.5, frameon=False,
               handlelength=2.2, columnspacing=1.0)
     fig.tight_layout(pad=0.3)
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
