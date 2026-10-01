@@ -206,6 +206,26 @@ c times the (1-p)-quantile of one call against the (1-p)-quantile of the per-run
 | st | `Calc_Var_Stddev` | 9999938 | 2-2 | 2.096 | 4.193 | 6.133 | 0.68 |
 
 
+## SMI exclusion and the references (02 §1)
+
+Reference without the SMI exclusion over the reference with it (empirical quantile of all 1e7 runs). Source: results/estimates/*.json (field `references`).
+
+| kernel | p=1e-4 | p=1e-5 | p=1e-6 |
+|---|---|---|---|
+| bsort100 | 1.001 | 1.081 | 7.880 |
+| fir | 1.001 | 1.040 | 5.874 |
+| matmult | 1.001 | 1.008 | 10.927 |
+| edn | 1.001 | 1.014 | 12.259 |
+| ndes | 1.001 | 1.006 | 13.778 |
+| st | 1.001 | 1.045 | 7.178 |
+| lms | 1.002 | 3.362 | 3.571 |
+| prime | 1.000 | 1.001 | 2.319 |
+| cnt | 1.002 | 3.607 | 3.942 |
+| ludcmp | 1.001 | 3.763 | 4.153 |
+| select | 1.002 | 1.036 | 8.761 |
+| qsort-exam | 1.002 | 3.461 | 3.775 |
+
+
 ## Autoware tails (02 §9)
 
 Same columns and definitions as tails.md (tools/tables.py tail_stats): quantile at 1-p over the median (when p*n >= 9), excess kurtosis, GPD shape above the 0.99 quantile; all steady-state invocations, no SMI censoring for Autoware. Source: ipoint/autoware/traces/autoware/bench_warm1.

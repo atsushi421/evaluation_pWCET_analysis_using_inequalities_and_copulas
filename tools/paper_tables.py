@@ -5,7 +5,7 @@
 
 paper_extra.md  one section per value group: the 400 windows of the copula-based methods, paired comparisons,
                 the dependence effect, the cb7 marker loop, E2-14 iteration times, X2 per-window exceedance,
-                the loop rules of fine bsort100, repeated calls, Autoware tails and analysis time
+                the loop rules of fine bsort100, repeated calls, the SMI exclusion, Autoware tails and analysis time
 tau.md          Kendall's tau between the parts of every composed node (CHB-COP meta)
 tailid_bm.md    TailID scenarios of E2E-EVT-PoT and of the EVT-COP leaves, E2E-EVT-BM block sizes
 
@@ -279,14 +279,18 @@ def tailid_counts(metas):
     return [n, sc[1], sc[2], sc[3], few, f"{100 * sc[3] / n:.1f}", f"{100 * (sc[3] + few) / n:.1f}"]
 
 
-def tailid_bm(data, aw):
+def tailid_bm(data, aw, awall):
     head = ["fits", "scenario 1", "scenario 2", "scenario 3", "< 10 exceedances", "scenario 3 %", "ECDF %"]
-    rows = []
-    for b, wins in data.items():
+    rows, alle = [], []
+    for b, wins in list(data.items()) + list(awall.items()):
         ms = [e["E2E-EVT-PoT"]["meta"] for e in wins.values()]
         xi = [m["xi"] for m in ms if "xi" in m]
         rows.append([b] + tailid_counts(ms) + [f"{np.median(xi):.2f}" if xi else "-"])
-    t1 = md(["kernel"] + head + ["median xi (GPD windows)"], rows)
+        if b in awall:
+            alle += ms
+    xi = [m["xi"] for m in alle if "xi" in m]
+    rows.append(["Autoware"] + tailid_counts(alle) + [f"{np.median(xi):.2f}"])
+    t1 = md(["program"] + head + ["median xi (GPD windows)"], rows)
     rows, allb, alla = [], [], []
     for b, wins in data.items():
         ms = [m for e in wins.values() if "EVT-COP" in e for m in leaf_fits(e["EVT-COP"]["meta"])]
@@ -299,24 +303,28 @@ def tailid_bm(data, aw):
         rows.append([f"{cb} (w0)"] + tailid_counts(ms))
     rows.append(["Autoware w0"] + tailid_counts(alla))
     t2 = md(["program"] + head, rows)
-    rows, tot = [], Counter()
-    for b, wins in data.items():
-        es = [e for e in wins.values() if "E2E-EVT-BM" in e]
-        fitted = sum(tight(e, "E2E-EVT-BM", P4) is not None for e in es)
-        acc = Counter(B for e in es for B, v in e["E2E-EVT-BM"]["meta"]["blocks"].items() if v["accepted"])
-        tot.update(acc)
-        tot.update(fitted=fitted, windows=len(es))
-        rows.append([b, f"{fitted}/{len(es)}"] + [acc[B] for B in ("10", "20", "50", "100")])
-    rows.append(["all", f"{tot['fitted']}/{tot['windows']}"] + [tot[B] for B in ("10", "20", "50", "100")])
-    t3 = md(["kernel", "windows with an estimate", "B=10 accepted", "B=20", "B=50", "B=100"], rows)
+    rows = []
+    for group in (data, awall):
+        tot = Counter()
+        for b, wins in group.items():
+            es = [e for e in wins.values() if "E2E-EVT-BM" in e]
+            fitted = sum(tight(e, "E2E-EVT-BM", P4) is not None for e in es)
+            acc = Counter(B for e in es for B, v in e["E2E-EVT-BM"]["meta"]["blocks"].items() if v["accepted"])
+            tot.update(acc)
+            tot.update(fitted=fitted, windows=len(es))
+            rows.append([b, f"{fitted}/{len(es)}"] + [acc[B] for B in ("10", "20", "50", "100")])
+        rows.append(["all" if group is data else "Autoware", f"{tot['fitted']}/{tot['windows']}"]
+                    + [tot[B] for B in ("10", "20", "50", "100")])
+    t3 = md(["program", "windows with an estimate", "B=10 accepted", "B=20", "B=50", "B=100"], rows)
     return ("# TailID scenarios and block maxima\n\n"
             "TailID scenario of every PoT fit (meta `tailid_scenario`: 1 keeps the EQMAE threshold, 2 moves it to the "
             "first ID-sensitive point, 3 falls back to the ECDF). '< 10 exceedances': scenario 1 or 2 whose "
             "threshold leaves fewer than 10 exceedances, which also falls back to the ECDF (meta `fallback`, "
             "estimation/evt.py). ECDF %: both fallbacks. Sources: "
-            f"{EST}/*.json, {AW_EST}/*.json.\n\n## E2E-EVT-PoT (benchmarks, 50 windows each)\n\n" + t1
+            f"{EST}/*.json, {AW_EST}/*.json.\n\n## E2E-EVT-PoT (benchmarks, 50 windows each; Autoware, all windows)\n\n"
+            + t1
             + "\n## EVT-COP leaves (benchmarks: windows 0-49, or 0-9 for the R-vine kernels; Autoware: window 0)\n\n"
-            + t2 + "\n## E2E-EVT-BM (benchmarks, 50 windows each)\n\nA window has an estimate when at least one block "
+            + t2 + "\n## E2E-EVT-BM (benchmarks, 50 windows each; Autoware, all windows)\n\nA window has an estimate when at least one block "
             "size B passes Q-Q R^2 >= 0.99 (the estimate is the median over the accepted B); per B, the windows in "
             "which it was accepted.\n\n" + t3)
 
@@ -478,6 +486,18 @@ def repeated_calls(p=1e-3):
             "ratio"], rows))
 
 
+def smi_references():
+    rows = []
+    for b in BENCHES:
+        r = json.load(open(os.path.join(EST, f"{b}.json")))["references"]
+        rows.append([b] + [fmt(float(r["uncensored"][p]) / float(r["censored"][p])) for p in (P4, P5, P6)])
+    return section(
+        "SMI exclusion and the references (02 §1)",
+        "Reference without the SMI exclusion over the reference with it (empirical quantile of all 1e7 runs). "
+        f"Source: {EST}/*.json (field `references`).",
+        md(["kernel", "p=1e-4", "p=1e-5", "p=1e-6"], rows))
+
+
 def aw_tails():
     rows = []
     for cb in CBS:
@@ -511,12 +531,13 @@ def main():
            for b, wins in data.items()}
     assert sum(map(len, com.values())) == 400
     parts = {b: root_parts(b, wins) for b, wins in data.items()}
-    aw = {cb: wins["0"] for cb, wins in load(AW_EST, AW_EST, CBS).items()}
+    awall = load(AW_EST, AW_EST, CBS)
+    aw = {cb: wins["0"] for cb, wins in awall.items()}
     out = {"paper_extra.md": "# Values of the paper without another table\n\n" + "\n".join([
                common_windows(data, com), pairs(com, parts), dependence(data, com, parts), cb7_marker(),
-               e214(), x2(), fine(), repeated_calls(), aw_tails(), aw_cost(aw)]),
+               e214(), x2(), fine(), repeated_calls(), smi_references(), aw_tails(), aw_cost(aw)]),
            "tau.md": tau_table(data, aw),
-           "tailid_bm.md": tailid_bm(data, aw)}
+           "tailid_bm.md": tailid_bm(data, aw, awall)}
     os.makedirs(a.out, exist_ok=True)
     for name, text in out.items():
         with open(os.path.join(a.out, name), "w") as f:
