@@ -94,6 +94,46 @@ All 35 programs of the suite were screened with three criteria (details, measure
 2. Unit-level measurability: an uninstrumented end-to-end median of at least 2 us (about 60 probe costs of 31.5 ns), so that unit probes do not dominate. At upstream problem sizes this excludes `adpcm` (the codec itself takes about 0.1 us per call), `bs`, `crc`, `expint`, `fft1`, `fibcall`, `insertsort`, `janne_complex`, `jfdctint`, `minver`, `ns`, `nsichneu`, `qurt`, `ud`, and also `fdct` and `sqrt` of the first submission. `cnt`, `select` and `qsort-exam` are recovered by the size patches and `ludcmp` by calling it at the largest order its arrays admit. `ud` could be enlarged in the same way as `ludcmp`, but it is not added because it duplicates `ludcmp` with integer arithmetic. `prime` is kept although its median is below the threshold, because its bimodal execution time (early exit for composite inputs, long trial division for primes) gives the long-tailed case of the evaluation.
 3. Loop bounds derivable from the source or from the declared input range: every loop of the selected kernels either has a literal/macro bound or a documented bound in `ipoint/bench/bounds/<name>.bounds.json`.
 
+The table lists the outcome for every program of the suite. Criterion (ii) was judged at the upstream problem sizes in a screening run with turbo boost enabled, where execution times are about 1.3 times shorter than at the fixed 2.1 GHz of the evaluation.
+
+| Program | Outcome | Criterion | Note |
+|---|---|---|---|
+| `bsort100` | selected | all three met | |
+| `fir` | selected | all three met | |
+| `matmult` | selected | all three met | |
+| `edn` | selected | all three met | fixed input |
+| `ndes` | selected | all three met | |
+| `st` | selected | all three met | fixed input |
+| `lms` | selected | all three met | input from the kernel's own generator |
+| `cnt` | selected | all three met after a size patch | `MAXSIZE` 10 to 100, the upstream original |
+| `ludcmp` | selected | all three met at order 49 | no source change |
+| `select` | selected | all three met after a size patch | 1000 elements |
+| `qsort-exam` | selected | all three met after a size patch | 999 elements |
+| `prime` | selected as an exception | fails (ii) | bimodal, long-tailed execution time |
+| `adpcm` | excluded | (ii) | the codec calls take about 0.12 us and 0.07 us; the end-to-end time is dominated by the test-signal generation |
+| `fdct` | excluded | (ii) | used in the first submission |
+| `sqrt` | excluded | (ii) | used in the first submission |
+| `ud` | excluded | (ii) at the upstream size | could be enlarged like `ludcmp` but duplicates it with integer arithmetic |
+| `ns` | excluded | (ii) | |
+| `crc` | excluded | (ii) | |
+| `expint` | excluded | (ii) | |
+| `fft1` | excluded | (ii) | |
+| `jfdctint` | excluded | (ii) | |
+| `minver` | excluded | (ii) | |
+| `qurt` | excluded | (ii) | |
+| `nsichneu` | excluded | (ii) | |
+| `janne_complex` | excluded | (ii) | |
+| `insertsort` | excluded | (ii) | |
+| `bs` | excluded | (ii) | |
+| `fibcall` | excluded | (ii) | |
+| `lcdnum` | excluded | (i) and (ii) | `switch` only |
+| `duff` | excluded | (i) | Duff's device (`switch` interleaved with `do`) |
+| `cover` | excluded | (i) | three large `switch` statements |
+| `statemate` | excluded | (i) | 16 `switch` statements, generated code |
+| `compress` | excluded | (i) | `goto` |
+| `fac` | excluded | (i) | recursion |
+| `recursion` | excluded | (i) | recursion; the upstream source does not link |
+
 ## Building
 
 The paper compiles every kernel with

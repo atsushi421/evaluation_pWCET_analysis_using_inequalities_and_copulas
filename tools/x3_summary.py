@@ -28,17 +28,45 @@ def mixture_ref(r, k, rho, p):
     return float(xs[np.argmax((1 - rho) * sr + rho * sk <= p)])
 
 
-def main():
-    bench, paths = sys.argv[1], sys.argv[2:]
+def load(bench, paths):
+    """End-to-end times of the uniform (r) and killer (k) campaigns, and the estimates as
+    method -> K -> [{p: value}]."""
     pre = "" if bench == "qsort-exam" else bench + "_"
     rb, kb = Bench(f"results/e214/{pre}rand", bench), Bench(f"results/e214/{pre}killer", bench)
     r, k = rb.e2e_all[rb._clean_e2e_mask], kb.e2e_all[kb._clean_e2e_mask]
-    est = {}                                  # method -> K -> list of {p: value}
+    est = {}
     for path in paths:
         for key, rec in json.load(open(path)).items():
             K = int(key.split("/")[0][1:])
             for m, v in rec.items():
                 est.setdefault(m, {}).setdefault(K, []).append(v)
+    return r, k, est
+
+
+def unsafe_prob(est_m, ref, rho, p):
+    """(unsafe share, median estimate / reference) among the windows with an estimate, or (None, None) when no
+    window has one, and the share of windows without an estimate, of one method at rho."""
+    pk = binom.pmf(np.arange(N + 1), N, rho)
+    Ks = sorted(est_m)
+    unsafe, ratio, missing = 0.0, 0.0, 0.0
+    for K in range(N + 1):
+        if pk[K] < 1e-12:
+            continue
+        kk = max([x for x in Ks if x <= K], default=Ks[0])
+        vals = np.array([v[p] for v in est_m[kk]], dtype=float)
+        ok = vals[np.isfinite(vals)]
+        missing += pk[K] * (1 - len(ok) / len(vals))
+        if len(ok):
+            w = pk[K] * len(ok) / len(vals)
+            unsafe += w * np.mean(ok < ref)
+            ratio += w * np.median(ok) / ref
+    have = 1 - missing
+    return (unsafe / have, ratio / have, missing) if have > 0 else (None, None, missing)
+
+
+def main():
+    bench, paths = sys.argv[1], sys.argv[2:]
+    r, k, est = load(bench, paths)
     methods = sorted(est, key=lambda m: (not m.startswith("E2E"), m))
     rmed, kmed = float(np.median(r)), float(np.median(k))
     print(f"## {bench}: killer median = {kmed / rmed:.2f} x random median; windows per K: "
@@ -49,24 +77,10 @@ def main():
         print("|---" * (3 + len(methods)) + "|")
         for rho in RHOS:
             ref = mixture_ref(r, k, rho, float(p))
-            pk = binom.pmf(np.arange(N + 1), N, rho)
             cells = []
             for m in methods:
-                Ks = sorted(est[m])
-                unsafe, ratio, missing = 0.0, 0.0, 0.0
-                for K in range(N + 1):
-                    if pk[K] < 1e-12:
-                        continue
-                    kk = max([x for x in Ks if x <= K], default=Ks[0])
-                    vals = np.array([v[p] for v in est[m][kk]], dtype=float)
-                    ok = vals[np.isfinite(vals)]
-                    missing += pk[K] * (1 - len(ok) / len(vals))
-                    if len(ok):
-                        w = pk[K] * len(ok) / len(vals)
-                        unsafe += w * np.mean(ok < ref)
-                        ratio += w * np.median(ok) / ref
-                have = 1 - missing
-                cell = f"{unsafe / have:.2f} ({ratio / have:.2f})" if have > 0 else "-"
+                unsafe, ratio, missing = unsafe_prob(est[m], ref, rho, p)
+                cell = "-" if unsafe is None else f"{unsafe:.2f} ({ratio:.2f})"
                 cells.append(cell + (f" [no estimate {missing:.0%}]" if missing > 0.005 else ""))
             print(f"| {rho:g} | {1 - (1 - rho) ** N:.2f} | {ref / rmed:.2f} | " + " | ".join(cells) + " |")
 

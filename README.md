@@ -116,5 +116,7 @@ The execution-time traces are not part of this repository. They are collected wi
    - `e214.md` (adversarial inputs), `x2_queue_full.md` (full measurement queue), `x3_mixing_qsort-exam.md` and `x3_mixing_select.md` (mixing-rate sweep), `e25_families.md` (fixed copula families), `certification.md` (finite-sample certificate), and `orderstat.md` (upper order statistics of training window 0 for comparison, from `tools/orderstat.py`).
    - `overhead.md` (probe effect), `coverage.md`, `tails.md`, `neff.md`, `neff_autoware.md`, and `refci.md` (intervals of the references).
    - `cost.md`, `cost_scope.md`, and `static_analysis_time.md` (analysis time).
+   - `paper_extra.md` (values of the paper that no other table holds, such as the 400 windows shared by all estimators, the paired comparisons, and the cb7 marker loop), `tau.md` (Kendall's tau between units), and `tailid_bm.md` (TailID fallbacks and block-maxima acceptance), all from `tools/paper_tables.py`.
+4. Draw the figures of the paper into `results/figs/` with `tools/fig_pwcet_concept.py` (Fig. 1), `tools/fig_tightness.py` (tightness of all methods on the benchmarks and the Autoware callbacks), `tools/fig_mixing.py` (mixing-rate sweep), and `tools/fig_certificate.py` (certified curves of the appendix).
 
 Run the Python tools with `.venv/bin/python` (see Setup). The instrumenter in `ipoint/` and `tools/static_analysis_time.py` run with the system `python3`, because the instrumenter needs the libclang of llvm-14.
