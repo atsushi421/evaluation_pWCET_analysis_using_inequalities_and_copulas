@@ -333,12 +333,14 @@ def tailid_bm(data, aw, awall):
 # ------------------------------------------------------------ loops: cb7, E2-14, fine bsort100
 
 def unit_bound(bench, body, w, name):
-    """Algorithm 1 bound at 1e-4 on the per-run average iteration of window w and the loop part (bound x it),
-    through tree.loop_marginal with the production leaf and seed; returns (part, per-run column, leaf meta)."""
+    """Algorithm 1 bound at 1e-4 on the per-run average iteration (self time of the loop included) of window w
+    and the loop part (bound x it), through tree.loop_marginal with the production leaf and seed; returns
+    (part, per-run column, leaf meta)."""
     lo, hi = bench.window_bounds(w)
     sink = {}
-    part, col = tree.loop_marginal(bench, body, bench.loop_of_body(body).bound, lo, hi,
-                                   tree.make_leaf("CHB-COP", name, w), sink, "avg")
+    loop = bench.loop_of_body(body)
+    part, col = tree.loop_marginal(bench, body, loop.bound, lo, hi, tree.make_leaf("CHB-COP", name, w), sink, "avg",
+                                   loop_uid=loop.uid)
     return part, col, sink[f"{body}.avg"]
 
 
@@ -380,17 +382,18 @@ def cb7_marker():
     return section(
         "cb7 marker loop (02 §3.1)",
         f"Loop `{CB7_LOOP}` of cb7 (steady state, every invocation, window 0 for the bound). Loop time: the "
-        "interval of the loop unit (iterations and loop control); 'iterations only' sums the iteration bodies, "
-        "which is what the rule bounds. The bound is recomputed with tree.loop_marginal and the production seed, "
+        "interval of the loop unit (iterations and loop control), which is what the rule bounds; 'iterations only' sums "
+        "the iteration bodies. The bound is recomputed with tree.loop_marginal and the production seed, "
         f"and its (d, k) equals the stored CHB-COP meta. Sources: {AW_TRACES}/cb7, {AW_EST}/cb7.json.",
         md(["value", "cb7"], rows))
 
 
 def per_run_avg(b, body, lo, hi):
-    """Per-run average iteration time (ticks) and iteration count over the non-censored runs of [lo, hi) that
-    iterate (the sample of the loop leaf, tree.loop_marginal)."""
+    """Per-run average iteration time (ticks, self time of the loop included) and iteration count over the
+    non-censored runs of [lo, hi) that iterate (the sample of the loop leaf, tree.loop_marginal)."""
     clean = b.window_clean_runs(lo, hi)
     c, t = b.per_run_counts(body, lo, hi)[clean], b.per_run_totals(body, lo, hi)[clean]
+    t = t + b.per_run_totals(b.loop_of_body(body).uid, lo, hi, "self")[clean]
     return t[c > 0] / c[c > 0], c[c > 0]
 
 

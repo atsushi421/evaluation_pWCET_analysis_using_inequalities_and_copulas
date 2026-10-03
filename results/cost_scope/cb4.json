@@ -2,391 +2,376 @@
  "bench": "cb4",
  "traces": "ipoint/autoware/traces/autoware/bench_warm1",
  "n_mc": 10000000,
- "total_s": 12358.280586285982,
+ "total_s": 12259.13772445498,
  "estimate_ticks": {
-  "0.0001": 5224772.324509174,
-  "1e-05": 5438245.845405567,
-  "1e-06": 5685382.825103929
+  "0.0001": 5227406.629867744,
+  "1e-05": 5441562.555851025,
+  "1e-06": 5688666.615495818
  },
  "leaves": [
   {
    "uid": "Controller::callbackTimerControl.self",
    "n": 10000,
-   "s": 15.718561514979228
+   "s": 12.56253933091648
   },
   {
    "uid": "Controller::check_cyclic_message_timeout.self",
    "n": 10000,
-   "s": 15.500179226975888
+   "s": 13.176452365936711
   },
   {
    "uid": "Controller::check_cyclic_message_timeout.if1.else",
    "n": 10000,
-   "s": 14.07520811993163
+   "s": 11.29569997289218
   },
   {
    "uid": "Controller::check_cyclic_message_timeout.if2.else",
    "n": 10000,
-   "s": 14.62687499599997
+   "s": 12.467792941024527
   },
   {
    "uid": "Controller::createInputData.self",
    "n": 10000,
-   "s": 13.703145668958314
+   "s": 13.948796339100227
   },
   {
    "uid": "Controller::processData",
    "n": 10000,
-   "s": 12.28981807292439
+   "s": 12.606384842889383
   },
   {
    "uid": "Controller::createInputData.if1.else",
    "n": 10000,
-   "s": 10.565171516034752
+   "s": 11.331893533002585
   },
   {
    "uid": "Controller::isTimeOut.self",
    "n": 10000,
-   "s": 11.742906630970538
+   "s": 11.904486485058442
   },
   {
    "uid": "Controller::isTimeOut.if1.else",
    "n": 10000,
-   "s": 9.953664130996913
+   "s": 10.045924518024549
   },
   {
    "uid": "Controller::isTimeOut.if2.else",
    "n": 10000,
-   "s": 10.101122411899269
+   "s": 10.042978747049347
   },
   {
    "uid": "Controller::publishDebugMarker",
    "n": 10000,
-   "s": 10.732877067057416
+   "s": 10.818141698138788
   },
   {
    "uid": "Controller::publishProcessingTime.avg",
    "n": 10000,
-   "s": 10.688611831050366
+   "s": 10.712348400847986
   },
   {
    "uid": "MpcLateralController::isReady.self",
    "n": 10000,
-   "s": 11.285651645972393
+   "s": 11.348493214929476
   },
   {
    "uid": "MpcLateralController::setTrajectory@MpcLateralController::isReady",
    "n": 10000,
-   "s": 11.252675070078112
+   "s": 11.308851663954556
   },
   {
    "uid": "MpcLateralController::isReady.if1.else",
    "n": 10000,
-   "s": 9.92468434793409
+   "s": 9.951135636074468
   },
   {
    "uid": "MpcLateralController::isReady.if2.else",
    "n": 10000,
-   "s": 9.923977063968778
+   "s": 9.971936783986166
   },
   {
    "uid": "MpcLateralController::isReady.if3.else",
    "n": 10000,
-   "s": 9.902871406986378
+   "s": 9.957630263874307
   },
   {
    "uid": "MpcLateralController::run.self",
    "n": 10000,
-   "s": 11.255721141002141
+   "s": 11.38617882784456
   },
   {
    "uid": "MPC::calculateMPC.self",
    "n": 10000,
-   "s": 12.48632601997815
+   "s": 11.575388737022877
   },
   {
    "uid": "MPC::calculateMPC.L1",
    "n": 10000,
-   "s": 11.748869488015771
+   "s": 10.760021906811744
   },
   {
    "uid": "MPC::applyVelocityDynamicsFilter.self",
    "n": 10000,
-   "s": 12.281939912005328
+   "s": 11.645935720065609
   },
   {
    "uid": "MPC::applyVelocityDynamicsFilter.if1.else",
    "n": 10000,
-   "s": 10.12865645706188
+   "s": 9.903443749062717
   },
   {
    "uid": "MPC::calcDesiredSteeringRate.self",
    "n": 10000,
-   "s": 10.640019173035398
+   "s": 10.908507632091641
   },
   {
    "uid": "MPC::calcDesiredSteeringRate.if1.else",
    "n": 10000,
-   "s": 9.717154710087925
+   "s": 9.877417949028313
   },
   {
    "uid": "MPC::calculatePredictedTrajectory@MPC::calculateMPC",
    "n": 10000,
-   "s": 10.270121028996073
+   "s": 10.37839379394427
   },
   {
    "uid": "MPC::executeOptimization.self",
    "n": 10000,
-   "s": 10.154239385039546
+   "s": 10.387281970120966
   },
   {
    "uid": "MPC::calcSteerRateLimitOnTrajectory.self",
    "n": 10000,
-   "s": 11.885071108001284
-  },
-  {
-   "uid": "MPC::calcSteerRateLimitOnTrajectory.L1.self",
-   "n": 8092,
-   "s": 10.667509326944128
+   "s": 11.989934507058933
   },
   {
    "uid": "MPC::calcSteerRateLimitOnTrajectory.L1.body.avg",
    "n": 8092,
-   "s": 10.784694315982051
+   "s": 12.179150007897988
   },
   {
    "uid": "MPC::calcSteerRateLimitOnTrajectory.if1.else",
    "n": 8092,
-   "s": 9.845107791014016
+   "s": 9.828059561084956
   },
   {
    "uid": "MPC::executeOptimization.if1.else",
    "n": 10000,
-   "s": 11.249588961014524
+   "s": 11.340993493096903
   },
   {
    "uid": "MPC::executeOptimization.if2.else",
    "n": 10000,
-   "s": 11.05435072502587
+   "s": 11.318649286869913
   },
   {
    "uid": "MPC::executeOptimization.if3.else",
    "n": 10000,
-   "s": 11.571240536053665
+   "s": 10.28244693716988
   },
   {
    "uid": "MPC::generateDiagData",
    "n": 10000,
-   "s": 10.894414589041844
+   "s": 14.406038413988426
   },
   {
    "uid": "MPC::generateMPCMatrix.self",
    "n": 10000,
-   "s": 11.440302505972795
-  },
-  {
-   "uid": "MPC::generateMPCMatrix.L1.self",
-   "n": 10000,
-   "s": 10.597394753014669
+   "s": 14.838883126853034
   },
   {
    "uid": "MPC::generateMPCMatrix.L1.body.avg",
    "n": 10000,
-   "s": 9.980379936052486
+   "s": 13.650540434988216
   },
   {
    "uid": "MPC::generateMPCMatrix.L2",
    "n": 10000,
-   "s": 11.202097442001104
+   "s": 14.855824146885425
   },
   {
    "uid": "MPC::getData.self",
    "n": 10000,
-   "s": 11.6080522359116
+   "s": 12.229660087032244
   },
   {
    "uid": "MPC::getData.if1.else",
    "n": 10000,
-   "s": 9.86364005599171
+   "s": 11.36594494106248
   },
   {
    "uid": "MPC::getData.if2.else",
    "n": 10000,
-   "s": 9.843481038929895
+   "s": 11.383921907050535
   },
   {
    "uid": "MPC::getInitialState",
    "n": 10000,
-   "s": 11.533101404900663
+   "s": 12.324554904131219
   },
   {
    "uid": "MPC::resampleMPCTrajectoryByTime.self",
    "n": 10000,
-   "s": 11.973321459023282
+   "s": 12.100748118944466
   },
   {
    "uid": "MPC::resampleMPCTrajectoryByTime.L1",
    "n": 10000,
-   "s": 10.99255278299097
+   "s": 11.0362479230389
   },
   {
    "uid": "MPC::resampleMPCTrajectoryByTime.if1.else",
    "n": 10000,
-   "s": 9.938437600038014
+   "s": 9.99914419814013
   },
   {
    "uid": "MPC::resampleMPCTrajectoryByTime.if2.then",
    "n": 10000,
-   "s": 10.81684813904576
+   "s": 10.75912601291202
   },
   {
    "uid": "MPC::updateStateForDelayCompensation.self",
    "n": 10000,
-   "s": 10.974019448040053
-  },
-  {
-   "uid": "MPC::updateStateForDelayCompensation.L1.self",
-   "n": 10000,
-   "s": 10.824908330920152
+   "s": 12.24014911102131
   },
   {
    "uid": "MPC::updateStateForDelayCompensation.L1.body.avg",
    "n": 10000,
-   "s": 11.140881499974057
+   "s": 12.213445584056899
   },
   {
    "uid": "MPC::calculateMPC.if1.else",
    "n": 10000,
-   "s": 10.01792634697631
+   "s": 11.252072109142318
   },
   {
    "uid": "MPC::calculateMPC.if2.else",
    "n": 10000,
-   "s": 9.930875039077364
+   "s": 11.055973083013669
   },
   {
    "uid": "MPC::calculateMPC.if3.else",
    "n": 10000,
-   "s": 9.98524416203145
+   "s": 11.099766397150233
   },
   {
    "uid": "MPC::calculateMPC.if4.else",
    "n": 10000,
-   "s": 9.998069360037334
+   "s": 11.042069429997355
   },
   {
    "uid": "MPC::calculateMPC.if5.then",
    "n": 10000,
-   "s": 10.563798065064475
+   "s": 12.893830426968634
   },
   {
    "uid": "MpcLateralController::createCtrlCmdHorizonMsg.self",
    "n": 10000,
-   "s": 11.48070540803019
+   "s": 11.773191234795377
   },
   {
    "uid": "MpcLateralController::createCtrlCmdHorizonMsg.L1",
    "n": 10000,
-   "s": 10.668366012978368
+   "s": 10.888026126194745
   },
   {
    "uid": "MpcLateralController::isSteerConverged.self",
    "n": 1908,
-   "s": 11.841102360049263
+   "s": 12.01271910709329
   },
   {
    "uid": "MpcLateralController::isTrajectoryShapeChanged.self",
    "n": 1908,
-   "s": 11.11498599499464
+   "s": 11.312599929980934
   },
   {
    "uid": "MpcLateralController::isTrajectoryShapeChanged.L1",
    "n": 1908,
-   "s": 11.231094802962616
+   "s": 11.382418027846143
   },
   {
    "uid": "MpcLateralController::isSteerConverged.if1.else",
    "n": 1908,
-   "s": 9.94318567297887
+   "s": 9.978097669081762
   },
   {
    "uid": "MpcLateralController::publishDebugValues",
    "n": 10000,
-   "s": 10.59658128011506
+   "s": 10.496152871055529
   },
   {
    "uid": "MpcLateralController::publishPredictedTraj",
    "n": 10000,
-   "s": 11.075847362051718
+   "s": 11.018038134789094
   },
   {
    "uid": "MpcLateralController::setTrajectory@MpcLateralController::run",
    "n": 10000,
-   "s": 11.607915492961183
+   "s": 11.529038445092738
   },
   {
    "uid": "MpcLateralController::run.if2.else",
    "n": 10000,
-   "s": 9.952260393067263
+   "s": 9.954726306954399
   },
   {
    "uid": "MpcLateralController::run.if4.else",
    "n": 10000,
-   "s": 9.955728454049677
+   "s": 9.996186000062153
   },
   {
    "uid": "MpcLateralController::run.if5.else",
    "n": 10000,
-   "s": 9.957765656989068
+   "s": 9.913236257154495
   },
   {
    "uid": "PidLongitudinalController::checkControlState.self",
    "n": 10000,
-   "s": 10.774769459967501
+   "s": 10.89449718198739
   },
   {
    "uid": "PidLongitudinalController::checkControlState.if1.else",
    "n": 10000,
-   "s": 9.808479462051764
+   "s": 9.92076206789352
   },
   {
    "uid": "PidLongitudinalController::isReady",
    "n": 10000,
-   "s": 11.60603619297035
+   "s": 11.819565701065585
   },
   {
    "uid": "PidLongitudinalController::run",
    "n": 10000,
-   "s": 10.431159944972023
+   "s": 10.647705120034516
   },
   {
    "uid": "Controller::callbackTimerControl.if1.else",
    "n": 10000,
-   "s": 9.800680250045843
+   "s": 9.889986210037023
   },
   {
    "uid": "Controller::callbackTimerControl.if2.else",
    "n": 10000,
-   "s": 9.769895490957424
+   "s": 9.917696334188804
   },
   {
    "uid": "Controller::callbackTimerControl.if3.else",
    "n": 10000,
-   "s": 9.763613807037473
+   "s": 9.913525454932824
   },
   {
    "uid": "Controller::callbackTimerControl.if4.else",
    "n": 10000,
-   "s": 9.763740004971623
+   "s": 9.929059247951955
   }
  ],
  "scopes": [
   {
    "uid": "Controller::check_cyclic_message_timeout",
    "parts": 3,
-   "total_s": 207.20310336502735,
-   "selection_s": 3.4832020279718563,
-   "mc_s": 203.71969165606424,
+   "total_s": 199.8343740690034,
+   "selection_s": 3.427707059076056,
+   "mc_s": 196.4064790098928,
    "model": "rvine",
    "composition": "mc n=10000000 (body n=1000000)",
    "dependent_pairs": 1
@@ -394,9 +379,9 @@
   {
    "uid": "Controller::createInputData",
    "parts": 3,
-   "total_s": 177.80531912005972,
-   "selection_s": 4.805118175921962,
-   "mc_s": 172.99998375901487,
+   "total_s": 167.3573061588686,
+   "selection_s": 4.160951770842075,
+   "mc_s": 163.19613080495037,
    "model": "rvine",
    "composition": "mc n=10000000 (body n=1000000)",
    "dependent_pairs": 1
@@ -404,9 +389,9 @@
   {
    "uid": "Controller::isTimeOut",
    "parts": 3,
-   "total_s": 1.9345368499634787,
-   "selection_s": 0.03285897593013942,
-   "mc_s": 1.9015077999792993,
+   "total_s": 1.942419912898913,
+   "selection_s": 0.03290553786791861,
+   "mc_s": 1.9093444992322475,
    "model": "rvine",
    "composition": "mc n=10000000 (body n=1000000)",
    "dependent_pairs": 0
@@ -414,9 +399,9 @@
   {
    "uid": "MpcLateralController::isReady",
    "parts": 5,
-   "total_s": 9.902161516947672,
-   "selection_s": 4.419090894982219,
-   "mc_s": 5.482841596007347,
+   "total_s": 9.881640566047281,
+   "selection_s": 4.423681291984394,
+   "mc_s": 5.457728063222021,
    "model": "rvine",
    "composition": "mc n=10000000 (body n=1000000)",
    "dependent_pairs": 1
@@ -424,9 +409,9 @@
   {
    "uid": "MPC::applyVelocityDynamicsFilter",
    "parts": 2,
-   "total_s": 0.5422706110402942,
-   "selection_s": 0.006146776024252176,
-   "exact_s": 0.5359121660003439,
+   "total_s": 0.5522960140369833,
+   "selection_s": 0.006146118976175785,
+   "exact_s": 0.5459220560733229,
    "model": "indep",
    "composition": "exact",
    "dependent_pairs": 0
@@ -434,29 +419,19 @@
   {
    "uid": "MPC::calcDesiredSteeringRate",
    "parts": 2,
-   "total_s": 0.5569803270045668,
-   "selection_s": 0.006832555052824318,
-   "exact_s": 0.5499314120970666,
+   "total_s": 0.5645076199434698,
+   "selection_s": 0.006726766936480999,
+   "exact_s": 0.557559791021049,
    "model": "indep",
    "composition": "exact",
    "dependent_pairs": 0
   },
   {
-   "uid": "MPC::calcSteerRateLimitOnTrajectory.L1",
-   "parts": 2,
-   "total_s": 12.50576033105608,
-   "selection_s": 5.139713665936142,
-   "exact_s": 7.365795769961551,
-   "model": "tawn180",
-   "composition": "exact",
-   "dependent_pairs": 1
-  },
-  {
    "uid": "MPC::calcSteerRateLimitOnTrajectory",
    "parts": 3,
-   "total_s": 168.3714191520121,
-   "selection_s": 4.919381482060999,
-   "mc_s": 163.45181571797002,
+   "total_s": 167.94877797784284,
+   "selection_s": 4.922931649023667,
+   "mc_s": 163.02567416708916,
    "model": "rvine",
    "composition": "mc n=10000000 (body n=1000000)",
    "dependent_pairs": 1
@@ -464,29 +439,19 @@
   {
    "uid": "MPC::executeOptimization",
    "parts": 5,
-   "total_s": 139.54049365397077,
-   "selection_s": 4.912547336076386,
-   "mc_s": 134.62770833598915,
+   "total_s": 139.251589337131,
+   "selection_s": 4.88328444911167,
+   "mc_s": 134.36807436100207,
    "model": "rvine",
    "composition": "mc n=10000000 (body n=1000000)",
    "dependent_pairs": 1
   },
   {
-   "uid": "MPC::generateMPCMatrix.L1",
-   "parts": 2,
-   "total_s": 13.567632581922226,
-   "selection_s": 4.9932604930363595,
-   "exact_s": 8.574126986088231,
-   "model": "bb8270",
-   "composition": "exact",
-   "dependent_pairs": 1
-  },
-  {
    "uid": "MPC::generateMPCMatrix",
    "parts": 3,
-   "total_s": 136.1570721520111,
-   "selection_s": 13.621610514936037,
-   "mc_s": 122.53518315497786,
+   "total_s": 135.66161016304977,
+   "selection_s": 13.7808193389792,
+   "mc_s": 121.88054770277813,
    "model": "rvine",
    "composition": "mc n=10000000 (body n=1000000)",
    "dependent_pairs": 3
@@ -494,9 +459,9 @@
   {
    "uid": "MPC::getData",
    "parts": 3,
-   "total_s": 2.0187827239278704,
-   "selection_s": 0.031695998972281814,
-   "mc_s": 1.9869167829165235,
+   "total_s": 2.051598409889266,
+   "selection_s": 0.032120255986228585,
+   "mc_s": 2.019298595841974,
    "model": "rvine",
    "composition": "mc n=10000000 (body n=1000000)",
    "dependent_pairs": 0
@@ -504,29 +469,19 @@
   {
    "uid": "MPC::resampleMPCTrajectoryByTime",
    "parts": 4,
-   "total_s": 24.982707428047433,
-   "selection_s": 8.356514517916366,
-   "mc_s": 16.625963900936767,
+   "total_s": 24.853733240859583,
+   "selection_s": 8.27148656710051,
+   "mc_s": 16.582016021944582,
    "model": "rvine",
    "composition": "mc n=10000000 (body n=1000000)",
    "dependent_pairs": 2
   },
   {
-   "uid": "MPC::updateStateForDelayCompensation.L1",
-   "parts": 2,
-   "total_s": 10.927058142027818,
-   "selection_s": 4.822994155925699,
-   "exact_s": 6.10382281197235,
-   "model": "gumbel180",
-   "composition": "exact",
-   "dependent_pairs": 1
-  },
-  {
    "uid": "MPC::updateStateForDelayCompensation",
    "parts": 2,
-   "total_s": 13.846609015017748,
-   "selection_s": 3.56507116695866,
-   "exact_s": 10.28118278097827,
+   "total_s": 13.705215520923957,
+   "selection_s": 3.5638498531188816,
+   "exact_s": 10.141126169124618,
    "model": "bb7",
    "composition": "exact",
    "dependent_pairs": 1
@@ -534,9 +489,9 @@
   {
    "uid": "MPC::calculateMPC",
    "parts": 17,
-   "total_s": 6381.8199710360495,
-   "selection_s": 281.54152626998257,
-   "mc_s": 6100.277705885004,
+   "total_s": 6365.898876754101,
+   "selection_s": 281.02557182498276,
+   "mc_s": 6084.872551814187,
    "model": "rvine",
    "composition": "mc n=10000000 (body n=1000000)",
    "dependent_pairs": 62
@@ -544,9 +499,9 @@
   {
    "uid": "MpcLateralController::createCtrlCmdHorizonMsg",
    "parts": 2,
-   "total_s": 10.026349755935371,
-   "selection_s": 5.315417547011748,
-   "exact_s": 4.710577777004801,
+   "total_s": 10.035704559180886,
+   "selection_s": 5.323541322955862,
+   "exact_s": 4.711796144023538,
    "model": "gumbel",
    "composition": "exact",
    "dependent_pairs": 1
@@ -554,9 +509,9 @@
   {
    "uid": "MpcLateralController::isTrajectoryShapeChanged",
    "parts": 2,
-   "total_s": 11.84637574502267,
-   "selection_s": 3.671079851104878,
-   "exact_s": 8.174897215911187,
+   "total_s": 11.815138960024342,
+   "selection_s": 3.660856462083757,
+   "exact_s": 8.153883261140436,
    "model": "joe180",
    "composition": "exact",
    "dependent_pairs": 1
@@ -564,9 +519,9 @@
   {
    "uid": "MpcLateralController::isSteerConverged",
    "parts": 3,
-   "total_s": 15.270479122991674,
-   "selection_s": 8.277852908940986,
-   "mc_s": 6.992341901990585,
+   "total_s": 15.071561956778169,
+   "selection_s": 8.175968670053408,
+   "mc_s": 6.895360236987472,
    "model": "rvine",
    "composition": "mc n=10000000 (body n=1000000)",
    "dependent_pairs": 2
@@ -574,9 +529,9 @@
   {
    "uid": "MpcLateralController::run",
    "parts": 10,
-   "total_s": 1358.0191669210326,
-   "selection_s": 97.36573265003972,
-   "mc_s": 1260.6529522989877,
+   "total_s": 1354.782122020144,
+   "selection_s": 96.2758797549177,
+   "mc_s": 1258.505747634219,
    "model": "rvine",
    "composition": "mc n=10000000 (body n=1000000)",
    "dependent_pairs": 20
@@ -584,9 +539,9 @@
   {
    "uid": "PidLongitudinalController::checkControlState",
    "parts": 2,
-   "total_s": 0.5453575619030744,
-   "selection_s": 0.0067061129957437515,
-   "exact_s": 0.5384328670334071,
+   "total_s": 0.551755276042968,
+   "selection_s": 0.006722307996824384,
+   "exact_s": 0.5448149421717972,
    "model": "indep",
    "composition": "exact",
    "dependent_pairs": 0
@@ -594,9 +549,9 @@
   {
    "uid": "Controller::callbackTimerControl",
    "parts": 15,
-   "total_s": 2847.462696179049,
-   "selection_s": 170.3585369179491,
-   "mc_s": 2677.1035464799497,
+   "total_s": 2835.7755537740886,
+   "selection_s": 170.32655184878968,
+   "mc_s": 2665.448381120106,
    "model": "rvine",
    "composition": "mc n=10000000",
    "dependent_pairs": 37

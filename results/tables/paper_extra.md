@@ -131,18 +131,18 @@ st in the extrapolation region (CHB-IND over its 50 windows):
 
 ## cb7 marker loop (02 §3.1)
 
-Loop `NDTScanMatcher::publish_marker.L1` of cb7 (steady state, every invocation, window 0 for the bound). Loop time: the interval of the loop unit (iterations and loop control); 'iterations only' sums the iteration bodies, which is what the rule bounds. The bound is recomputed with tree.loop_marginal and the production seed, and its (d, k) equals the stored CHB-COP meta. Sources: ipoint/autoware/traces/autoware/bench_warm1/cb7, results/estimates_autoware_warm1/cb7.json.
+Loop `NDTScanMatcher::publish_marker.L1` of cb7 (steady state, every invocation, window 0 for the bound). Loop time: the interval of the loop unit (iterations and loop control), which is what the rule bounds; 'iterations only' sums the iteration bodies. The bound is recomputed with tree.loop_marginal and the production seed, and its (d, k) equals the stored CHB-COP meta. Sources: ipoint/autoware/traces/autoware/bench_warm1/cb7, results/estimates_autoware_warm1/cb7.json.
 
 | value | cb7 |
 |---|---|
 | median iteration time, iterations 1-8 (us) | 2.48, 1.50, 1.03, 0.33, 1.12, 0.50, 0.37, 0.37 |
 | iterations per invocation (all invocations), static bound | 2-8 (106554 invocations), bound 31 |
-| Algorithm 1 bound on the per-run average at 1e-4, window 0 (d, k) | 126.7 us (d = 120405, k = 3) |
-| window-0 maximum of the per-run average; bound / maximum | 74.5 us; 1.70 |
+| Algorithm 1 bound on the per-run average at 1e-4, window 0 (d, k) | 128.3 us (d = 121707, k = 3) |
+| window-0 maximum of the per-run average; bound / maximum | 74.6 us; 1.72 |
 | run of that maximum: iterations, first iteration | run 3461: 4, 295.2 us |
-| loop rule value (bound x Algorithm 1 bound) | 3.93 ms |
-| 1e-4 quantile of the loop time over all invocations; rule / quantile (iterations only) | 0.264 ms; 14.9 (0.261 ms; 15.0) |
-| callback reference at 1e-4; rule / reference | 92.46 ms; 4.2 % |
+| loop rule value (bound x Algorithm 1 bound) | 3.98 ms |
+| 1e-4 quantile of the loop time over all invocations; rule / quantile (iterations only) | 0.264 ms; 15.1 (0.261 ms; 15.2) |
+| callback reference at 1e-4; rule / reference | 92.46 ms; 4.3 % |
 | iterations above 100 us (of them the first or second) | 32 (26) |
 | loop time / callback time, median over invocations (iterations only) | 0.027 % (0.025 %) |
 
@@ -153,12 +153,12 @@ Per-run average iteration time in ns, median (max), and iterations per run, medi
 
 | kernel | input | runs | per-run average ns | iterations per run | unit bound 1e-4 ns | bound / killer | killer / random E2E median |
 |---|---|---|---|---|---|---|---|
-| qsort-exam | killer | 2000 | 306.6 (325.9) | 993 (993-993) |  |  | 2.32 |
-| qsort-exam | random w0 | 10000 | 349.3 (392.1) | 379 (351-411) | 392.4 | 1.28 |  |
-| qsort-exam | random w1 | 9998 | 349.2 (384.6) | 381 (345-417) | 385.1 | 1.26 |  |
-| select | killer | 2000 | 652.5 (714.9) | 252 (252-252) |  |  | 8.45 |
-| select | random w0 | 10000 | 1794.6 (4135.4) | 11 (2-19) | 4942.2 | 7.57 |  |
-| select | random w1 | 9999 | 1798.1 (4222.3) | 11 (2-21) | 4871.5 | 7.47 |  |
+| qsort-exam | killer | 2000 | 339.4 (358.6) | 993 (993-993) |  |  | 2.32 |
+| qsort-exam | random w0 | 10000 | 382.1 (425.0) | 379 (351-411) | 425.3 | 1.25 |  |
+| qsort-exam | random w1 | 9998 | 382.1 (417.4) | 381 (345-417) | 418.2 | 1.23 |  |
+| select | killer | 2000 | 684.0 (746.3) | 252 (252-252) |  |  | 8.45 |
+| select | random w0 | 10000 | 1829.2 (4184.6) | 11 (2-19) | 4999.6 | 7.31 |  |
+| select | random w1 | 9999 | 1832.5 (4271.0) | 11 (2-21) | 4928.5 | 7.21 |  |
 
 Cantelli break check at p = 1e-4: the killer median exceeds the Cantelli plug-in bound (mean + SD sqrt((1-p)/p) of the training window) iff killer median / mean > 1 + CV sqrt((1-p)/p):
 
@@ -191,9 +191,9 @@ CHB-COP@max / CHB-COP (per-run slowest iteration vs per-run average rule) per wi
 
 | p | windows | median | min-max |
 |---|---|---|---|
-| 0.0001 | 10 | 20.9 | 17.8-26.2 |
-| 1e-05 | 10 | 22.4 | 20.0-44.6 |
-| 1e-06 | 10 | 23.4 | 19.0-47.1 |
+| 0.0001 | 10 | 20.5 | 17.8-26.3 |
+| 1e-05 | 10 | 22.7 | 20.0-44.8 |
+| 1e-06 | 10 | 22.9 | 19.0-47.2 |
 
 
 ## Repeated calls (02 §1)
@@ -247,11 +247,11 @@ Field `seconds` of the CHB-COP entry, window 0, one core. Source: results/estima
 
 | callback | CHB-COP seconds |
 |---|---|
-| cb1 | 3990 |
+| cb1 | 4317 |
 | cb2 | 82 |
 | cb3 | 15 |
-| cb4 | 12715 |
+| cb4 | 12649 |
 | cb5 | 1279 |
-| cb6 | 2067 |
-| cb7 | 2042 |
+| cb6 | 2183 |
+| cb7 | 2102 |
 

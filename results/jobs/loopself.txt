@@ -1,0 +1,65 @@
+# Loop rule with the self time of the loop (paper repo .review/2026-10-02-revision-fourth-check.md, J1): every
+# result that composes a loop is recomputed (Autoware cb1, cb4, cb6, cb7, the fixed-family runs of cb1, cb4, cb7, and
+# the fine-grained bsort100); the stress tests, X2, and X3 run from results/jobs/loopself_small.sh. warm1 is the
+# steady state of the paper, bench the all-invocation variant (repository only). Merge: loopself_post.sh.
+# The bootstrap of cb5 and cb7 (results/copula_finite_sample/bootstrap_cb5_cb7.*) was rerun with
+#   taskset -c 0-5,10-15 .venv/bin/python tools/copula_finite_sample.py bootstrap
+#     --traces ipoint/autoware/traces/autoware/bench_warm1 --bench cb5,cb7 --reps 10 --workers 9
+# and the analysis time with loopself_cost.sh.
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-COP 10000 results/jobs/loopself/warm1_cb4_cop 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 EVT-COP 10000 results/jobs/loopself/warm1_cb4_evt 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 MEMIK-COP 10000 results/jobs/loopself/warm1_cb4_memik 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0,1,2,3,4,5,6,7,8,9 CHB-IND,CHB-COMONO 10000 results/jobs/loopself/warm1_cb4_ind 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-COP 10000 results/jobs/loopself/warm1_cb1_cop 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 EVT-COP 10000 results/jobs/loopself/warm1_cb1_evt 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 MEMIK-COP 10000 results/jobs/loopself/warm1_cb1_memik 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0,1,2,3,4,5,6,7,8,9 CHB-IND,CHB-COMONO 10000 results/jobs/loopself/warm1_cb1_ind 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 0 CHB-COP 10000 results/jobs/loopself/warm1_cb7_cop 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 0 EVT-COP 10000 results/jobs/loopself/warm1_cb7_evt 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 0 MEMIK-COP 10000 results/jobs/loopself/warm1_cb7_memik 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 0,1,2,3,4,5,6,7,8,9 CHB-IND,CHB-COMONO 10000 results/jobs/loopself/warm1_cb7_ind 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb6 0 CHB-COP 10000 results/jobs/loopself/warm1_cb6_cop 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb6 0 EVT-COP 10000 results/jobs/loopself/warm1_cb6_evt 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb6 0 MEMIK-COP 10000 results/jobs/loopself/warm1_cb6_memik 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb6 0,1,2,3,4,5,6,7,8 CHB-IND,CHB-COMONO 10000 results/jobs/loopself/warm1_cb6_ind 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-gaussian 10000 results/jobs/loopself/e25_cb4_gaussian 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-student 10000 results/jobs/loopself/e25_cb4_student 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-clayton 10000 results/jobs/loopself/e25_cb4_clayton 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-gumbel 10000 results/jobs/loopself/e25_cb4_gumbel 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-frank 10000 results/jobs/loopself/e25_cb4_frank 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-joe 10000 results/jobs/loopself/e25_cb4_joe 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-bb1 10000 results/jobs/loopself/e25_cb4_bb1 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-tawn 10000 results/jobs/loopself/e25_cb4_tawn 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-gaussian 10000 results/jobs/loopself/e25_cb1_gaussian 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-student 10000 results/jobs/loopself/e25_cb1_student 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-clayton 10000 results/jobs/loopself/e25_cb1_clayton 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-gumbel 10000 results/jobs/loopself/e25_cb1_gumbel 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-frank 10000 results/jobs/loopself/e25_cb1_frank 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-joe 10000 results/jobs/loopself/e25_cb1_joe 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-bb1 10000 results/jobs/loopself/e25_cb1_bb1 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-tawn 10000 results/jobs/loopself/e25_cb1_tawn 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 0 CHB-FAM-gaussian 10000 results/jobs/loopself/e25_cb7_gaussian 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 0 CHB-FAM-student 10000 results/jobs/loopself/e25_cb7_student 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 0 CHB-FAM-clayton 10000 results/jobs/loopself/e25_cb7_clayton 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 0 CHB-FAM-gumbel 10000 results/jobs/loopself/e25_cb7_gumbel 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 0 CHB-FAM-frank 10000 results/jobs/loopself/e25_cb7_frank 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 0 CHB-FAM-joe 10000 results/jobs/loopself/e25_cb7_joe 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 0 CHB-FAM-bb1 10000 results/jobs/loopself/e25_cb7_bb1 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb7 0 CHB-FAM-tawn 10000 results/jobs/loopself/e25_cb7_tawn 1e7
+ipoint/traces_fine_full bsort100 0,1,2,3,4,5,6,7,8,9 CHB-COP,CHB-IND,CHB-COMONO,MEMIK-COP,EVT-COP,CHB-COP@max,CHB-IND@max 10000 results/jobs/loopself/fine 1e8 200000
+ipoint/autoware/traces/autoware/bench cb4 0 CHB-COP 10000 results/jobs/loopself/all_cb4_cop 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 EVT-COP 10000 results/jobs/loopself/all_cb4_evt 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 MEMIK-COP 10000 results/jobs/loopself/all_cb4_memik 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 CHB-IND,CHB-COMONO 10000 results/jobs/loopself/all_cb4_ind 1e7
+ipoint/autoware/traces/autoware/bench cb1 0 CHB-COP 10000 results/jobs/loopself/all_cb1_cop 1e7
+ipoint/autoware/traces/autoware/bench cb1 0 EVT-COP 10000 results/jobs/loopself/all_cb1_evt 1e7
+ipoint/autoware/traces/autoware/bench cb1 0 MEMIK-COP 10000 results/jobs/loopself/all_cb1_memik 1e7
+ipoint/autoware/traces/autoware/bench cb1 0 CHB-IND,CHB-COMONO 10000 results/jobs/loopself/all_cb1_ind 1e7
+ipoint/autoware/traces/autoware/bench cb6 0 CHB-COP 10000 results/jobs/loopself/all_cb6_cop 1e7
+ipoint/autoware/traces/autoware/bench cb6 0 EVT-COP 10000 results/jobs/loopself/all_cb6_evt 1e7
+ipoint/autoware/traces/autoware/bench cb6 0 MEMIK-COP 10000 results/jobs/loopself/all_cb6_memik 1e7
+ipoint/autoware/traces/autoware/bench cb6 0 CHB-IND,CHB-COMONO 10000 results/jobs/loopself/all_cb6_ind 1e7
+ipoint/autoware/traces/autoware/bench cb7 0 CHB-COP 10000 results/jobs/loopself/all_cb7_cop 1e7
+ipoint/autoware/traces/autoware/bench cb7 0 EVT-COP 10000 results/jobs/loopself/all_cb7_evt 1e7
+ipoint/autoware/traces/autoware/bench cb7 0 MEMIK-COP 10000 results/jobs/loopself/all_cb7_memik 1e7
+ipoint/autoware/traces/autoware/bench cb7 0 CHB-IND,CHB-COMONO 10000 results/jobs/loopself/all_cb7_ind 1e7

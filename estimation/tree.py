@@ -4,13 +4,17 @@ Every instrumented container node is the sum of its self time and its
 effective children (nearest instrumented descendants); the parts are joined
 by a copula fitted on their per-run totals (pool ``par``, criterion BIC,
 Kendall-tau independence pre-test), by the independence coupling, or by the
-comonotonic coupling. A loop body enters its loop's sum as the static
+comonotonic coupling. A loop whose body is timed enters as one part, the static
 iteration bound times a bound on the per-run average iteration time (loop
 rule ``avg``: T = N * A <= N_max * A, the leaf estimator runs on the per-run
-averages A; the body's internals are not composed). Loop rule ``max`` (the
-method name suffixed ``@max``) instead bounds the per-run slowest iteration M,
-i.e. every iteration as slow as the slowest one of its run; T <= N_max * A <=
-N_max * M in every run, so it never falls below rule ``avg``. A function called
+averages A; the body's internals are not composed). The iteration time
+includes the loop's self time (the loop test and the probes between
+iterations), spread evenly over the iterations of the run, so T is the whole
+loop interval and N_max * A bounds it in every run. Loop rule ``max`` (the
+method name suffixed ``@max``) instead bounds the per-run slowest iteration M
+plus the same share of the self time, i.e. every iteration as slow as the
+slowest one of its run; T <= N_max * A <= N_max * M in every run, so it never
+falls below rule ``avg``. A function called
 c > 1 times per parent run enters the same way, as a loop with bound c whose
 iterations are the calls. The alternatives of a branch enter as their
 pointwise max envelope. Bivariate nodes are composed
@@ -212,17 +216,21 @@ def _multiplicity(bench: Bench, parent_uid: str, child_uid: str, lo: int, hi: in
 
 
 def loop_marginal(bench: Bench, body_uid: str, bound: int, lo: int, hi: int, leaf, meta_sink: dict,
-                  rule: str) -> tuple[Marginal, np.ndarray]:
+                  rule: str, loop_uid: str | None = None) -> tuple[Marginal, np.ndarray]:
     """Loop rule avg (max): the leaf bound on the per-run average (slowest) iteration time, scaled by
     the static bound; returns the part and its per-run column for the copula fit (the same statistic,
-    0 when the loop did not iterate). Runs without an iteration are left out of the marginal, which
-    can only raise it."""
+    0 when the loop did not iterate). With loop_uid, every iteration also carries an equal share of the
+    loop's self time in its run, so bound times the statistic bounds the loop interval. Runs without an
+    iteration are left out of the marginal, which can only raise it."""
     clean = bench.window_clean_runs(lo, hi)
     c = bench.per_run_counts(body_uid, lo, hi)[clean]
+    share = 0.0
+    if loop_uid is not None:
+        share = bench.per_run_totals(loop_uid, lo, hi, "self")[clean] / np.maximum(c, 1)
     if rule == "avg":
-        v = bench.per_run_totals(body_uid, lo, hi)[clean] / np.maximum(c, 1)
+        v = bench.per_run_totals(body_uid, lo, hi)[clean] / np.maximum(c, 1) + share
     else:
-        v = bench.per_run_max(body_uid, lo, hi)[clean]
+        v = bench.per_run_max(body_uid, lo, hi)[clean] + share
     has = c > 0
     m = leaf(v[has], f"{body_uid}.{rule}")
     meta_sink[f"{body_uid}.{rule}"] = {**m.meta, "n_runs": int(has.sum()), "count_max": int(c.max(initial=0)),
@@ -238,9 +246,16 @@ def node_marginal(bench: Bench, uid: str, method: str, mode: str, lo: int, hi: i
         m = leaf(bench.unit_window(uid, lo, hi), uid)
         meta_sink[uid] = m.meta
         return m
+    ud = bench.units[uid]
+    if unit.kind == "loop" and len(eff) == 1 and eff[0].kind == "loop_body" and ud.self_vals is not None:
+        # the loop is one part, bound x the per-run average iteration time with the self time included
+        if unit.bound is None:
+            raise ValueError(f"{uid}: loop without a static bound")
+        part, _ = loop_marginal(bench, eff[0].uid, unit.bound, lo, hi, leaf, meta_sink, loop_rule, loop_uid=uid)
+        meta_sink[uid] = {"note": "loop with its self time", "parts": [f"{eff[0].uid} ({loop_rule} x{unit.bound})"]}
+        return part
     clean = bench.window_clean_runs(lo, hi)
     parts, cols, labels = [], [], []
-    ud = bench.units[uid]
     if ud.self_vals is not None:
         parts.append(leaf(bench.unit_window(uid, lo, hi, "self"), uid + ".self"))
         cols.append(bench.per_run_totals(uid, lo, hi, "self")[clean])

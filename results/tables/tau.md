@@ -36,10 +36,10 @@ Pairs whose abs tau reaches 0.1 in some window (signed range over the windows wh
 
 | callback | pairs | median abs tau | tau of the strongest pair | strongest pair |
 |---|---|---|---|---|
-| cb1 | 20 | 0.177 | +0.342 | EKFLocalizer::timer_callback: EKFModule::get_current_pose (avg x2) / max(EKFLocalizer::timer_callback.if4) |
+| cb1 | 18 | 0.162 | +0.342 | EKFLocalizer::timer_callback: EKFModule::get_current_pose (avg x2) / max(EKFLocalizer::timer_callback.if4) |
 | cb2 | 2 | 0.013 | -0.015 | Twist2Accel::callback_odometry: AccelEstimator::estimate#3 / Twist2Accel::callback_odometry.self |
 | cb3 | 0 | - | - | single unit, no composition |
-| cb4 | 73 | 0.075 | +0.903 | MpcLateralController::isTrajectoryShapeChanged: MpcLateralController::isTrajectoryShapeChanged.L1 / MpcLateralController::isTrajectoryShapeChanged.self |
+| cb4 | 70 | 0.075 | +0.903 | MpcLateralController::isTrajectoryShapeChanged: MpcLateralController::isTrajectoryShapeChanged.L1 / MpcLateralController::isTrajectoryShapeChanged.self |
 | cb5 | 7 | 0.026 | +0.647 | ScanGroundFilterComponent::faster_filter: ScanGroundFilterComponent::extractObjectPoints / ScanGroundFilterComponent::faster_filter.self |
-| cb6 | 29 | 0.012 | +0.646 | LaneDepartureCheckerNode::onTimer: LaneDepartureCheckerNode::createMarkerArray / LaneDepartureCheckerNode::onTimer.self |
-| cb7 | 17 | 0.096 | +0.377 | NDTScanMatcher::callback_sensor_points_main: NDTScanMatcher::publish_pose / NDTScanMatcher::publish_tf |
+| cb6 | 28 | 0.012 | +0.646 | LaneDepartureCheckerNode::onTimer: LaneDepartureCheckerNode::createMarkerArray / LaneDepartureCheckerNode::onTimer.self |
+| cb7 | 16 | 0.079 | +0.377 | NDTScanMatcher::callback_sensor_points_main: NDTScanMatcher::publish_pose / NDTScanMatcher::publish_tf |

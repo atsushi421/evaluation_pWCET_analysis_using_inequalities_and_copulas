@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """X2 summary: for every estimator and training window, the share of queue-full cb1 invocations that exceed the
 estimate, to be compared with the nominal exceedance probability p. The header gives the steady-state median and
-reference and the per-run average time of one pose update in both conditions.
+reference and the per-run average time of one pose update in both conditions, with the self time of the loop
+spread over its iterations as in the loop rule (estimation/tree.py).
 
     .venv/bin/python tools/x2_summary.py ipoint/autoware/traces/x2_queuefull/bench_warm1 results/x2/x2_cb1.json \
         > results/tables/x2_queue_full.md
@@ -16,6 +17,7 @@ from estimation.data import Bench  # noqa: E402
 
 NORMAL = "ipoint/autoware/traces/autoware/bench_warm1"
 POSE = "EKFLocalizer::timer_callback.if3.then.L1.body"
+LOOP = POSE[:-len(".body")]
 
 
 def main():
@@ -26,9 +28,10 @@ def main():
     at_bound = (cnt == 5) & qb._clean_e2e_mask
     full = np.sort(qb.e2e_all[at_bound])
     kmed = float(np.median(full))
-    q_avg = qb.per_run_totals(POSE, 0, n)[at_bound] / 5
+    q_avg = (qb.per_run_totals(POSE, 0, n) + qb.per_run_totals(LOOP, 0, n, "self"))[at_bound] / 5
     ncnt = nb.per_run_counts(POSE, 0, len(nb.e2e_all))
-    n_avg = nb.per_run_totals(POSE, 0, len(nb.e2e_all))[ncnt > 0] / ncnt[ncnt > 0]
+    n_tot = nb.per_run_totals(POSE, 0, len(nb.e2e_all)) + nb.per_run_totals(LOOP, 0, len(nb.e2e_all), "self")
+    n_avg = n_tot[ncnt > 0] / ncnt[ncnt > 0]
     ref = nb.references([1e-4])["censored"][1e-4]
     methods = sorted({k.split("/", 1)[1] for k in d if k.startswith("w")}, key=lambda m: (not m.startswith("E2E"), m))
     wins = sorted({k.split("/")[0] for k in d if k.startswith("w")})

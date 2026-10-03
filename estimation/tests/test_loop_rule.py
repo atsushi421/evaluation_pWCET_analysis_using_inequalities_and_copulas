@@ -1,6 +1,6 @@
 """Loop rules: avg gives exactly the bound on the measured loop total for a loop that always runs its static
 bound and never falls below that total otherwise (T = N * A <= N_max * A); max never falls below avg
-(A <= M, the per-run slowest iteration)."""
+(A <= M, the per-run slowest iteration). A loop with a self time is bounded as a whole interval."""
 import numpy as np
 
 from estimation import tree
@@ -56,6 +56,29 @@ def test_variable_count_loop_never_falls_below_the_measured_total():
     assert all(got[p] >= totals[p] for p in tree.P_GRID_FULL)
     slowest = loop_bound(b, "max")
     assert all(slowest[p] >= got[p] for p in tree.P_GRID_FULL)
+
+
+def with_self_time(b: Bench, init: float = 30.0, per_iteration: float = 7.0) -> Bench:
+    """Gives f.L1 a self time (loop entry and exit, and the loop test and probes between iterations) that
+    grows with the iteration count, as the parser measures it: the loop interval minus the body intervals."""
+    counts = b.per_run_counts("f.L1.body", 0, RUNS)
+    self_t = init + per_iteration * counts
+    b.units["f.L1"] = UnitData(b.units["f.L1"].vals + self_t, np.arange(RUNS), self_t)
+    return b
+
+
+def test_loop_self_time_is_scaled_with_the_iterations():
+    """The self time enters each iteration in equal shares, so a loop that always runs its static bound gets
+    exactly the bound on its measured interval, and a variable count never falls below that interval."""
+    b = with_self_time(loop_bench(np.full(RUNS, BOUND)))
+    got = loop_bound(b, "avg")
+    want = quantile_leaf(b.per_run_totals("f.L1", 0, RUNS), "f.L1").pwcet
+    for p in tree.P_GRID_FULL:
+        assert abs(got[p] / want[p] - 1) < 1e-12, (p, got[p], want[p])
+    b = with_self_time(loop_bench(np.random.default_rng(3).integers(1, BOUND + 1, size=RUNS)))
+    got, slowest = loop_bound(b, "avg"), loop_bound(b, "max")
+    intervals = quantile_leaf(b.per_run_totals("f.L1", 0, RUNS), "f.L1").pwcet
+    assert all(slowest[p] >= got[p] >= intervals[p] for p in tree.P_GRID_FULL)
 
 
 def test_function_called_twice_per_run_gives_the_bound_on_its_run_total():

@@ -2,121 +2,106 @@
  "bench": "cb7",
  "traces": "ipoint/autoware/traces/autoware/bench_warm1",
  "n_mc": 10000000,
- "total_s": 1772.0690017220331,
+ "total_s": 1755.1948336090427,
  "estimate_ticks": {
-  "0.0001": 122154650.47567484,
-  "1e-05": 155821850.62655774,
-  "1e-06": 189954587.8035155
+  "0.0001": 122172353.02570572,
+  "1e-05": 155834316.87589687,
+  "1e-06": 189958461.4140174
  },
  "leaves": [
   {
    "uid": "NDTScanMatcher::callback_sensor_points.self",
    "n": 10000,
-   "s": 12.417528740945272
+   "s": 12.599708890076727
   },
   {
    "uid": "NDTScanMatcher::callback_sensor_points_main.self",
    "n": 10000,
-   "s": 12.194902071962133
+   "s": 12.377417844953015
   },
   {
    "uid": "NDTScanMatcher::count_oscillation",
    "n": 10000,
-   "s": 12.74434710398782
+   "s": 12.958629880100489
   },
   {
    "uid": "NDTScanMatcher::publish_initial_to_result",
    "n": 10000,
-   "s": 11.964540451997891
+   "s": 12.173408603994176
   },
   {
    "uid": "NDTScanMatcher::publish_marker.self",
    "n": 10000,
-   "s": 11.33493819704745
-  },
-  {
-   "uid": "NDTScanMatcher::publish_marker.L1.self",
-   "n": 10000,
-   "s": 12.7724259380484
+   "s": 11.56676428602077
   },
   {
    "uid": "NDTScanMatcher::publish_marker.L1.body.avg",
    "n": 10000,
-   "s": 12.368179308017716
+   "s": 12.58392772404477
   },
   {
    "uid": "NDTScanMatcher::publish_marker.L2",
    "n": 10000,
-   "s": 12.283549656975083
+   "s": 12.395590434083715
   },
   {
    "uid": "NDTScanMatcher::publish_point_cloud",
    "n": 10000,
-   "s": 12.35413210093975
+   "s": 12.498501354129985
   },
   {
    "uid": "NDTScanMatcher::publish_pose.self",
    "n": 10000,
-   "s": 12.802231390029192
+   "s": 12.951294716913253
   },
   {
    "uid": "NDTScanMatcher::publish_pose.if1.then",
    "n": 10000,
-   "s": 12.224958818987943
+   "s": 12.396484767785296
   },
   {
    "uid": "NDTScanMatcher::publish_tf",
    "n": 10000,
-   "s": 11.772203066037036
+   "s": 11.850539370905608
   },
   {
    "uid": "NDTScanMatcher::transform_sensor_measurement.self",
    "n": 10000,
-   "s": 11.201497755013406
+   "s": 11.290890899952501
   },
   {
    "uid": "NDTScanMatcher::transform_sensor_measurement.if1.then",
    "n": 10000,
-   "s": 11.749879691982642
+   "s": 11.702645001001656
   },
   {
    "uid": "NDTScanMatcher::callback_sensor_points_main.if1.else",
    "n": 10000,
-   "s": 9.823479063925333
+   "s": 9.975813674042001
   },
   {
    "uid": "NDTScanMatcher::callback_sensor_points_main.if2.else",
    "n": 10000,
-   "s": 9.82822773407679
+   "s": 9.974776709917933
   },
   {
    "uid": "NDTScanMatcher::callback_sensor_points_main.if3.else",
    "n": 10000,
-   "s": 9.826022317050956
+   "s": 9.971387360943481
   },
   {
    "uid": "NDTScanMatcher::callback_sensor_points.if1.else",
    "n": 10000,
-   "s": 9.695701846969314
+   "s": 9.97020674101077
   }
  ],
  "scopes": [
   {
-   "uid": "NDTScanMatcher::publish_marker.L1",
-   "parts": 2,
-   "total_s": 9.969802248990163,
-   "selection_s": 3.7183936539804563,
-   "exact_s": 6.251160078914836,
-   "model": "tawn90",
-   "composition": "exact",
-   "dependent_pairs": 1
-  },
-  {
    "uid": "NDTScanMatcher::publish_marker",
    "parts": 3,
-   "total_s": 139.91574277495965,
-   "selection_s": 13.461755139986053,
-   "mc_s": 126.45370997104328,
+   "total_s": 139.81943801185116,
+   "selection_s": 13.471810639137402,
+   "mc_s": 126.3473812690936,
    "model": "rvine",
    "composition": "mc n=10000000 (body n=1000000)",
    "dependent_pairs": 3
@@ -124,9 +109,9 @@
   {
    "uid": "NDTScanMatcher::publish_pose",
    "parts": 2,
-   "total_s": 12.31471387296915,
-   "selection_s": 4.836718117003329,
-   "exact_s": 7.4777500740019605,
+   "total_s": 12.310285912826657,
+   "selection_s": 4.8396897171624005,
+   "exact_s": 7.470365701010451,
    "model": "bb8180",
    "composition": "exact",
    "dependent_pairs": 1
@@ -134,9 +119,9 @@
   {
    "uid": "NDTScanMatcher::transform_sensor_measurement",
    "parts": 2,
-   "total_s": 24.176280969986692,
-   "selection_s": 5.017728228005581,
-   "exact_s": 19.15828483190853,
+   "total_s": 24.087431428954005,
+   "selection_s": 4.955255748005584,
+   "exact_s": 19.13191529503092,
    "model": "gumbel180",
    "composition": "exact",
    "dependent_pairs": 1
@@ -144,9 +129,9 @@
   {
    "uid": "NDTScanMatcher::callback_sensor_points_main",
    "parts": 11,
-   "total_s": 1366.8658846908947,
-   "selection_s": 91.75702615804039,
-   "mc_s": 1275.1083274548873,
+   "total_s": 1370.4278690209612,
+   "selection_s": 91.57752835098654,
+   "mc_s": 1278.849821370095,
    "model": "rvine",
    "composition": "mc n=10000000 (body n=1000000)",
    "dependent_pairs": 21
@@ -154,9 +139,9 @@
   {
    "uid": "NDTScanMatcher::callback_sensor_points",
    "parts": 3,
-   "total_s": 9.436731870984659,
-   "selection_s": 2.964968870044686,
-   "mc_s": 6.471547362045385,
+   "total_s": 9.280654656002298,
+   "selection_s": 2.928105076076463,
+   "mc_s": 6.35235521197319,
    "model": "rvine",
    "composition": "mc n=10000000",
    "dependent_pairs": 1
