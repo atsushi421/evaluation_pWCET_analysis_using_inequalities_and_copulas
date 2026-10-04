@@ -1,0 +1,41 @@
+# The copula of a node is fitted over the runs in which the node executes (paper repo
+# .review/2026-10-04-revision-fifth-check.md, J1). Only nodes that run in some runs of a window change, and only
+# the copula-based estimators use the rows: cb1, cb4, and cb6 in window 0 (both variants) and the fixed-family runs
+# of cb1 and cb4. The benchmarks, the fine-grained bsort100, the stress tests, X2, X3, cb2, cb3, cb5, cb7, CHB-IND,
+# and CHB-COMONO do not change. Longest jobs first. Merge: noderows_post.sh; analysis time: noderows_cost.sh.
+# noderows_cost.sh ran on the isolated cores 6 to 8 once only the last three jobs of this list were left; a first
+# run under the load of all twelve parallel jobs inflated the times and was discarded.
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-tawn 10000 results/jobs/noderows/e25_cb4_tawn 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-bb1 10000 results/jobs/noderows/e25_cb4_bb1 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-student 10000 results/jobs/noderows/e25_cb4_student 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-gaussian 10000 results/jobs/noderows/e25_cb4_gaussian 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-clayton 10000 results/jobs/noderows/e25_cb4_clayton 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-gumbel 10000 results/jobs/noderows/e25_cb4_gumbel 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-frank 10000 results/jobs/noderows/e25_cb4_frank 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-FAM-joe 10000 results/jobs/noderows/e25_cb4_joe 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 CHB-COP 10000 results/jobs/noderows/warm1_cb4_cop 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 EVT-COP 10000 results/jobs/noderows/warm1_cb4_evt 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb4 0 MEMIK-COP 10000 results/jobs/noderows/warm1_cb4_memik 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 CHB-COP 10000 results/jobs/noderows/all_cb4_cop 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 EVT-COP 10000 results/jobs/noderows/all_cb4_evt 1e7
+ipoint/autoware/traces/autoware/bench cb4 0 MEMIK-COP 10000 results/jobs/noderows/all_cb4_memik 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-tawn 10000 results/jobs/noderows/e25_cb1_tawn 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-bb1 10000 results/jobs/noderows/e25_cb1_bb1 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-student 10000 results/jobs/noderows/e25_cb1_student 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-gaussian 10000 results/jobs/noderows/e25_cb1_gaussian 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-clayton 10000 results/jobs/noderows/e25_cb1_clayton 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-gumbel 10000 results/jobs/noderows/e25_cb1_gumbel 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-frank 10000 results/jobs/noderows/e25_cb1_frank 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-FAM-joe 10000 results/jobs/noderows/e25_cb1_joe 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 CHB-COP 10000 results/jobs/noderows/warm1_cb1_cop 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 EVT-COP 10000 results/jobs/noderows/warm1_cb1_evt 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb1 0 MEMIK-COP 10000 results/jobs/noderows/warm1_cb1_memik 1e7
+ipoint/autoware/traces/autoware/bench cb1 0 CHB-COP 10000 results/jobs/noderows/all_cb1_cop 1e7
+ipoint/autoware/traces/autoware/bench cb1 0 EVT-COP 10000 results/jobs/noderows/all_cb1_evt 1e7
+ipoint/autoware/traces/autoware/bench cb1 0 MEMIK-COP 10000 results/jobs/noderows/all_cb1_memik 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb6 0 CHB-COP 10000 results/jobs/noderows/warm1_cb6_cop 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb6 0 EVT-COP 10000 results/jobs/noderows/warm1_cb6_evt 1e7
+ipoint/autoware/traces/autoware/bench_warm1 cb6 0 MEMIK-COP 10000 results/jobs/noderows/warm1_cb6_memik 1e7
+ipoint/autoware/traces/autoware/bench cb6 0 CHB-COP 10000 results/jobs/noderows/all_cb6_cop 1e7
+ipoint/autoware/traces/autoware/bench cb6 0 EVT-COP 10000 results/jobs/noderows/all_cb6_evt 1e7
+ipoint/autoware/traces/autoware/bench cb6 0 MEMIK-COP 10000 results/jobs/noderows/all_cb6_memik 1e7

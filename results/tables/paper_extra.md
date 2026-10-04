@@ -247,11 +247,11 @@ Field `seconds` of the CHB-COP entry, window 0, one core. Source: results/estima
 
 | callback | CHB-COP seconds |
 |---|---|
-| cb1 | 4317 |
+| cb1 | 4673 |
 | cb2 | 82 |
 | cb3 | 15 |
-| cb4 | 12649 |
+| cb4 | 15000 |
 | cb5 | 1279 |
-| cb6 | 2183 |
+| cb6 | 2538 |
 | cb7 | 2102 |
 

@@ -2,7 +2,8 @@
 
 Every instrumented container node is the sum of its self time and its
 effective children (nearest instrumented descendants); the parts are joined
-by a copula fitted on their per-run totals (pool ``par``, criterion BIC,
+by a copula fitted on their per-run totals over the runs in which the node
+executes (pool ``par``, criterion BIC,
 Kendall-tau independence pre-test), by the independence coupling, or by the
 comonotonic coupling. A loop whose body is timed enters as one part, the static
 iteration bound times a bound on the per-run average iteration time (loop
@@ -255,6 +256,11 @@ def node_marginal(bench: Bench, uid: str, method: str, mode: str, lo: int, hi: i
         meta_sink[uid] = {"note": "loop with its self time", "parts": [f"{eff[0].uid} ({loop_rule} x{unit.bound})"]}
         return part
     clean = bench.window_clean_runs(lo, hi)
+    # the parts are coupled over the runs in which the node executes, the runs their marginals come from; the
+    # zero rows of the other runs would make the parts look dependent, and the bound of an alternative must
+    # hold for the runs that take it
+    executed = bench.per_run_counts(uid, lo, hi)[clean] > 0
+    clean = clean[executed]
     parts, cols, labels = [], [], []
     if ud.self_vals is not None:
         parts.append(leaf(bench.unit_window(uid, lo, hi, "self"), uid + ".self"))
@@ -276,7 +282,7 @@ def node_marginal(bench: Bench, uid: str, method: str, mode: str, lo: int, hi: i
             # a function called mult times per parent run enters like a loop whose iterations are the calls
             part, col = loop_marginal(bench, child.uid, mult, lo, hi, leaf, meta_sink, loop_rule)
             parts.append(part)
-            cols.append(col)
+            cols.append(col[executed])
             labels.append(f"{child.uid} ({loop_rule} x{mult})")
             continue
         parts.append(node_marginal(bench, child.uid, method, mode, lo, hi, P_GRID_FULL, leaf, n_mc, meta_sink,

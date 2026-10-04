@@ -2,131 +2,131 @@
  "bench": "cb1",
  "traces": "ipoint/autoware/traces/autoware/bench_warm1",
  "n_mc": 10000000,
- "total_s": 3893.319169166032,
+ "total_s": 3899.110251173144,
  "estimate_ticks": {
-  "0.0001": 8691163.367352225,
-  "1e-05": 10039037.506311623,
-  "1e-06": 12049927.824913243
+  "0.0001": 8690506.085610112,
+  "1e-05": 10038053.079816056,
+  "1e-06": 12047997.513416102
  },
  "leaves": [
   {
    "uid": "EKFLocalizer::timer_callback.self",
    "n": 10000,
-   "s": 12.861797760007903
+   "s": 14.224377863807604
   },
   {
    "uid": "EKFLocalizer::publish_estimate_result",
    "n": 10000,
-   "s": 11.8795512591023
+   "s": 13.909482519840822
   },
   {
    "uid": "EKFLocalizer::update_diagnostics.self",
    "n": 10000,
-   "s": 13.849634289043024
+   "s": 14.048148266971111
   },
   {
    "uid": "EKFLocalizer::update_diagnostics.if1.else",
    "n": 7686,
-   "s": 13.512648862786591
+   "s": 13.18621139996685
   },
   {
    "uid": "EKFLocalizer::update_diagnostics.if2.then",
    "n": 10000,
-   "s": 16.007261908147484
+   "s": 14.403529699891806
   },
   {
    "uid": "EKFLocalizer::update_diagnostics.if3.then",
    "n": 1148,
-   "s": 14.425088024931028
+   "s": 12.554578135022894
   },
   {
    "uid": "EKFLocalizer::update_diagnostics.if3.else",
    "n": 8852,
-   "s": 11.314981705043465
+   "s": 11.91977474396117
   },
   {
    "uid": "EKFLocalizer::update_predict_frequency.self",
    "n": 10000,
-   "s": 12.52004501200281
+   "s": 13.841288286959752
   },
   {
    "uid": "EKFLocalizer::update_predict_frequency.if1.then.self",
    "n": 10000,
-   "s": 12.94274226296693
+   "s": 14.539627894992009
   },
   {
    "uid": "EKFLocalizer::update_predict_frequency.if1.then.if1.else",
    "n": 10000,
-   "s": 11.873791651101783
+   "s": 13.231213566148654
   },
   {
    "uid": "EKFModule::get_current_pose.avg",
    "n": 10000,
-   "s": 12.40790014108643
+   "s": 12.970081401057541
   },
   {
    "uid": "EKFModule::get_current_pose_covariance@EKFLocalizer::timer_callback",
    "n": 10000,
-   "s": 12.647497077006847
+   "s": 13.193706151098013
   },
   {
    "uid": "EKFModule::get_current_twist",
    "n": 10000,
-   "s": 12.931174135068431
+   "s": 13.274520483799279
   },
   {
    "uid": "EKFModule::predict_with_delay",
    "n": 10000,
-   "s": 11.00084868306294
+   "s": 11.258451869012788
   },
   {
    "uid": "EKFLocalizer::timer_callback.if1.else",
    "n": 10000,
-   "s": 9.96174786100164
+   "s": 10.17708527483046
   },
   {
    "uid": "EKFLocalizer::timer_callback.if2.else",
    "n": 10000,
-   "s": 9.942712921183556
+   "s": 10.23429873585701
   },
   {
    "uid": "EKFLocalizer::timer_callback.if3.then.self",
    "n": 9045,
-   "s": 12.994792283978313
+   "s": 13.142321940977126
   },
   {
    "uid": "EKFLocalizer::timer_callback.if3.then.L1.body.avg",
    "n": 9045,
-   "s": 11.040606641909108
+   "s": 11.135065695038065
   },
   {
    "uid": "EKFLocalizer::timer_callback.if3.else",
    "n": 955,
-   "s": 9.830536103108898
+   "s": 11.551934630144387
   },
   {
    "uid": "EKFLocalizer::timer_callback.if4.then.self",
    "n": 9152,
-   "s": 13.710895287804306
+   "s": 14.405782496090978
   },
   {
    "uid": "EKFLocalizer::timer_callback.if4.then.L1.body.avg",
    "n": 9152,
-   "s": 12.273042459972203
+   "s": 11.19544810988009
   },
   {
    "uid": "EKFLocalizer::timer_callback.if4.else",
    "n": 848,
-   "s": 10.98772326298058
+   "s": 10.083322815131396
   }
  ],
  "scopes": [
   {
    "uid": "EKFLocalizer::update_diagnostics",
    "parts": 4,
-   "total_s": 496.78174585080706,
-   "selection_s": 12.747171081835404,
-   "mc_s": 484.0343922150787,
+   "total_s": 496.84626934700646,
+   "selection_s": 12.737183416029438,
+   "mc_s": 484.10888598579913,
    "model": "rvine",
    "composition": "mc n=10000000 (body n=1000000)",
    "dependent_pairs": 3
@@ -134,9 +134,9 @@
   {
    "uid": "EKFLocalizer::update_predict_frequency.if1.then",
    "parts": 2,
-   "total_s": 65.9686112171039,
-   "selection_s": 4.22461172984913,
-   "exact_s": 61.74373383517377,
+   "total_s": 67.56870858720504,
+   "selection_s": 4.2313763299025595,
+   "exact_s": 63.3370620990172,
    "model": "bb1",
    "composition": "exact",
    "dependent_pairs": 1
@@ -144,9 +144,9 @@
   {
    "uid": "EKFLocalizer::update_predict_frequency",
    "parts": 2,
-   "total_s": 66.97125311009586,
-   "selection_s": 4.495576114859432,
-   "exact_s": 62.47541484120302,
+   "total_s": 67.30378224793822,
+   "selection_s": 4.496818081941456,
+   "exact_s": 62.80669575999491,
    "model": "bb7",
    "composition": "exact",
    "dependent_pairs": 1
@@ -154,29 +154,29 @@
   {
    "uid": "EKFLocalizer::timer_callback.if3.then",
    "parts": 2,
-   "total_s": 42.035522879101336,
-   "selection_s": 4.812016634969041,
-   "exact_s": 37.22321251989342,
-   "model": "joe180",
+   "total_s": 34.50989123410545,
+   "selection_s": 3.2028258480131626,
+   "exact_s": 31.306795983808115,
+   "model": "frank",
    "composition": "exact",
    "dependent_pairs": 1
   },
   {
    "uid": "EKFLocalizer::timer_callback.if4.then",
    "parts": 2,
-   "total_s": 11.169418128905818,
-   "selection_s": 4.312527084955946,
-   "exact_s": 6.856645813910291,
-   "model": "joe180",
+   "total_s": 11.104621910024434,
+   "selection_s": 3.9288658280856907,
+   "exact_s": 7.175503425998613,
+   "model": "bb8180",
    "composition": "exact",
    "dependent_pairs": 1
   },
   {
    "uid": "EKFLocalizer::timer_callback",
    "parts": 12,
-   "total_s": 2939.359471654985,
-   "selection_s": 169.0473429900594,
-   "mc_s": 2770.311634290032,
+   "total_s": 2943.173095266102,
+   "selection_s": 168.7796071039047,
+   "mc_s": 2774.393026517937,
    "model": "rvine",
    "composition": "mc n=10000000",
    "dependent_pairs": 38

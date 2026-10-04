@@ -2,171 +2,171 @@
  "bench": "cb6",
  "traces": "ipoint/autoware/traces/autoware/bench_warm1",
  "n_mc": 10000000,
- "total_s": 1946.916979014175,
+ "total_s": 2119.8315019148868,
  "estimate_ticks": {
-  "0.0001": 3103521.1193396715,
-  "1e-05": 3811168.811113563,
-  "1e-06": 4490311.619100546
+  "0.0001": 3103314.726610251,
+  "1e-05": 3810700.648100042,
+  "1e-06": 4490367.654848311
  },
  "leaves": [
   {
    "uid": "LaneDepartureCheckerNode::onTimer.self",
    "n": 10000,
-   "s": 13.112782253883779
+   "s": 14.526028190972283
   },
   {
    "uid": "LaneDepartureCheckerNode::onTimer.L1.body.avg",
    "n": 10000,
-   "s": 10.880849719047546
+   "s": 13.824443781981245
   },
   {
    "uid": "LaneDepartureCheckerNode::checkLaneDeparture.self",
    "n": 10000,
-   "s": 11.505490479059517
+   "s": 14.568993679946288
   },
   {
    "uid": "LaneDepartureCheckerNode::checkLaneDeparture.if1.else",
    "n": 10000,
-   "s": 10.224090839037672
+   "s": 13.244162163930014
   },
   {
    "uid": "LaneDepartureCheckerNode::checkLaneDeparture.if2.else",
    "n": 10000,
-   "s": 10.15107636898756
+   "s": 11.767786527052522
   },
   {
    "uid": "LaneDepartureCheckerNode::checkLaneDeparture.if3.else",
    "n": 10000,
-   "s": 10.142782772891223
+   "s": 11.875489424914122
   },
   {
    "uid": "LaneDepartureCheckerNode::createMarkerArray.self",
    "n": 10000,
-   "s": 11.27997385780327
+   "s": 13.022106534102932
   },
   {
    "uid": "LaneDepartureCheckerNode::createMarkerArray.L1",
    "n": 10000,
-   "s": 12.938797121867537
+   "s": 13.374820346012712
   },
   {
    "uid": "LaneDepartureCheckerNode::createMarkerArray.if1.else",
    "n": 10000,
-   "s": 10.104187736986205
+   "s": 10.18674954189919
   },
   {
    "uid": "LaneDepartureCheckerNode::createMarkerArray.if2.then.self",
    "n": 8130,
-   "s": 10.653360711876303
+   "s": 10.874733379110694
   },
   {
    "uid": "LaneDepartureCheckerNode::createMarkerArray.if2.then.L1",
    "n": 8130,
-   "s": 12.189319639001042
+   "s": 12.200430148048326
   },
   {
    "uid": "LaneDepartureCheckerNode::createMarkerArray.if2.then.L2",
    "n": 8130,
-   "s": 11.488178119063377
+   "s": 11.554189887130633
   },
   {
    "uid": "LaneDepartureCheckerNode::createMarkerArray.if2.else",
    "n": 1870,
-   "s": 9.73914177203551
+   "s": 11.410604974022135
   },
   {
    "uid": "LaneDepartureCheckerNode::createMarkerArray.if3.else",
    "n": 5302,
-   "s": 9.78324808506295
+   "s": 11.368808554951102
   },
   {
    "uid": "LaneDepartureCheckerNode::createMarkerArray.if4.else",
    "n": 5386,
-   "s": 9.782022295054048
+   "s": 10.236239232122898
   },
   {
    "uid": "LaneDepartureCheckerNode::isDataReady.self",
    "n": 10000,
-   "s": 11.381164381979033
+   "s": 12.372171572875232
   },
   {
    "uid": "LaneDepartureCheckerNode::isDataReady.if1.else",
    "n": 10000,
-   "s": 9.857877675211057
+   "s": 11.000611325958744
   },
   {
    "uid": "LaneDepartureCheckerNode::isDataReady.if2.else",
    "n": 10000,
-   "s": 9.860696961870417
+   "s": 11.490521321073174
   },
   {
    "uid": "LaneDepartureCheckerNode::isDataReady.if3.else",
    "n": 10000,
-   "s": 9.905294473050162
+   "s": 11.36611266899854
   },
   {
    "uid": "LaneDepartureCheckerNode::isDataReady.if4.else",
    "n": 10000,
-   "s": 9.862269870005548
+   "s": 10.01911678398028
   },
   {
    "uid": "LaneDepartureCheckerNode::isDataReady.if5.else",
    "n": 10000,
-   "s": 9.854518750915304
+   "s": 9.962231662124395
   },
   {
    "uid": "LaneDepartureCheckerNode::isDataReady.if6.else",
    "n": 10000,
-   "s": 9.848638114985079
+   "s": 9.948716199025512
   },
   {
    "uid": "LaneDepartureCheckerNode::isDataReady.if7.else",
    "n": 10000,
-   "s": 9.863688095007092
+   "s": 9.933677569963038
   },
   {
    "uid": "LaneDepartureCheckerNode::isDataTimeout.self",
    "n": 10000,
-   "s": 11.293085020035505
+   "s": 11.316015207907185
   },
   {
    "uid": "LaneDepartureCheckerNode::isDataTimeout.if1.else",
    "n": 10000,
-   "s": 11.126078873174265
+   "s": 9.851197499083355
   },
   {
    "uid": "LaneDepartureCheckerNode::onTimer.if1.else",
    "n": 10000,
-   "s": 11.239459951873869
+   "s": 9.977712219115347
   },
   {
    "uid": "LaneDepartureCheckerNode::onTimer.if2.else",
    "n": 10000,
-   "s": 11.121111190877855
+   "s": 9.91153037501499
   },
   {
    "uid": "LaneDepartureCheckerNode::onTimer.if3.else",
    "n": 10000,
-   "s": 11.379361479077488
+   "s": 9.9698857429903
   },
   {
    "uid": "LaneDepartureCheckerNode::onTimer.if4.else",
    "n": 10000,
-   "s": 10.856484367977828
+   "s": 9.863798847887665
   },
   {
    "uid": "LaneDepartureCheckerNode::onTimer.if5.else",
    "n": 10000,
-   "s": 11.310375757981092
+   "s": 10.060709676938131
   }
  ],
  "scopes": [
   {
    "uid": "LaneDepartureCheckerNode::checkLaneDeparture",
    "parts": 4,
-   "total_s": 3.0238977009430528,
-   "selection_s": 0.06818237598054111,
-   "mc_s": 2.955525292782113,
+   "total_s": 3.052175050135702,
+   "selection_s": 0.06890241615474224,
+   "mc_s": 2.983076717937365,
    "model": "rvine",
    "composition": "mc n=10000000 (body n=1000000)",
    "dependent_pairs": 0
@@ -174,9 +174,9 @@
   {
    "uid": "LaneDepartureCheckerNode::createMarkerArray.if2.then",
    "parts": 3,
-   "total_s": 236.61800209106877,
-   "selection_s": 15.099132971139625,
-   "mc_s": 221.5185822469648,
+   "total_s": 390.29829350300133,
+   "selection_s": 12.116997369099408,
+   "mc_s": 378.18098949897103,
    "model": "rvine",
    "composition": "mc n=10000000 (body n=1000000)",
    "dependent_pairs": 3
@@ -184,9 +184,9 @@
   {
    "uid": "LaneDepartureCheckerNode::createMarkerArray",
    "parts": 6,
-   "total_s": 482.93972347700037,
-   "selection_s": 17.595898086205125,
-   "mc_s": 465.34358653076924,
+   "total_s": 483.3475098719355,
+   "selection_s": 17.660171086899936,
+   "mc_s": 465.6870903780218,
    "model": "rvine",
    "composition": "mc n=10000000 (body n=1000000)",
    "dependent_pairs": 4
@@ -194,9 +194,9 @@
   {
    "uid": "LaneDepartureCheckerNode::isDataReady",
    "parts": 8,
-   "total_s": 11.077005132799968,
-   "selection_s": 0.3232907650526613,
-   "mc_s": 10.75352320400998,
+   "total_s": 11.25760812801309,
+   "selection_s": 0.3228602618910372,
+   "mc_s": 10.93455670797266,
    "model": "rvine",
    "composition": "mc n=10000000 (body n=1000000)",
    "dependent_pairs": 0
@@ -204,9 +204,9 @@
   {
    "uid": "LaneDepartureCheckerNode::isDataTimeout",
    "parts": 2,
-   "total_s": 0.5551084820181131,
-   "selection_s": 0.006810265826061368,
-   "exact_s": 0.5480715841986239,
+   "total_s": 0.5544530430343002,
+   "selection_s": 0.0066688579972833395,
+   "exact_s": 0.5475585369858891,
    "model": "indep",
    "composition": "exact",
    "dependent_pairs": 0
@@ -214,9 +214,9 @@
   {
    "uid": "LaneDepartureCheckerNode::onTimer",
    "parts": 11,
-   "total_s": 889.9221291940194,
-   "selection_s": 58.00791318505071,
-   "mc_s": 831.9138554409146,
+   "total_s": 890.194492816925,
+   "selection_s": 57.955511518986896,
+   "mc_s": 832.2386223569047,
    "model": "rvine",
    "composition": "mc n=10000000",
    "dependent_pairs": 12
